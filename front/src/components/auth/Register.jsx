@@ -10,7 +10,7 @@ const validUsername = new RegExp(
     '^[a-zA-Z0-9].{3,40}$'
   )
   const validPassword = new RegExp(
-    '^[a-zA-Z0-9](?=.*[A-Z]).{3,40}$'
+    '^(?=.*[A-Z]).{3,40}$'
   )
 
 const Register = () => {
