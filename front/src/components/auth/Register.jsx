@@ -10,7 +10,7 @@ const validUsername = new RegExp(
     '^[a-zA-Z0-9].{3,40}$'
   )
   const validPassword = new RegExp(
-    '^[a-zA-Z0-9](?=.*[A-Z]).{3,40}$'
+    '^(?=.*[a-z])(?=.*[A-Z]).*$'
   )
 
 const Register = () => {
@@ -61,6 +61,7 @@ const Register = () => {
           .then(data => {
             console.log(data)
             if(data.status === "success"){
+              console.log("Registered a new user with id "+ data.data.user._id)
               setLoggedUser(data.data.user._id)
             } else if(data.message === "user already exists"){
                 setAlreadyExistsErr(true)
@@ -90,7 +91,7 @@ const Register = () => {
       <input type={showPassword} id="regPass" placeholder="Password" name="password" required>
       </input>
       <input type="checkbox" id="regShowPass" name="showPass" onClick={()=>{toggle()}}></input><label htmlFor="showPass">Rodyti slaptažodi</label>
-      <input type="submit" value="register"></input>
+      <input type="submit" id="regSubmitBtn" value="register"></input>
       </form>
     </div>
   )

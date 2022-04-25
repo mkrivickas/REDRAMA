@@ -42,11 +42,11 @@ const Login = () => {
         </div>
     {loggedUser && <h1>Logged in as :{loggedUser.name}</h1>}
     <form onSubmit={(e)=>{login(e)}}>
-      <input type="text" name="username" placeholder='username'>
+      <input type="text" name="username" id="loginId" placeholder='username'>
       </input>
-      <input type="password" name="password" placeholder='password'>
+      <input type="password" name="password" id="loginPass" placeholder='password'>
       </input>
-      <input type="submit" value="Login"></input>
+      <input type="submit" id="loginSubmit" value="Login"></input>
     </form>
     </div>
   )
