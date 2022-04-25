@@ -6,8 +6,8 @@ import Login from './components/auth/Login';
 function App() {
   return (
     <div className="App">
-{/*       <Register/>
-      <Login/> */}
+      <Register/>
+      <Login/>
       <h1>Main page goes here</h1>
     </div>
   );
