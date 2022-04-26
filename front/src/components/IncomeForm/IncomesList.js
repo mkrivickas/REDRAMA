@@ -15,7 +15,6 @@ const IncomesList = (props) => (
 							<button
 								onClick={() => {
 									props.editRow(income);
-									props.openModal();
 								}}
 								className="button btn-warning "
 							>

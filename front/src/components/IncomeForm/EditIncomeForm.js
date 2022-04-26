@@ -14,7 +14,6 @@ const EditIncomeForm = (props) => {
 		[ props ]
 	);
 
-
 	const handleSubmit = (e) => {
 		console.log(income);
 		e.preventDefault();
@@ -36,9 +35,9 @@ const EditIncomeForm = (props) => {
 					type="text"
 					name="incomeName"
 					required
-					maxLength="20"
-					minLength="2"
-					placeholder="income Name"
+					maxLength="40"
+					minLength="3"
+					placeholder="Income Name"
 					value={editName}
 					onChange={(e) => {
 						setEditName(e.target.value);
@@ -49,9 +48,12 @@ const EditIncomeForm = (props) => {
 				<input
 					className="income-input"
 					type="number"
+					min="0.01"
+					step="0.01"
 					name="incomeAmount"
 					required
-					maxLength="20"
+					maxLength="7"
+					minLength="1"
 					placeholder="income Amount"
 					value={editAmount}
 					onChange={(e) => {

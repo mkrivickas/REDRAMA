@@ -12,8 +12,7 @@ const incomesSchema = new mongoose.Schema({
 		type: Number
 	},
 	incomeDate: {
-		type: Date,
-		default: Math.floor(Date.now() / 1000)
+		type: Date
 	}
 });
 
