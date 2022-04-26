@@ -3,14 +3,14 @@ import bcrypt from 'bcryptjs'
 import './Register.css';
 
 const validUsername = new RegExp(
-    '^[a-zA-Z0-9].{3,40}$'
+    '^[a-zA-Z0-9].{2,39}$'
   )
   
   const validEmail = new RegExp(
-    '^[a-zA-Z0-9].{3,40}$'
+    '^[a-zA-Z0-9].{2,39}$'
   )
   const validPassword = new RegExp(
-    '^(?=.*[a-z])(?=.*[A-Z]).*$'
+    '^(?=.*[A-Z]).{3,}$'
   )
 
 const Register = () => {
@@ -61,7 +61,6 @@ const Register = () => {
           .then(data => {
             console.log(data)
             if(data.status === "success"){
-              console.log("Registered a new user with id "+ data.data.user._id)
               setLoggedUser(data.data.user._id)
             } else if(data.message === "user already exists"){
                 setAlreadyExistsErr(true)
@@ -80,18 +79,18 @@ const Register = () => {
   return (
     <div className="container">
       <div className='errs'>
-        {emailErr && <h5>Email must be valid and have no more than 40 characters</h5>}
-        {passErr && <h5>Password must have atleast one uppercase letter and must be between 3 and 40 characters</h5>}
-        {usernameErr && <h5>Username must be between 3 and 40 characters long</h5>}
-        {alreadyExistsErr && <h5>User already exists!</h5>}
+        {emailErr && <h5>El. Paštas turi buti ne trumpesnis nei 40 simbolių.</h5>}
+        {passErr && <h5>Slaptažodis turi turėti nors vieną didžiają raidę ir turi būti ne trumpesnis nei 3 simboliai</h5>}
+        {usernameErr && <h5>Vartotojo vardas turi būti tarp 3 ir 40 simbolių</h5>}
+        {alreadyExistsErr && <h5>Vartotojas jau egzistuoja!</h5>}
       </div>
       <form onSubmit={(e)=>{register(e)}}> 
-      <input type="text" name="username" id="regUsername" placeholder="Username" required></input>
-      <input type="text" name="email" placeholder="Email" id="regEmail" required></input>
-      <input type={showPassword} id="regPass" placeholder="Password" name="password" required>
+      <input type="text" name="username" id="regUsername" placeholder="Vartotojo Vardas" required></input>
+      <input type="email" name="email" placeholder="El. Paštas" id="regEmail" required></input>
+      <input type={showPassword} id="regPass" placeholder="Slaptažodis" name="password" required>
       </input>
-      <input type="checkbox" id="regShowPass" name="showPass" onClick={()=>{toggle()}}></input><label htmlFor="showPass">Rodyti slaptažodi</label>
-      <input type="submit" id="regSubmitBtn" value="register"></input>
+      <input type="checkbox" id="regShowPass" name="showPass" onClick={()=>{toggle()}}></input><label htmlFor="showPass">Rodyti slaptažodį</label>
+      <input type="submit" value="register"></input>
       </form>
     </div>
   )
