@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Register/>
       <Login/>
-      <h1>Main page goes here</h1>
+      <h1>Pagrindinis Puslapis</h1>
     </div>
   );
 }
