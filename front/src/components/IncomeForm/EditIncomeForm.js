@@ -27,60 +27,65 @@ const EditIncomeForm = (props) => {
 	};
 
 	return (
-		<form className="EditIncome-form" onSubmit={handleSubmit}>
-			<h3 className="incomeEdit-title"> Edit income</h3>
-			<div>
-				<input
-					className="income-input"
-					type="text"
-					name="incomeName"
-					required
-					maxLength="40"
-					minLength="3"
-					placeholder="Income Name"
-					value={editName}
-					onChange={(e) => {
-						setEditName(e.target.value);
-					}}
-				/>
-			</div>
-			<div>
-				<input
-					className="income-input"
-					type="number"
-					min="0.01"
-					step="0.01"
-					name="incomeAmount"
-					required
-					maxLength="7"
-					minLength="1"
-					placeholder="income Amount"
-					value={editAmount}
-					onChange={(e) => {
-						setEditAmount(e.target.value);
-					}}
-				/>
-			</div>
-			<div>
-				<input
-					className="income-input"
-					type="date"
-					name="incomeDate"
-					required
-					min="1920-01-01"
-					max="2021-01-01"
-					placeholder="MMMM-mm-dd"
-					value={editDate}
-					onChange={(e) => {
-						setEditDate(e.target.value);
-					}}
-				/>
-			</div>
-			<button id="button-incomeUpdate">Update income</button>
-			<button id="button-incomeCancel" onClick={() => props.setEditing(false)}>
-				Cancel
-			</button>
-		</form>
+		<div className="EditIcomesForm-container">
+			<form className="EditIncome-form" onSubmit={handleSubmit}>
+				<h3 className="EditIncomeForm-title "> Pridėti pajamas</h3>
+
+				<div>
+					<input
+						className="EditIncomeForm-input"
+						type="text"
+						name="incomeName"
+						required
+						maxLength="40"
+						minLength="3"
+						placeholder="Pajamų pavadinimas"
+						value={editName}
+						onChange={(e) => {
+							setEditName(e.target.value);
+						}}
+					/>
+				</div>
+				<div>
+					<input
+						className="EditIncomeForm-input"
+						type="number"
+						min="0.01"
+						step="0.01"
+						name="incomeAmount"
+						required
+						maxLength="7"
+						minLength="1"
+						placeholder="income Amount"
+						value={editAmount}
+						onChange={(e) => {
+							setEditAmount(e.target.value);
+						}}
+					/>
+				</div>
+				<div>
+					<input
+						className="EditIncomeForm-input"
+						type="date"
+						name="incomeDate"
+						required
+						min="2022-01-01"
+						max="2099-01-01"
+						placeholder="MMMM-mm-dd"
+						value={editDate}
+						onChange={(e) => {
+							setEditDate(e.target.value);
+						}}
+					/>
+				</div>
+				<div>
+					<button id="button-incomeUpdate">Update income</button>
+				</div>
+				<button id="button-incomeCancel" onClick={() => props.setEditing(false)}>
+					Cancel
+				</button>
+			</form>
+		</div>
 	);
 };
 

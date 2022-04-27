@@ -1,0 +1,31 @@
+.IcomesList-table {
+	height: 65vh;
+	width: 43%;
+	background-color: black;
+	color: white;
+	margin: auto;
+	text-align: center;
+	border-radius: 20px;
+}
+
+.IncomeListEdit-button {
+	background-color: rgb(58, 151, 58);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.IncomeListDelete-button {
+	background-color: rgb(242, 84, 17);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.IncomeName-List {
+	font-size: 30px;
+}
+
+.IncomeAmount-List {
+	font-size: 30px;
+}

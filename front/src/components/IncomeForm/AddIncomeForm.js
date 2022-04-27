@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './AddIncomeForm.css';
+import swal from 'sweetalert';
 
 const AddIncomeForm = (props) => {
 	const [ incomeName, setincomeName ] = useState();
@@ -26,7 +28,12 @@ const AddIncomeForm = (props) => {
 			})
 		}).then(() => {
 			// Once posted, the user will be notified
-			alert('Your incomes was added successfully');
+			swal({
+				title: 'Good job!',
+				text: 'Jūsų pajamos buvo pridėtos',
+				icon: 'success',
+				button: 'Aww yiss!'
+			});
 		});
 	};
 
@@ -46,23 +53,22 @@ const AddIncomeForm = (props) => {
 	return (
 		<div>
 			<form className="AddIncome-form" onSubmit={handleSubmit}>
-				<h3 className="incomeAdd-title"> Add income</h3>
+				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
 				<div>
 					<input
-						className="income-input"
+						className="AddIncomeForm-input"
 						type="text"
 						name="incomeName"
 						required
 						maxLength="40"
 						minLength="3"
-						placeholder="Income Name"
-						/* 						pattern="[A-Za-z]" */
+						placeholder="Pajamų pavadinimas"
 						onChange={incomeNameAdd}
 					/>
 				</div>
 				<div>
 					<input
-						className="income-input"
+						className="AddIncomeForm-input"
 						type="number"
 						min="0.01"
 						step="0.01"
@@ -70,19 +76,19 @@ const AddIncomeForm = (props) => {
 						required
 						maxLength="7"
 						minLength="1"
-						placeholder="Income Amount"
+						placeholder="Pajamos"
 						onChange={incomeAmountAdd}
 					/>
 				</div>
 				<div>
 					<input
-						className="income-input"
-						required
+						className="AddIncomeForm-input"
 						type="date"
 						name="incomeDate"
-						// min="2022-01-01"
-						// max="2099-01-01"
-						placeholder="YYYY-MM-DD"
+						required
+						min="2022-01-01"
+						max="2099-01-01"
+						placeholder="MMMM-mm-dd"
 						onChange={incomeDateAdd}
 					/>
 				</div>

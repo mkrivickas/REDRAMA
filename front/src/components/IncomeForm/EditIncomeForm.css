@@ -1,50 +1,42 @@
-/* body {
-	align-items: center;
-
-	display: flex;
-	justify-content: center;
-	height: 80vh;
-}
-
-.EditIncome-form {
-	background-color: #708f73;
+.EditIcomesForm-container {
+	width: 43%;
+	background-color: black;
+	color: white;
+	margin: auto;
+	text-align: center;
 	border-radius: 20px;
 	box-sizing: border-box;
-	height: 450px;
 	padding: 20px;
-	width: 320px;
+	display: flex;
+	justify-content: center;
+	margin-top: 3%;
+	margin-bottom: 3%;
 }
 
-.incomeEdit-title {
-	color: #eee;
+.EditIncomeForm-title {
+	color: rgb(35, 63, 35);
 	font-family: sans-serif;
 	font-size: 26px;
 	font-weight: 600;
 	margin-top: 10px;
+	text-align: center;
 }
 
-.input-container {
-	height: 50px;
-	position: relative;
-	width: 100%;
-}
-
-.income-input {
-	background-color: #355631;
+.EditIncomeForm-input {
+	background-color: white;
 	border-radius: 12px;
 	border: 0;
 	box-sizing: border-box;
-	color: #eee;
+	color: black;
 	font-size: 18px;
-	height: 100%;
 	outline: 0;
-	padding: 15px;
-	width: 100%;
+	padding: 10px;
+	width: 300px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
-.placeholder {
+.EdiIncomeForm-input > .placeholder {
 	color: #65657b;
 	font-family: sans-serif;
 	left: 20px;
@@ -54,17 +46,17 @@
 }
 
 #button-incomeUpdate {
-	background-color: #08d;
+	background-color: rgb(35, 63, 35);
 	border-radius: 12px;
 	border: 0;
 	box-sizing: border-box;
 	color: #eee;
 	cursor: pointer;
 	font-size: 18px;
-	height: 40px;
-	margin-top: 38px;
+	padding: 5px;
+	width: 300px;
+	margin-top: 40px;
 	text-align: center;
-	width: 100%;
 }
 
 #button-incomeUpdate:active {
@@ -72,19 +64,19 @@
 }
 
 #button-incomeCancel {
-	background-color: rgb(232, 61, 45);
+	background-color: rgb(244, 111, 15);
 	border-radius: 12px;
 	border: 0;
 	box-sizing: border-box;
 	color: #eee;
 	cursor: pointer;
 	font-size: 18px;
-	height: 40px;
-	margin-top: 10px;
+	padding: 5px;
+	width: 300px;
+	margin-top: 15px;
 	text-align: center;
-	width: 100%;
 }
 
 #button-incomeCancel:active {
 	background-color: rgb(169, 21, 34);
-} */
+}
