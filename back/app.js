@@ -2,6 +2,7 @@ const express = require("express");
 const {get} = require("http");
 
 const registerRoutes = require("./routes/registerRoutes");
+const expenseRoutes = require("./routes/expenseRoutes");
 const loginRoutes = require("./routes/loginRoutes");
 
 const app = express();
@@ -18,6 +19,6 @@ app.use(function(req, res, next) {
 
 app.use("/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/register", registerRoutes);
 app.use("/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/login", loginRoutes);
-
+app.use("/api/v1/expense", expenseRoutes);
 
 module.exports = app;

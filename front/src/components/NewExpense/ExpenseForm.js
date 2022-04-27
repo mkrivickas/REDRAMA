@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import swal from 'sweetalert';
 
 import './ExpenseForm.css';
 
@@ -51,7 +52,32 @@ const ExpenseForm = (props) => {
             category: enteredCategory,
         };
 
-        props.onSaveExpenseData(expenseData);
+        // Once the form has been submitted, this function will post to the backend
+        const postURL = 'http://localhost:3001/api/v1/expense/'; //Our previously set up route in the backend
+        fetch(postURL, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                // We should keep the fields consistent for managing this data later
+                expenseName: enteredTitle,
+                expenseAmount: enteredAmount,
+                expenseDate: enteredDate,
+                expenseCategory: enteredCategory,
+            }),
+        }).then(() => {
+            // Once posted, the user will be notified
+            swal({
+                title: 'Šaunu!',
+                text: 'Jūsų išlaidos įvestos!',
+                icon: 'success',
+                button: 'Gerai',
+            });
+            // alert('Your incomes was added successfully');
+        });
+
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
@@ -62,45 +88,68 @@ const ExpenseForm = (props) => {
         <form onSubmit={submitHandler}>
             <div className='new-expense__controls'>
                 <div className='new-expense__control'>
-                    <label>Title</label>
+                    <label>Išlaidos</label>
                     <input
                         type='text'
+                        name='expenseName'
+                        required
+                        maxlength='40'
+                        minlength='3'
+                        placeholder='Išlaidų pavadinimas'
+                        pattern='^[a-zA-Z0-9_.-]*$'
                         value={enteredTitle}
                         onChange={titleChangeHandler}
                     />
                 </div>
                 <div className='new-expense__control'>
-                    <label>Amount</label>
+                    <label>Suma</label>
                     <input
                         type='number'
+                        name='expenseAmount'
+                        required
                         min='0.01'
                         step='0.01'
+                        maxlength='7'
+                        minlength='1'
+                        placeholder='Išlaidų suma, €'
                         value={enteredAmount}
                         onChange={amountChangeHandler}
                     />
                 </div>
                 <div className='new-expense__control'>
-                    <label>Date</label>
+                    <label>Data</label>
                     <input
                         type='date'
+                        required
+                        name='expenseDate'
                         min='2019-01-01'
-                        max='2022-12-31'
+                        max='2099-12-31'
+                        placeholder='MMMM-MM-DD'
                         value={enteredDate}
                         onChange={dateChangeHandler}
                     />
                 </div>
                 <div className='new-expense__control'>
-                    <label>Category</label>
+                    <label>Kategorija</label>
                     <select onChange={categoryChangeHandler}>
-                        <option value='food'>food</option>
-                        <option value='clothes'>clothes</option>
-                        <option value='transport'>transport</option>
-                        <option value='education'>education</option>
+                        <option value='food'>Maistas</option>
+                        <option value='clothes'>Drabužiai</option>
+                        <option value='hygiene'>Higiena</option>
+                        <option value='transport'>Transportas</option>
+                        <option value='automotive'>Automobilis</option>
+                        <option value='municipal'>Komunalkos</option>
+                        <option value='services'>Paslaugos</option>
+                        <option value='education'>Mokymai</option>
+                        <option value='hobby'>Pomėgiai</option>
+                        <option value='entertainment'>Pramogos</option>
+                        <option value='pets'>Augintiniai</option>
+                        <option value='household'>Namų išlaidos</option>
+                        <option value='garden'>Sodas</option>
                     </select>
                 </div>
             </div>
             <div className='new-expense__actions'>
-                <button type='submit'>Add Expense</button>
+                <button type='submit'>Pridėti</button>
             </div>
         </form>
     );
