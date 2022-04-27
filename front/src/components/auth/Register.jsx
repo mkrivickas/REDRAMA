@@ -82,7 +82,7 @@ const Register = () => {
         {emailErr && <h5>El. Paštas turi buti ne trumpesnis nei 40 simbolių.</h5>}
         {passErr && <h5>Slaptažodis turi turėti nors vieną didžiają raidę ir turi būti ne trumpesnis nei 3 simboliai</h5>}
         {usernameErr && <h5>Vartotojo vardas turi būti tarp 3 ir 40 simbolių</h5>}
-        {alreadyExistsErr && <h5>Vartotojas jau egzistuoja!</h5>}
+        {alreadyExistsErr && <h5>Vartotojas su tokiu vardu arba el. paštu jau egzistuoja!</h5>}
       </div>
       <form onSubmit={(e)=>{register(e)}}> 
       <input type="text" name="username" id="regUsername" placeholder="Vartotojo Vardas" required></input>
@@ -90,7 +90,7 @@ const Register = () => {
       <input type={showPassword} id="regPass" placeholder="Slaptažodis" name="password" required>
       </input>
       <input type="checkbox" id="regShowPass" name="showPass" onClick={()=>{toggle()}}></input><label htmlFor="showPass">Rodyti slaptažodį</label>
-      <input type="submit" value="register"></input>
+      <input type="submit" value="Registruotis"></input>
       </form>
     </div>
   )

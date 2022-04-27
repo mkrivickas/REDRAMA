@@ -1,10 +1,10 @@
 const RegModel = require("./../models/registrationModel");
 
 exports.loginUser = async(req, res) =>{
-    const userExists = await RegModel.exists({ name: req.body.name });
+    const userExists = await RegModel.exists({ name: req.body.email });
     if (userExists) console.log("User exists");
 
-    RegModel.findOne({ name: req.body.name },function (err, person) {
+    RegModel.findOne({ email: req.body.email },function (err, person) {
         // Prints "Space Ghost is a talk show host".
         console.log(person);
         res.status(201).json({
