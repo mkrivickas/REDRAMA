@@ -38,15 +38,15 @@ const Login = () => {
   return (
     <div className="container">
         <div className='errs'>
-            {loginErrs && <h5>Username or password incorrect</h5>}
+            {loginErrs && <h5>Vartotojo vardas arba slaptažodis neteisingi</h5>}
         </div>
-    {loggedUser && <h1>Logged in as :{loggedUser.name}</h1>}
+    {loggedUser && <h1>Prisijunges vartotojas :{loggedUser.name}</h1>}
     <form onSubmit={(e)=>{login(e)}}>
-      <input type="text" name="username" placeholder='username'>
+      <input type="text" name="username" required id="loginId" placeholder='username'>
       </input>
-      <input type="password" name="password" placeholder='password'>
+      <input type="password" name="password" required id="loginPass" placeholder='password'>
       </input>
-      <input type="submit" value="Login"></input>
+      <input type="submit" id="loginSubmit" value="Login"></input>
     </form>
     </div>
   )
