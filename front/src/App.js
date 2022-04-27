@@ -10,8 +10,9 @@ function App() {
 		<div className="App">
 			<Register />
 			<Login />
-			<h1>Main page goes here</h1>
+      <h1>Islaidos</h1>
       <NewExpense />
+      <h1>Pajamos</h1>
 			<IncomeForm />
 		</div>
 	);

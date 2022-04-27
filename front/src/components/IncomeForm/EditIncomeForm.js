@@ -79,10 +79,10 @@ const EditIncomeForm = (props) => {
 					/>
 				</div>
 				<div>
-					<button id="button-incomeUpdate">Update income</button>
+					<button id="button-incomeUpdate">Pakeisti pajamas</button>
 				</div>
 				<button id="button-incomeCancel" onClick={() => props.setEditing(false)}>
-					Cancel
+					Atšaukti
 				</button>
 			</form>
 		</div>
