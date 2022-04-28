@@ -85,52 +85,10 @@ const ExpenseForm = (props) => {
     };
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className='new-expense__controls'>
-                <div className='new-expense__control'>
-                    <label>Išlaidos</label>
-                    <input
-                        type='text'
-                        name='expenseName'
-                        required
-                        maxlength='40'
-                        minlength='3'
-                        placeholder='Išlaidų pavadinimas'
-                        pattern='^[a-zA-Z0-9_.-]*$'
-                        value={enteredTitle}
-                        onChange={titleChangeHandler}
-                    />
-                </div>
-                <div className='new-expense__control'>
-                    <label>Suma</label>
-                    <input
-                        type='number'
-                        name='expenseAmount'
-                        required
-                        min='0.01'
-                        step='0.01'
-                        maxlength='7'
-                        minlength='1'
-                        placeholder='Išlaidų suma, €'
-                        value={enteredAmount}
-                        onChange={amountChangeHandler}
-                    />
-                </div>
-                <div className='new-expense__control'>
-                    <label>Data</label>
-                    <input
-                        type='date'
-                        required
-                        name='expenseDate'
-                        min='2019-01-01'
-                        max='2099-12-31'
-                        placeholder='MMMM-MM-DD'
-                        value={enteredDate}
-                        onChange={dateChangeHandler}
-                    />
-                </div>
-                <div className='new-expense__control'>
-                    <label>Kategorija</label>
+        <form className="container-fluid" onSubmit={submitHandler}>
+            <div className='new-expense__controls row d-flex justify-content-between'>
+                <div className='new-expense__control col-5'>
+                    <label className='new-expense__category'>Kategorija</label>
                     <select onChange={categoryChangeHandler}>
                         <option value='food'>Maistas</option>
                         <option value='clothes'>Drabužiai</option>
@@ -146,6 +104,48 @@ const ExpenseForm = (props) => {
                         <option value='household'>Namų išlaidos</option>
                         <option value='garden'>Sodas</option>
                     </select>
+                </div>
+                <div className='new-expense__control col-5'>
+                    <label>Suma</label>
+                    <input
+                        type='number'
+                        name='expenseAmount'
+                        required
+                        min='0.01'
+                        step='0.01'
+                        maxlength='10'
+                        minlength='1'
+                        placeholder='Išlaidų suma, €'
+                        value={enteredAmount}
+                        onChange={amountChangeHandler}
+                    />
+                </div>
+                <div className='new-expense__control col-5'>
+                    <label>Data</label>
+                    <input
+                        type='date'
+                        required
+                        name='expenseDate'
+                        min='2019-01-01'
+                        max='2099-12-31'
+                        placeholder='MMMM-MM-DD'
+                        value={enteredDate}
+                        onChange={dateChangeHandler}
+                    />
+                </div>
+                <div className='new-expense__control col-5'>
+                    <label>Išlaidos</label>
+                    <input
+                        type='text'
+                        name='expenseName'
+                        required
+                        maxlength='20'
+                        minlength='5'
+                        placeholder='Išlaidų pavadinimas'
+                        pattern='^[a-zA-Z0-9_.-]*$'
+                        value={enteredTitle}
+                        onChange={titleChangeHandler}
+                    />
                 </div>
             </div>
             <div className='new-expense__actions'>
