@@ -40,6 +40,7 @@ const EditIncomeForm = (props) => {
 						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
+						pattern="[\p{L}\p{Nd}]+"
 						value={editName}
 						onChange={(e) => {
 							setEditName(e.target.value);
@@ -53,9 +54,10 @@ const EditIncomeForm = (props) => {
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
-						required
+						pattern="[0-9]{7}"
 						maxLength="7"
 						minLength="1"
+						required
 						placeholder="Suma"
 						value={editAmount}
 						onChange={(e) => {

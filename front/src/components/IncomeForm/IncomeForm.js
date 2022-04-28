@@ -6,7 +6,6 @@ import './IncomeForm.css';
 import AddIncomeForm from './AddIncomeForm';
 import Modal from 'react-modal';
 import swal from 'sweetalert';
-import Swal from 'sweetalert2';
 
 const IncomeForm = () => {
 	const [ currentIncome, setCurrentIncome ] = useState({});
@@ -52,19 +51,11 @@ const IncomeForm = () => {
 		console.log(id);
 		await fetch('http://localhost:3001/api/v1/income/' + id, { method: 'DELETE' }).then(() => {
 			// Once posted, the user will be notified
-			Swal.fire({
-				title: 'Ar esate tikri?',
-				text: 'Dėmesio duomenys bus pašalinti!',
-				icon: 'warning',
-				showCancelButton: true,
-				cancelButtonText: 'Atšaukti',
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'Taip, pašalinti!'
-			}).then((result) => {
-				if (result.isConfirmed) {
-					Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-				}
+			swal({
+				title: 'Puiku!',
+				text: 'Jūsų pajamos buvo ištrintos',
+				icon: 'success',
+				button: 'Gerai!'
 			});
 			// alert('Your incomes was deleted successfully');
 		});

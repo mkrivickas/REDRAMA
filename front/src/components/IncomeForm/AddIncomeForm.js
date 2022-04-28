@@ -32,7 +32,7 @@ const AddIncomeForm = (props) => {
 				// Once posted, the user will be notified
 				swal({
 					title: 'Puiku!',
-					text: 'Jūsų pajamos buvo pridėtos',
+					text: 'Jūsų duomenys buvo pridėti',
 					icon: 'success',
 					button: 'Gerai!'
 				});
@@ -65,6 +65,7 @@ const AddIncomeForm = (props) => {
 						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
+						pattern="[\p{L}\p{Nd}]+"
 						onChange={incomeNameAdd}
 					/>
 				</div>
@@ -76,8 +77,7 @@ const AddIncomeForm = (props) => {
 						step="0.01"
 						name="incomeAmount"
 						required
-						maxLength="7"
-						minLength="1"
+						pattern="[0-9]{7}"
 						placeholder="Suma"
 						onChange={incomeAmountAdd}
 					/>
