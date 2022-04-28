@@ -22,7 +22,7 @@ const IncomesList = (props) => (
 						</td>
 						<td>
 							<div className="IncomeName-List">{income.incomeName}</div>
-							<div className="IncomeDate-List">{income.incomeDate.split('T')[0]}</div>
+							<div className="IncomeDate-List">{income.incomeDate.slice(0, 10)}</div>
 						</td>
 						<td className="IncomeAmount-List">{income.incomeAmount}€</td>
 

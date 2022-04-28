@@ -26,15 +26,17 @@ const AddIncomeForm = (props) => {
 				incomeAmount: incomeAmount,
 				incomeDate: incomeDate
 			})
-		}).then(() => {
-			// Once posted, the user will be notified
-			swal({
-				title: 'Puiku!',
-				text: 'Jūsų pajamos buvo pridėtos',
-				icon: 'success',
-				button: 'Gerai!'
+		})
+			.then((response) => response.json())
+			.then(() => {
+				// Once posted, the user will be notified
+				swal({
+					title: 'Puiku!',
+					text: 'Jūsų pajamos buvo pridėtos',
+					icon: 'success',
+					button: 'Gerai!'
+				});
 			});
-		});
 	};
 
 	// You can tell React to skip applying an effect if certain values haven’t changed between re-renders. [ props ]
@@ -76,7 +78,7 @@ const AddIncomeForm = (props) => {
 						required
 						maxLength="7"
 						minLength="1"
-						placeholder="Pajamos"
+						placeholder="Suma"
 						onChange={incomeAmountAdd}
 					/>
 				</div>

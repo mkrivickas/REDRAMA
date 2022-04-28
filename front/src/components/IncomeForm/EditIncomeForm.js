@@ -29,7 +29,7 @@ const EditIncomeForm = (props) => {
 	return (
 		<div className="EditIcomesForm-container">
 			<form className="EditIncome-form" onSubmit={handleSubmit}>
-				<h3 className="EditIncomeForm-title "> Pridėti pajamas</h3>
+				<h3 className="EditIncomeForm-title "> Atnaujinti pajamas</h3>
 
 				<div>
 					<input
@@ -56,7 +56,7 @@ const EditIncomeForm = (props) => {
 						required
 						maxLength="7"
 						minLength="1"
-						placeholder="income Amount"
+						placeholder="Suma"
 						value={editAmount}
 						onChange={(e) => {
 							setEditAmount(e.target.value);
