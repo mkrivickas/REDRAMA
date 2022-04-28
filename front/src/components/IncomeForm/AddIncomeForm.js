@@ -26,15 +26,17 @@ const AddIncomeForm = (props) => {
 				incomeAmount: incomeAmount,
 				incomeDate: incomeDate
 			})
-		}).then(() => {
-			// Once posted, the user will be notified
-			swal({
-				title: 'Good job!',
-				text: 'Jūsų pajamos buvo pridėtos',
-				icon: 'success',
-				button: 'Aww yiss!'
+		})
+			.then((response) => response.json())
+			.then(() => {
+				// Once posted, the user will be notified
+				swal({
+					title: 'Puiku!',
+					text: 'Jūsų duomenys buvo pridėti',
+					icon: 'success',
+					button: 'Gerai!'
+				});
 			});
-		});
 	};
 
 	// You can tell React to skip applying an effect if certain values haven’t changed between re-renders. [ props ]
@@ -60,9 +62,10 @@ const AddIncomeForm = (props) => {
 						type="text"
 						name="incomeName"
 						required
-						maxLength="40"
+						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
+						pattern="^[\p{L},.0-9\s-]+$"
 						onChange={incomeNameAdd}
 					/>
 				</div>
@@ -70,13 +73,12 @@ const AddIncomeForm = (props) => {
 					<input
 						className="AddIncomeForm-input"
 						type="number"
+						// pattern="[1-9]{,6}"
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
 						required
-						maxLength="7"
-						minLength="1"
-						placeholder="Pajamos"
+						placeholder="Suma"
 						onChange={incomeAmountAdd}
 					/>
 				</div>
@@ -86,15 +88,15 @@ const AddIncomeForm = (props) => {
 						type="date"
 						name="incomeDate"
 						required
-						min="2022-01-01"
-						max="2099-01-01"
+						min="2019-01-01"
+						max="2099-12-31"
 						placeholder="MMMM-mm-dd"
 						onChange={incomeDateAdd}
 					/>
 				</div>
 				<button id="button-incomeAdd" type="submit">
 					{' '}
-					Add
+					Pridėti
 				</button>
 			</form>
 		</div>

@@ -29,7 +29,7 @@ const EditIncomeForm = (props) => {
 	return (
 		<div className="EditIcomesForm-container">
 			<form className="EditIncome-form" onSubmit={handleSubmit}>
-				<h3 className="EditIncomeForm-title "> Pridėti pajamas</h3>
+				<h3 className="EditIncomeForm-title "> Atnaujinti pajamas</h3>
 
 				<div>
 					<input
@@ -37,9 +37,10 @@ const EditIncomeForm = (props) => {
 						type="text"
 						name="incomeName"
 						required
-						maxLength="40"
+						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
+						pattern="^[\p{L},.0-9\s-]+$"
 						value={editName}
 						onChange={(e) => {
 							setEditName(e.target.value);
@@ -53,10 +54,9 @@ const EditIncomeForm = (props) => {
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
+						maxLength="5"
 						required
-						maxLength="7"
-						minLength="1"
-						placeholder="income Amount"
+						placeholder="Suma"
 						value={editAmount}
 						onChange={(e) => {
 							setEditAmount(e.target.value);
@@ -69,8 +69,8 @@ const EditIncomeForm = (props) => {
 						type="date"
 						name="incomeDate"
 						required
-						min="2022-01-01"
-						max="2099-01-01"
+						min="2019-01-01"
+						max="2099-12-31"
 						placeholder="MMMM-mm-dd"
 						value={editDate}
 						onChange={(e) => {
@@ -79,7 +79,7 @@ const EditIncomeForm = (props) => {
 					/>
 				</div>
 				<div>
-					<button id="button-incomeUpdate">Pakeisti pajamas</button>
+					<button id="button-incomeUpdate">Atnaujinti pajamas</button>
 				</div>
 				<button id="button-incomeCancel" onClick={() => props.setEditing(false)}>
 					Atšaukti
