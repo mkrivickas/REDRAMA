@@ -15,7 +15,7 @@ const Login = () => {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
-            name: formData.username.value
+            email: formData.email.value
           })
         };
         fetch('http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/login', requestOptions)
@@ -38,15 +38,15 @@ const Login = () => {
   return (
     <div className="container">
         <div className='errs'>
-            {loginErrs && <h5>Username or password incorrect</h5>}
+            {loginErrs && <h5>El. Paštas arba slaptažodis neteisingi</h5>}
         </div>
-    {loggedUser && <h1>Logged in as :{loggedUser.name}</h1>}
+    {loggedUser && <h1>Prisijunges vartotojas :{loggedUser.name}</h1>}
     <form onSubmit={(e)=>{login(e)}}>
-      <input type="text" name="username" placeholder='username'>
+      <input type="text" name="email" required id="loginEmail" placeholder='El. Paštas'>
       </input>
-      <input type="password" name="password" placeholder='password'>
+      <input type="password" name="password" required id="loginPass" placeholder='Slaptažodis'>
       </input>
-      <input type="submit" value="Login"></input>
+      <input type="submit" id="loginSubmit" value="Prisijungti"></input>
     </form>
     </div>
   )
