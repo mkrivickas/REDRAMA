@@ -65,7 +65,7 @@ const AddIncomeForm = (props) => {
 						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
-						pattern="[\p{L}\p{Nd}]+"
+						pattern="^[\p{L},.0-9\s-]+$"
 						onChange={incomeNameAdd}
 					/>
 				</div>
@@ -73,11 +73,11 @@ const AddIncomeForm = (props) => {
 					<input
 						className="AddIncomeForm-input"
 						type="number"
+						// pattern="[1-9]{,6}"
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
 						required
-						pattern="[0-9]{7}"
 						placeholder="Suma"
 						onChange={incomeAmountAdd}
 					/>
