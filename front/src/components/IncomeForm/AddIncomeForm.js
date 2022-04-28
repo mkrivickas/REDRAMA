@@ -29,10 +29,10 @@ const AddIncomeForm = (props) => {
 		}).then(() => {
 			// Once posted, the user will be notified
 			swal({
-				title: 'Good job!',
+				title: 'Puiku!',
 				text: 'Jūsų pajamos buvo pridėtos',
 				icon: 'success',
-				button: 'Aww yiss!'
+				button: 'Gerai!'
 			});
 		});
 	};
@@ -60,7 +60,7 @@ const AddIncomeForm = (props) => {
 						type="text"
 						name="incomeName"
 						required
-						maxLength="40"
+						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
 						onChange={incomeNameAdd}
@@ -86,15 +86,15 @@ const AddIncomeForm = (props) => {
 						type="date"
 						name="incomeDate"
 						required
-						min="2022-01-01"
-						max="2099-01-01"
+						min="2019-01-01"
+						max="2099-12-31"
 						placeholder="MMMM-mm-dd"
 						onChange={incomeDateAdd}
 					/>
 				</div>
 				<button id="button-incomeAdd" type="submit">
 					{' '}
-					Add
+					Pridėti
 				</button>
 			</form>
 		</div>

@@ -1,5 +1,4 @@
 .IcomesList-table {
-	height: 65vh;
 	width: 43%;
 	background-color: black;
 	color: white;
@@ -23,9 +22,11 @@
 }
 
 .IncomeName-List {
-	font-size: 30px;
+	font-size: 24px;
+	padding-top: 15px;
 }
 
 .IncomeAmount-List {
-	font-size: 30px;
+	font-size: 24px;
+	padding-top: 15px;
 }

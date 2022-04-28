@@ -37,7 +37,7 @@ const EditIncomeForm = (props) => {
 						type="text"
 						name="incomeName"
 						required
-						maxLength="40"
+						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
 						value={editName}
@@ -69,8 +69,8 @@ const EditIncomeForm = (props) => {
 						type="date"
 						name="incomeDate"
 						required
-						min="2022-01-01"
-						max="2099-01-01"
+						min="2019-01-01"
+						max="2099-12-31"
 						placeholder="MMMM-mm-dd"
 						value={editDate}
 						onChange={(e) => {
@@ -79,10 +79,10 @@ const EditIncomeForm = (props) => {
 					/>
 				</div>
 				<div>
-					<button id="button-incomeUpdate">Update income</button>
+					<button id="button-incomeUpdate">Atnaujinti pajamas</button>
 				</div>
 				<button id="button-incomeCancel" onClick={() => props.setEditing(false)}>
-					Cancel
+					Atšaukti
 				</button>
 			</form>
 		</div>

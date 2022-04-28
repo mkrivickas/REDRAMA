@@ -52,10 +52,10 @@ const IncomeForm = () => {
 		await fetch('http://localhost:3001/api/v1/income/' + id, { method: 'DELETE' }).then(() => {
 			// Once posted, the user will be notified
 			swal({
-				title: 'Good job!',
+				title: 'Puiku!',
 				text: 'Jūsų pajamos buvo ištrintos',
 				icon: 'success',
-				button: 'Aww yiss!'
+				button: 'Gerai!'
 			});
 			// alert('Your incomes was deleted successfully');
 		});
@@ -77,10 +77,10 @@ const IncomeForm = () => {
 			.then((response) => response.json())
 			.then(() => {
 				swal({
-					title: 'Good job!',
+					title: 'Puiku!',
 					text: 'Jūsų pajamos buvo atnaujintos',
 					icon: 'success',
-					button: 'Aww yiss!'
+					button: 'Gerai!'
 				});
 			});
 
