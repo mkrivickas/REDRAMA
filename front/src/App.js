@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 
 function App() {
-	let [currentUser, setCurrentUser] = useState("")
+	let [currentUser, setCurrentUser] = useState("Ramunas")
 
 	function logout(){
 		Swal.fire({
@@ -39,7 +39,7 @@ function App() {
 			{currentUser &&
 			<div className='appMainPage'>
 				<div className='appLogoutHeader'><button onClick={()=>{logout()}} className="appLogoutButton" >Atsijungti</button></div>
-				<h1>Islaidos</h1>
+				<h1>Išlaidos</h1>
 				<NewExpense />
 				<h1>Pajamos</h1>
 				<IncomeForm />

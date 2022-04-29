@@ -13,7 +13,7 @@ const IncomesList = (props) => (
 							<button
 								onClick={() => {
 									props.editRow(income);
-									props.openModal();
+/* 									props.openModal(); */
 								}}
 								className="IncomeListEdit-button"
 							>

@@ -6,7 +6,9 @@ const AddIncomeForm = (props) => {
 	const [ incomeName, setincomeName ] = useState();
 	const [ incomeAmount, setincomeAmount ] = useState();
 	const [ incomeDate, setincomeDate ] = useState();
-
+	/* const [maxDate, setMaxDate] = useState(Date) */
+	let maxDate = new Date;
+	console.log(maxDate.toLocaleDateString('en-ZA'))
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		let incomeNameFirstLetter = incomeName[0].toUpperCase();
@@ -91,7 +93,7 @@ const AddIncomeForm = (props) => {
 						name="incomeDate"
 						required
 						min="2019-01-01"
-						max="2099-12-31"
+						max={maxDate.toLocaleDateString('en-CA')}
 						placeholder="MMMM-mm-dd"
 						onChange={incomeDateAdd}
 					/>
