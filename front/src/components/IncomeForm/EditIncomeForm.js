@@ -5,7 +5,8 @@ const EditIncomeForm = (props) => {
 	const [ income, setIncome ] = useState(props.currentIncome);
 	const [ editName, setEditName ] = useState(props.currentIncome.incomeName);
 	const [ editAmount, setEditAmount ] = useState(props.currentIncome.incomeAmount);
-	const [ editDate, setEditDate ] = useState(props.currentIncome.incomeDate);
+	let maxDate = new Date;
+	const [ editDate, setEditDate ] = useState(props.currentIncome.incomeDate.split("T")[0]);
 
 	useEffect(
 		() => {
@@ -71,7 +72,7 @@ const EditIncomeForm = (props) => {
 						name="incomeDate"
 						required
 						min="2019-01-01"
-						max="2099-12-31"
+						max={maxDate.toLocaleDateString('en-CA')}
 						placeholder="MMMM-mm-dd"
 						value={editDate}
 						onChange={(e) => {

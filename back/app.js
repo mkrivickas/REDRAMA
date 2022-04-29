@@ -9,6 +9,10 @@ const loginRoutes = require('./routes/loginRoutes');
 
 const app = express();
 
+var cors = require('cors')
+
+app.use(cors()) 
+
 app.use(express.json());
 
 app.use(function(req, res, next) {

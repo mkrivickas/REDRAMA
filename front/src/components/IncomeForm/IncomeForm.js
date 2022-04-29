@@ -29,7 +29,6 @@ const IncomeForm = () => {
 		() => {
 			let temp = 0;
 			for (let i = 0; i < incomes.length; i++) {
-				console.log(incomes);
 				temp += parseInt(incomes[i].incomeAmount);
 			}
 			setTotalIncome(temp);
@@ -40,7 +39,6 @@ const IncomeForm = () => {
 	const fetchData = async () => {
 		await fetch('http://localhost:3001/api/v1/income').then((response) => response.json()).then((data) => {
 			setIncomes(data.data.incomes);
-			console.log(data.data.incomes);
 		});
 	};
 
@@ -102,6 +100,35 @@ const IncomeForm = () => {
 		setCurrentIncome(income);
 	};
 
+	const addIncome = (newIncome) => {
+		console.log(newIncome)
+		const postURL = 'http://localhost:3001/api/v1/income/'; //Our previously set up route in the backend
+		fetch(postURL, {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(
+				// We should keep the fields consistent for managing this data later
+				newIncome
+			)
+		})
+			.then((response) => response.json())
+			.then(() => {
+				// Once posted, the user will be notified
+				swal({ 
+					title: 'Puiku!',
+					text: 'Jūsų duomenys buvo pridėti',
+					icon: 'success',
+					button: 'Gerai!'
+				}).then(function(){
+					fetchData();
+					closeModal();
+				});
+			});
+	}
+
 	return (
 		<div className="income-container">
 			<div className="income-row">
@@ -120,7 +147,7 @@ const IncomeForm = () => {
 				) : (
 					<Fragment>
 						<Modal size="sm" className="modal-AddIncome" isOpen={modalIsOpen} onRequestClose={closeModal}>
-							<AddIncomeForm />
+							<AddIncomeForm addIncome={addIncome}/>
 							{/* <button onClick={closeModal}>close</button> */}
 						</Modal>
 					</Fragment>

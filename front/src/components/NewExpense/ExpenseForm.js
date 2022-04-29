@@ -6,7 +6,8 @@ import './ExpenseForm.css';
 const ExpenseForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
-    const [enteredDate, setEnteredDate] = useState('');
+    let maxDate = new Date;
+    const [enteredDate, setEnteredDate] = useState(maxDate.toLocaleDateString('en-CA'));
     const [enteredCategory, setEnteredCategory] = useState('');
     // const [userInput, setUserInput] = useState({
     //     enteredTitle: '',
@@ -143,7 +144,7 @@ const ExpenseForm = (props) => {
                         required
                         name='expenseDate'
                         min='2019-01-01'
-                        max='2099-12-31'
+                        max={maxDate.toLocaleDateString('en-CA')}
                         placeholder='MMMM-mm-dd'
                         value={enteredDate}
                         onChange={dateChangeHandler}

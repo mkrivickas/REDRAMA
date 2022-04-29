@@ -5,41 +5,16 @@ import swal from 'sweetalert';
 const AddIncomeForm = (props) => {
 	const [ incomeName, setincomeName ] = useState();
 	const [ incomeAmount, setincomeAmount ] = useState();
-	const [ incomeDate, setincomeDate ] = useState();
-	/* const [maxDate, setMaxDate] = useState(Date) */
 	let maxDate = new Date;
+	const [ incomeDate, setincomeDate ] = useState(maxDate.toLocaleDateString('en-CA'));
+	/* const [maxDate, setMaxDate] = useState(Date) */
 	console.log(maxDate.toLocaleDateString('en-ZA'))
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		let incomeNameFirstLetter = incomeName[0].toUpperCase();
 		let upperCaseIncomeName = incomeNameFirstLetter + incomeName.slice(1);
 
-		console.log(incomeName);
-		// Once the form has been submitted, this function will post to the backend
-		const postURL = 'http://localhost:3001/api/v1/income/'; //Our previously set up route in the backend
-		fetch(postURL, {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				// We should keep the fields consistent for managing this data later
-				incomeName: upperCaseIncomeName,
-				incomeAmount: incomeAmount,
-				incomeDate: incomeDate
-			})
-		})
-			.then((response) => response.json())
-			.then(() => {
-				// Once posted, the user will be notified
-				swal({
-					title: 'Puiku!',
-					text: 'Jūsų duomenys buvo pridėti',
-					icon: 'success',
-					button: 'Gerai!'
-				}).then(function(){window.location.reload(false)});
-			});
+		props.addIncome({incomeName: upperCaseIncomeName, incomeAmount: incomeAmount, incomeDate: incomeDate})
 	};
 
 	// You can tell React to skip applying an effect if certain values haven’t changed between re-renders. [ props ]
@@ -96,6 +71,7 @@ const AddIncomeForm = (props) => {
 						max={maxDate.toLocaleDateString('en-CA')}
 						placeholder="MMMM-mm-dd"
 						onChange={incomeDateAdd}
+						value={maxDate.toLocaleDateString('en-CA')}
 					/>
 				</div>
 				<button id="button-incomeAdd" type="submit">

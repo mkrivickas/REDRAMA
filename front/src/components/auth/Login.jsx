@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 
 const Login = ({setCurrentUser}) => {
     let [loggedUser, setLoggedUser] = useState()
+
+    let [rememberMe, setRememberMe] = useState(false)
 /*     let [loginErrs, setLoginErrs] = useState(false) */
 
 
@@ -27,6 +29,10 @@ const Login = ({setCurrentUser}) => {
             const passHash2 = bcrypt.hashSync(passHash, data.user.salt)
             if(passHash2 === data.user.password){
               setCurrentUser(data.user)
+              console.log(data.user)
+              if(rememberMe){
+                localStorage.setItem("user", data.user._id)
+              }
             }else{
               Swal.fire({
                 title: 'Neteisingai suvestas el. paštas arba slaptažodis',
@@ -61,6 +67,9 @@ const Login = ({setCurrentUser}) => {
       </input>
       <input type="password" name="password" required id="loginPass" placeholder='Slaptažodis'>
       </input>
+      <div className='registerShowPassword'>
+      <input type="checkbox" id="loginRememberMe" name="rememberMe" onClick={()=>{setRememberMe(!rememberMe)}}></input><label htmlFor="rememberMe">Prisiminti mane</label>
+      </div>
       <input type="submit" id="loginSubmit" value="Prisijungti"></input>
     </form>
     </div>

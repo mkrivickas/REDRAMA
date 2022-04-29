@@ -4,11 +4,11 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import NewExpense from './components/NewExpense/NewExpense';
 import IncomeForm from './components/IncomeForm/IncomeForm';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 function App() {
-	let [currentUser, setCurrentUser] = useState("Ramunas")
+	let [currentUser, setCurrentUser] = useState("")
 
 	function logout(){
 		Swal.fire({
@@ -23,9 +23,32 @@ function App() {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				setCurrentUser("")
+				localStorage.setItem("user", "")
 			}
 		});
 	}
+
+	useEffect(() => {
+		const saved = localStorage.getItem("user");
+		if (saved){
+			const requestOptions = {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ 
+				  id: saved
+				})
+			  };
+			console.log("user is saved")
+			fetch('http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/login/savedUser', requestOptions)
+			.then(response => response.json())
+			.then(data => {
+				if(data.status === "Success"){
+				setCurrentUser(data.user)
+			  }
+			})}
+	}, [])
+
+
 	return (
 
 		<div className="App">
