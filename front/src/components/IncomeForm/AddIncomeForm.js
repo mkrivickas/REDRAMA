@@ -8,6 +8,7 @@ const AddIncomeForm = (props) => {
 	const [ incomeDate, setincomeDate ] = useState();
 
 	const handleSubmit = (e) => {
+		e.preventDefault();
 		let incomeNameFirstLetter = incomeName[0].toUpperCase();
 		let upperCaseIncomeName = incomeNameFirstLetter + incomeName.slice(1);
 
@@ -35,7 +36,7 @@ const AddIncomeForm = (props) => {
 					text: 'Jūsų duomenys buvo pridėti',
 					icon: 'success',
 					button: 'Gerai!'
-				});
+				}).then(function(){window.location.reload(false)});
 			});
 	};
 
@@ -74,6 +75,7 @@ const AddIncomeForm = (props) => {
 						className="AddIncomeForm-input"
 						type="number"
 						// pattern="[1-9]{,6}"
+						max="9999999"
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"

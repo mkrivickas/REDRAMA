@@ -21,12 +21,4 @@ const Incomes = new mongoose.model('Incomes', incomesSchema);
 
 //Duomenų siuntimas į DB
 
-const testIncomes = new Incomes({
-	incomeName: 'Alga',
-	incomeAmount: '1000',
-	incomeDate: '1999-01-01'
-});
-
-testIncomes.save().then(() => console.log(testIncomes));
-
 module.exports = Incomes;

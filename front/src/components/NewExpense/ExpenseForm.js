@@ -125,11 +125,12 @@ const ExpenseForm = (props) => {
                         type='number'
                         name='expenseAmount'
                         required
+                        max="9999999"
                         min='0.01'
                         step='0.01'
-                        maxlength='7'
+                        /* maxlength='7'
                         minlength='1'
-                        pattern='[0-9]{6,9}'
+                        pattern='[0-9]{6,9}' */
                         placeholder='Išlaidų suma, €'
                         value={enteredAmount}
                         onChange={amountChangeHandler}
@@ -154,7 +155,7 @@ const ExpenseForm = (props) => {
                         type='text'
                         name='expenseName'
                         required
-                        maxlength='40'
+                        maxlength='20'
                         minlength='3'
                         placeholder='Išlaidų pavadinimas'
                         pattern='^[\p{L},.0-9\s-]+$'

@@ -50,8 +50,6 @@ const IncomeForm = () => {
 
 	const deleteIncome = async (id) => {
 		console.log(id);
-		await fetch('http://localhost:3001/api/v1/income/' + id, { method: 'DELETE' }).then(() => {
-			// Once posted, the user will be notified
 			Swal.fire({
 				title: 'Ar esate tikri?',
 				text: 'Dėmesio duomenys bus pašalinti!',
@@ -61,13 +59,15 @@ const IncomeForm = () => {
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'Taip, pašalinti!'
-			}).then((result) => {
+			}).then(async (result) => {
 				if (result.isConfirmed) {
-					Swal.fire('Pašalinta!', 'Jūsų duomenys buvo pašalinti.', 'success');
+					await fetch('http://localhost:3001/api/v1/income/' + id, { method: 'DELETE' }).then(()=>{
+						setIncomes(incomes.filter((income) => income.id !== id));
+						fetchData();
+						Swal.fire('Pašalinta!', 'Jūsų duomenys buvo pašalinti.', 'success');})
 				}
 			});
 			// alert('Your incomes was deleted successfully');
-		});
 
 		// /* setEditing(false);
 
@@ -106,12 +106,7 @@ const IncomeForm = () => {
 		<div className="income-container">
 			<div className="income-row">
 				<div className="col-12">
-					<Header totalIncome={totalIncome} />
-					<div className="col-12">
-						<button id="AddIncome-button" onClick={openModal}>
-							+
-						</button>
-					</div>
+					<Header totalIncome={totalIncome} openModal={openModal} />
 				</div>
 				{editing ? (
 					<Fragment>
@@ -130,7 +125,7 @@ const IncomeForm = () => {
 						</Modal>
 					</Fragment>
 				)}
-				<div>
+				<div className='IncomesListContainer'>
 					<IncomesList
 						className="IncomesList"
 						incomes={incomes}

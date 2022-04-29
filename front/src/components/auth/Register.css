@@ -33,12 +33,12 @@ input[type=text], input[type=password], input[type=email] {
   }
   
   
-  .container {
+  .authContainer {
     padding: 10%;
     border: solid black 1px;
     border-radius: 12px;
-    height: 300px;
-    width: 350px;
+    height: 40%;
+    width: 50%;
     background-color: #212026;
     margin: auto;
   }
@@ -61,4 +61,9 @@ input[type=text], input[type=password], input[type=email] {
   }
   .errs{
       color: white;
+  }
+  .registerShowPassword{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }

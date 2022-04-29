@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
 import bcrypt from 'bcryptjs'
+import Swal from 'sweetalert2';
 
-const Login = () => {
+const Login = ({setCurrentUser}) => {
     let [loggedUser, setLoggedUser] = useState()
-    let [loginErrs, setLoginErrs] = useState(false)
+/*     let [loginErrs, setLoginErrs] = useState(false) */
 
 
 
     function login(e){
-        setLoginErrs(false)
+/*         setLoginErrs(false) */
         e.preventDefault();
         let formData = e.target;
         const requestOptions = {
@@ -25,10 +26,24 @@ const Login = () => {
             const passHash = bcrypt.hashSync(formData.password.value, data.user.salt)
             const passHash2 = bcrypt.hashSync(passHash, data.user.salt)
             if(passHash2 === data.user.password){
-              setLoggedUser(data.user)
+              setCurrentUser(data.user)
             }else{
-              setLoginErrs(true)
+              Swal.fire({
+                title: 'Neteisingai suvestas el. paštas arba slaptažodis',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+            })
             }
+          }else{
+/*               setLoginErrs(true) */
+              Swal.fire({
+                title: 'Neteisingai suvestas el. paštas arba slaptažodis',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+            })
+            
           }
         });
       }
@@ -36,10 +51,10 @@ const Login = () => {
 
 
   return (
-    <div className="container">
-        <div className='errs'>
+    <div className="authContainer">
+{/*         <div className='errs'>
             {loginErrs && <h5>El. Paštas arba slaptažodis neteisingi</h5>}
-        </div>
+        </div> */}
     {loggedUser && <h1>Prisijunges vartotojas :{loggedUser.name}</h1>}
     <form onSubmit={(e)=>{login(e)}}>
       <input type="text" name="email" required id="loginEmail" placeholder='El. Paštas'>

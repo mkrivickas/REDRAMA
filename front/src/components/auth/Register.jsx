@@ -13,7 +13,7 @@ const validUsername = new RegExp(
     '^(?=.*[A-Z]).{3,}$'
   )
 
-const Register = () => {
+const Register = ({setCurrentUser}) => {
   let [showPassword, setShowPass] = useState("password")
   let [passErr, setPassErr] = useState(false)
   let [emailErr, setEmailErr] = useState(false)
@@ -61,7 +61,7 @@ const Register = () => {
           .then(data => {
             console.log(data)
             if(data.status === "success"){
-              setLoggedUser(data.data.user._id)
+              setCurrentUser(data.data.user)
             } else if(data.message === "user already exists"){
                 setAlreadyExistsErr(true)
             }
@@ -77,7 +77,7 @@ const Register = () => {
     }
   } 
   return (
-    <div className="container">
+    <div className="authContainer">
       <div className='errs'>
         {emailErr && <h5>El. Paštas turi buti ne trumpesnis nei 40 simbolių.</h5>}
         {passErr && <h5>Slaptažodis turi turėti nors vieną didžiają raidę ir turi būti ne trumpesnis nei 3 simboliai</h5>}
@@ -89,7 +89,9 @@ const Register = () => {
       <input type="email" name="email" placeholder="El. Paštas" id="regEmail" required></input>
       <input type={showPassword} id="regPass" placeholder="Slaptažodis" name="password" required>
       </input>
+      <div className='registerShowPassword'>
       <input type="checkbox" id="regShowPass" name="showPass" onClick={()=>{toggle()}}></input><label htmlFor="showPass">Rodyti slaptažodį</label>
+      </div>
       <input type="submit" value="Registruotis"></input>
       </form>
     </div>

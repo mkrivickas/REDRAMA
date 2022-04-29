@@ -15,6 +15,9 @@
 }
 
 .total-income {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 	text-justify: center;
 	font-size: 56px;
@@ -28,7 +31,5 @@
 	background: -o-linear-gradient(rgb(64, 121, 52), green);
 	background: -moz-linear-gradient(rgb(89, 210, 76), green);
 	background: linear-gradient(rgb(4, 54, 15), green);
-
-	display: inline-block;
 	margin: auto;
 }
