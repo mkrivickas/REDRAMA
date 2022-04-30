@@ -6,9 +6,11 @@ import './ExpenseForm.css';
 const ExpenseForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
-    let maxDate = new Date;
-    const [enteredDate, setEnteredDate] = useState(maxDate.toLocaleDateString('en-CA'));
-    const [enteredCategory, setEnteredCategory] = useState('');
+    let maxDate = new Date();
+    const [enteredDate, setEnteredDate] = useState(
+        maxDate.toLocaleDateString('en-CA')
+    );
+    const [enteredCategory, setEnteredCategory] = useState('food');
     // const [userInput, setUserInput] = useState({
     //     enteredTitle: '',
     //     enteredAmount: '',
@@ -55,41 +57,42 @@ const ExpenseForm = (props) => {
 
         // Once the form has been submitted, this function will post to the backend
         const postURL = 'http://localhost:3001/api/v1/expense/'; //Our previously set up route in the backend
-        fetch(postURL, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                // We should keep the fields consistent for managing this data later
-                expenseName: enteredTitle,
-                expenseAmount: enteredAmount,
-                expenseDate: enteredDate,
-                expenseCategory: enteredCategory,
-            }),
-        }).then(() => {
-            // Once posted, the user will be notified
-            Swal.fire({
-                title: 'Ar esate tikri?',
-                text: 'Dėmesio! Duomenys bus įrašyti.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Įrašyti',
-                cancelButtonText: 'Atšaukti',
-            }).then((result) => {
-                if (result.isConfirmed) {
+
+        // Once posted, the user will be notified
+        Swal.fire({
+            title: 'Ar esate tikri?',
+            text: 'Dėmesio! Duomenys bus įrašyti.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Įrašyti',
+            cancelButtonText: 'Atšaukti',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(postURL, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        // We should keep the fields consistent for managing this data later
+                        expenseName: enteredTitle,
+                        expenseAmount: enteredAmount,
+                        expenseDate: enteredDate,
+                        expenseCategory: enteredCategory,
+                    }),
+                }).then(() => {
                     Swal.fire(
                         'Įrašyta!',
                         'Įrašas įtrauktas į žurnalą.',
                         'success'
                     );
-                }
-            });
-            // alert('Your incomes was added successfully');
+                });
+            }
         });
+        // alert('Your incomes was added successfully');
 
         setEnteredTitle('');
         setEnteredAmount('');
@@ -126,7 +129,7 @@ const ExpenseForm = (props) => {
                         type='number'
                         name='expenseAmount'
                         required
-                        max="9999999"
+                        max='9999999'
                         min='0.01'
                         step='0.01'
                         /* maxlength='7'
@@ -144,7 +147,7 @@ const ExpenseForm = (props) => {
                         required
                         name='expenseDate'
                         min='2019-01-01'
-                        max={maxDate.toLocaleDateString('en-CA')}
+                        max={maxDate.toLocaleDateString('lt-LT')}
                         placeholder='MMMM-mm-dd'
                         value={enteredDate}
                         onChange={dateChangeHandler}
