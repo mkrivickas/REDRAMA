@@ -6,6 +6,13 @@ import NewExpense from './components/NewExpense/NewExpense';
 import IncomeForm from './components/IncomeForm/IncomeForm';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link
+  } from "react-router-dom";
+import AdminPanel from './components/AdminPanel/AdminPanel';
 
 function App() {
 	let [currentUser, setCurrentUser] = useState("")
@@ -62,10 +69,21 @@ function App() {
 			{currentUser &&
 			<div className='appMainPage'>
 				<div className='appLogoutHeader'><button onClick={()=>{logout()}} className="appLogoutButton" >Atsijungti</button></div>
-				<h1>Išlaidos</h1>
-				<NewExpense />
-				<h1>Pajamos</h1>
-				<IncomeForm />
+				<Router>
+				<Link to="/admin">Administracinis puslapis</Link>
+				<Link to="/incomes">Pajamos</Link>
+				<Link to="/expense">Islaidos</Link>
+					<div>
+						<Routes>
+						<Route path="/incomes" element={<IncomeForm/>}>
+						</Route>
+						<Route path="/expense" element={<NewExpense/>}>
+						</Route>
+						<Route path="/admin" element={<AdminPanel/>}>
+						</Route>
+						</Routes>
+					</div>
+				</Router>
 			</div>}
 		</div>
 	);
