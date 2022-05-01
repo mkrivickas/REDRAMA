@@ -71,7 +71,7 @@ const AddIncomeForm = (props) => {
 						max={maxDate.toLocaleDateString('en-CA')}
 						placeholder="MMMM-mm-dd"
 						onChange={incomeDateAdd}
-						value={maxDate.toLocaleDateString('en-CA')}
+						value={incomeDate}
 					/>
 				</div>
 				<button id="button-incomeAdd" type="submit">

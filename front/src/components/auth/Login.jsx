@@ -63,7 +63,7 @@ const Login = ({setCurrentUser}) => {
         </div> */}
     {loggedUser && <h1>Prisijunges vartotojas :{loggedUser.name}</h1>}
     <form onSubmit={(e)=>{login(e)}}>
-      <input type="text" name="email" required id="loginEmail" placeholder='El. Paštas'>
+      <input type="email" name="email" required id="loginEmail" placeholder='El. Paštas'>
       </input>
       <input type="password" name="password" required id="loginPass" placeholder='Slaptažodis'>
       </input>
