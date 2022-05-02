@@ -20,6 +20,9 @@ h1{
   margin-right: 1rem;
   width: 15%;
 }
+.appLogoutButton:hover{
+  background-color: #2e9612;
+}
 .appMainPage{
   display: flex;
   flex-direction: column;

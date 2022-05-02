@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Categories from './Categories/Categories'
 
 const AdminPanel = () => {
     let [adminPage, setAdminPage] = useState("users")
@@ -11,7 +12,7 @@ const AdminPanel = () => {
         {
             adminPage === "categories" && 
                 <div className='adminCategoriesPanel'>
-                    Kategorijos
+                    <Categories/>
                 </div>
         }
         {

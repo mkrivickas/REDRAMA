@@ -1,0 +1,53 @@
+.categoryList{
+    width: 100%;
+}
+.categorySingleCategory{
+    width: 98%;
+    padding: 2%;
+    background-color: #212026;
+    color: white;
+    border-radius: 5px;
+    margin: 1%;
+    display: flex;
+    align-items: center;
+}
+.categorySingleName{
+    width: 90%;
+}
+.categorySingleCategory button{
+    padding: 0.4%;
+    border-radius: 5px;
+    background-color: #b32d2d;
+
+}
+.categorySingleCategory button:hover{
+    background-color: #2e9612;
+}
+.categoryForm{
+    width: 98%;
+    margin: 1%;
+    display: flex;
+    height: 6vh;
+}
+.categoryForm input{
+    padding: 2%;
+    width: 30%;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.categoryForm button{
+    background-color: rgb(35, 63, 35);
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+	border: none;
+	box-sizing: border-box;
+	color: #eee;
+	cursor: pointer;
+    height: 100%;
+    width: 10%;
+	text-align: center;
+    padding: 1%
+}
