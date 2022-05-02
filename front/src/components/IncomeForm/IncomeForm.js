@@ -62,7 +62,11 @@ const IncomeForm = () => {
 					await fetch('http://localhost:3001/api/v1/income/' + id, { method: 'DELETE' }).then(()=>{
 						setIncomes(incomes.filter((income) => income.id !== id));
 						fetchData();
-						Swal.fire('Pašalinta!', 'Jūsų duomenys buvo pašalinti.', 'success');})
+						Swal.fire({
+							title: "Jūsų duomenys buvo pašalinti!",
+							icon: 'success',
+							confirmButtonText: "Gerai"
+						})})
 				}
 			});
 			// alert('Your incomes was deleted successfully');

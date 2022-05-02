@@ -52,7 +52,7 @@ const AddIncomeForm = (props) => {
 						className="AddIncomeForm-input"
 						type="number"
 						// pattern="[1-9]{,6}"
-						max="9999999"
+						max="9999999999"
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
@@ -71,7 +71,7 @@ const AddIncomeForm = (props) => {
 						max={maxDate.toLocaleDateString('lt-LT')}
 						placeholder="MMMM-mm-dd"
 						onChange={incomeDateAdd}
-						value={maxDate.toLocaleDateString('lt-LT')}
+						value={incomeDate}
 					/>
 				</div>
 				<button id="button-incomeAdd" type="submit">
