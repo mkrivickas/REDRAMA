@@ -81,7 +81,7 @@ const Categories = () => {
     <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}}>{!isAddFormOpened ? <>Pridėti naują</> : <>Atšaukti</>}</button>
     {isAddFormOpened && 
       <form className='categoryForm' onSubmit={(e)=>{addCategory(e)}}>
-        <input type="text" id="categoryAddName" name='categoryAddName' minLength="3" maxLength="20" placeholder='Kategorijos pavadinimas'required></input>
+        <input type="text" id="categoryAddName" name='categoryAddName' minLength="3" maxLength="30" placeholder='Kategorijos pavadinimas'required></input>
         <button type="submit" value="Pridėti">Pridėti</button>
       </form>
       }
