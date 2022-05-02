@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import ExpenseList from './ExpenseList';
 
 import './ExpenseForm.css';
 
 const ExpenseForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
+    const [expense, setExpense] = useState('');
     let maxDate = new Date();
     const [enteredDate, setEnteredDate] = useState(
-        maxDate.toLocaleDateString('en-CA')
+        maxDate.toLocaleDateString('lt-LT')
     );
     const [enteredCategory, setEnteredCategory] = useState('food');
     // const [userInput, setUserInput] = useState({
@@ -45,6 +47,18 @@ const ExpenseForm = (props) => {
         setEnteredCategory(event.target.value);
     };
 
+    const fetchData = async () => {
+        await fetch('http://localhost:3001/api/v1/expense')
+            .then((response) => response.json())
+            .then((data) => {
+                setExpense(data.data.expense);
+                console.log(data.data.expense);
+            });
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
     const submitHandler = (event) => {
         event.preventDefault();
 
@@ -84,11 +98,12 @@ const ExpenseForm = (props) => {
                         expenseCategory: enteredCategory,
                     }),
                 }).then(() => {
-                    Swal.fire(
-                        'Įrašyta!',
-                        'Įrašas įtrauktas į žurnalą.',
-                        'success'
-                    );
+                    Swal.fire({
+                        title: 'Įrašyta!',
+                        text: 'Įrašas įtrauktas į žurnalą.',
+                        icon: 'success',
+                        confirmButtonText: 'Gerai!',
+                    });
                 });
             }
         });
@@ -101,77 +116,82 @@ const ExpenseForm = (props) => {
     };
 
     return (
-        <form className='container-fluid' onSubmit={submitHandler}>
-            <div className='new-expense__controls row d-flex justify-content-center'>
-                <div className='new-expense__control col-5'>
-                    <label className='new-expense__category'>Kategorija</label>
-                    <select onChange={categoryChangeHandler}>
-                        <option value='food'>Maistas</option>
-                        <option value='clothes'>Drabužiai</option>
-                        <option value='hygiene'>Higiena</option>
-                        <option value='transport'>Transportas</option>
-                        <option value='automotive'>Automobilis</option>
-                        <option value='municipal'>
-                            Komunaliniai mokesčiai
-                        </option>
-                        <option value='services'>Paslaugos</option>
-                        <option value='education'>Mokymai</option>
-                        <option value='hobby'>Pomėgiai</option>
-                        <option value='entertainment'>Pramogos</option>
-                        <option value='pets'>Augintiniai</option>
-                        <option value='household'>Namų išlaidos</option>
-                        <option value='garden'>Sodas</option>
-                    </select>
-                </div>
-                <div className='new-expense__control col-5'>
-                    <label>Suma</label>
-                    <input
-                        type='number'
-                        name='expenseAmount'
-                        required
-                        max='9999999'
-                        min='0.01'
-                        step='0.01'
-                        /* maxlength='7'
+        <div>
+            <form className='container-fluid' onSubmit={submitHandler}>
+                <div className='new-expense__controls row d-flex justify-content-center'>
+                    <div className='new-expense__control col-5'>
+                        <label className='new-expense__category'>
+                            Kategorija
+                        </label>
+                        <select onChange={categoryChangeHandler}>
+                            <option value='food'>Maistas</option>
+                            <option value='clothes'>Drabužiai</option>
+                            <option value='hygiene'>Higiena</option>
+                            <option value='transport'>Transportas</option>
+                            <option value='automotive'>Automobilis</option>
+                            <option value='municipal'>
+                                Komunaliniai mokesčiai
+                            </option>
+                            <option value='services'>Paslaugos</option>
+                            <option value='education'>Mokymai</option>
+                            <option value='hobby'>Pomėgiai</option>
+                            <option value='entertainment'>Pramogos</option>
+                            <option value='pets'>Augintiniai</option>
+                            <option value='household'>Namų išlaidos</option>
+                            <option value='garden'>Sodas</option>
+                        </select>
+                    </div>
+                    <div className='new-expense__control col-5'>
+                        <label>Suma</label>
+                        <input
+                            type='number'
+                            name='expenseAmount'
+                            required
+                            max='9999999'
+                            min='0.01'
+                            step='0.01'
+                            /* maxlength='7'
                         minlength='1'
                         pattern='[0-9]{6,9}' */
-                        placeholder='Išlaidų suma, €'
-                        value={enteredAmount}
-                        onChange={amountChangeHandler}
-                    />
+                            placeholder='Išlaidų suma, €'
+                            value={enteredAmount}
+                            onChange={amountChangeHandler}
+                        />
+                    </div>
+                    <div className='new-expense__control col-5'>
+                        <label>Data</label>
+                        <input
+                            type='date'
+                            required
+                            name='expenseDate'
+                            min='2019-01-01'
+                            max={maxDate.toLocaleDateString('lt-LT')}
+                            placeholder='MMMM-mm-dd'
+                            value={enteredDate}
+                            onChange={dateChangeHandler}
+                        />
+                    </div>
+                    <div className='new-expense__control col-5'>
+                        <label>Pavadinimas</label>
+                        <input
+                            type='text'
+                            name='expenseName'
+                            required
+                            maxlength='20'
+                            minlength='3'
+                            placeholder='Išlaidų pavadinimas'
+                            pattern='^[\p{L},.0-9\s-]+$'
+                            value={enteredTitle}
+                            onChange={titleChangeHandler}
+                        />
+                    </div>
                 </div>
-                <div className='new-expense__control col-5'>
-                    <label>Data</label>
-                    <input
-                        type='date'
-                        required
-                        name='expenseDate'
-                        min='2019-01-01'
-                        max={maxDate.toLocaleDateString('lt-LT')}
-                        placeholder='MMMM-mm-dd'
-                        value={enteredDate}
-                        onChange={dateChangeHandler}
-                    />
+                <div className='new-expense__actions'>
+                    <button type='submit'>Pridėti</button>
                 </div>
-                <div className='new-expense__control col-5'>
-                    <label>Pavadinimas</label>
-                    <input
-                        type='text'
-                        name='expenseName'
-                        required
-                        maxlength='20'
-                        minlength='3'
-                        placeholder='Išlaidų pavadinimas'
-                        pattern='^[\p{L},.0-9\s-]+$'
-                        value={enteredTitle}
-                        onChange={titleChangeHandler}
-                    />
-                </div>
-            </div>
-            <div className='new-expense__actions'>
-                <button type='submit'>Pridėti</button>
-            </div>
-        </form>
+            </form>
+            <ExpenseList expense={expense} />
+        </div>
     );
 };
 
