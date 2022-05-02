@@ -52,7 +52,7 @@ const EditIncomeForm = (props) => {
 					<input
 						className="EditIncomeForm-input"
 						type="number"
-						max="9999999"
+						max="9999999999"
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
