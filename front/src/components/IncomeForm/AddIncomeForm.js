@@ -2,19 +2,31 @@ import React, { useState } from 'react';
 import './AddIncomeForm.css';
 import swal from 'sweetalert';
 
+  
+const validIncomeAmount = new RegExp(
+    '^[0-9.]{1,10}?$'
+  )
+
 const AddIncomeForm = (props) => {
 	const [ incomeName, setincomeName ] = useState();
 	const [ incomeAmount, setincomeAmount ] = useState();
 	let maxDate = new Date;
+	let isIncomeValid = true;
 	const [ incomeDate, setincomeDate ] = useState(maxDate.toLocaleDateString('lt-LT'));
+	let addIncomeForm = document.getElementById('addIncomeFormInput')
+
+
 	/* const [maxDate, setMaxDate] = useState(Date) */
-	console.log(maxDate.toLocaleDateString('lt-LT'))
+	/* console.log(maxDate.toLocaleDateString('lt-LT')) */
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		let incomeNameFirstLetter = incomeName[0].toUpperCase();
 		let upperCaseIncomeName = incomeNameFirstLetter + incomeName.slice(1);
-
-		props.addIncome({incomeName: upperCaseIncomeName, incomeAmount: incomeAmount, incomeDate: incomeDate})
+		console.log("bonk")
+		if (isIncomeValid){
+			console.log("bonk")
+			props.addIncome({incomeName: upperCaseIncomeName, incomeAmount: incomeAmount, incomeDate: incomeDate})
+		}
 	};
 
 	// You can tell React to skip applying an effect if certain values haven’t changed between re-renders. [ props ]
@@ -23,7 +35,15 @@ const AddIncomeForm = (props) => {
 		setincomeName(e.target.value);
 	}
 	const incomeAmountAdd = (e) => {
+		isIncomeValid = true
+		addIncomeForm.setCustomValidity("")
+		console.log(validIncomeAmount.test(e.target.value))
+		if ((!validIncomeAmount.test(e.target.value))){
+			isIncomeValid = false
+			addIncomeForm.setCustomValidity("Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai")
+		}
 		setincomeAmount(e.target.value);
+		
 	};
 
 	const incomeDateAdd = (e) => {
@@ -49,10 +69,9 @@ const AddIncomeForm = (props) => {
 				</div>
 				<div>
 					<input
+						id="addIncomeFormInput"
 						className="AddIncomeForm-input"
 						type="number"
-						// pattern="[1-9]{,6}"
-						max="9999999999"
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"

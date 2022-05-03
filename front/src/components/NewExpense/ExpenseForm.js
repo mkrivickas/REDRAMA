@@ -4,11 +4,17 @@ import ExpenseList from './ExpenseList';
 
 import './ExpenseForm.css';
 
+const validExpenseAmount = new RegExp(
+    '^[0-9.]{1,10}?$'
+  )
+
+
 const ExpenseForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [expense, setExpense] = useState('');
     let maxDate = new Date();
+    let isIncomeValid = true;
     const [enteredDate, setEnteredDate] = useState(
         maxDate.toLocaleDateString('lt-LT')
     );
@@ -30,6 +36,13 @@ const ExpenseForm = (props) => {
         // });
     };
     const amountChangeHandler = (event) => {
+        isIncomeValid = true
+		event.target.setCustomValidity("")
+		console.log(validExpenseAmount.test(event.target.value))
+		if ((!validExpenseAmount.test(event.target.value))){
+			isIncomeValid = false
+			event.target.setCustomValidity("Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai")
+		}
         setEnteredAmount(event.target.value);
         // setUserInput({
         //     ...userInput,
@@ -104,15 +117,15 @@ const ExpenseForm = (props) => {
                         icon: 'success',
                         confirmButtonText: 'Gerai!',
                     });
+                    fetchData();
+                    setEnteredTitle('');
+                    setEnteredAmount('');
+                    setEnteredDate(maxDate.toLocaleDateString('lt-LT'));
+                    setEnteredCategory('');
                 });
             }
         });
         // alert('Your incomes was added successfully');
-
-        setEnteredTitle('');
-        setEnteredAmount('');
-        setEnteredDate('');
-        setEnteredCategory('');
     };
 
     return (
@@ -150,9 +163,6 @@ const ExpenseForm = (props) => {
                             max='9999999999'
                             min='0.01'
                             step='0.01'
-                            /* maxlength='7'
-                        minlength='1'
-                        pattern='[0-9]{6,9}' */
                             placeholder='Išlaidų suma, €'
                             value={enteredAmount}
                             onChange={amountChangeHandler}
