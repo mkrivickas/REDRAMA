@@ -23,7 +23,8 @@ const Categories = () => {
       },
       body: JSON.stringify({
           // We should keep the fields consistent for managing this data later
-          categoryName: formData.categoryAddName.value
+          categoryName: formData.categoryAddName.value,
+          categoryType: formData.categoryAddType.value
       }),
   }).then(()=>{
     fetchData();
@@ -80,16 +81,21 @@ const Categories = () => {
     <div className='categoriesPage'>
     <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}}>{!isAddFormOpened ? <>Pridėti naują</> : <>Atšaukti</>}</button>
     {isAddFormOpened && 
-      <form className='categoryForm' onSubmit={(e)=>{addCategory(e)}}>
+    <div className='categoryForm'>
+      <form  onSubmit={(e)=>{addCategory(e)}}>
         <input type="text" id="categoryAddName" name='categoryAddName' minLength="3" maxLength="30" placeholder='Kategorijos pavadinimas'required></input>
+        <select id="categoryAddType" name="categoryAddType">
+          <option value="income">Pajamos</option>
+          <option value="expense">Išlaidos</option>
+        </select>
         <button type="submit" value="Pridėti">Pridėti</button>
-      </form>
+      </form></div>
       }
 
       {!isLoading &&
       <div className='categoryList'>
         {categories.map((category)=>(
-          <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+          <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
         ))}</div>}
 
 

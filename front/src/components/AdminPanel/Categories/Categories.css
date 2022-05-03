@@ -29,14 +29,19 @@
     display: flex;
     height: 6vh;
 }
+.categoryForm form{
+    width: 100%;
+    height: 100%;
+}
 .categoryForm input{
-    padding: 2%;
     width: 30%;
     display: inline-block;
     border: none;
     background: #f1f1f1;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
+    height: 100%;
+    box-sizing: border-box;
 }
 .categoryForm button{
     background-color: rgb(35, 63, 35);
@@ -49,5 +54,10 @@
     height: 100%;
     width: 10%;
 	text-align: center;
-    padding: 1%
+}
+.categoryForm select{
+    height: 100%;
+    border: 1px solid #f1f1f1;
+    border-left: 1px solid #d9d7d7;
+    background-color: #f1f1f1;
 }
