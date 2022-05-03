@@ -129,7 +129,7 @@ const ExpenseForm = (props) => {
                         type='number'
                         name='expenseAmount'
                         required
-                        max='9999999'
+                        max='9999999999'
                         min='0.01'
                         step='0.01'
                         /* maxlength='7'
