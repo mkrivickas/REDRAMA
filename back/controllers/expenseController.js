@@ -16,3 +16,21 @@ exports.addExpense = async (req, res) => {
         });
     }
 };
+
+exports.getAllExpense = async (req, res) => {
+	try {
+		const expense = await ExpenseModel.find();
+		res.status(200).json({
+			status: 'success',
+			results: expense.length,
+			data: {
+				expense: expense
+			}
+		});
+	} catch (err) {
+		res.status(404).json({
+			status: 'fail',
+			message: err,
+		});
+	}
+};
