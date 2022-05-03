@@ -7,7 +7,7 @@ const validUsername = new RegExp(
   )
   
   const validEmail = new RegExp(
-    '^[a-zA-Z0-9].{2,39}$'
+    '^[a-zA-Z0-9-].{2,39}$'
   )
   const validPassword = new RegExp(
     '^(?=.*[A-Z]).{0,39}$'
@@ -81,7 +81,7 @@ const Register = ({setCurrentUser}) => {
       <div className='errs'>
         {emailErr && <h5>El. Paštas turi buti ne ilgesnis nei 40 simbolių.</h5>}
         {passErr && <h5>Slaptažodis turi turėti nors vieną didžiają raidę ir turi būti ne ilgesnis nei 40 simbolių</h5>}
-        {usernameErr && <h5>Vartotojo vardas turi būti tarp 3 ir 40 simbolių, gali susidaryti tik is raidžių ir skaičių</h5>}
+        {usernameErr && <h5>Vartotojo vardas turi būti nuo 3 iki 40 simbolių, gali susidaryti tik is raidžių ir skaičių</h5>}
         {alreadyExistsErr && <h5>Vartotojas su tokiu vardu arba el. paštu jau egzistuoja!</h5>}
       </div>
       <form onSubmit={(e)=>{register(e)}}> 
