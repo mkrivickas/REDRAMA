@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import './AddIncomeForm.css';
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 
-  
-const validIncomeAmount = new RegExp(
-    '^[0-9.]{1,10}?$'
-  )
+const validIncomeAmount = new RegExp('^[0-9.]{1,10}?$');
 
 const AddIncomeForm = (props) => {
 	const [ incomeName, setincomeName ] = useState();
 	const [ incomeAmount, setincomeAmount ] = useState();
-	let maxDate = new Date;
+	let maxDate = new Date();
 	let isIncomeValid = true;
 	const [ incomeDate, setincomeDate ] = useState(maxDate.toLocaleDateString('lt-LT'));
-	let addIncomeForm = document.getElementById('addIncomeFormInput')
-
+	let addIncomeForm = document.getElementById('addIncomeFormInput');
 
 	/* const [maxDate, setMaxDate] = useState(Date) */
 	/* console.log(maxDate.toLocaleDateString('lt-LT')) */
@@ -22,10 +18,10 @@ const AddIncomeForm = (props) => {
 		e.preventDefault();
 		let incomeNameFirstLetter = incomeName[0].toUpperCase();
 		let upperCaseIncomeName = incomeNameFirstLetter + incomeName.slice(1);
-		console.log("bonk")
-		if (isIncomeValid){
-			console.log("bonk")
-			props.addIncome({incomeName: upperCaseIncomeName, incomeAmount: incomeAmount, incomeDate: incomeDate})
+		console.log('bonk');
+		if (isIncomeValid) {
+			console.log('bonk');
+			props.addIncome({ incomeName: upperCaseIncomeName, incomeAmount: incomeAmount, incomeDate: incomeDate });
 		}
 	};
 
@@ -35,15 +31,16 @@ const AddIncomeForm = (props) => {
 		setincomeName(e.target.value);
 	}
 	const incomeAmountAdd = (e) => {
-		isIncomeValid = true
-		addIncomeForm.setCustomValidity("")
-		console.log(validIncomeAmount.test(e.target.value))
-		if ((!validIncomeAmount.test(e.target.value))){
-			isIncomeValid = false
-			addIncomeForm.setCustomValidity("Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai")
+		isIncomeValid = true;
+		addIncomeForm.setCustomValidity('');
+		// console.log(validIncomeAmount.test(e.target.value));
+		if (!validIncomeAmount.test(e.target.value)) {
+			isIncomeValid = false;
+			addIncomeForm.setCustomValidity(
+				'Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai'
+			);
 		}
 		setincomeAmount(e.target.value);
-		
 	};
 
 	const incomeDateAdd = (e) => {
@@ -54,18 +51,15 @@ const AddIncomeForm = (props) => {
 		<div>
 			<form className="AddIncome-form" onSubmit={handleSubmit}>
 				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
+
 				<div>
-					<input
-						className="AddIncomeForm-input"
-						type="text"
-						name="incomeName"
-						required
-						maxLength="20"
-						minLength="3"
-						placeholder="Pajamų pavadinimas"
-						pattern="^[\p{L},.0-9\s-]+$"
-						onChange={incomeNameAdd}
-					/>
+					<select className="AddIncomeForm-input" name="category">
+						<option value="-Program-">-Kategorija-</option>
+						<option value="JavaScript">JavaScript</option>
+						<option value="Java">Java</option>
+						<option value="PHP">PHP</option>
+						<option value="Programinės įrangos testuotjas">Programinės įrangos testuotjas</option>
+					</select>
 				</div>
 				<div>
 					<input
@@ -80,6 +74,20 @@ const AddIncomeForm = (props) => {
 						onChange={incomeAmountAdd}
 					/>
 				</div>
+				<div>
+					<input
+						className="AddIncomeForm-input"
+						type="text"
+						name="incomeName"
+						required
+						maxLength="20"
+						minLength="3"
+						placeholder="Pajamų pavadinimas"
+						pattern="^[\p{L},.0-9\s-]+$"
+						onChange={incomeNameAdd}
+					/>
+				</div>
+
 				<div>
 					<input
 						className="AddIncomeForm-input"

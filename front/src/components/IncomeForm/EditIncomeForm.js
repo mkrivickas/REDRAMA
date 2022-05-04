@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './EditIncomeForm.css';
 
-const validIncomeAmount = new RegExp(
-    '^[0-9.]{1,10}?$'
-  )
+const validIncomeAmount = new RegExp('^[0-9.]{1,10}?$');
 
 const EditIncomeForm = (props) => {
 	const [ income, setIncome ] = useState(props.currentIncome);
 	const [ editName, setEditName ] = useState(props.currentIncome.incomeName);
 	const [ editAmount, setEditAmount ] = useState(props.currentIncome.incomeAmount);
-	let maxDate = new Date;
+	let maxDate = new Date();
 	let isIncomeValid = true;
-	const [ editDate, setEditDate ] = useState(props.currentIncome.incomeDate.split("T")[0]);
+	const [ editDate, setEditDate ] = useState(props.currentIncome.incomeDate.split('T')[0]);
 
 	useEffect(
 		() => {
@@ -32,36 +30,31 @@ const EditIncomeForm = (props) => {
 		props.updateIncome(income._id, updatedIncome);
 	};
 
-	const editingAmount = (e)=>{
-		isIncomeValid = true
-		e.target.setCustomValidity("")
-		console.log(validIncomeAmount.test(e.target.value))
-		if ((!validIncomeAmount.test(e.target.value))){
-			isIncomeValid = false
-			e.target.setCustomValidity("Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai")
+	const editingAmount = (e) => {
+		isIncomeValid = true;
+		e.target.setCustomValidity('');
+		console.log(validIncomeAmount.test(e.target.value));
+		if (!validIncomeAmount.test(e.target.value)) {
+			isIncomeValid = false;
+			e.target.setCustomValidity(
+				'Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai'
+			);
 		}
-		setEditAmount(e.target.value);}
+		setEditAmount(e.target.value);
+	};
 
 	return (
 		<div className="EditIcomesForm-container">
 			<form className="EditIncome-form" onSubmit={handleSubmit}>
 				<h3 className="EditIncomeForm-title "> Atnaujinti pajamas</h3>
-
 				<div>
-					<input
-						className="EditIncomeForm-input"
-						type="text"
-						name="incomeName"
-						required
-						maxLength="20"
-						minLength="3"
-						placeholder="Pajamų pavadinimas"
-						pattern="^[\p{L},.0-9\s-]+$"
-						value={editName}
-						onChange={(e) => {
-							setEditName(e.target.value);
-						}}
-					/>
+					<select className="AddIncomeForm-input" name="category">
+						<option value="-Program-">-Kategorija-</option>
+						<option value="JavaScript">JavaScript</option>
+						<option value="Java">Java</option>
+						<option value="PHP">PHP</option>
+						<option value="Programinės įrangos testuotjas">Programinės įrangos testuotjas</option>
+					</select>
 				</div>
 				<div>
 					<input
@@ -70,7 +63,6 @@ const EditIncomeForm = (props) => {
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
-						maxLength="5"
 						required
 						placeholder="Suma"
 						value={editAmount}
@@ -94,6 +86,23 @@ const EditIncomeForm = (props) => {
 						}}
 					/>
 				</div>
+				<div>
+					<input
+						className="EditIncomeForm-input"
+						type="text"
+						name="incomeName"
+						required
+						maxLength="20"
+						minLength="3"
+						placeholder="Pajamų pavadinimas"
+						pattern="^[\p{L},.0-9\s-]+$"
+						value={editName}
+						onChange={(e) => {
+							setEditName(e.target.value);
+						}}
+					/>
+				</div>
+
 				<div>
 					<button id="button-incomeUpdate">Atnaujinti pajamas</button>
 				</div>

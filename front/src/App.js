@@ -6,6 +6,9 @@ import NewExpense from './components/NewExpense/NewExpense';
 import IncomeForm from './components/IncomeForm/IncomeForm';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import Sidebar from './components/Sidebar/Sidebar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
 	let [ currentUser, setCurrentUser ] = useState('');
@@ -61,20 +64,16 @@ function App() {
 			)}
 			{currentUser && (
 				<div className="appMainPage">
-					<div className="appLogoutHeader">
-						<button
-							onClick={() => {
-								logout();
-							}}
-							className="appLogoutButton"
-						>
-							Atsijungti
-						</button>
-					</div>
-					<h1>Išlaidos</h1>
-					<NewExpense />
-					<h1>Pajamos</h1>
-					<IncomeForm />
+					<Router>
+						<Sidebar logout={logout} />
+						<div className="app-inner-mainPage">
+							<Routes>
+								<Route path="/" element={<HomePage />} />
+								<Route path="/incomes" element={<IncomeForm />} />
+								<Route path="/outcomes" element={<NewExpense />} />
+							</Routes>
+						</div>
+					</Router>
 				</div>
 			)}
 		</div>

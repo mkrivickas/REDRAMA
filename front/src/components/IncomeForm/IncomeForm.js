@@ -48,28 +48,29 @@ const IncomeForm = () => {
 
 	const deleteIncome = async (id) => {
 		console.log(id);
-			Swal.fire({
-				title: 'Ar esate tikri?',
-				text: 'Dėmesio duomenys bus pašalinti!',
-				icon: 'warning',
-				showCancelButton: true,
-				cancelButtonText: 'Atšaukti',
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'Taip, pašalinti!'
-			}).then(async (result) => {
-				if (result.isConfirmed) {
-					await fetch('http://localhost:3001/api/v1/income/' + id, { method: 'DELETE' }).then(()=>{
-						setIncomes(incomes.filter((income) => income.id !== id));
-						fetchData();
-						Swal.fire({
-							title: "Jūsų duomenys buvo pašalinti!",
-							icon: 'success',
-							confirmButtonText: "Gerai"
-						})})
-				}
-			});
-			// alert('Your incomes was deleted successfully');
+		Swal.fire({
+			title: 'Ar esate tikri?',
+			text: 'Dėmesio duomenys bus pašalinti!',
+			icon: 'warning',
+			showCancelButton: true,
+			cancelButtonText: 'Atšaukti',
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Taip, pašalinti!'
+		}).then(async (result) => {
+			if (result.isConfirmed) {
+				await fetch('http://localhost:3001/api/v1/income/' + id, { method: 'DELETE' }).then(() => {
+					setIncomes(incomes.filter((income) => income.id !== id));
+					fetchData();
+					Swal.fire({
+						title: 'Jūsų duomenys buvo pašalinti!',
+						icon: 'success',
+						confirmButtonText: 'Gerai'
+					});
+				});
+			}
+		});
+		// alert('Your incomes was deleted successfully');
 
 		// /* setEditing(false);
 
@@ -105,7 +106,7 @@ const IncomeForm = () => {
 	};
 
 	const addIncome = (newIncome) => {
-		console.log(newIncome)
+		console.log(newIncome);
 		const postURL = 'http://localhost:3001/api/v1/income/'; //Our previously set up route in the backend
 		fetch(postURL, {
 			method: 'POST',
@@ -121,17 +122,17 @@ const IncomeForm = () => {
 			.then((response) => response.json())
 			.then(() => {
 				// Once posted, the user will be notified
-				swal({ 
+				swal({
 					title: 'Puiku!',
 					text: 'Jūsų duomenys buvo pridėti',
 					icon: 'success',
 					button: 'Gerai!'
-				}).then(function(){
+				}).then(function() {
 					fetchData();
 					closeModal();
 				});
 			});
-	}
+	};
 
 	return (
 		<div className="income-container">
@@ -151,12 +152,12 @@ const IncomeForm = () => {
 				) : (
 					<Fragment>
 						<Modal size="sm" className="modal-AddIncome" isOpen={modalIsOpen} onRequestClose={closeModal}>
-							<AddIncomeForm addIncome={addIncome}/>
+							<AddIncomeForm addIncome={addIncome} />
 							{/* <button onClick={closeModal}>close</button> */}
 						</Modal>
 					</Fragment>
 				)}
-				<div className='IncomesListContainer'>
+				<div className="IncomesListContainer">
 					<IncomesList
 						className="IncomesList"
 						incomes={incomes}
