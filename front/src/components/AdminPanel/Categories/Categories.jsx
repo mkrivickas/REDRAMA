@@ -79,7 +79,7 @@ const Categories = () => {
   
   return (
     <div className='categoriesPage'>
-    <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}}>{!isAddFormOpened ? <>Pridėti naują</> : <>Atšaukti</>}</button>
+    <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="categoryAddNewButton">{!isAddFormOpened ? <>Pridėti naują</> : <>Atšaukti</>}</button>
     {isAddFormOpened && 
     <div className='categoryForm'>
       <form  onSubmit={(e)=>{addCategory(e)}}>

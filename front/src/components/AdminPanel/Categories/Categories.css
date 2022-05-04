@@ -1,6 +1,14 @@
 .categoryList{
     width: 100%;
 }
+.categoryAddNewButton{
+    padding: 1%;
+    border-radius: 12px;
+    border: none;
+    background-color: #212026;
+    color: white;
+    margin: 1%;
+}
 .categorySingleCategory{
     width: 98%;
     padding: 2%;
