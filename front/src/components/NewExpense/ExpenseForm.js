@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
 import ExpenseList from './ExpenseList';
-
+import EditExpenseForm from './EditExpenseForm';
 import './ExpenseForm.css';
+import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 const ExpenseForm = (props) => {
+    const [currentExpense, setCurrentExpense] = useState({});
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [expense, setExpense] = useState('');
@@ -13,6 +15,8 @@ const ExpenseForm = (props) => {
         maxDate.toLocaleDateString('lt-LT')
     );
     const [enteredCategory, setEnteredCategory] = useState('food');
+
+    const [editing, setEditing] = useState(false);
     // const [userInput, setUserInput] = useState({
     //     enteredTitle: '',
     //     enteredAmount: '',
@@ -113,6 +117,71 @@ const ExpenseForm = (props) => {
         setEnteredAmount('');
         setEnteredDate('');
         setEnteredCategory('');
+    };
+
+    const deleteExpense = async (id) => {
+        console.log(id);
+        Swal.fire({
+            title: 'Ar esate tikri?',
+            text: 'Dėmesio duomenys bus pašalinti!',
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Atšaukti',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Taip, pašalinti!',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await fetch('http://localhost:3001/api/v1/income/' + id, {
+                    method: 'DELETE',
+                }).then(() => {
+                    setExpense(expense.filter((expense) => expense.id !== id));
+                    fetchData();
+                    Swal.fire({
+                        title: 'Jūsų duomenys buvo pašalinti!',
+                        icon: 'success',
+                        confirmButtonText: 'Gerai',
+                    });
+                });
+            }
+        });
+        // alert('Your incomes was deleted successfully');
+
+        // /* setEditing(false);
+
+        setExpense(expense.filter((expense) => expense.id !== id));
+        fetchData();
+    };
+
+    const updateExpense = (id, updatedExpense) => {
+        setEditing(false);
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedExpense),
+        };
+        fetch('http://localhost:3001/api/v1/income/' + id, requestOptions)
+            .then((response) => response.json())
+            .then(() => {
+                swal({
+                    title: 'Puiku!',
+                    text: 'Jūsų duomenys buvo atnaujinti.',
+                    icon: 'success',
+                    button: 'Gerai!',
+                });
+            });
+
+        setExpense(
+            expense.map((expense) =>
+                expense._id === id ? updatedExpense : expense
+            )
+        );
+    };
+
+    const editRow = (expense) => {
+        setEditing(true);
+
+        setCurrentExpense(expense);
     };
 
     return (

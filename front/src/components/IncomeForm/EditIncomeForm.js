@@ -28,7 +28,7 @@ const EditIncomeForm = (props) => {
 	};
 
 	return (
-		<div className="EditIcomesForm-container">
+		<div className="EditIncomesForm-container">
 			<form className="EditIncome-form" onSubmit={handleSubmit}>
 				<h3 className="EditIncomeForm-title "> Atnaujinti pajamas</h3>
 
