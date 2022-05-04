@@ -1,0 +1,50 @@
+.ExpenseList-table {
+    width: 95%;
+    background-color: #212026;
+    color: white;
+    margin: auto;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.ExpenseListEdit-button {
+    background-color: #00c851;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+}
+.ExpenseListEdit-button:hover {
+    background-color: #007e33;
+}
+
+.ExpenseListDelete-button {
+    background-color: #ff4444;
+    font: inherit;
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    color: white;
+    margin-right: 1rem;
+    border-radius: 50%;
+    border: none;
+}
+
+.ExpenseListDelete-button:hover {
+    background-color: #cc0000;
+}
+
+.ExpenseName-List {
+    font-size: 24px;
+    padding-top: 15px;
+}
+
+.ExpenseDate-List {
+    font-size: 24px;
+    padding-top: 15px;
+}
+
+.ExpenseAmount-List {
+    font-size: 24px;
+    padding-top: 15px;
+}

@@ -9,30 +9,32 @@
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
 }
 
-.new-expense button {
+.new-expense__actions button {
     font: inherit;
     cursor: pointer;
-    padding: 1rem 2rem;
-    border: 1px solid #4cb050;
-    background-color: #4cb050;
+    width: 10rem;
+    height: 3rem;
+    border: 1px solid #00c851;
+    background-color: #00c851;
     color: white;
-    border-radius: 12px;
-    margin-right: 1rem;
+    /* border-radius: 12px; */
+    margin-right: 3rem;
+    border-radius: 5%;
 }
 
-.new-expense button:hover,
-.new-expense button:active {
-    background-color: #510674;
-    border-color: #510674;
+.new-expense__actions button:hover,
+.new-expense__actions button:active {
+    background-color: #007e33;
+    border-color: #007e33;
 }
 
-.new-expense button.alternative {
+.new-expense__actions button.alternative {
     color: #220131;
     border-color: transparent;
     background-color: transparent;
 }
 
-.new-expense button.alternative:hover,
-.new-expense button.alternative:active {
+.new-expense__actions button.alternative:hover,
+.new-expense__actions button.alternative:active {
     background-color: #ddb3f8;
 }

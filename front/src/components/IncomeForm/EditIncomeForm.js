@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './EditIncomeForm.css';
 
+const validIncomeAmount = new RegExp(
+    '^[0-9.]{1,10}?$'
+  )
+
 const EditIncomeForm = (props) => {
 	const [ income, setIncome ] = useState(props.currentIncome);
 	const [ editName, setEditName ] = useState(props.currentIncome.incomeName);
 	const [ editAmount, setEditAmount ] = useState(props.currentIncome.incomeAmount);
-	const [ editDate, setEditDate ] = useState(props.currentIncome.incomeDate);
+	let maxDate = new Date;
+	let isIncomeValid = true;
+	const [ editDate, setEditDate ] = useState(props.currentIncome.incomeDate.split("T")[0]);
 
 	useEffect(
 		() => {
@@ -25,6 +31,16 @@ const EditIncomeForm = (props) => {
 		};
 		props.updateIncome(income._id, updatedIncome);
 	};
+
+	const editingAmount = (e)=>{
+		isIncomeValid = true
+		e.target.setCustomValidity("")
+		console.log(validIncomeAmount.test(e.target.value))
+		if ((!validIncomeAmount.test(e.target.value))){
+			isIncomeValid = false
+			e.target.setCustomValidity("Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai")
+		}
+		setEditAmount(e.target.value);}
 
 	return (
 		<div className="EditIcomesForm-container">
@@ -51,7 +67,6 @@ const EditIncomeForm = (props) => {
 					<input
 						className="EditIncomeForm-input"
 						type="number"
-						max="9999999"
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
@@ -60,7 +75,7 @@ const EditIncomeForm = (props) => {
 						placeholder="Suma"
 						value={editAmount}
 						onChange={(e) => {
-							setEditAmount(e.target.value);
+							editingAmount(e);
 						}}
 					/>
 				</div>
@@ -71,7 +86,7 @@ const EditIncomeForm = (props) => {
 						name="incomeDate"
 						required
 						min="2019-01-01"
-						max="2099-12-31"
+						max={maxDate.toLocaleDateString('en-CA')}
 						placeholder="MMMM-mm-dd"
 						value={editDate}
 						onChange={(e) => {
