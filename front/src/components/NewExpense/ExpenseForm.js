@@ -194,7 +194,6 @@ const ExpenseForm = (props) => {
 
     const editRow = (expense) => {
         setEditing(true);
-
         setCurrentExpense(expense);
     };
 
@@ -279,13 +278,22 @@ const ExpenseForm = (props) => {
                     </div>
                 </div>
                 <div className='new-expense__actions'>
-                    <button type='submit'>
+                    <button
+                        type='update'
+                        onClick={() => {
+                            Swal.fire({
+                                title: 'Duomenys sėkmingai atnaujinti.',
+                                confirmButtonText: 'Gerai',
+                            });
+                        }}
+                    >
                         {editing ? <>Atnaujinti</> : <>Pridėti</>}
                     </button>
                     {editing && (
                         <button
-                            type='button'
-                            className='btn bg-danger'
+                            type='cancel'
+                            variant='contained'
+                            className='btn my-cusomized-button'
                             onClick={() => {
                                 cancelUpdate();
                             }}
