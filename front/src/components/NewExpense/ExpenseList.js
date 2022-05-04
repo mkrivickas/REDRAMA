@@ -14,13 +14,16 @@ const ExpenseList = (props) => (
                                 <td>
                                     <button
                                         onClick={() => {
-                                            props.editRow(expense);
+                                            props.editExpense(expense);
                                             /* 									props.openModal(); */
                                         }}
                                         className='ExpenseListEdit-button text-white ms-3'
                                     >
                                         <FaRegEdit />
                                     </button>
+                                </td>
+                                <td className='ExpenseAmount-List text-white'>
+                                    {expense.expenseCategory}
                                 </td>
                                 <td>
                                     <div className='ExpenseName-List text-white'>
@@ -30,14 +33,15 @@ const ExpenseList = (props) => (
                                         {expense.expenseDate.slice(0, 10)}
                                     </div>
                                 </td>
+                                
                                 <td className='ExpenseAmount-List text-white'>
                                     {expense.expenseAmount}€
                                 </td>
-
+                                
                                 <td>
                                     <button
                                         onClick={() =>
-                                            props.deleteIncome(expense._id)
+                                            props.deleteExpense(expense._id)
                                         }
                                         className='ExpenseListDelete-button ms-3'
                                     >
