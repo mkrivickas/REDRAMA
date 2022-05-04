@@ -19,6 +19,10 @@ const AddIncomeForm = (props) => {
 	/* const [maxDate, setMaxDate] = useState(Date) */
 	/* console.log(maxDate.toLocaleDateString('lt-LT')) */
 	const handleSubmit = (e) => {
+		console.log(incomeName)
+		if(incomeName === "   "){
+			console.log("is empty")
+		}
 		e.preventDefault();
 		let incomeNameFirstLetter = incomeName[0].toUpperCase();
 		let upperCaseIncomeName = incomeNameFirstLetter + incomeName.slice(1);
@@ -31,13 +35,12 @@ const AddIncomeForm = (props) => {
 
 	// You can tell React to skip applying an effect if certain values haven’t changed between re-renders. [ props ]
 	function incomeNameAdd(e) {
-		// Dealing with name field changes to update our state
+		console.log(e.target.value)
 		setincomeName(e.target.value);
 	}
 	const incomeAmountAdd = (e) => {
 		isIncomeValid = true
 		addIncomeForm.setCustomValidity("")
-		console.log(validIncomeAmount.test(e.target.value))
 		if ((!validIncomeAmount.test(e.target.value))){
 			isIncomeValid = false
 			addIncomeForm.setCustomValidity("Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai")
@@ -63,7 +66,6 @@ const AddIncomeForm = (props) => {
 						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
-						pattern="^[\p{L},.0-9\s-]+$"
 						onChange={incomeNameAdd}
 					/>
 				</div>

@@ -56,7 +56,6 @@ const EditIncomeForm = (props) => {
 						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
-						pattern="^[\p{L},.0-9\s-]+$"
 						value={editName}
 						onChange={(e) => {
 							setEditName(e.target.value);
