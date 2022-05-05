@@ -74,9 +74,9 @@ const Login = ({setCurrentUser}) => {
         </div> */}
     {loggedUser && <h1>Prisijunges vartotojas :{loggedUser.name}</h1>}
     <form onSubmit={(e)=>{login(e)}}>
-      <input type="email" name="email" required id="loginEmail" placeholder='El. Paštas'>
+      <input type="email" name="email" required id="loginEmail" maxLength="40" placeholder='El. Paštas'>
       </input>
-      <input type="password" name="password" required id="loginPass" placeholder='Slaptažodis'>
+      <input type="password" name="password" required id="loginPass" maxLength="40" placeholder='Slaptažodis'>
       </input>
       <div className='registerShowPassword'>
       <input type="checkbox" id="loginRememberMe" name="rememberMe" onClick={()=>{setRememberMe(!rememberMe)}}></input><label htmlFor="rememberMe">Prisiminti mane</label>
