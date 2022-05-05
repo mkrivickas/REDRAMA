@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ExpenseList from './ExpenseList';
-import EditExpenseForm from './EditExpenseForm';
 import './ExpenseForm.css';
-import swal from 'sweetalert';
 import Swal from 'sweetalert2';
 
-const validExpenseAmount = new RegExp(
-    '^[0-9.]{1,10}?$'
-  )
-
+const validExpenseAmount = new RegExp('^[0-9.]{1,10}?$');
 
 const ExpenseForm = (props) => {
     const [currentExpense, setCurrentExpense] = useState({});
@@ -40,13 +35,15 @@ const ExpenseForm = (props) => {
         // });
     };
     const amountChangeHandler = (event) => {
-        isIncomeValid = true
-		event.target.setCustomValidity("")
-		console.log(validExpenseAmount.test(event.target.value))
-		if ((!validExpenseAmount.test(event.target.value))){
-			isIncomeValid = false
-			event.target.setCustomValidity("Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai")
-		}
+        isIncomeValid = true;
+        event.target.setCustomValidity('');
+        console.log(validExpenseAmount.test(event.target.value));
+        if (!validExpenseAmount.test(event.target.value)) {
+            isIncomeValid = false;
+            event.target.setCustomValidity(
+                'Suma negali būti ilgesnė nei 10 simbolių ir po kablelio gali būti tik 2 simboliai'
+            );
+        }
         setEnteredAmount(event.target.value);
         // setUserInput({
         //     ...userInput,
@@ -76,59 +73,88 @@ const ExpenseForm = (props) => {
     useEffect(() => {
         fetchData();
     }, []);
+    useEffect(() => {
+        if (editing) {
+            setEnteredCategory(currentExpense.expenseCategory);
+            setEnteredTitle(currentExpense.expenseName);
+            setEnteredAmount(currentExpense.expenseAmount);
+            setEnteredDate(currentExpense.expenseDate);
+        }
+    }, [editing, currentExpense]);
+
     const submitHandler = (event) => {
         event.preventDefault();
-
-        const expenseData = {
-            title: enteredTitle,
-            amount: enteredAmount,
-            date: new Date(enteredDate),
-            category: enteredCategory,
-        };
-
-        // Once the form has been submitted, this function will post to the backend
-        const postURL = 'http://localhost:3001/api/v1/expense/'; //Our previously set up route in the backend
-
-        // Once posted, the user will be notified
-        Swal.fire({
-            title: 'Ar esate tikri?',
-            text: 'Dėmesio! Duomenys bus įrašyti.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Įrašyti',
-            cancelButtonText: 'Atšaukti',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(postURL, {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        // We should keep the fields consistent for managing this data later
-                        expenseName: enteredTitle,
-                        expenseAmount: enteredAmount,
-                        expenseDate: enteredDate,
-                        expenseCategory: enteredCategory,
-                    }),
-                }).then(() => {
-                    Swal.fire({
-                        title: 'Įrašyta!',
-                        text: 'Įrašas įtrauktas į žurnalą.',
-                        icon: 'success',
-                        confirmButtonText: 'Gerai!',
-                    });
+        if (editing) {
+            const requestOptions = {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    expenseName: enteredTitle,
+                    expenseAmount: enteredAmount,
+                    expenseDate: enteredDate,
+                    expenseCategory: enteredCategory,
+                }),
+            };
+            fetch(
+                'http://localhost:3001/api/v1/expense/' + currentExpense._id,
+                requestOptions
+            )
+                .then((response) => response.json())
+                .then((data) => {
                     fetchData();
                     setEnteredTitle('');
                     setEnteredAmount('');
                     setEnteredDate(maxDate.toLocaleDateString('lt-LT'));
                     setEnteredCategory('');
+                    setEditing(false);
+                    setCurrentExpense('');
                 });
-            }
-        });
+        } else {
+            // Once the form has been submitted, this function will post to the backend
+            const postURL = 'http://localhost:3001/api/v1/expense/'; //Our previously set up route in the backend
+
+            // Once posted, the user will be notified
+            Swal.fire({
+                title: 'Ar esate tikri?',
+                text: 'Dėmesio! Duomenys bus įrašyti.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Įrašyti',
+                cancelButtonText: 'Atšaukti',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(postURL, {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            // We should keep the fields consistent for managing this data later
+                            expenseName: enteredTitle,
+                            expenseAmount: enteredAmount,
+                            expenseDate: enteredDate,
+                            expenseCategory: enteredCategory,
+                        }),
+                    }).then(() => {
+                        Swal.fire({
+                            title: 'Įrašyta!',
+                            text: 'Įrašas įtrauktas į žurnalą.',
+                            icon: 'success',
+                            confirmButtonText: 'Gerai!',
+                        });
+                        fetchData();
+                        setEnteredTitle('');
+                        setEnteredAmount('');
+                        setEnteredDate(maxDate.toLocaleDateString('lt-LT'));
+                        setEnteredCategory('');
+                    });
+                }
+            });
+        }
+
         // alert('Your incomes was added successfully');
     };
 
@@ -145,7 +171,7 @@ const ExpenseForm = (props) => {
             confirmButtonText: 'Taip, pašalinti!',
         }).then(async (result) => {
             if (result.isConfirmed) {
-                await fetch('http://localhost:3001/api/v1/income/' + id, {
+                await fetch('http://localhost:3001/api/v1/expense/' + id, {
                     method: 'DELETE',
                 }).then(() => {
                     setExpense(expense.filter((expense) => expense.id !== id));
@@ -166,35 +192,18 @@ const ExpenseForm = (props) => {
         fetchData();
     };
 
-    const updateExpense = (id, updatedExpense) => {
-        setEditing(false);
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updatedExpense),
-        };
-        fetch('http://localhost:3001/api/v1/income/' + id, requestOptions)
-            .then((response) => response.json())
-            .then(() => {
-                swal({
-                    title: 'Puiku!',
-                    text: 'Jūsų duomenys buvo atnaujinti.',
-                    icon: 'success',
-                    button: 'Gerai!',
-                });
-            });
-
-        setExpense(
-            expense.map((expense) =>
-                expense._id === id ? updatedExpense : expense
-            )
-        );
-    };
-
     const editRow = (expense) => {
         setEditing(true);
-
         setCurrentExpense(expense);
+    };
+
+    const cancelUpdate = () => {
+        setEnteredTitle('');
+        setEnteredAmount('');
+        setEnteredDate(maxDate.toLocaleDateString('lt-LT'));
+        setEnteredCategory('');
+        setEditing(false);
+        setCurrentExpense('');
     };
 
     return (
@@ -205,7 +214,10 @@ const ExpenseForm = (props) => {
                         <label className='new-expense__category'>
                             Kategorija
                         </label>
-                        <select onChange={categoryChangeHandler}>
+                        <select
+                            onChange={categoryChangeHandler}
+                            value={enteredCategory}
+                        >
                             <option value='food'>Maistas</option>
                             <option value='clothes'>Drabužiai</option>
                             <option value='hygiene'>Higiena</option>
@@ -266,10 +278,36 @@ const ExpenseForm = (props) => {
                     </div>
                 </div>
                 <div className='new-expense__actions'>
-                    <button type='submit'>Pridėti</button>
+                    <button
+                        type='update'
+                        onClick={() => {
+                            Swal.fire({
+                                title: 'Duomenys sėkmingai atnaujinti.',
+                                confirmButtonText: 'Gerai',
+                            });
+                        }}
+                    >
+                        {editing ? <>Atnaujinti</> : <>Pridėti</>}
+                    </button>
+                    {editing && (
+                        <button
+                            type='cancel'
+                            variant='contained'
+                            className='btn my-cusomized-button'
+                            onClick={() => {
+                                cancelUpdate();
+                            }}
+                        >
+                            Atšaukti
+                        </button>
+                    )}
                 </div>
             </form>
-            <ExpenseList expense={expense} />
+            <ExpenseList
+                expense={expense}
+                editExpense={editRow}
+                deleteExpense={deleteExpense}
+            />
         </div>
     );
 };
