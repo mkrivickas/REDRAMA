@@ -4,7 +4,6 @@ import TransactionList from './TransactionList';
 function HomePage() {
 	return (
 		<div>
-			test
 			<TransactionList />
 		</div>
 	);

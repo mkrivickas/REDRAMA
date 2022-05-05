@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
-
+import TransactionsTable from './TransactionsTable';
 
 function TransactionList(props) {
-	// Destructure your props...I'm assuming you pass some id into fetch data
 	const { id } = props;
 	let [ combinedList, setCombinedList ] = useState([]);
 	let [ loading, setLoading ] = useState(true);
 	let combinedArr;
+	// let sortedCombinedList;
 
-	// State
-	const [ tableData, setTableData ] = useState([]);
+	// sortedCombinedList = combinedList.sort(
+	// 	(a, b) =>
+	// 		new Date(...a.item.expenseDate.split('/').reverse()) - new Date(...b.item.expenseDate.split('/').reverse())
+	// );
+	// console.log(sortedCombinedList);
 
-	// Load data when id changes
 	useEffect(
 		() => {
 			fetchData();
@@ -21,23 +23,6 @@ function TransactionList(props) {
 
 	async function fetchData() {
 		fetchIncomes();
-		/* // Get your data from each source
-		const apiData_A = await fetchDataFromAPI_A(id);
-		const apiData_B = await fetchDataFromAPI_B(id);
-		// Key each data set by result ids
-		const resultsMappedById_A = keyBy(apiData_A, 'id');
-		const resultsMappedById_B = keyBy(apiData_B, 'id');
-		// Combine data into a single set
-		// this assumes your getting same results from each api
-		const combinedDataSet = Object.keys(resultsMappedById_A).reduce((acc, key) => {
-			// Destructure results together, merging objects
-			acc.push({
-				...resultsMappedById_A[key],
-				...resultsMappedById_B[key]
-			});
-			return acc;
-		}, []);
-		setTableData(combinedDataSet); */
 	}
 	function fetchIncomes() {
 		fetch('http://localhost:3001/api/v1/income')
@@ -55,9 +40,12 @@ function TransactionList(props) {
 			});
 	}
 
-	
-
-	return <div>{!loading && <div>{combinedList.map((item) => <>{ item.incomeName}</>)}</div>}</div>;
+	return (
+		!loading && (
+			<div>
+				<TransactionsTable combinedList={combinedList} />
+			</div>
+		)
+	);
 }
-
 export default TransactionList;

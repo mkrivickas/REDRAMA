@@ -26,7 +26,7 @@ import { Link } from "react-router-dom";
 const Sidebar = (props) => {
   
     //create initial menuCollapse state using useState hook
-    const [menuCollapse, setMenuCollapse] = useState(true)
+    const [menuCollapse, setMenuCollapse] = useState(false)
 
     //create a custom function that will change menucollapse state from false to true and true to false
   const menuIconClick = () => {
@@ -55,12 +55,12 @@ const Sidebar = (props) => {
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}><Link to="/">
+              <MenuItem active={true} icon={<FiHome />}><Link className='LinkName' to="/">
                 Home</Link>
               </MenuItem>
-              <MenuItem icon={<BiTrendingUp />}><Link to="/incomes">Pajamos</Link></MenuItem>
-              <MenuItem icon={<BiTrendingDown />}><Link to="/outcomes">Išlaidos</Link></MenuItem>
-              {/* <MenuItem icon={<RiPencilLine />}><Link to="/admin">Administratoriaus kazkas</MenuItem> */}
+              <MenuItem icon={<BiTrendingUp />}><Link className='LinkName' to="/pajamos">PAJAMOS</Link></MenuItem>
+              <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/islaidos">Išlaidos</Link></MenuItem>
+              <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/administratoriaus puslapis">Administratoriaus puslapis</Link></MenuItem>
               {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
             </Menu>
           </SidebarContent>

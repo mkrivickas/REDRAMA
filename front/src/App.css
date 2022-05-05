@@ -25,6 +25,7 @@ h1 {
 	/* flex-direction: column; */
 	/* justify-content: center; */
 	width: 100%;
+	background-color: black;
 }
 
 .Sidebar {

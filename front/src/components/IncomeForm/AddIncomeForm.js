@@ -25,15 +25,13 @@ const AddIncomeForm = (props) => {
 		}
 	};
 
-	// You can tell React to skip applying an effect if certain values haven’t changed between re-renders. [ props ]
 	function incomeNameAdd(e) {
-		// Dealing with name field changes to update our state
 		setincomeName(e.target.value);
 	}
 	const incomeAmountAdd = (e) => {
 		isIncomeValid = true;
 		addIncomeForm.setCustomValidity('');
-		// console.log(validIncomeAmount.test(e.target.value));
+		console.log(validIncomeAmount.test(e.target.value));
 		if (!validIncomeAmount.test(e.target.value)) {
 			isIncomeValid = false;
 			addIncomeForm.setCustomValidity(
@@ -51,15 +49,27 @@ const AddIncomeForm = (props) => {
 		<div>
 			<form className="AddIncome-form" onSubmit={handleSubmit}>
 				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
-
 				<div>
-					<select className="AddIncomeForm-input" name="category">
-						<option value="-Program-">-Kategorija-</option>
-						<option value="JavaScript">JavaScript</option>
-						<option value="Java">Java</option>
-						<option value="PHP">PHP</option>
-						<option value="Programinės įrangos testuotjas">Programinės įrangos testuotjas</option>
-					</select>
+					<div className="col-lg-6 col-md-12 col-sm-12">
+						<select className="AddIncomeForm-input" name="category">
+							<option value="-Program-">-Kategorija-</option>
+							<option value="JavaScript">JavaScript</option>
+							<option value="Java">Java</option>
+							<option value="PHP">PHP</option>
+							<option value="Programinės įrangos testuotjas">Programinės įrangos testuotjas</option>
+						</select>
+					</div>
+					<input
+						className="AddIncomeForm-input"
+						type="text"
+						name="incomeName"
+						required
+						maxLength="20"
+						minLength="3"
+						placeholder="Pajamų pavadinimas"
+						pattern="^[\p{L},.0-9\s-]+$"
+						onChange={incomeNameAdd}
+					/>
 				</div>
 				<div>
 					<input
@@ -74,20 +84,6 @@ const AddIncomeForm = (props) => {
 						onChange={incomeAmountAdd}
 					/>
 				</div>
-				<div>
-					<input
-						className="AddIncomeForm-input"
-						type="text"
-						name="incomeName"
-						required
-						maxLength="20"
-						minLength="3"
-						placeholder="Pajamų pavadinimas"
-						pattern="^[\p{L},.0-9\s-]+$"
-						onChange={incomeNameAdd}
-					/>
-				</div>
-
 				<div>
 					<input
 						className="AddIncomeForm-input"

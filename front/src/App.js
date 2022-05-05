@@ -69,8 +69,9 @@ function App() {
 						<div className="app-inner-mainPage">
 							<Routes>
 								<Route path="/" element={<HomePage />} />
-								<Route path="/incomes" element={<IncomeForm />} />
-								<Route path="/outcomes" element={<NewExpense />} />
+								<Route path="/pajamos" element={<IncomeForm />} />
+								<Route path="/islaidos" element={<NewExpense />} />
+								{/* <Route path="/admin" element={<NewExpense />} /> */}
 							</Routes>
 						</div>
 					</Router>

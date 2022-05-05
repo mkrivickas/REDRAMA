@@ -11,6 +11,7 @@
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
+	border-left: 1px solid yellow;
 }
 #sidebar .pro-sidebar {
 	height: 100%;
@@ -25,7 +26,7 @@
 	line-height: 20px;
 	border-radius: 50%;
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 30px;
 	top: 55px;
 	cursor: pointer;
 }
@@ -39,7 +40,7 @@
 }
 #sidebar .pro-sidebar-inner {
 	background-color: black;
-	box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
+	box-shadow: 0.5px 0.866px 2px 0px rgba(236, 248, 6, 0.15);
 }
 #sidebar .pro-sidebar-inner .pro-sidebar-layout {
 	overflow-y: hidden;
@@ -71,6 +72,11 @@
 }
 #sidebar .logo {
 	padding: 20px;
+}
+
+.LinkName {
+	font-size: 20px;
+	color: green;
 }
 
 @media only screen and (max-width: 720px) {
