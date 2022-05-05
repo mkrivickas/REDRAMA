@@ -6,6 +6,9 @@ const Categories = () => {
   let [categories, setCategories] = useState("");
   let [isLoading, setIsLoading] = useState(true)
   let [isAddFormOpened, setIsAddFormOpened] = useState(false)
+  let [isIncomesPicked, setIsIncomesPicked] = useState(false)
+  let [isExpensesPicked, setIsExpensesPicked] = useState(false)
+  let [pickedCategory, setPickedCategory] = useState("")
 
 
   function addCategory(e){
@@ -76,10 +79,34 @@ const Categories = () => {
       }
     });
   }
+
+  function pickCategory(categoryName){
+    if (categoryName == "incomes"){
+      if(pickedCategory == "incomes"){
+        setIsIncomesPicked(false)
+        setPickedCategory("")
+      }else{
+        setIsExpensesPicked(false)
+        setIsIncomesPicked(true)
+        setPickedCategory(categoryName)
+      }
+    }else{
+      if(pickedCategory == "expenses"){
+        setIsExpensesPicked(false)
+        setPickedCategory("")
+      }else{
+        setIsIncomesPicked(false)
+        setIsExpensesPicked(true)
+        setPickedCategory(categoryName)
+      }
+    }
+  }
   
   return (
     <div className='categoriesPage'>
     <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="categoryAddNewButton">{!isAddFormOpened ? <>Pridėti naują</> : <>Atšaukti</>}</button>
+    <button onClick={()=>{pickCategory("incomes")}} className="categoryAddNewButton">{!isIncomesPicked ? <>Pajamų kategorijos</> : <>Atšaukti</>}</button>
+    <button onClick={()=>{pickCategory("expenses")}} className="categoryAddNewButton">{!isExpensesPicked ? <>Islaidų kategorijos</> : <>Atšaukti</>}</button>
     {isAddFormOpened && 
     <div className='categoryForm'>
       <form  onSubmit={(e)=>{addCategory(e)}}>
@@ -95,7 +122,20 @@ const Categories = () => {
       {!isLoading &&
       <div className='categoryList'>
         {categories.map((category)=>(
-          <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+          pickedCategory ? (
+            pickedCategory == "incomes" ?(
+              category.categoryType == "income" &&(
+                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+              )
+            ):(
+              category.categoryType == "expense"&&(
+                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+              )
+            )
+
+          ):(
+            <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+          )
         ))}</div>}
 
 
