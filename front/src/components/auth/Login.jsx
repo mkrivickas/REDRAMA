@@ -2,16 +2,6 @@ import React, {useState} from 'react'
 import bcrypt from 'bcryptjs'
 import Swal from 'sweetalert2';
 
-const validUsername = new RegExp(
-  '^[a-zA-Z0-9]{2,39}$'
-)
-
-const validEmail = new RegExp(
-  '^[a-zA-Z0-9@._-+/]{2,39}$'
-)
-const validPassword = new RegExp(
-  '^(?=.*[A-Z]).{0,39}$'
-)
 
 const Login = ({setCurrentUser}) => {
     let [loggedUser, setLoggedUser] = useState()
