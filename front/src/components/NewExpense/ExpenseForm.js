@@ -108,6 +108,10 @@ const ExpenseForm = (props) => {
                     setEnteredCategory('');
                     setEditing(false);
                     setCurrentExpense('');
+                    Swal.fire({
+                        title: 'Duomenys sėkmingai atnaujinti.',
+                        confirmButtonText: 'Gerai',
+                    });
                 });
         } else {
             // Once the form has been submitted, this function will post to the backend
@@ -278,15 +282,7 @@ const ExpenseForm = (props) => {
                     </div>
                 </div>
                 <div className='new-expense__actions'>
-                    <button
-                        type='update'
-                        onClick={() => {
-                            Swal.fire({
-                                title: 'Duomenys sėkmingai atnaujinti.',
-                                confirmButtonText: 'Gerai',
-                            });
-                        }}
-                    >
+                    <button>
                         {editing ? <>Atnaujinti</> : <>Pridėti</>}
                     </button>
                     {editing && (
