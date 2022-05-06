@@ -25,7 +25,6 @@ const IncomeForm = () => {
         setIsOpen(false);
     }
 
-<<<<<<< HEAD
 	useEffect(
 		() => {
 			let temp = 0;
@@ -36,15 +35,6 @@ const IncomeForm = () => {
 		},
 		[ incomes ]
 	);
-=======
-    useEffect(() => {
-        let temp = 0;
-        for (let i = 0; i < incomes.length; i++) {
-            temp += parseInt(incomes[i].incomeAmount);
-        }
-        setTotalIncome(temp);
-    }, [incomes]);
->>>>>>> 5e80a1bc2022db1603391d052f4c22e7e686d070
 
     const fetchData = async () => {
         await fetch('http://localhost:3001/api/v1/income')
