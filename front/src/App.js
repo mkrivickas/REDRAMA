@@ -6,19 +6,9 @@ import NewExpense from './components/NewExpense/NewExpense';
 import IncomeForm from './components/IncomeForm/IncomeForm';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-<<<<<<< HEAD
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Link
-  } from "react-router-dom";
-import AdminPanel from './components/AdminPanel/AdminPanel';
-=======
 import Sidebar from './components/Sidebar/Sidebar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
->>>>>>> main
 
 function App() {
 	let [ currentUser, setCurrentUser ] = useState('');
