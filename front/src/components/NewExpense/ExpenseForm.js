@@ -123,19 +123,19 @@ const ExpenseForm = (props) => {
 					<div className="new-expense__control col-5">
 						<label className="new-expense__category">Kategorija</label>
 						<select onChange={categoryChangeHandler}>
-							<option value="maistas">Maistas</option>
-							<option value="apranga">Apranga</option>
-							<option value="higiena">Higiena</option>
-							<option value="transportas">Transportas</option>
-							<option value="automotive">Automobilis</option>
-							<option value="municipal">Komunaliniai mokesčiai</option>
-							<option value="services">Paslaugos</option>
-							<option value="education">Mokymai</option>
-							<option value="hobby">Pomėgiai</option>
-							<option value="entertainment">Pramogos</option>
-							<option value="pets">Augintiniai</option>
-							<option value="household">Namų išlaidos</option>
-							<option value="garden">Sodas</option>
+							<option value="Maistas">Maistas</option>
+							<option value="Apranga">Apranga</option>
+							<option value="Higiena">Higiena</option>
+							<option value="Transportas">Transportas</option>
+							<option value="Automobilis">Automobilis</option>
+							<option value="Komunaliniai">Komunaliniai mokesčiai</option>
+							<option value="Paslaugos">Paslaugos</option>
+							<option value="Mokslai">Mokymai/Kursai/Studijos</option>
+							<option value="Hobis">Pomėgiai</option>
+							<option value="Pramogos">Pramogos</option>
+							<option value="Augintiniai">Augintiniai</option>
+							<option value="Buitis">Buitis</option>
+							<option value="Sodas">Sodas</option>
 						</select>
 					</div>
 					<div className="new-expense__control col-5">

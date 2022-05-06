@@ -24,6 +24,11 @@ const ExpenseList = (props) => (
                                     </button>
                                 </td>
                                 <td>
+                                    <div className='ExpenseCategory-List text-white'>
+                                        {expense.Category}
+                                    </div>
+                                </td>
+                                <td>
                                     <div className='ExpenseName-List text-white'>
                                         {expense.Name}
                                     </div>
