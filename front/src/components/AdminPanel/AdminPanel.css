@@ -1,0 +1,25 @@
+.adminPage{
+    background-color: #4e4e4e;
+}
+.adminPage h1{
+    color: white;
+}
+.adminNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid yellow;
+}
+.adminNav button{
+    padding: 1%;
+    border-radius: 12px;
+    border: none;
+    border-bottom: 1px solid green;
+    border-bottom: 1px solid green;
+    background-color: #212026;
+    color: white;
+}
+.adminNav button:hover{
+    background-color: green;
+}

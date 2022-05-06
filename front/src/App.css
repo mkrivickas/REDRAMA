@@ -36,3 +36,11 @@ h1 {
 .app-inner-mainPage {
 	width: 70%;
 }
+.appLogoutButton:hover{
+  background-color: #2e9612;
+}
+.appMainPage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
