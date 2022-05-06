@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import bcrypt from 'bcryptjs'
 import Swal from 'sweetalert2';
 
+
 const Login = ({setCurrentUser}) => {
     let [loggedUser, setLoggedUser] = useState()
 
@@ -38,7 +39,7 @@ const Login = ({setCurrentUser}) => {
                 title: 'Neteisingai suvestas el. paštas arba slaptažodis',
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK',
+                confirmButtonText: 'Gerai',
             })
             }
           }else{
@@ -47,7 +48,7 @@ const Login = ({setCurrentUser}) => {
                 title: 'Neteisingai suvestas el. paštas arba slaptažodis',
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK',
+                confirmButtonText: 'Gerai',
             })
             
           }
@@ -63,9 +64,9 @@ const Login = ({setCurrentUser}) => {
         </div> */}
     {loggedUser && <h1>Prisijunges vartotojas :{loggedUser.name}</h1>}
     <form onSubmit={(e)=>{login(e)}}>
-      <input type="email" name="email" required id="loginEmail" placeholder='El. Paštas'>
+      <input type="email" name="email" required id="loginEmail" maxLength="40" placeholder='El. Paštas'>
       </input>
-      <input type="password" name="password" required id="loginPass" placeholder='Slaptažodis'>
+      <input type="password" name="password" required id="loginPass" maxLength="40" placeholder='Slaptažodis'>
       </input>
       <div className='registerShowPassword'>
       <input type="checkbox" id="loginRememberMe" name="rememberMe" onClick={()=>{setRememberMe(!rememberMe)}}></input><label htmlFor="rememberMe">Prisiminti mane</label>

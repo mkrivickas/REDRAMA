@@ -33,3 +33,10 @@
 .new-expense__actions {
     text-align: right;
 }
+
+.btn.my-cusomized-button {
+    border-color: red;
+    color: white;
+    background-color: red;
+    border: 1px solid red;
+}

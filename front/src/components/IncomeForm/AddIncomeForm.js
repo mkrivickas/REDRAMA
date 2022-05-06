@@ -15,6 +15,10 @@ const AddIncomeForm = (props) => {
 	/* const [maxDate, setMaxDate] = useState(Date) */
 	/* console.log(maxDate.toLocaleDateString('lt-LT')) */
 	const handleSubmit = (e) => {
+		console.log(incomeName)
+		if(incomeName === "   "){
+			console.log("is empty")
+		}
 		e.preventDefault();
 		let incomeNameFirstLetter = incomeName[0].toUpperCase();
 		let upperCaseIncomeName = incomeNameFirstLetter + incomeName.slice(1);
@@ -67,7 +71,6 @@ const AddIncomeForm = (props) => {
 						maxLength="20"
 						minLength="3"
 						placeholder="Pajamų pavadinimas"
-						pattern="^[\p{L},.0-9\s-]+$"
 						onChange={incomeNameAdd}
 					/>
 				</div>
