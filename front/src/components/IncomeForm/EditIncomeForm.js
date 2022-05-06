@@ -45,7 +45,7 @@ const EditIncomeForm = (props) => {
 	};
 
 	return (
-		<div className="EditIcomesForm-container">
+		<div className="EditIncomesForm-container">
 			<form className="EditIncome-form" onSubmit={handleSubmit}>
 				<h3 className="EditIncomeForm-title "> Atnaujinti pajamas</h3>
 				<div>
@@ -56,6 +56,19 @@ const EditIncomeForm = (props) => {
 						<option value="PHP">PHP</option>
 						<option value="Programinės įrangos testuotjas">Programinės įrangos testuotjas</option>
 					</select>
+					<input
+						className="EditIncomeForm-input"
+						type="text"
+						name="incomeName"
+						required
+						maxLength="20"
+						minLength="3"
+						placeholder="Pajamų pavadinimas"
+						value={editName}
+						onChange={(e) => {
+							setEditName(e.target.value);
+						}}
+					/>
 				</div>
 				<div>
 					<input

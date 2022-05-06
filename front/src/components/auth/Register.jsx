@@ -3,11 +3,11 @@ import bcrypt from 'bcryptjs'
 import './Register.css';
 
 const validUsername = new RegExp(
-    '^[a-zA-Z0-9].{2,39}$'
+    '^[a-zA-Z0-9]{2,39}$'
   )
   
   const validEmail = new RegExp(
-    '^[a-zA-Z0-9-].{2,39}$'
+    '^[a-zA-Z0-9].{2,39}$'
   )
   const validPassword = new RegExp(
     '^(?=.*[A-Z]).{0,39}$'
