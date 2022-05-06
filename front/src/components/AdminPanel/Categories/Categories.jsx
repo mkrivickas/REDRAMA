@@ -2,6 +2,11 @@ import React, {useEffect, useState} from 'react'
 import Swal from 'sweetalert2';
 import './Categories.css';
 
+const validCategory = new RegExp(
+  '^[a-zA-Z ]{3,30}$'
+)
+
+
 const Categories = () => {
   let [categories, setCategories] = useState("");
   let [isLoading, setIsLoading] = useState(true)
@@ -13,26 +18,36 @@ const Categories = () => {
 
   function addCategory(e){
     e.preventDefault();
+    let isValid = true;
     let formData = e.target
+    if(!validCategory.test(formData.categoryAddName.value)){
+      isValid = false;
+      Swal.fire({
+        title: 'Klaida',
+        text: 'Kategorija negali tureti specialių simbolių arba skaičių, gali būti nuo 3 iki 30 simbolių',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Gerai'
+      })
+    }
     console.log(formData.categoryAddName.value)
-
-  // Once the form has been submitted, this function will post to the backend
-  const postURL = 'http://localhost:3001/api/v1/category/'; //Our previously set up route in the backend
-  fetch(postURL, {
-      method: 'POST',
-      headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-          // We should keep the fields consistent for managing this data later
-          categoryName: formData.categoryAddName.value,
-          categoryType: formData.categoryAddType.value
-      }),
-  }).then(()=>{
-    fetchData();
-    formData.categoryAddName.value = ""
-  })
+    if (isValid){
+      const postURL = 'http://localhost:3001/api/v1/category/';
+    fetch(postURL, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            categoryName: formData.categoryAddName.value,
+            categoryType: formData.categoryAddType.value
+        }),
+    }).then(()=>{
+      fetchData();
+      formData.categoryAddName.value = ""
+    })
+    }
   }
 
   function fetchData(){
