@@ -25,7 +25,7 @@ const AddIncomeForm = (props) => {
 		console.log('bonk');
 		if (isIncomeValid) {
 			console.log('bonk');
-			props.addIncome({ incomeName: upperCaseIncomeName, incomeAmount: incomeAmount, incomeDate: incomeDate });
+			props.addIncome({ Name: upperCaseIncomeName, Amount: incomeAmount, Date: incomeDate, Type: 'pajamos' });
 		}
 	};
 

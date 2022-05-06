@@ -5,13 +5,16 @@ const mongoose = require('mongoose');
 
 // DB schema
 const incomesSchema = new mongoose.Schema({
-	incomeName: {
+	Name: {
 		type: String
 	},
-	incomeAmount: {
+	Amount: {
 		type: Number
 	},
-	incomeDate: {
+	Type: {
+		type: String
+	},
+	Date: {
 		type: Date
 	}
 });

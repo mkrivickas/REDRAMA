@@ -5,11 +5,11 @@ const validIncomeAmount = new RegExp('^[0-9.]{1,10}?$');
 
 const EditIncomeForm = (props) => {
 	const [ income, setIncome ] = useState(props.currentIncome);
-	const [ editName, setEditName ] = useState(props.currentIncome.incomeName);
-	const [ editAmount, setEditAmount ] = useState(props.currentIncome.incomeAmount);
+	const [ editName, setEditName ] = useState(props.currentIncome.Name);
+	const [ editAmount, setEditAmount ] = useState(props.currentIncome.Amount);
 	let maxDate = new Date();
 	let isIncomeValid = true;
-	const [ editDate, setEditDate ] = useState(props.currentIncome.incomeDate.split('T')[0]);
+	const [ editDate, setEditDate ] = useState(props.currentIncome.Date.split('T')[0]);
 
 	useEffect(
 		() => {
@@ -23,9 +23,10 @@ const EditIncomeForm = (props) => {
 		e.preventDefault();
 		let updatedIncome = {
 			_id: income._id,
-			incomeName: editName,
-			incomeAmount: editAmount,
-			incomeDate: editDate
+			Name: editName,
+			Amount: editAmount,
+			Date: editDate,
+			Type: 'pajamos'
 		};
 		props.updateIncome(income._id, updatedIncome);
 	};

@@ -13,7 +13,7 @@ const IncomesList = (props) => (
 							<button
 								onClick={() => {
 									props.editRow(income);
-/* 									props.openModal(); */
+									/* 									props.openModal(); */
 								}}
 								className="IncomeListEdit-button"
 							>
@@ -21,10 +21,10 @@ const IncomesList = (props) => (
 							</button>
 						</td>
 						<td>
-							<div className="IncomeName-List">{income.incomeName}</div>
-							<div className="IncomeDate-List">{income.incomeDate.slice(0, 10)}</div>
+							<div className="IncomeName-List">{income.Name}</div>
+							<div className="IncomeDate-List">{income.Date.slice(0, 10)}</div>
 						</td>
-						<td className="IncomeAmount-List">{income.incomeAmount}€</td>
+						<td className="IncomeAmount-List">{income.Amount}€</td>
 
 						<td>
 							<button
