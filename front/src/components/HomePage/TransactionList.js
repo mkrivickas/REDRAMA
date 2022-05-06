@@ -9,10 +9,8 @@ function TransactionList(props) {
 	// let sortedCombinedList;
 
 	// sortedCombinedList = combinedList.sort(
-	// 	(a, b) =>
-	// 		new Date(...a.item.expenseDate.split('/').reverse()) - new Date(...b.item.expenseDate.split('/').reverse())
+	// 	(a, b) => new Date(...a.combinedList.split('/').reverse()) - new Date(...b.combinedList.split('/').reverse())
 	// );
-	// console.log(sortedCombinedList);
 
 	useEffect(
 		() => {

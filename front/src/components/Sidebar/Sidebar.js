@@ -58,7 +58,7 @@ const Sidebar = (props) => {
               <MenuItem active={true} icon={<FiHome />}><Link className='LinkName' to="/">
                 Home</Link>
               </MenuItem>
-              <MenuItem icon={<BiTrendingUp />}><Link className='LinkName' to="/pajamos">PAJAMOS</Link></MenuItem>
+              <MenuItem icon={<BiTrendingUp />}><Link className='LinkName' to="/pajamos">Pajamos</Link></MenuItem>
               <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/islaidos">Išlaidos</Link></MenuItem>
               <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/administratoriaus puslapis">Administratoriaus puslapis</Link></MenuItem>
               {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}

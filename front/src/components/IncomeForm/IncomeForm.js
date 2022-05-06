@@ -29,7 +29,7 @@ const IncomeForm = () => {
 		() => {
 			let temp = 0;
 			for (let i = 0; i < incomes.length; i++) {
-				temp += parseInt(incomes[i].incomeAmount);
+				temp += parseInt(incomes[i].Amount);
 			}
 			setTotalIncome(temp);
 		},

@@ -1,18 +1,21 @@
 const mongoose = require('mongoose');
 
 const expenseSchema = new mongoose.Schema({
-    expenseName: {
-        type: String,
-    },
-    expenseAmount: {
-        type: Number,
-    },
-    expenseDate: {
-        type: String,
-    },
-    expenseCategory: {
-        type: String,
-    },
+	Name: {
+		type: String
+	},
+	Amount: {
+		type: Number
+	},
+	Date: {
+		type: String
+	},
+	Type: {
+		type: String
+	},
+	Category: {
+		type: String
+	}
 });
 
 const ExpenseModel = new mongoose.model('expenses', expenseSchema);
