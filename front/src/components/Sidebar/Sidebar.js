@@ -60,7 +60,7 @@ const Sidebar = (props) => {
               </MenuItem>
               <MenuItem icon={<BiTrendingUp />}><Link className='LinkName' to="/pajamos">PAJAMOS</Link></MenuItem>
               <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/islaidos">Išlaidos</Link></MenuItem>
-              <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/administratoriaus puslapis">Administratoriaus puslapis</Link></MenuItem>
+              <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/admin">Administratoriaus puslapis</Link></MenuItem>
               {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
             </Menu>
           </SidebarContent>

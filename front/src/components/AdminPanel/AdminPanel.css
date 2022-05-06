@@ -1,5 +1,8 @@
 .adminPage{
-    background-color: #4e4e4e;
+    background-color: #212026;
+    width: 48%;
+    margin: 2%;
+    border-radius: 12px;
 }
 .adminPage h1{
     color: white;
@@ -17,7 +20,7 @@
     border: none;
     border-bottom: 1px solid green;
     border-bottom: 1px solid green;
-    background-color: #212026;
+    background-color: #4e4e4e;
     color: white;
 }
 .adminNav button:hover{

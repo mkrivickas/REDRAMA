@@ -4,6 +4,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import NewExpense from './components/NewExpense/NewExpense';
 import IncomeForm from './components/IncomeForm/IncomeForm';
+import AdminPanel from './components/AdminPanel/AdminPanel';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -71,6 +72,7 @@ function App() {
 								<Route path="/" element={<HomePage />} />
 								<Route path="/pajamos" element={<IncomeForm />} />
 								<Route path="/islaidos" element={<NewExpense />} />
+								<Route path="/admin" element={<AdminPanel />} />
 								{/* <Route path="/admin" element={<NewExpense />} /> */}
 							</Routes>
 						</div>
