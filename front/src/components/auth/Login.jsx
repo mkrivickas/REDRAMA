@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import bcrypt from 'bcryptjs'
 import Swal from 'sweetalert2';
+import { Link } from "react-router-dom";
+import './Login.css';
 
 
 const Login = ({setCurrentUser}) => {
@@ -58,7 +60,9 @@ const Login = ({setCurrentUser}) => {
 
 
   return (
+    <div className='auths'>
     <div className="authContainer">
+    <h1>Prisijungti</h1>
 {/*         <div className='errs'>
             {loginErrs && <h5>El. Paštas arba slaptažodis neteisingi</h5>}
         </div> */}
@@ -68,11 +72,15 @@ const Login = ({setCurrentUser}) => {
       </input>
       <input type="password" name="password" required id="loginPass" maxLength="40" placeholder='Slaptažodis'>
       </input>
-      <div className='registerShowPassword'>
+      <div className='loginRememberMe'>
       <input type="checkbox" id="loginRememberMe" name="rememberMe" onClick={()=>{setRememberMe(!rememberMe)}}></input><label htmlFor="rememberMe">Prisiminti mane</label>
       </div>
+      <div className='submitBtns'>
       <input type="submit" id="loginSubmit" value="Prisijungti"></input>
+      </div>
     </form>
+    <div className="loginLinkRegister">Neturite vartotojo paskyros? <Link className='MainLink' to="/register">Registruotis</Link></div>
+    </div>
     </div>
   )
 }

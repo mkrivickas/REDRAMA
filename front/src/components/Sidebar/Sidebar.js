@@ -60,13 +60,13 @@ const Sidebar = (props) => {
               </MenuItem>
               <MenuItem icon={<BiTrendingUp />}><Link className='LinkName' to="/pajamos">Pajamos</Link></MenuItem>
               <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/islaidos">Išlaidos</Link></MenuItem>
-              <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/admin">Administratoriaus puslapis</Link></MenuItem>
+              {props.currentUser.type === "admin" && <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/admin">Administratoriaus puslapis</Link></MenuItem>}
               {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
             </Menu>
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem onClick={()=>{props.logout()}} icon={<FiLogOut />}>Atsijungti</MenuItem>
+            {/* <Link className='LinkName' to="/"> */}<MenuItem onClick={()=>{props.logout()}} icon={<FiLogOut />}>Atsijungti</MenuItem>{/* </Link>  */}
             </Menu>
           </SidebarFooter>
         </ProSidebar>
