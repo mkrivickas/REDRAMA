@@ -13,6 +13,7 @@ import HomePage from './components/HomePage/HomePage';
 import AuthScreen from './components/AuthScreen/AuthScreen';
 
 function App() {
+	console.log(window.location.href)
 	let [ currentUser, setCurrentUser ] = useState('');
 	console.log(currentUser)
 	function logout() {
@@ -56,6 +57,13 @@ function App() {
 		}
 	}, []);
 
+	useEffect(() => {
+		if(!currentUser){
+			if(window.location.href !=="http://localhost:3000/"){
+				window.location.href = '/';
+			}
+		}
+	}, [])
 
 	
 	return (
@@ -82,6 +90,8 @@ function App() {
 						<div className="app-inner-mainPage">
 							<Routes>
 								<Route path="/" element={<HomePage currentUser={currentUser}/>} />
+								<Route path='/register' element={<HomePage currentUser={currentUser}/>}/>
+								<Route path='/login' element={<HomePage currentUser={currentUser}/>}/>
 								<Route path="/pajamos" element={<IncomeForm />} />
 								<Route path="/islaidos" element={<NewExpense />} />
 								{currentUser.type === "admin" &&
