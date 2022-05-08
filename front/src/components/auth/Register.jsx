@@ -24,7 +24,6 @@ const Register = ({setCurrentUser}) => {
   let [emailErr, setEmailErr] = useState(false)
   let [usernameErr, setUsernameErr] = useState(false)
   let [alreadyExistsErr, setAlreadyExistsErr] = useState(false)
-  let [loggedUser, setLoggedUser] = useState()
 
   function register(e){
     setEmailErr(false)
@@ -70,7 +69,7 @@ const Register = ({setCurrentUser}) => {
             } else if(data.message === "user already exists"){
                 setAlreadyExistsErr(true)
             }
-          });
+          })
     }
     }
 

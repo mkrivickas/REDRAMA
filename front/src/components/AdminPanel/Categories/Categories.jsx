@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Swal from 'sweetalert2';
 import './Categories.css';
+import { FaTrash } from 'react-icons/fa';
 
 const validCategory = new RegExp(
   '^[a-zA-Z ]{3,30}$'
@@ -140,16 +141,16 @@ const Categories = () => {
           pickedCategory ? (
             pickedCategory == "incomes" ?(
               category.categoryType == "income" &&(
-                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button></div>
               )
             ):(
               category.categoryType == "expense"&&(
-                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button></div>
               )
             )
 
           ):(
-            <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+            <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button></div>
           )
         ))}</div>}
 

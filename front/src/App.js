@@ -14,7 +14,7 @@ import AuthScreen from './components/AuthScreen/AuthScreen';
 
 function App() {
 	let [ currentUser, setCurrentUser ] = useState('');
-
+	console.log(currentUser)
 	function logout() {
 		Swal.fire({
 			title: 'Ar tikrai norite atsijungti?',
@@ -56,6 +56,8 @@ function App() {
 		}
 	}, []);
 
+
+	
 	return (
 		<div className="App">
 			{!currentUser && (
@@ -79,7 +81,7 @@ function App() {
 						<Sidebar logout={logout} currentUser={currentUser}/>
 						<div className="app-inner-mainPage">
 							<Routes>
-								<Route path="/" element={<HomePage />} />
+								<Route path="/" element={<HomePage currentUser={currentUser}/>} />
 								<Route path="/pajamos" element={<IncomeForm />} />
 								<Route path="/islaidos" element={<NewExpense />} />
 								{currentUser.type === "admin" &&
