@@ -4,7 +4,7 @@ import './Categories.css';
 import { FaTrash } from 'react-icons/fa';
 
 const validCategory = new RegExp(
-  '^[a-zA-Z ]{3,30}$'
+  '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ ]{3,30}$'
 )
 
 
