@@ -1,6 +1,7 @@
 .ExpenseList-table {
     width: 95%;
-    background-color: #212026;
+    /* background-color: #212026; */
+    background-color: #14223d;
     color: white;
     margin: auto;
     text-align: center;
@@ -35,16 +36,16 @@
 }
 
 .ExpenseName-List {
-    font-size: 24px;
+    font-size: 18px;
     padding-top: 15px;
 }
 
 .ExpenseDate-List {
-    font-size: 24px;
+    font-size: 18px;
     padding-top: 15px;
 }
 
 .ExpenseAmount-List {
-    font-size: 24px;
+    font-size: 18px;
     padding-top: 15px;
 }
