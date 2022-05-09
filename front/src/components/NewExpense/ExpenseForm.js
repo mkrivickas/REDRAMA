@@ -220,21 +220,21 @@ const ExpenseForm = (props) => {
                             onChange={categoryChangeHandler}
                             value={enteredCategory}
                         >
-                            <option value='food'>Maistas</option>
-                            <option value='clothes'>Drabužiai</option>
-                            <option value='hygiene'>Higiena</option>
-                            <option value='transport'>Transportas</option>
-                            <option value='automotive'>Automobilis</option>
-                            <option value='municipal'>
+                            <option value='Maistas'>Maistas</option>
+                            <option value='Apranga'>Apranga</option>
+                            <option value='Higiena'>Higiena</option>
+                            <option value='Transportas'>Transportas</option>
+                            <option value='Automobilis'>Automobilis</option>
+                            <option value='Komunaliniai'>
                                 Komunaliniai mokesčiai
                             </option>
-                            <option value='services'>Paslaugos</option>
-                            <option value='education'>Mokymai</option>
-                            <option value='hobby'>Pomėgiai</option>
-                            <option value='entertainment'>Pramogos</option>
-                            <option value='pets'>Augintiniai</option>
-                            <option value='household'>Namų išlaidos</option>
-                            <option value='garden'>Sodas</option>
+                            <option value='Paslaugos'>Paslaugos</option>
+                            <option value='Mokslas/Studijos'>Mokymai</option>
+                            <option value='Hobis'>Hobis</option>
+                            <option value='Pramogos'>Pramogos</option>
+                            <option value='Augintiniai'>Augintiniai</option>
+                            <option value='Buitis'>Buitis</option>
+                            <option value='Sodas'>Sodas</option>
                         </select>
                     </div>
                     <div className='new-expense__control col-5'>
