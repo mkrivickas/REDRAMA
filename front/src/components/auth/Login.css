@@ -1,0 +1,9 @@
+.loginRememberMe{
+    width: 85%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.loginLinkRegister{
+    text-align: center;
+  }

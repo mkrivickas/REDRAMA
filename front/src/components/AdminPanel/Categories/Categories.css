@@ -7,7 +7,8 @@
     border: none;
     background-color: #4e4e4e;
     color: white;
-    margin: 1%;
+    border-bottom: 1px solid #f1de6d;
+    margin: 0.5%;
 }
 .categorySingleCategory{
     width: 98%;
@@ -23,13 +24,18 @@
     width: 90%;
 }
 .categorySingleCategory button{
-    padding: 0.4%;
-    border-radius: 5px;
-    background-color: #b32d2d;
+    padding: 1%;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    background-color: #ff4444;
+    color: white;
 
 }
 .categorySingleCategory button:hover{
-    background-color: #2e9612;
+    background-color: #b32b2b;
+    color: white;
 }
 .categoryForm{
     width: 98%;

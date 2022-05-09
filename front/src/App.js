@@ -10,10 +10,12 @@ import Swal from 'sweetalert2';
 import Sidebar from './components/Sidebar/Sidebar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
+import AuthScreen from './components/AuthScreen/AuthScreen';
 
 function App() {
+	console.log(window.location.href)
 	let [ currentUser, setCurrentUser ] = useState('');
-
+	console.log(currentUser)
 	function logout() {
 		Swal.fire({
 			title: 'Ar tikrai norite atsijungti?',
@@ -28,6 +30,8 @@ function App() {
 			if (result.isConfirmed) {
 				setCurrentUser('');
 				localStorage.setItem('user', '');
+				window.location.href = '/';
+
 			}
 		});
 	}
@@ -53,26 +57,45 @@ function App() {
 		}
 	}, []);
 
+	useEffect(() => {
+		if(!currentUser){
+			if(window.location.href !=="http://localhost:3000/"){
+				window.location.href = '/';
+			}
+		}
+	}, [])
+
+	
 	return (
 		<div className="App">
 			{!currentUser && (
 				<div>
-					<h1>Registruotis</h1>
+					<Router>
+						<Routes>
+							<Route path='/' element={<AuthScreen/>}/>
+							<Route path='/register' element={<Register setCurrentUser={setCurrentUser} />}/>
+							<Route path='/login' element={<Login setCurrentUser={setCurrentUser} />}/>
+						</Routes>
+					</Router>
+					{/* <h1>Registruotis</h1>
 					<Register setCurrentUser={setCurrentUser} />
 					<h1>Prisijungti</h1>
-					<Login setCurrentUser={setCurrentUser} />
+					<Login setCurrentUser={setCurrentUser} /> */}
 				</div>
 			)}
 			{currentUser && (
 				<div className="appMainPage">
 					<Router>
-						<Sidebar logout={logout} />
+						<Sidebar logout={logout} currentUser={currentUser}/>
 						<div className="app-inner-mainPage">
 							<Routes>
-								<Route path="/" element={<HomePage />} />
+								<Route path="/" element={<HomePage currentUser={currentUser}/>} />
+								<Route path='/register' element={<HomePage currentUser={currentUser}/>}/>
+								<Route path='/login' element={<HomePage currentUser={currentUser}/>}/>
 								<Route path="/pajamos" element={<IncomeForm />} />
 								<Route path="/islaidos" element={<NewExpense />} />
-								<Route path="/admin" element={<AdminPanel />} />
+								{currentUser.type === "admin" &&
+								<Route path="/admin" element={<AdminPanel />} />}
 								{/* <Route path="/admin" element={<NewExpense />} /> */}
 							</Routes>
 						</div>

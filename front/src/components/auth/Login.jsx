@@ -1,18 +1,20 @@
 import React, {useState} from 'react'
 import bcrypt from 'bcryptjs'
 import Swal from 'sweetalert2';
+import { Link } from "react-router-dom";
+import './Login.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons'
 
 
 const Login = ({setCurrentUser}) => {
-    let [loggedUser, setLoggedUser] = useState()
+    let [isToggled, setIsToggled] = useState(false)
 
     let [rememberMe, setRememberMe] = useState(false)
-/*     let [loginErrs, setLoginErrs] = useState(false) */
 
 
 
     function login(e){
-/*         setLoginErrs(false) */
         e.preventDefault();
         let formData = e.target;
         const requestOptions = {
@@ -52,27 +54,32 @@ const Login = ({setCurrentUser}) => {
             })
             
           }
-        });
+        })
       }
 
-
-
   return (
+    <div className='auths'>
     <div className="authContainer">
-{/*         <div className='errs'>
-            {loginErrs && <h5>El. Paštas arba slaptažodis neteisingi</h5>}
-        </div> */}
-    {loggedUser && <h1>Prisijunges vartotojas :{loggedUser.name}</h1>}
+    <h1>Prisijungti</h1>
     <form onSubmit={(e)=>{login(e)}}>
       <input type="email" name="email" required id="loginEmail" maxLength="40" placeholder='El. Paštas'>
       </input>
-      <input type="password" name="password" required id="loginPass" maxLength="40" placeholder='Slaptažodis'>
+      <div className='registerPasswordField'>
+      <input type={isToggled ? "text" : "password"} name="password" required id="loginPass" maxLength="40" placeholder='Slaptažodis'>
       </input>
       <div className='registerShowPassword'>
+            <FontAwesomeIcon className='eyeCon' onClick={()=>{setIsToggled(!isToggled)}} icon={isToggled ? faEye : faEyeSlash} />
+          </div>
+      </div>
+      <div className='loginRememberMe'>
       <input type="checkbox" id="loginRememberMe" name="rememberMe" onClick={()=>{setRememberMe(!rememberMe)}}></input><label htmlFor="rememberMe">Prisiminti mane</label>
       </div>
+      <div className='submitBtns'>
       <input type="submit" id="loginSubmit" value="Prisijungti"></input>
+      </div>
     </form>
+    <div className="loginLinkRegister">Neturite vartotojo paskyros? <Link className='MainLink' to="/register">Registruotis</Link></div>
+    </div>
     </div>
   )
 }

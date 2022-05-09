@@ -1,6 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import Swal from 'sweetalert2';
 import './Categories.css';
+import { FaTrash } from 'react-icons/fa';
+
+const validCategory = new RegExp(
+  '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ ]{3,30}$'
+)
+
 
 const Categories = () => {
   let [categories, setCategories] = useState("");
@@ -13,26 +19,36 @@ const Categories = () => {
 
   function addCategory(e){
     e.preventDefault();
+    let isValid = true;
     let formData = e.target
+    if(!validCategory.test(formData.categoryAddName.value)){
+      isValid = false;
+      Swal.fire({
+        title: 'Klaida',
+        text: 'Kategorija negali tureti specialių simbolių arba skaičių, gali būti nuo 3 iki 30 simbolių',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Gerai'
+      })
+    }
     console.log(formData.categoryAddName.value)
-
-  // Once the form has been submitted, this function will post to the backend
-  const postURL = 'http://localhost:3001/api/v1/category/'; //Our previously set up route in the backend
-  fetch(postURL, {
-      method: 'POST',
-      headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-          // We should keep the fields consistent for managing this data later
-          categoryName: formData.categoryAddName.value,
-          categoryType: formData.categoryAddType.value
-      }),
-  }).then(()=>{
-    fetchData();
-    formData.categoryAddName.value = ""
-  })
+    if (isValid){
+      const postURL = 'http://localhost:3001/api/v1/category/';
+    fetch(postURL, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            categoryName: formData.categoryAddName.value,
+            categoryType: formData.categoryAddType.value
+        }),
+    }).then(()=>{
+      fetchData();
+      formData.categoryAddName.value = ""
+    })
+    }
   }
 
   function fetchData(){
@@ -125,16 +141,16 @@ const Categories = () => {
           pickedCategory ? (
             pickedCategory == "incomes" ?(
               category.categoryType == "income" &&(
-                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button></div>
               )
             ):(
               category.categoryType == "expense"&&(
-                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button></div>
               )
             )
 
           ):(
-            <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}>Pašalinti</button></div>
+            <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType =="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button></div>
           )
         ))}</div>}
 
