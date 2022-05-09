@@ -16,7 +16,7 @@ const ExpenseList = (props) => (
                                         className='ExpenseListEdit-button text-white ms-3'
                                         onClick={() => {
                                             window.scrollTo(0, 0);
-                                            /* props.editRow(expense); */
+                                            props.editExpense(expense);
                                             /* 									props.openModal(); */
                                         }}
                                     >
@@ -43,7 +43,7 @@ const ExpenseList = (props) => (
                                 <td>
                                     <button
                                         onClick={() =>
-                                            props.deleteIncome(expense._id)
+                                            props.deleteExpense(expense._id)
                                         }
                                         className='ExpenseListDelete-button ms-3'
                                     >
