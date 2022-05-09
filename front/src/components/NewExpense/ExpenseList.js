@@ -13,12 +13,12 @@ const ExpenseList = (props) => (
                             <tr key={expense._id}>
                                 <td>
                                     <button
+                                        className='ExpenseListEdit-button text-white ms-3'
                                         onClick={() => {
                                             window.scrollTo(0, 0);
                                             /* props.editRow(expense); */
                                             /* 									props.openModal(); */
                                         }}
-                                        className='ExpenseListEdit-button text-white ms-3'
                                     >
                                         <FaRegEdit />
                                     </button>
