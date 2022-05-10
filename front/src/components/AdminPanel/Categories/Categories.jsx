@@ -120,9 +120,9 @@ const Categories = () => {
   
   return (
     <div className='categoriesPage'>
-    <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="categoryAddNewButton">{!isAddFormOpened ? <>Pridėti naują</> : <>Atšaukti</>}</button>
+    <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="categoryAddNewButton">{!isAddFormOpened ? <>Pridėti naują</> : <>Atšaukti pridejimą</>}</button>
     <button onClick={()=>{pickCategory("incomes")}} className="categoryAddNewButton">{!isIncomesPicked ? <>Pajamų kategorijos</> : <>Atšaukti</>}</button>
-    <button onClick={()=>{pickCategory("expenses")}} className="categoryAddNewButton">{!isExpensesPicked ? <>Islaidų kategorijos</> : <>Atšaukti</>}</button>
+    <button onClick={()=>{pickCategory("expenses")}} className="categoryAddNewButton">{!isExpensesPicked ? <>Išlaidų kategorijos</> : <>Atšaukti</>}</button>
     {isAddFormOpened && 
     <div className='categoryForm'>
       <form  onSubmit={(e)=>{addCategory(e)}}>
