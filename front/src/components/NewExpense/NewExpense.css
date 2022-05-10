@@ -1,6 +1,6 @@
 .new-expense {
     /* background-color: #212026; */
-    background-color: #14223d;
+    background-color: #364652; /*Visos formos fono spalva*/
     padding: 1rem;
     margin: 2rem auto;
     width: 50rem;
@@ -14,9 +14,9 @@
     cursor: pointer;
     width: 10rem;
     height: 3rem;
-    border: 1px solid #00c851;
-    background-color: #00c851;
-    color: white;
+    border: 1px solid #169873;
+    background-color: #169873;
+    color: #dee5e5; /*tekstas "Pridėti */
     /* border-radius: 12px; */
     margin-right: 3rem;
     border-radius: 5%;
@@ -28,8 +28,8 @@
     border-color: #007e33;
 }
 
-.new-expense__actions button.alternative {
-    color: #220131;
+/* .new-expense__actions button.alternative {
+    color: #364652;
     border-color: transparent;
     background-color: transparent;
 }
@@ -37,4 +37,4 @@
 .new-expense__actions button.alternative:hover,
 .new-expense__actions button.alternative:active {
     background-color: #ddb3f8;
-}
+} */
