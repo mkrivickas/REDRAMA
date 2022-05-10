@@ -20,7 +20,8 @@ const Categories = () => {
   function addCategory(e){
     e.preventDefault();
     let isValid = true;
-    let formData = e.target
+    let formData = e.target;
+    if (formData.categoryAddName.value.length === 0 || (formData.categoryAddName.value.length > 0 && formData.categoryAddName.value.trim().length)){
     if(!validCategory.test(formData.categoryAddName.value)){
       isValid = false;
       Swal.fire({
@@ -49,6 +50,16 @@ const Categories = () => {
       formData.categoryAddName.value = ""
     })
     }
+  }else{
+    isValid = false;
+      Swal.fire({
+        title: 'Klaida',
+        text: 'Kategorija negali tureti specialių simbolių arba skaičių, gali būti nuo 3 iki 30 simbolių',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Gerai'
+      })
+  }
   }
 
   function fetchData(){
@@ -90,8 +101,12 @@ const Categories = () => {
           }),
       }).then(()=>{
         fetchData();
-        Swal.fire('Pašalinta!', 'Kategorija buvo pašalinta.', 'success');
-      })
+        Swal.fire({
+          text: 'Kategorija buvo pašalinta!',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Gerai!'
+        });
+      });
       }
     });
   }
@@ -121,8 +136,8 @@ const Categories = () => {
   return (
     <div className='categoriesPage'>
     <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="categoryAddNewButton">{!isAddFormOpened ? <>Pridėti naują</> : <>Atšaukti pridejimą</>}</button>
-    <button onClick={()=>{pickCategory("incomes")}} className="categoryAddNewButton">{!isIncomesPicked ? <>Pajamų kategorijos</> : <>Atšaukti</>}</button>
-    <button onClick={()=>{pickCategory("expenses")}} className="categoryAddNewButton">{!isExpensesPicked ? <>Išlaidų kategorijos</> : <>Atšaukti</>}</button>
+    <button onClick={()=>{pickCategory("incomes")}} className="categoryAddNewButton">{!isIncomesPicked ? <>Rodyti tik pajamų kategorijas</> : <>Atšaukti filtravimą</>}</button>
+    <button onClick={()=>{pickCategory("expenses")}} className="categoryAddNewButton">{!isExpensesPicked ? <>Rodyti tik išlaidų kategorijas</> : <>Atšaukti filtravimą</>}</button>
     {isAddFormOpened && 
     <div className='categoryForm'>
       <form  onSubmit={(e)=>{addCategory(e)}}>
