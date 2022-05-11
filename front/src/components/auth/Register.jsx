@@ -7,29 +7,29 @@ import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
 
 const validUsername = new RegExp(
-    '^[a-zA-Z0-9]{2,39}$'
+    '^[a-zA-Z0-9]{3,40}$'
   )
   
   const validEmail = new RegExp(
     '^[a-zA-Z0-9].{2,39}$'
   )
   const validPassword = new RegExp(
-    '^(?=.*[A-Z]).{0,39}$'
+    '^(?=.*[A-Z]).{3,40}$'
   )
 
 const Register = ({setCurrentUser}) => {
-  let [isToggled, setIsToggled] = useState(false)
-  let [showPassword, setShowPass] = useState("password")
-  let [passErr, setPassErr] = useState(false)
-  let [emailErr, setEmailErr] = useState(false)
-  let [usernameErr, setUsernameErr] = useState(false)
-  let [alreadyExistsErr, setAlreadyExistsErr] = useState(false)
+  let [isToggled, setIsToggled] = useState(false);
+  let [showPassword, setShowPass] = useState("password");
+  let [passErr, setPassErr] = useState(false);
+  let [emailErr, setEmailErr] = useState(false);
+  let [usernameErr, setUsernameErr] = useState(false);
+  let [alreadyExistsErr, setAlreadyExistsErr] = useState(false);
 
   function register(e){
-    setEmailErr(false)
-    setPassErr(false)
-    setUsernameErr(false)
-    setAlreadyExistsErr(false)
+    setEmailErr(false);
+    setPassErr(false);
+    setUsernameErr(false);
+    setAlreadyExistsErr(false);
     const salt = bcrypt.genSaltSync(10);
     let formData = e.target;
     let isValid = true;
@@ -43,6 +43,7 @@ const Register = ({setCurrentUser}) => {
     }
     if(!validEmail.test(formData.email.value)){
       isValid = false;
+      console.log(formData.email.value)
       setEmailErr(true)
     }
     e.preventDefault();
@@ -65,9 +66,9 @@ const Register = ({setCurrentUser}) => {
           .then(data => {
             console.log(data)
             if(data.status === "success"){
-              setCurrentUser(data.data.user)
+              setCurrentUser(data.data.user);
             } else if(data.message === "user already exists"){
-                setAlreadyExistsErr(true)
+                setAlreadyExistsErr(true);
             }
           })
     }
@@ -75,11 +76,11 @@ const Register = ({setCurrentUser}) => {
 
   function toggle(){
     if(showPassword === "password"){
-      setIsToggled(true)
-      setShowPass("text")
+      setIsToggled(true);
+      setShowPass("text");
     }else{
-      setIsToggled(false)
-      setShowPass("password")
+      setIsToggled(false);
+      setShowPass("password");
     }
   } 
   return (
