@@ -55,7 +55,7 @@ const Sidebar = (props) => (
 
             <ul className="logout">
                 <li>
-                <i className="icon-up" onClick={()=>{props.logout()}} ><FiLogOut color="#f1de6d"/></i><span className="nav-text">Atsijungti</span>
+                <i className="icon-up" onClick={()=>{props.logout()}} ><FiLogOut color="#f1de6d"/></i><span onClick={()=>{props.logout()}}  className="nav-text">Atsijungti</span>
                 </li>  
                
             </ul>
