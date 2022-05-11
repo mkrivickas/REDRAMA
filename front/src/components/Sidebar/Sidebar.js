@@ -1,3 +1,5 @@
+import React from "react";
+import { FiLogOut } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 
 //import react pro sidebar components
@@ -15,64 +17,54 @@ import {
 import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 import { BiTrendingDown } from "react-icons/bi";
 import {BiTrendingUp } from "react-icons/bi";
-
+import {FcSettings } from "react-icons/fc";
 
 //import sidebar css from react-pro-sidebar module and our custom css 
 import "react-pro-sidebar/dist/css/styles.css";
 // import "./Sidebar.css";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
+import logo from './logo.png';
 
-const Sidebar = (props) => {
+const Sidebar = (props) => (
+<>
+  <div class="area"> 
+  {/* <div class="main-header"><ul>
+              <li className="logo icon-logo">
+                <img src={logo} width="50"  />
+                </li>
+</ul>  
+    </div> */}
+       <nav class="main-menu">
+           
+<ul>
+                <li className="has-subnav">
+                <Link className='LinkName ' to="/"><img className='ms-3 mt-4'  src={logo} width="40" /><span className="nav-text mt-4">
+                REDRAMA</span></Link>
+                </li>
+
+                <li className="has-subnav ">
+               <Link className='LinkName' to="/pajamos"><i className="icon-up "><BiTrendingUp /></i><span className="nav-text ">Pajamos</span></Link>  
+                </li>
+
+                <li className="has-subnav">
+                <Link className='LinkName' to="/islaidos"><i className="icon-up"><BiTrendingDown /></i><span className="nav-text "> Išlaidos</span></Link>  
+                </li>
+
+                <li className="has-subnav">
+                <Link className='LinkName' to="/admin"><i className="icon-up"><FcSettings color= "#f1de6d"/></i><span className="nav-text " >Valdymas</span></Link>
+                </li>
+               </ul>
+
+            <ul className="logout">
+                <li>
+                <i className="icon-up" onClick={()=>{props.logout()}} ><FiLogOut color="#f1de6d"/></i><span className="nav-text">Atsijungti</span>
+                </li>  
+               
+            </ul>
+        </nav>
+   </div>
   
-    //create initial menuCollapse state using useState hook
-    const [menuCollapse, setMenuCollapse] = useState(false)
-
-    //create a custom function that will change menucollapse state from false to true and true to false
-  const menuIconClick = () => {
-    //condition checking to change state from true to false and vice versa
-    menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-  };
-
-  return (
-    <>
-      <div id="sidebar">
-          {/* collapsed props to change menu size using menucollapse state */}
-        <ProSidebar collapsed={menuCollapse}>
-          <SidebarHeader>
-          <div className="logotext">
-              {/* small and big change using menucollapse state */}
-              {/* <p>{menuCollapse ? "Logo" : "Big Logo"}</p> */}
-            </div>
-            <div className="closemenu" onClick={menuIconClick}>
-                {/* changing menu collapse icon on click */}
-              {/* {menuCollapse ? (
-                <FiArrowRightCircle/>
-              ) : (
-                <FiArrowLeftCircle/>
-              )} */}
-            </div>
-          </SidebarHeader>
-          <SidebarContent>
-            <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}><Link className='LinkName' to="/" src="../../../../img/transparent.png">
-                Home</Link>
-              </MenuItem>
-              <MenuItem icon={<BiTrendingUp />}><Link className='LinkName' to="/pajamos">Pajamos</Link></MenuItem>
-              <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/islaidos">Išlaidos</Link></MenuItem>
-              {props.currentUser.type === "admin" && <MenuItem icon={<BiTrendingDown />}><Link className='LinkName' to="/admin">Administratoriaus puslapis</Link></MenuItem>}
-              {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
-            </Menu>
-          </SidebarContent>
-          <SidebarFooter>
-            <Menu iconShape="square">
-            {/* <Link className='LinkName' to="/"> */}<MenuItem onClick={()=>{props.logout()}} icon={<FiLogOut />}>Atsijungti</MenuItem>{/* </Link>  */}
-            </Menu>
-          </SidebarFooter>
-        </ProSidebar>
-      </div>
-    </>
-  );
-};
-
+  </>  
+)
 export default Sidebar;

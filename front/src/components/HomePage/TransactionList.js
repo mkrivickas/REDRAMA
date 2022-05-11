@@ -12,16 +12,24 @@ function TransactionList(props) {
 	// 	(a, b) => new Date(...a.combinedList.split('/').reverse()) - new Date(...b.combinedList.split('/').reverse())
 	// );
 
-	useEffect(
-		() => {
-			fetchData();
-		},
-		[ id ]
-	);
-
+	useEffect(() => {
+		fetchData();
+	}, []);
 	async function fetchData() {
 		fetchIncomes();
 	}
+	useEffect(
+		() => {
+			const sortedListByDate = combinedList.sort(function(a, b) {
+				var c = new Date(a.Date);
+				var d = new Date(b.Date);
+				return c - d;
+			});
+			setCombinedList(sortedListByDate.reverse());
+		},
+		[ combinedList ]
+	);
+
 	function fetchIncomes() {
 		fetch('http://localhost:3001/api/v1/income')
 			.then((response) => response.json())

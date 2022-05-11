@@ -80,19 +80,6 @@ const EditIncomeForm = (props) => {
                                     <option value={category.categoryName}>{category.categoryName}</option>
                             ))}
 					</select>
-					<input
-						className="EditIncomeForm-input"
-						type="text"
-						name="incomeName"
-						required
-						maxLength="20"
-						minLength="3"
-						placeholder="Pajamų pavadinimas"
-						value={editName}
-						onChange={(e) => {
-							setEditName(e.target.value);
-						}}
-					/>
 				</div>
 				<div>
 					<input

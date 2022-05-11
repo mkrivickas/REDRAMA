@@ -89,7 +89,7 @@ const ExpenseForm = (props) => {
 		fetchData();
         fetchCategories();
 	}, []);
-
+  
 	useEffect(() => {
         if (editing) {
             setEnteredCategory(currentExpense.Category);
