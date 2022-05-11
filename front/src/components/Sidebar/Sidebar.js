@@ -42,20 +42,20 @@ const Sidebar = (props) => {
           <SidebarHeader>
           <div className="logotext">
               {/* small and big change using menucollapse state */}
-              <p>{menuCollapse ? "Logo" : "Big Logo"}</p>
+              {/* <p>{menuCollapse ? "Logo" : "Big Logo"}</p> */}
             </div>
             <div className="closemenu" onClick={menuIconClick}>
                 {/* changing menu collapse icon on click */}
-              {menuCollapse ? (
+              {/* {menuCollapse ? (
                 <FiArrowRightCircle/>
               ) : (
                 <FiArrowLeftCircle/>
-              )}
+              )} */}
             </div>
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}><Link className='LinkName' to="/">
+              <MenuItem active={true} icon={<FiHome />}><Link className='LinkName' to="/" src="../../../../img/transparent.png">
                 Home</Link>
               </MenuItem>
               <MenuItem icon={<BiTrendingUp />}><Link className='LinkName' to="/pajamos">Pajamos</Link></MenuItem>

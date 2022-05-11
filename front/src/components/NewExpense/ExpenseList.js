@@ -11,7 +11,9 @@ const ExpenseList = (props) => (
                     {props.expense.length > 0 ? (
                         props.expense.map((expense) => (
                             <tr key={expense._id}>
+                                
                                 <td>
+                                    <div className='ExpenseCategory-List'>
                                     <button
                                         className='ExpenseListEdit-button text-white ms-3'
                                         onClick={() => {
@@ -28,23 +30,34 @@ const ExpenseList = (props) => (
                                     </div>
                                 </td>
                                 <td>
-                                    <div className='ExpenseName-List text-white'>
+                                    <div className='ExpenseName-List'>
                                         {expense.Name}
                                     </div>
-                                    <div className='ExpenseDate-List text-white'>
+                                    <div className='ExpenseDate-List'>
                                         {expense.Date.slice(0, 10)}
                                     </div>
                                 </td>
-                                <td className='ExpenseAmount-List text-white'>
+                                <td className='ExpenseAmount-List'>
                                     {expense.Amount}€
                                 </td>
-
+                                <td>
+                                    <button
+                                        className='ExpenseListEdit-button'
+                                        onClick={() => {
+                                            window.scrollTo(0, 0);
+                                            props.editExpense(expense);
+                                            /* 									props.openModal(); */
+                                        }}
+                                    >
+                                        <FaRegEdit />
+                                    </button>
+                                </td>
                                 <td>
                                     <button
                                         onClick={() =>
                                             props.deleteExpense(expense._id)
                                         }
-                                        className='ExpenseListDelete-button ms-3'
+                                        className='ExpenseListDelete-button'
                                     >
                                         <FaTrash />
                                     </button>
