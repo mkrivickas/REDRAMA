@@ -25,12 +25,8 @@ h1 {
 	/* flex-direction: column; */
 	/* justify-content: center; */
 	width: 100%;
-	background-color: black;
-}
-
-.Sidebar {
 	height: 100%;
-	width: 30%;
+	background-color: rgb(19, 19, 19);
 }
 
 .app-inner-mainPage {
@@ -38,6 +34,6 @@ h1 {
 	display: flex;
 	justify-content: center;
 }
-.appLogoutButton:hover{
-  background-color: #2e9612;
+.appLogoutButton:hover {
+	background-color: #2e9612;
 }

@@ -14,7 +14,7 @@ const ExpenseList = (props) => (
 								<td>
 									<button
 										onClick={() => {
-											/* props.editRow(expense); */
+											/* props.editRow(expense); 
 											/* 									props.openModal(); */
 										}}
 										className="ExpenseListEdit-button text-white ms-3"

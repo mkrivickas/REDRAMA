@@ -50,6 +50,9 @@ const AddIncomeForm = (props) => {
 	};
 
 	return (
+		<>
+		
+
 		<div>
 			<form className="AddIncome-form" onSubmit={handleSubmit}>
 				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
@@ -105,7 +108,7 @@ const AddIncomeForm = (props) => {
 					Pridėti
 				</button>
 			</form>
-		</div>
+		</div></>
 	);
 };
 
