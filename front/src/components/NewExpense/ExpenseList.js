@@ -23,9 +23,10 @@ const ExpenseList = (props) => (
                                     >
                                         <FaRegEdit />
                                     </button>
+                                    </div>
                                 </td>
                                 <td>
-                                    <div className='ExpenseCategory-List text-white'>
+                                    <div className='ExpenseCategory-List'>
                                         {expense.Category}
                                     </div>
                                 </td>

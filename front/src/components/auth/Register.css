@@ -2,7 +2,7 @@
   color: white;
 }
 .authContainer h1{
- color: #f1de6d;
+ color: #ffd700;
  text-align: center;
 }
 .authContainer form{
@@ -17,8 +17,8 @@
     margin: 5px;
     display: inline-block;
     border: none;
-    background: #f1f1f1;
-    border-radius: 12px;
+    background-color: #1a1d23;
+    border-bottom: 1px solid#ffd700;
   }
   
   .authContainer input[type=text]:focus, .authContainer input[type=password]:focus {
@@ -32,17 +32,20 @@
   
   
   .authContainer input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #ffd700;
+    color: black;
     padding: 14px;
     margin: auto;
     border: none;
     width: 150px;
     border-radius: 12px;
   }
+  .authContainer input[type=submit]:hover{
+    background-color: #dee5e5;
+  }
   
   .authContainer button:hover {
-      background: #2e9612;
+      background: #dee5e5;
   }
   
   
@@ -54,7 +57,7 @@
     border: solid black 1px;
     border-radius: 12px;
     width: 50%;
-    background-color: #212026;
+    background-color: #1a1d23;
     margin: auto;
   }
   
