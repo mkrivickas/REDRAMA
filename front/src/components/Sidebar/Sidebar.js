@@ -36,7 +36,7 @@ const Sidebar = (props) => (
            
 <ul>
                 <li className="has-subnav">
-                <Link className='LinkName ' to="/"><img className='ms-3 mt-4'  src={logo} width="40" /><span className="nav-text mt-4">
+                <Link className='LinkName titleAndLogo' to="/"><img className='imgLogo logo'  src={logo} /><span className="nav-text">
                 REDRAMA</span></Link>
                 </li>
 
@@ -54,8 +54,8 @@ const Sidebar = (props) => (
                </ul>
 
             <ul className="logout">
-                <li>
-                <i className="icon-up" onClick={()=>{props.logout()}} ><FiLogOut color="#f1de6d"/></i><span className="nav-text">Atsijungti</span>
+                <li className="logoutLine">
+                <i className="logoutIcon" onClick={()=>{props.logout()}} ><FiLogOut color="#f1de6d"/></i><span className="nav-text">Atsijungti</span>
                 </li>  
                
             </ul>

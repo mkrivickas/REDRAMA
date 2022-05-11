@@ -44,7 +44,7 @@ const AddIncomeForm = (props) => {
 		let upperCaseIncomeName = incomeNameFirstLetter + incomeName.slice(1);
 		console.log('bonk');
 		if (isIncomeValid) {
-			props.addIncome({ Name: upperCaseIncomeName, Amount: incomeAmount, Date: incomeDate, Category: incomeCategory });
+			props.addIncome({ Name: upperCaseIncomeName, Amount: incomeAmount, Date: incomeDate, Category: incomeCategory, Type: "income" });
 		}
 	};
 

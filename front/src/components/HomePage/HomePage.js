@@ -3,7 +3,7 @@ import TransactionList from './TransactionList';
 
 function HomePage(props) {
 	return (
-		<div>
+		<div className="transactionsDiv">
 			<TransactionList />
 		</div>
 	);

@@ -48,7 +48,7 @@ function TransactionList(props) {
 
 	return (
 		!loading && (
-			<div>
+			<div className="transactionsDivDiv">
 				<TransactionsTable combinedList={combinedList} />
 			</div>
 		)

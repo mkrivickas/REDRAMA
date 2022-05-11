@@ -111,6 +111,7 @@ const ExpenseForm = (props) => {
                     Amount: enteredAmount,
                     Date: enteredDate,
                     Category: enteredCategory,
+                    Type: "expense"
                 }),
             };
             fetch(
@@ -159,6 +160,7 @@ const ExpenseForm = (props) => {
                             Amount: enteredAmount,
                             Date: enteredDate,
                             Category: enteredCategory,
+                            Type: "expense"
                         }),
                     }).then(() => {
                         Swal.fire({
