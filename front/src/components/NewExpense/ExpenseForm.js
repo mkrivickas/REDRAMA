@@ -6,6 +6,23 @@ import Swal from 'sweetalert2';
 const validExpenseAmount = new RegExp('^[0-9.]{1,10}?$');
 
 const ExpenseForm = (props) => {
+
+    let [categories, setCategories] = useState("")
+    let [isLoading, setIsLoading] = useState(true)
+
+
+    function fetchCategories(){
+        fetch('http://localhost:3001/api/v1/category/')
+            .then(response => response.json())
+            .then(data => {
+            setCategories(data.data.categories);
+            setIsLoading(false);
+            console.log(categories)
+            
+            });
+    }
+    
+
 	const [currentExpense, setCurrentExpense] = useState({});
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
@@ -70,6 +87,7 @@ const ExpenseForm = (props) => {
 
 	useEffect(() => {
 		fetchData();
+        fetchCategories();
 	}, []);
 
 	useEffect(() => {
@@ -216,25 +234,31 @@ const ExpenseForm = (props) => {
                         <label className='new-expense__category'>
                             Kategorija
                         </label>
-                        <select
+                        <select required
                             onChange={categoryChangeHandler}
                             value={enteredCategory}
                         >
-                            <option value='Maistas'>Maistas</option>
-                            <option value='Apranga'>Apranga</option>
-                            <option value='Higiena'>Higiena</option>
-                            <option value='Transportas'>Transportas</option>
-                            <option value='Automobilis'>Automobilis</option>
-                            <option value='Komunaliniai'>
+                            <option selected="true" hidden value="">-----------</option>
+                            {!isLoading &&
+                            categories.map((category)=>(
+                                category.categoryType ==="expense"&&
+                                    <option value={category.categoryName}>{category.categoryName}</option>
+                            ))}
+                            {/* <option value='food'>Maistas</option>
+                            <option value='clothes'>Drabužiai</option>
+                            <option value='hygiene'>Higiena</option>
+                            <option value='transport'>Transportas</option>
+                            <option value='automotive'>Automobilis</option>
+                            <option value='municipal'>
                                 Komunaliniai mokesčiai
                             </option>
-                            <option value='Paslaugos'>Paslaugos</option>
-                            <option value='Mokslas/Studijos'>Mokymai</option>
-                            <option value='Hobis'>Hobis</option>
-                            <option value='Pramogos'>Pramogos</option>
-                            <option value='Augintiniai'>Augintiniai</option>
-                            <option value='Buitis'>Buitis</option>
-                            <option value='Sodas'>Sodas</option>
+                            <option value='services'>Paslaugos</option>
+                            <option value='education'>Mokymai</option>
+                            <option value='hobby'>Pomėgiai</option>
+                            <option value='entertainment'>Pramogos</option>
+                            <option value='pets'>Augintiniai</option>
+                            <option value='household'>Namų išlaidos</option>
+                            <option value='garden'>Sodas</option> */}
                         </select>
                     </div>
                     <div className='new-expense__control col-5'>

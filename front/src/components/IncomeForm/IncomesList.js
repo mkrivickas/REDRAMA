@@ -27,6 +27,7 @@ const IncomesList = (props) => (
 						<td className="IncomeAmount-List">{income.Amount}€</td>
 
 						<td>
+						<td className="IncomeAmount-List">{income.Category}€</td>
 							<button
 								onClick={() => props.deleteIncome(income._id)}
 								className="IncomeListDelete-button ms-3"

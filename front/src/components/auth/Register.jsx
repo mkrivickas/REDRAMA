@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import bcrypt from 'bcryptjs'
+import React, {useState, useEffect} from 'react';
+import bcrypt from 'bcryptjs';
 import './Register.css';
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
 
 const validUsername = new RegExp(
@@ -30,7 +30,7 @@ const Register = ({setCurrentUser}) => {
     setPassErr(false)
     setUsernameErr(false)
     setAlreadyExistsErr(false)
-    const salt = bcrypt.genSaltSync(10)
+    const salt = bcrypt.genSaltSync(10);
     let formData = e.target;
     let isValid = true;
     if(!validUsername.test(formData.username.value)){

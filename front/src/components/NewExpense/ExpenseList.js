@@ -14,6 +14,18 @@ const ExpenseList = (props) => (
                                 
                                 <td>
                                     <div className='ExpenseCategory-List'>
+                                    <button
+                                        className='ExpenseListEdit-button text-white ms-3'
+                                        onClick={() => {
+                                            window.scrollTo(0, 0);
+                                            props.editExpense(expense);
+                                        }}
+                                    >
+                                        <FaRegEdit />
+                                    </button>
+                                </td>
+                                <td>
+                                    <div className='ExpenseCategory-List text-white'>
                                         {expense.Category}
                                     </div>
                                 </td>
