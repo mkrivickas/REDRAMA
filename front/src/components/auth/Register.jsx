@@ -30,7 +30,7 @@ const Register = ({setCurrentUser}) => {
     setPassErr(false)
     setUsernameErr(false)
     setAlreadyExistsErr(false)
-    const salt = bcrypt.genSaltSync(10)
+    const salt = bcrypt.genSaltSync(10);
     let formData = e.target;
     let isValid = true;
     if(!validUsername.test(formData.username.value)){

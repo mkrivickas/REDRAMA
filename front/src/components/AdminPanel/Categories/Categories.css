@@ -34,12 +34,12 @@
     height: 3rem;
     border: none;
     border-radius: 50%;
-    background-color: #169873;
+    background-color: #da4167;
     color: #dee5e5;
 
 }
 .categorySingleCategory button:hover{
-    background-color: #000000;
+    background-color: #169873;
     color: #dee5e5;
 }
 .categoryForm{
