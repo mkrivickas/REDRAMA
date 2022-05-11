@@ -19,14 +19,28 @@
     border: none;
     background-color: #1a1d23;
     border-bottom: 1px solid#ffd700;
+    color: #dee5e5;
   }
-  
+  .authContainer input::placeholder{
+    color: #dee5e5;
+  }
+  .authContainer input:-webkit-autofill{
+    background-color: #1a1d23 !important;
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+  .authContainer input[type=email]:focus{
+    background-color: #1a1d23;
+  }
   .authContainer input[type=text]:focus, .authContainer input[type=password]:focus {
-    background-color: #ddd;
+    background-color: #1a1d23;
+    border-bottom: 1px solid#ffd700;
+    color: #dee5e5;
     outline: none;
   }
   .authContainer input[type=email]:focus, .authContainer input[type=password]:focus {
-    background-color: #ddd;
+    background-color: #1a1d23;
+    border-bottom: 1px solid#ffd700;
+    color: #dee5e5;
     outline: none;
   }
   
@@ -84,13 +98,13 @@
     position: relative;
     display: flex;
     justify-content: center;
-    color: black;
+    color: #dee5e5;
     align-items: center;
     width: 0%;
     right: 9%;
   }
   .eyeCon{
-    color: black;
+    color: #dee5e5;
   }
   .registerPasswordField{
     display: flex;

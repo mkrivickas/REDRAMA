@@ -1,6 +1,5 @@
 import React from "react";
-import { FiLogOut } from "react-icons/fi";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 //import react pro sidebar components
 import {
@@ -11,8 +10,6 @@ import {
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
-
-//import icons from react icons
 
 import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 import { BiTrendingDown } from "react-icons/bi";

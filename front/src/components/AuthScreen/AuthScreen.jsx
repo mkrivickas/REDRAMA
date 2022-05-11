@@ -9,7 +9,7 @@ const AuthScreen = () => {
         <h4>Biudžeto aplikacija</h4>
         <div className='ASAuthBtn'>
             <div className='ASAuthRegisterBtn'><Link className='MainLink' to="/register">Užregistruoti </Link> naują vartotoją</div>
-            <div className='ASAuthLoginBtn'><Link className='MainLink' to="/login">Prisijungti </Link> su egzistuojančiu vartotoju</div>
+            <div className='ASAuthLoginBtn'><Link className='MainLink' to="/login">Prisijungti </Link></div>
         </div>
     </div>
   )

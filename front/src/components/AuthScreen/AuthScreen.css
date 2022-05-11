@@ -11,6 +11,7 @@
     color: #ffd700;
 }
 .AuthScreen h1{
+    margin-bottom: 4%;
     font-size: 100px;
 }
 .ASAuthBtn{
@@ -28,7 +29,7 @@
     border: 1px solid #ffd700;
     background-color: black;
     border-radius: 12px;
-    padding: 1%;
+    padding: 2%;
 }
 .ASAuthLoginBtn{
     display: flex;
@@ -37,7 +38,8 @@
     border: 1px solid #ffd700;
     background-color: black;
     border-radius: 12px;
-    padding: 1%;
+    padding: 2%;
+    margin-top: 3%;
 }
 
 .MainLink{
