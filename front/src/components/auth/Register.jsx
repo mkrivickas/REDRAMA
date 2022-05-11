@@ -1,6 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import bcrypt from 'bcryptjs'
+import React, {useState, useEffect} from 'react';
+import bcrypt from 'bcryptjs';
 import './Register.css';
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 const validUsername = new RegExp(
     '^[a-zA-Z0-9]{2,39}$'
@@ -14,19 +18,19 @@ const validUsername = new RegExp(
   )
 
 const Register = ({setCurrentUser}) => {
+  let [isToggled, setIsToggled] = useState(false)
   let [showPassword, setShowPass] = useState("password")
   let [passErr, setPassErr] = useState(false)
   let [emailErr, setEmailErr] = useState(false)
   let [usernameErr, setUsernameErr] = useState(false)
   let [alreadyExistsErr, setAlreadyExistsErr] = useState(false)
-  let [loggedUser, setLoggedUser] = useState()
 
   function register(e){
     setEmailErr(false)
     setPassErr(false)
     setUsernameErr(false)
     setAlreadyExistsErr(false)
-    const salt = bcrypt.genSaltSync(10)
+    const salt = bcrypt.genSaltSync(10);
     let formData = e.target;
     let isValid = true;
     if(!validUsername.test(formData.username.value)){
@@ -51,7 +55,7 @@ const Register = ({setCurrentUser}) => {
         body: JSON.stringify({ 
           name: formData.username.value,
           email: formData.email.value,
-          type: "admin",
+          type: "user",
           password: passHash2,
           salt: salt
         })
@@ -65,35 +69,45 @@ const Register = ({setCurrentUser}) => {
             } else if(data.message === "user already exists"){
                 setAlreadyExistsErr(true)
             }
-          });
+          })
     }
     }
 
   function toggle(){
     if(showPassword === "password"){
+      setIsToggled(true)
       setShowPass("text")
     }else{
+      setIsToggled(false)
       setShowPass("password")
     }
   } 
   return (
-    <div className="authContainer">
-      <div className='errs'>
-        {emailErr && <h5>El. Paštas turi buti ne ilgesnis nei 40 simbolių.</h5>}
-        {passErr && <h5>Slaptažodis turi turėti nors vieną didžiają raidę ir turi būti ne ilgesnis nei 40 simbolių</h5>}
-        {usernameErr && <h5>Vartotojo vardas turi būti nuo 3 iki 40 simbolių, gali susidaryti tik is raidžių ir skaičių</h5>}
-        {alreadyExistsErr && <h5>Vartotojas su tokiu vardu arba el. paštu jau egzistuoja!</h5>}
+    <div className='auths'>
+      <div className="authContainer">
+        <h1>Registruotis</h1>
+        <div className='errs'>
+          {emailErr && <h5>El. Paštas turi buti ne ilgesnis nei 40 simbolių.</h5>}
+          {passErr && <h5>Slaptažodis turi turėti nors vieną didžiają raidę ir turi būti ne ilgesnis nei 40 simbolių</h5>}
+          {usernameErr && <h5>Vartotojo vardas turi būti nuo 3 iki 40 simbolių, gali susidaryti tik is raidžių ir skaičių</h5>}
+          {alreadyExistsErr && <h5>Vartotojas su tokiu vardu arba el. paštu jau egzistuoja!</h5>}
+        </div>
+        <form onSubmit={(e)=>{register(e)}}> 
+        <input type="text" name="username" id="regUsername" placeholder="Vartotojo Vardas" required></input>
+        <input type="email" name="email" placeholder="El. Paštas" id="regEmail" required></input>
+        <div className='registerPasswordField'>
+          <input type={showPassword} id="regPass" placeholder="Slaptažodis" name="password" required>
+          </input>
+          <div className='registerShowPassword'>
+            <FontAwesomeIcon className='eyeCon' onClick={()=>{toggle()}} icon={isToggled ? faEye : faEyeSlash} />
+          </div>
+        </div>
+        <div className='submitBtns'>
+        <input type="submit" value="Registruotis"></input>
+        </div>
+        </form>
+        <div className="registerLinkLogin">Jau turite vartotojo paskyrą? <Link className='MainLink' to="/login">Prisijungti</Link></div>
       </div>
-      <form onSubmit={(e)=>{register(e)}}> 
-      <input type="text" name="username" id="regUsername" placeholder="Vartotojo Vardas" required></input>
-      <input type="email" name="email" placeholder="El. Paštas" id="regEmail" required></input>
-      <input type={showPassword} id="regPass" placeholder="Slaptažodis" name="password" required>
-      </input>
-      <div className='registerShowPassword'>
-      <input type="checkbox" id="regShowPass" name="showPass" onClick={()=>{toggle()}}></input><label htmlFor="showPass">Rodyti slaptažodį</label>
-      </div>
-      <input type="submit" value="Registruotis"></input>
-      </form>
     </div>
   )
 }

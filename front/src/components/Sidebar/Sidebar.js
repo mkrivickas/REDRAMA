@@ -1,5 +1,20 @@
 import React from "react";
 import { FiLogOut } from "react-icons/fi";
+import React, { useState, useEffect } from "react";
+
+//import react pro sidebar components
+import {
+  ProSidebar,
+  Menu,
+  MenuItem,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarContent,
+} from "react-pro-sidebar";
+
+//import icons from react icons
+
+import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 import { BiTrendingDown } from "react-icons/bi";
 import {BiTrendingUp } from "react-icons/bi";
 import {FcSettings } from "react-icons/fc";
@@ -20,7 +35,6 @@ const Sidebar = (props) => (
                 </li>
 </ul>  
     </div> */}
-  
        <nav class="main-menu">
            
 <ul>
@@ -38,7 +52,7 @@ const Sidebar = (props) => (
                 </li>
 
                 <li className="has-subnav">
-                <Link className='LinkName' to="/valdymas"><i className="icon-up"><FcSettings color= "#f1de6d"/></i><span className="nav-text " >Valdymas</span></Link>
+                <Link className='LinkName' to="/admin"><i className="icon-up"><FcSettings color= "#f1de6d"/></i><span className="nav-text " >Valdymas</span></Link>
                 </li>
                </ul>
 
@@ -53,6 +67,4 @@ const Sidebar = (props) => (
   
   </>  
 )
-  
-    
 export default Sidebar;

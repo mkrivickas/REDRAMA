@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddIncomeForm.css';
 // import swal from 'sweetalert';
 
@@ -10,10 +10,30 @@ const AddIncomeForm = (props) => {
 	let maxDate = new Date();
 	let isIncomeValid = true;
 	const [ incomeDate, setincomeDate ] = useState(maxDate.toLocaleDateString('lt-LT'));
+	const [incomeCategory, setIncomeCategory] = useState("")
 	let addIncomeForm = document.getElementById('addIncomeFormInput');
 
-	/* const [maxDate, setMaxDate] = useState(Date) */
-	/* console.log(maxDate.toLocaleDateString('lt-LT')) */
+	let [categories, setCategories] = useState("")
+    let [isLoading, setIsLoading] = useState(true)
+
+
+	
+    function fetchCategories(){
+        fetch('http://localhost:3001/api/v1/category/')
+            .then(response => response.json())
+            .then(data => {
+            setCategories(data.data.categories);
+            setIsLoading(false);
+            console.log(categories)
+            
+            });
+    }
+
+	useEffect(() => {
+		fetchCategories();
+	}, [])
+
+
 	const handleSubmit = (e) => {
 		console.log(incomeName)
 		if(incomeName === "   "){
@@ -24,8 +44,7 @@ const AddIncomeForm = (props) => {
 		let upperCaseIncomeName = incomeNameFirstLetter + incomeName.slice(1);
 		console.log('bonk');
 		if (isIncomeValid) {
-			console.log('bonk');
-			props.addIncome({ Name: upperCaseIncomeName, Amount: incomeAmount, Date: incomeDate, Type: 'pajamos' });
+			props.addIncome({ Name: upperCaseIncomeName, Amount: incomeAmount, Date: incomeDate, Category: incomeCategory });
 		}
 	};
 
@@ -58,12 +77,13 @@ const AddIncomeForm = (props) => {
 				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
 				<div>
 					<div className="col-lg-6 col-md-12 col-sm-12">
-						<select className="AddIncomeForm-input" name="category">
-							<option value="-Program-">-Kategorija-</option>
-							<option value="JavaScript">JavaScript</option>
-							<option value="Java">Java</option>
-							<option value="PHP">PHP</option>
-							<option value="Programinės įrangos testuotjas">Programinės įrangos testuotjas</option>
+						<select className="AddIncomeForm-input" onChange={(e)=>{setIncomeCategory(e.target.value)}} required name="category">
+						<option selected="true" hidden value="">-----------</option>
+                            {!isLoading &&
+                            categories.map((category)=>(
+                                category.categoryType ==="income"&&
+                                    <option value={category.categoryName}>{category.categoryName}</option>
+                            ))}
 						</select>
 					</div>
 					<input

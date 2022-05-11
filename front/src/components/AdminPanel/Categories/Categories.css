@@ -5,31 +5,42 @@
     padding: 1%;
     border-radius: 12px;
     border: none;
-    background-color: #4e4e4e;
-    color: white;
-    margin: 1%;
+    background-color: #364652;
+    color: #dee5e5;
+    border-bottom: 1px solid #FFD700;
+    margin: 0.5%;
+}
+.categoryAddNewButton:hover{
+    background-color: #169873;
 }
 .categorySingleCategory{
     width: 98%;
     padding: 2%;
-    background-color: #4e4e4e;
+    background-color: #364652;
     color: white;
     border-radius: 5px;
     margin: 1%;
     display: flex;
     align-items: center;
+    border-right: 1px solid #FFD700;
+    border-left: 1px solid #FFD700;
 }
 .categorySingleName{
     width: 90%;
 }
 .categorySingleCategory button{
-    padding: 0.4%;
-    border-radius: 5px;
-    background-color: #b32d2d;
+    padding: 1%;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    background-color: #da4167;
+    color: #dee5e5;
 
 }
 .categorySingleCategory button:hover{
-    background-color: #2e9612;
+    background-color: #169873;
+    color: #dee5e5;
 }
 .categoryForm{
     width: 98%;
@@ -45,14 +56,14 @@
     width: 30%;
     display: inline-block;
     border: none;
-    background: #f1f1f1;
+    background: #dee5e5;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
     height: 100%;
     box-sizing: border-box;
 }
 .categoryForm button{
-    background-color: rgb(35, 63, 35);
+    background-color: #169873;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 	border: none;
@@ -67,5 +78,6 @@
     height: 100%;
     border: 1px solid #f1f1f1;
     border-left: 1px solid #d9d7d7;
-    background-color: #f1f1f1;
+    background-color: #dee5e5;
+    color: #364652;
 }

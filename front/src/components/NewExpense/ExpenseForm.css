@@ -6,6 +6,16 @@
     text-align: left;
 }
 
+label {
+    color: #dee5e5; /*Input laukelių antraščių spalva*/
+}
+
+input,
+select,
+option {
+    color: #364652;
+}
+
 .new-expense__control label {
     font-weight: bold;
     margin-bottom: 0.5rem;
@@ -17,7 +27,7 @@
     font: inherit;
     padding: 0.5rem;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #dee5e5; /* Input laukelių rėmelio spalva*/
     width: 20rem;
     max-width: 100%;
 }
@@ -25,7 +35,7 @@
     font: inherit;
     padding: 0.5rem;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #dee5e5;
     width: 20rem;
     max-width: 100%;
 }
@@ -35,8 +45,15 @@
 }
 
 .btn.my-cusomized-button {
-    border-color: red;
-    color: white;
-    background-color: red;
-    border: 1px solid red;
+    border-color: #d7263d;
+    color: #dee5e5;
+    background-color: #d7263d;
+    border: 1px solid #d7263d;
+}
+
+.btn.my-cusomized-button:hover {
+    border-color: #ffd700;
+    color: #364652;
+    background-color: #ffd700;
+    border: 1px solid #ffd700;
 }

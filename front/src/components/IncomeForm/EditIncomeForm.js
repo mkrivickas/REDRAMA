@@ -7,9 +7,30 @@ const EditIncomeForm = (props) => {
 	const [ income, setIncome ] = useState(props.currentIncome);
 	const [ editName, setEditName ] = useState(props.currentIncome.Name);
 	const [ editAmount, setEditAmount ] = useState(props.currentIncome.Amount);
+	const [editCategory, setEditCategory] = useState(props.currentIncome.Category)
 	let maxDate = new Date();
 	let isIncomeValid = true;
 	const [ editDate, setEditDate ] = useState(props.currentIncome.Date.split('T')[0]);
+
+	let [categories, setCategories] = useState("")
+    let [isLoading, setIsLoading] = useState(true)
+
+
+	
+    function fetchCategories(){
+        fetch('http://localhost:3001/api/v1/category/')
+            .then(response => response.json())
+            .then(data => {
+            setCategories(data.data.categories);
+            setIsLoading(false);
+            console.log(categories)
+            
+            });
+    }
+
+	useEffect(() => {
+		fetchCategories();
+	}, [])
 
 	useEffect(
 		() => {
@@ -26,7 +47,8 @@ const EditIncomeForm = (props) => {
 			Name: editName,
 			Amount: editAmount,
 			Date: editDate,
-			Type: 'pajamos'
+			Type: 'pajamos',
+			Category: editCategory
 		};
 		props.updateIncome(income._id, updatedIncome);
 	};
@@ -49,12 +71,14 @@ const EditIncomeForm = (props) => {
 			<form className="EditIncome-form" onSubmit={handleSubmit}>
 				<h3 className="EditIncomeForm-title "> Atnaujinti pajamas</h3>
 				<div>
-					<select className="AddIncomeForm-input" name="category">
-						<option value="-Program-">-Kategorija-</option>
-						<option value="JavaScript">JavaScript</option>
-						<option value="Java">Java</option>
-						<option value="PHP">PHP</option>
-						<option value="Programinės įrangos testuotjas">Programinės įrangos testuotjas</option>
+					<select className="AddIncomeForm-input" value={editCategory} onChange={(e)=>{setEditCategory(e.target.value)}} required name="category">
+						
+					<option selected="true" hidden value="">-----------</option>
+                            {!isLoading &&
+                            categories.map((category)=>(
+                                category.categoryType ==="income"&&
+                                    <option value={category.categoryName}>{category.categoryName}</option>
+                            ))}
 					</select>
 				</div>
 				<div>

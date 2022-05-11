@@ -1,40 +1,40 @@
 .new-expense {
-	background-color: black;
-	padding: 1rem;
-	margin: 2rem auto;
-	width: 50rem;
-	max-width: 95%;
-	border-radius: 12px;
-	text-align: center;
-	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+    /* background-color: #212026; */
+    background-color: #364652; /*Visos formos fono spalva*/
+    padding: 1rem;
+    margin: 2rem auto;
+    width: 50rem;
+    max-width: 95%;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
 }
-
 .new-expense__actions button {
-	font: inherit;
-	cursor: pointer;
-	width: 10rem;
-	height: 3rem;
-	border: 1px solid #00c851;
-	background-color: #00c851;
-	color: white;
-	/* border-radius: 12px; */
-	margin-right: 3rem;
-	border-radius: 5%;
+    font: inherit;
+    cursor: pointer;
+    width: 10rem;
+    height: 3rem;
+    border: 1px solid #169873;
+    background-color: #169873;
+    color: #dee5e5; /*tekstas "Pridėti */
+    /* border-radius: 12px; */
+    margin-right: 3rem;
+    border-radius: 5%;
 }
 
 .new-expense__actions button:hover,
 .new-expense__actions button:active {
-	background-color: #007e33;
-	border-color: #007e33;
+    background-color: #007e33;
+    border-color: #007e33;
 }
 
-.new-expense__actions button.alternative {
-	color: #220131;
-	border-color: transparent;
-	background-color: transparent;
+/* .new-expense__actions button.alternative {
+    color: #364652;
+    border-color: transparent;
+    background-color: transparent;
 }
 
 .new-expense__actions button.alternative:hover,
 .new-expense__actions button.alternative:active {
-	background-color: #ddb3f8;
-}
+    background-color: #ddb3f8;
+} */

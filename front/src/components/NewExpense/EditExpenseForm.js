@@ -3,11 +3,15 @@ import ExpenseList from './ExpenseList';
 import './EditExpenseForm.css';
 
 const EditExpenseForm = (props) => {
-	const [ expense, setExpense ] = useState(props.currentExpense);
-	const [ editName, setEditName ] = useState(props.currentExpense.expenseName);
-	const [ editAmount, setEditAmount ] = useState(props.currentExpense.expenseAmount);
-	let maxDate = new Date();
-	const [ editDate, setEditDate ] = useState(props.currentExpense.expenseDate.split('T')[0]);
+    const [expense, setExpense] = useState(props.currentExpense);
+    const [editName, setEditName] = useState(props.currentExpense.expenseName);
+    const [editAmount, setEditAmount] = useState(
+        props.currentExpense.Amount
+    );
+    let maxDate = new Date();
+    const [editDate, setEditDate] = useState(
+        props.currentExpense.Date.split('T')[0]
+    );
 
 	useEffect(
 		() => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import TransactionList from './TransactionList';
 
-function HomePage() {
+function HomePage(props) {
 	return (
 		<div>
 			<TransactionList />
