@@ -8,14 +8,15 @@
     height: 100vh;
 }
 .AuthScreen h1, .AuthScreen h4{
-    color: #f1de6d;
+    color: #ffd700;
 }
 .AuthScreen h1{
+    margin-bottom: 4%;
     font-size: 100px;
 }
 .ASAuthBtn{
-    border: 1px solid #f1de6d;
-    background-color: #212026;
+    border: 1px solid #ffd700;
+    background-color: #1a1d23;
     border-radius: 12px;
     padding: 3%;
     width: 30%;
@@ -25,26 +26,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #f1de6d;
+    border: 1px solid #ffd700;
     background-color: black;
     border-radius: 12px;
-    padding: 1%;
+    padding: 2%;
 }
 .ASAuthLoginBtn{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #f1de6d;
+    border: 1px solid #ffd700;
     background-color: black;
     border-radius: 12px;
-    padding: 1%;
+    padding: 2%;
+    margin-top: 3%;
 }
 
 .MainLink{
-    color: #f1de6d;
+    color: #ffd700;
     text-decoration: none;
     padding-right: 1%;
 }
 .MainLink:hover{
-    color:#007e33;
+    color:#dee5e5;
 }
