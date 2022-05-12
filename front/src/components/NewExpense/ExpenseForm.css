@@ -17,9 +17,9 @@ option {
     color: #dee5e5;
 } */
 
-input,
-select,
-option {
+.expenseCategorySelector input,
+.expenseCategorySelector select,
+.expenseCategorySelector option {
     display: block;
     width: 100%;
     border: none;
