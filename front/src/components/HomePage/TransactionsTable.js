@@ -2,7 +2,14 @@ import React from 'react';
 import './TransactionsTable.css';
 
 const TransactionsTable = (props) => (
-	<div class="transactionsPage">
+	<div className="transactionsPage container">
+		<div className="transactionsSingle" />
+		<div className="transactionsItemsNames row">
+			<div className="transactionsSingleDateName">Data</div>
+			<div className="transactionsSingleCategoryName col-4">Kategorija</div>
+			<div className="transactionsSingleNameName col-4">Pavadinimas</div>
+			<div className="transactionsSingleAmountName">Suma</div>
+		</div>
 		{props.combinedList.length > 0 ? (
 			props.combinedList.map((item) => (
 				<div
@@ -30,53 +37,12 @@ const TransactionsTable = (props) => (
 						{item.Amount}€
 					</div>
 				</div>
-				/* <tr key={item._id}>
-					<td>{item.Date.slice(0, 10)}</td>
-					<td>{item.Name}</td>
-					<td>{item.Category}</td>
-					<td>{item.Amount}€</td>
-				</tr> */
 			))
 		) : (
 			<tr>
 				<td colSpan={3}>Nėra pajamų</td>
 			</tr>
 		)}
-
-		{/* <div class="row">
-			<div class="col-md-offset-2 col-md-12">
-				<div class="panel">
-					<div class="panel-body table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>DATA</th>
-									<th>PAJAMOS</th>
-									<th>KATEGORIJA</th>
-									<th>SUMA</th>
-								</tr>
-							</thead>
-							<tbody>
-								{props.combinedList.length > 0 ? (
-									props.combinedList.map((item) => (
-										<tr key={item._id}>
-											<td>{item.Date.slice(0, 10)}</td>
-											<td>{item.Name}</td>
-											<td>{item.Category}</td>
-											<td>{item.Amount}€</td>
-										</tr>
-									))
-								) : (
-									<tr>
-										<td colSpan={3}>Nėra pajamų</td>
-									</tr>
-								)}
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div> */}
 	</div>
 );
 
