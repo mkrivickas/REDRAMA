@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import HomeBalance from './HomeBalance';
 import TransactionsTable from './TransactionsTable';
 
 function TransactionList(props) {
@@ -49,6 +50,10 @@ function TransactionList(props) {
 	return (
 		!loading && (
 			<div className="transactionsDivDiv">
+				<HomeBalance combinedList={combinedList}/>
+				<div className='transactionsDivDivNav'>
+					<button>Rušiuoti pagal data</button>
+				</div>
 				<TransactionsTable combinedList={combinedList} />
 			</div>
 		)

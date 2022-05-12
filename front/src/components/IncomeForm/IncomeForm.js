@@ -126,7 +126,7 @@ const IncomeForm = () => {
 	};
 
 	return (
-		<div className="income-container">
+		<div className="incomeContainer">
 			<div className="income-row">
 				<div className="col-12">
 					<Header totalIncome={totalIncome} />

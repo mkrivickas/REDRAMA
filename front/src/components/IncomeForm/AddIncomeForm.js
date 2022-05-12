@@ -75,8 +75,6 @@ const AddIncomeForm = (props) => {
 		<div>
 			<form className="AddIncome-form" onSubmit={handleSubmit}>
 				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
-				<div>
-					<div className="col-lg-6 col-md-12 col-sm-12">
 						<select className="AddIncomeForm-input" onChange={(e)=>{setIncomeCategory(e.target.value)}} required name="category">
 						<option selected="true" hidden value="">-----------</option>
                             {!isLoading &&
@@ -85,7 +83,6 @@ const AddIncomeForm = (props) => {
                                     <option value={category.categoryName}>{category.categoryName}</option>
                             ))}
 						</select>
-					</div>
 					<input
 						className="AddIncomeForm-input"
 						type="text"
@@ -96,7 +93,6 @@ const AddIncomeForm = (props) => {
 						placeholder="Pajamų pavadinimas"
 						onChange={incomeNameAdd}
 					/>
-				</div>
 				<div>
 					<input
 						id="addIncomeFormInput"
