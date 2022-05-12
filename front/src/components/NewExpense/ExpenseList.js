@@ -3,76 +3,63 @@ import { FaTrash } from 'react-icons/fa';
 import { FaRegEdit } from 'react-icons/fa';
 import './ExpenseList.css';
 
-const ExpenseList = (props) => (
+const ExpenseList = ({ expense, deleteExpense, editExpense }) => (
     <div className='ExpenseList-container fluid'>
-        <div className='ExpenseList-row'>
-            <table className='ExpenseList-table'>
-                <tbody>
-                    {props.expense.length > 0 ? (
-                        props.expense.map((expense) => (
-                            <tr key={expense._id}>
-                                
-                                <td>
-                                    <div className='ExpenseCategory-List'>
-                                    <button
-                                        className='ExpenseListEdit-button text-white ms-3'
-                                        onClick={() => {
-                                            window.scrollTo(0, 0);
-                                            props.editExpense(expense);
-                                        }}
-                                    >
-                                        <FaRegEdit />
-                                    </button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='ExpenseCategory-List'>
-                                        {expense.Category}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className='ExpenseName-List'>
-                                        {expense.Name}
-                                    </div>
-                                    <div className='ExpenseDate-List'>
-                                        {expense.Date.slice(0, 10)}
-                                    </div>
-                                </td>
-                                <td className='ExpenseAmount-List'>
-                                    {expense.Amount}€
-                                </td>
-                                <td>
-                                    <button
-                                        className='ExpenseListEdit-button'
-                                        onClick={() => {
-                                            window.scrollTo(0, 0);
-                                            props.editExpense(expense);
-                                            /* 									props.openModal(); */
-                                        }}
-                                    >
-                                        <FaRegEdit />
-                                    </button>
-                                </td>
-                                <td>
-                                    <button
-                                        onClick={() =>
-                                            props.deleteExpense(expense._id)
-                                        }
-                                        className='ExpenseListDelete-button'
-                                    >
-                                        <FaTrash />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan={3}>Nėra pajamų</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+        <div className='ExpenseList-row d-flex col-12'>
+            <label className='ExpenseListLabels col-2 text-start'>Data</label>
+            <label className='ExpenseListLabels col-2 text-start'>
+                Kategorija
+            </label>
+            <label className='ExpenseListLabels col-3 text-start'>
+                Pavadinimas
+            </label>
+            <label className='ExpenseListLabels col-1 text-start'>Suma</label>
+            <label className='ExpenseListLabels col-2 text-center'>
+                Veiksmai
+            </label>
         </div>
+        {expense.length > 0 ? (
+            expense.map((expense) => (
+                <div className='ExpenseList-row d-flex' key={expense._id}>
+                    <div className='ExpenseDate-List col-2 text-start'>
+                        {expense.Date.slice(0, 10)}
+                    </div>
+                    <div className='ExpenseCategory-List col-2 text-start'>
+                        {expense.Category}
+                    </div>
+                    <div className='ExpenseName-List col-3 text-start'>
+                        {expense.Name}
+                    </div>
+                    <div className='ExpenseAmount-List col-2 text-start'>
+                        {expense.Amount}€
+                    </div>
+                    <div className='ExpenseListOptionsButtons d-flex col-2 text-center'>
+                        <div>
+                            <button
+                                className='ExpenseListEdit-button'
+                                onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    editExpense(expense);
+                                    /* 									props.openModal(); */
+                                }}
+                            >
+                                <FaRegEdit />
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                onClick={() => deleteExpense(expense._id)}
+                                className='ExpenseListDelete-button'
+                            >
+                                <FaTrash />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            ))
+        ) : (
+            <div>Nėra išlaidų</div>
+        )}
     </div>
 );
 

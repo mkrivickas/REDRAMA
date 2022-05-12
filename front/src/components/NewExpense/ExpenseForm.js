@@ -232,7 +232,7 @@ const ExpenseForm = (props) => {
                 <div className='new-expense__controls row d-flex justify-content-center'>
                     <div className='new-expense__control col-5'>
                         <label className='new-expense__category'>
-                            Kategorija
+                            {/* Kategorija */}
                         </label>
                         <select required
                             onChange={categoryChangeHandler}
@@ -262,8 +262,10 @@ const ExpenseForm = (props) => {
                         </select>
                     </div>
                     <div className='new-expense__control col-5'>
-                        <label>Suma</label>
-                        <input
+                        <label>
+                        {/* Suma */}
+                        </label>
+                        <input id='sum'
                             type='number'
                             name='expenseAmount'
                             required
@@ -276,7 +278,9 @@ const ExpenseForm = (props) => {
                         />
                     </div>
                     <div className='new-expense__control col-5'>
-                        <label>Data</label>
+                        <label>
+                        {/* Data */}
+                        </label>
                         <input
                             type='date'
                             required
@@ -289,8 +293,10 @@ const ExpenseForm = (props) => {
                         />
                     </div>
                     <div className='new-expense__control col-5'>
-                        <label>Pavadinimas</label>
-                        <input
+                        <label>
+                        {/* Pavadinimas */}
+                        </label>
+                        <input id='expenseTitle'
                             type='text'
                             name='expenseName'
                             required
