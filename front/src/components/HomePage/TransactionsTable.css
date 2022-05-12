@@ -49,3 +49,60 @@
 		text-align: right;
 	}
 }
+.transactionsDiv {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.transactionsDivDiv {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.transactionsPage {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+}
+
+.transactionsSingleItem {
+	display: flex;
+	color: white;
+	padding: 2%;
+	width: 100%;
+	justify-content: center;
+	text-align: center;
+	margin: 0.5%;
+	background-color: #364652;
+	border-radius: 5px;
+}
+.transactionsSingleDate {
+	width: 15%;
+	height: 100%;
+}
+.transactionsSingleName {
+	width: 35%;
+}
+
+.transactionsSingleCategory {
+	width: 30%;
+}
+
+.transactionsSingleAmount {
+	width: 20%;
+}
+.transactionsSingleGreen {
+	border-left: 2px solid #ffd700;
+	border-right: 2px solid #ffd700;
+}
+.transactionsSingleRed {
+	border-left: 2px solid #da4167;
+	border-right: 2px solid #da4167;
+}
+
+.transactionsSingleAmountGreen {
+	color: #ffd700;
+}
+.transactionsSingleAmountRed {
+	color: #da4167;
+}
