@@ -142,8 +142,8 @@ const ExpenseForm = (props) => {
                 text: 'Dėmesio! Duomenys bus įrašyti.',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#268b29',
+                cancelButtonColor: '#ffd700',
                 confirmButtonText: 'Įrašyti',
                 cancelButtonText: 'Atšaukti',
             }).then((result) => {
@@ -189,8 +189,8 @@ const ExpenseForm = (props) => {
             icon: 'warning',
             showCancelButton: true,
             cancelButtonText: 'Atšaukti',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#268b29',
+            cancelButtonColor: '#ffd700',
             confirmButtonText: 'Taip, pašalinti!',
         }).then(async (result) => {
             if (result.isConfirmed) {
