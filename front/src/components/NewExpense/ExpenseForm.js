@@ -229,7 +229,7 @@ const ExpenseForm = (props) => {
     };
 
 	return (
-		<div>
+		<div className="expenseCategorySelector">
             <form className='container-fluid' onSubmit={submitHandler}>
                 <div className='new-expense__controls row d-flex justify-content-center'>
                     <div className='new-expense__control col-5'>
