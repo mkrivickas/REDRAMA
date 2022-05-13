@@ -51,9 +51,9 @@ function TransactionList(props) {
 		!loading && (
 			<div className="transactionsDivDiv">
 				<HomeBalance combinedList={combinedList}/>
-				<div className='transactionsDivDivNav'>
+				{/* <div className='transactionsDivDivNav'>
 					<button>Rušiuoti pagal data</button>
-				</div>
+				</div> */}
 				<TransactionsTable combinedList={combinedList} />
 			</div>
 		)
