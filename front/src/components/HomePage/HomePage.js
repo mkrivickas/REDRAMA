@@ -4,7 +4,8 @@ import TransactionList from './TransactionList';
 function HomePage(props) {
 	return (
 		<div className="transactionsDiv">
-			<TransactionList />
+			
+			<TransactionList currentUser={props.currentUser}/>
 		</div>
 	);
 }

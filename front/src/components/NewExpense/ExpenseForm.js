@@ -80,8 +80,13 @@ const ExpenseForm = (props) => {
 
 	const fetchData = async () => {
 		await fetch('http://localhost:3001/api/v1/expense').then((response) => response.json()).then((data) => {
-			setExpense(data.data.expense);
-			console.log(data.data.expense);
+            let tempData = [];
+			data.data.expense.map((expense)=>{
+				if(expense.UserId === props.currentUser._id){
+					tempData.push(expense);
+				}
+			})
+			setExpense(tempData);
 		});
 	};
 
@@ -111,7 +116,8 @@ const ExpenseForm = (props) => {
                     Amount: enteredAmount,
                     Date: enteredDate,
                     Category: enteredCategory,
-                    Type: "expense"
+                    Type: "expense",
+                    UserId: props.currentUser._id
                 }),
             };
             fetch(
@@ -160,7 +166,8 @@ const ExpenseForm = (props) => {
                             Amount: enteredAmount,
                             Date: enteredDate,
                             Category: enteredCategory,
-                            Type: "expense"
+                            Type: "expense",
+                            UserId: props.currentUser._id
                         }),
                     }).then(() => {
                         Swal.fire({
