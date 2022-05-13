@@ -8,7 +8,7 @@ import AddIncomeForm from './AddIncomeForm';
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
 
-const IncomeForm = () => {
+const IncomeForm = (props) => {
 	const [ currentIncome, setCurrentIncome ] = useState({});
 	const [ editing, setEditing ] = useState(false);
 	const [ incomes, setIncomes ] = useState([]);
@@ -28,7 +28,13 @@ const IncomeForm = () => {
 
 	const fetchData = async () => {
 		await fetch('http://localhost:3001/api/v1/income').then((response) => response.json()).then((data) => {
-			setIncomes(data.data.incomes);
+			let tempData = [];
+			data.data.incomes.map((income)=>{
+				if(income.UserId === props.currentUser._id){
+					tempData.push(income);
+				}
+			})
+			setIncomes(tempData);
 		});
 	};
 
@@ -142,7 +148,7 @@ const IncomeForm = () => {
 					</Fragment>
 				) : (
 					<Fragment>
-						<AddIncomeForm addIncome={addIncome} />
+						<AddIncomeForm addIncome={addIncome} currentUser={props.currentUser}/>
 					</Fragment>
 				)}
 				<div className="IncomesListContainer">

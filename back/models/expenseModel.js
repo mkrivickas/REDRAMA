@@ -15,6 +15,9 @@ const expenseSchema = new mongoose.Schema({
 	},
 	Category: {
 		type: String
+	},
+	UserId: {
+		type: String
 	}
 });
 
