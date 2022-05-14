@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import IncomesList from './IncomesList';
 import EditIncomeForm from './EditIncomeForm';
-import Header from './IncomeHeader';
+// import Header from './IncomeHeader';
 import './IncomeForm.css';
 import AddIncomeForm from './AddIncomeForm';
 
@@ -128,9 +128,9 @@ const IncomeForm = () => {
 	return (
 		<div className="income-container">
 			<div className="income-row">
-				<div className="col-12">
+				{/* <div className="col-12">
 					<Header totalIncome={totalIncome} />
-				</div>
+				</div> */}
 				{editing ? (
 					<Fragment>
 						<EditIncomeForm

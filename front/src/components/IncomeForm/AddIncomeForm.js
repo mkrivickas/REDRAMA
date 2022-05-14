@@ -10,41 +10,41 @@ const AddIncomeForm = (props) => {
 	let maxDate = new Date();
 	let isIncomeValid = true;
 	const [ incomeDate, setincomeDate ] = useState(maxDate.toLocaleDateString('lt-LT'));
-	const [incomeCategory, setIncomeCategory] = useState("")
+	const [ incomeCategory, setIncomeCategory ] = useState('');
 	let addIncomeForm = document.getElementById('addIncomeFormInput');
 
-	let [categories, setCategories] = useState("")
-    let [isLoading, setIsLoading] = useState(true)
+	let [ categories, setCategories ] = useState('');
+	let [ isLoading, setIsLoading ] = useState(true);
 
-
-	
-    function fetchCategories(){
-        fetch('http://localhost:3001/api/v1/category/')
-            .then(response => response.json())
-            .then(data => {
-            setCategories(data.data.categories);
-            setIsLoading(false);
-            console.log(categories)
-            
-            });
-    }
+	function fetchCategories() {
+		fetch('http://localhost:3001/api/v1/category/').then((response) => response.json()).then((data) => {
+			setCategories(data.data.categories);
+			setIsLoading(false);
+			console.log(categories);
+		});
+	}
 
 	useEffect(() => {
 		fetchCategories();
-	}, [])
-
+	}, []);
 
 	const handleSubmit = (e) => {
-		console.log(incomeName)
-		if(incomeName === "   "){
-			console.log("is empty")
+		console.log(incomeName);
+		if (incomeName === '   ') {
+			console.log('is empty');
 		}
 		e.preventDefault();
 		let incomeNameFirstLetter = incomeName[0].toUpperCase();
 		let upperCaseIncomeName = incomeNameFirstLetter + incomeName.slice(1);
 		console.log('bonk');
 		if (isIncomeValid) {
-			props.addIncome({ Name: upperCaseIncomeName, Amount: incomeAmount, Date: incomeDate, Category: incomeCategory, Type: "income" });
+			props.addIncome({
+				Name: upperCaseIncomeName,
+				Amount: incomeAmount,
+				Date: incomeDate,
+				Category: incomeCategory,
+				Type: 'income'
+			});
 		}
 	};
 
@@ -69,66 +69,83 @@ const AddIncomeForm = (props) => {
 	};
 
 	return (
-		<>
-		
-
 		<div>
-			<form className="AddIncome-form" onSubmit={handleSubmit}>
-				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
-				<div>
-					<div className="col-lg-6 col-md-12 col-sm-12">
-						<select className="AddIncomeForm-input" onChange={(e)=>{setIncomeCategory(e.target.value)}} required name="category">
-						<option selected="true" hidden value="">-----------</option>
-                            {!isLoading &&
-                            categories.map((category)=>(
-                                category.categoryType ==="income"&&
-                                    <option value={category.categoryName}>{category.categoryName}</option>
-                            ))}
+			<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
+			<form className="AddIncome-form container-fluid" onSubmit={handleSubmit}>
+				<div className="AddIncomeForm__controls row d-flex justify-content-center'">
+					<div className="AddIncomeForm__control col-5">
+						<label className="AddIncomeForm__category">{/* Kategorija */}</label>
+
+						<select
+							className="AddIncomeForm-input"
+							onChange={(e) => {
+								setIncomeCategory(e.target.value);
+							}}
+							required
+							name="category"
+						>
+							<option className="AddIncomeForm-option" selected="true" hidden value="">
+								-----------
+							</option>
+							{!isLoading &&
+								categories.map(
+									(category) =>
+										category.categoryType === 'income' && (
+											<option value={category.categoryName}>{category.categoryName}</option>
+										)
+								)}
 						</select>
 					</div>
-					<input
-						className="AddIncomeForm-input"
-						type="text"
-						name="incomeName"
-						required
-						maxLength="20"
-						minLength="3"
-						placeholder="Pajamų pavadinimas"
-						onChange={incomeNameAdd}
-					/>
+					<div className="AddIncomeForm__control col-5">
+						<label className="AddIncomeForm__label">{/* Suma */}</label>
+
+						<input
+							id="addIncomeFormInput_sum"
+							className="AddIncomeForm-input"
+							type="number"
+							min="0.01"
+							step="0.01"
+							name="incomeAmount"
+							requirecd
+							placeholder="Pajamų suma, €"
+							onChange={incomeAmountAdd}
+						/>
+					</div>
+					<div className="AddIncomeForm__control col-5">
+						<label className="AddIncomeForm__label">{/* Data */}</label>
+						<input
+							className="AddIncomeForm-input"
+							type="date"
+							name="incomeDate"
+							required
+							min="2019-01-01"
+							max={maxDate.toLocaleDateString('lt-LT')}
+							placeholder="MMMM-mm-dd"
+							onChange={incomeDateAdd}
+							value={incomeDate}
+						/>
+					</div>
+					<div className="AddIncomeForm__control col-5">
+						<label className="AddIncomeForm__label">{/* Pavadinimas */}</label>
+						<input
+							className="AddIncomeForm-input"
+							type="text"
+							name="incomeName"
+							required
+							maxLength="20"
+							minLength="3"
+							placeholder="Pajamų pavadinimas"
+							onChange={incomeNameAdd}
+						/>
+					</div>
 				</div>
-				<div>
-					<input
-						id="addIncomeFormInput"
-						className="AddIncomeForm-input"
-						type="number"
-						min="0.01"
-						step="0.01"
-						name="incomeAmount"
-						required
-						placeholder="Suma"
-						onChange={incomeAmountAdd}
-					/>
-				</div>
-				<div>
-					<input
-						className="AddIncomeForm-input"
-						type="date"
-						name="incomeDate"
-						required
-						min="2019-01-01"
-						max={maxDate.toLocaleDateString('lt-LT')}
-						placeholder="MMMM-mm-dd"
-						onChange={incomeDateAdd}
-						value={incomeDate}
-					/>
-				</div>
+
 				<button id="button-incomeAdd" type="submit">
 					{' '}
 					Pridėti
 				</button>
 			</form>
-		</div></>
+		</div>
 	);
 };
 

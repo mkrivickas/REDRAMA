@@ -1,5 +1,5 @@
-.AddIcomesForm-container {
-	width: 60%;
+/* .AddIcomesForm-container {
+	width: 70%;
 	background-color: black;
 	color: white;
 	margin: auto;
@@ -58,4 +58,80 @@
 	text-align: center;
 	width: 100%;
 }
-/* .modal-AddIncome-end */
+ */
+
+.AddIncomeForm__controls {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-bottom: 1rem;
+	text-align: left;
+}
+
+.AddIncomeForm__category {
+	color: #dee5e5; /*Input laukelių antraščių spalva (nebenaudojama, bet užkomentuotas kodas likęs ExpenseForm.js kaip opcija ateičiai)*/
+}
+
+.AddIncomeForm-option,
+.AddIncomeForm-input {
+	display: block;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #dee5e5;
+	box-sizing: border-box;
+	/* font-family: 'Poppins'; */
+	font-weight: bold;
+	font-size: 24px;
+	transition: 0.3s ease;
+	-moz-transition: 0.3s ease;
+	-webkit-transition: 0.3s ease;
+	-o-transition: 0.3s ease;
+	-ms-transition: 0.3s ease;
+	padding-top: 30px;
+	padding-bottom: 5px;
+	-webkit-appearance: none;
+	background: transparent;
+}
+
+/* VERY F@CKIN' SVARBU: Kalendoriaus ikonėlė*/
+::-webkit-calendar-picker-indicator {
+	filter: invert(0.75);
+}
+
+.AddIncomeForm-input::placeholder {
+	color: #dee5e5;
+}
+
+.AddIncomeForm__label {
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	width: 20rem;
+	display: block;
+}
+
+.AddIncomeForm-input {
+	font: inherit;
+	color: #dee5e5; /*Edit input formų spalvos*/
+	padding: 0.5rem;
+	/* border-radius: 6px; */
+	border-bottom: 1px solid #dee5e5; /*Input laukelių rėmelio spalva*/
+	width: 20rem;
+	max-width: 100%;
+}
+
+.AddIncomeForm-select {
+	font: inherit;
+	padding: 0.5rem;
+	/* border-radius: 6px; */
+	color: #dee5e5; /*Kategorijos teksto spalva*/
+	border-bottom: 1px solid #dee5e5;
+	width: 20rem;
+	max-width: 100%;
+}
+
+#button-incomeAdd {
+	border-color: #ffd700;
+	color: #000000;
+	background-color: #ffd700;
+	border: 1px solid #ffd700;
+}
