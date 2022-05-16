@@ -43,7 +43,8 @@ const AddIncomeForm = (props) => {
 				Amount: incomeAmount,
 				Date: incomeDate,
 				Category: incomeCategory,
-				Type: 'income'
+				Type: 'income',
+				UserId: props.currentUser._id
 			});
 		}
 	};
@@ -70,74 +71,62 @@ const AddIncomeForm = (props) => {
 
 	return (
 		<div>
-			<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
-			<form className="AddIncome-form container-fluid" onSubmit={handleSubmit}>
-				<div className="AddIncomeForm__controls row d-flex justify-content-center'">
-					<div className="AddIncomeForm__control col-5">
-						<label className="AddIncomeForm__category">{/* Kategorija */}</label>
-
-						<select
-							className="AddIncomeForm-input"
-							onChange={(e) => {
-								setIncomeCategory(e.target.value);
-							}}
-							required
-							name="category"
-						>
-							<option className="AddIncomeForm-option" selected="true" hidden value="">
-								-----------
-							</option>
-							{!isLoading &&
-								categories.map(
-									(category) =>
-										category.categoryType === 'income' && (
-											<option value={category.categoryName}>{category.categoryName}</option>
-										)
-								)}
-						</select>
-					</div>
-					<div className="AddIncomeForm__control col-5">
-						<label className="AddIncomeForm__label">{/* Suma */}</label>
-
-						<input
-							id="addIncomeFormInput_sum"
-							className="AddIncomeForm-input"
-							type="number"
-							min="0.01"
-							step="0.01"
-							name="incomeAmount"
-							requirecd
-							placeholder="Pajamų suma, €"
-							onChange={incomeAmountAdd}
-						/>
-					</div>
-					<div className="AddIncomeForm__control col-5">
-						<label className="AddIncomeForm__label">{/* Data */}</label>
-						<input
-							className="AddIncomeForm-input"
-							type="date"
-							name="incomeDate"
-							required
-							min="2019-01-01"
-							max={maxDate.toLocaleDateString('lt-LT')}
-							placeholder="MMMM-mm-dd"
-							onChange={incomeDateAdd}
-							value={incomeDate}
-						/>
-					</div>
-					<div className="AddIncomeForm__control col-5">
-						<label className="AddIncomeForm__label">{/* Pavadinimas */}</label>
-						<input
-							className="AddIncomeForm-input"
-							type="text"
-							name="incomeName"
-							required
-							maxLength="20"
-							minLength="3"
-							placeholder="Pajamų pavadinimas"
-							onChange={incomeNameAdd}
-						/>
-					</div>
+			<form className="AddIncome-form" onSubmit={handleSubmit}>
+				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
+				<select
+					className="AddIncomeForm-input"
+					onChange={(e) => {
+						setIncomeCategory(e.target.value);
+					}}
+					required
+					name="category"
+				>
+					<option selected="true" hidden value="">
+						-----------
+					</option>
+					{!isLoading &&
+						categories.map(
+							(category) =>
+								category.categoryType === 'income' && (
+									<option value={category.categoryName}>{category.categoryName}</option>
+								)
+						)}
+				</select>
+				<input
+					className="AddIncomeForm-input"
+					type="text"
+					name="incomeName"
+					required
+					maxLength="20"
+					minLength="3"
+					placeholder="Pajamų pavadinimas"
+					onChange={incomeNameAdd}
+				/>
+				<div>
+					<input
+						id="addIncomeFormInput"
+						className="AddIncomeForm-input"
+						type="number"
+						min="0.01"
+						step="0.01"
+						name="incomeAmount"
+						required
+						placeholder="Suma"
+						onChange={incomeAmountAdd}
+					/>
+				</div>
+				<div>
+					<input
+						className="AddIncomeForm-input"
+						type="date"
+						name="incomeDate"
+						required
+						min="2019-01-01"
+						max={maxDate.toLocaleDateString('lt-LT')}
+						placeholder="MMMM-mm-dd"
+						onChange={incomeDateAdd}
+						value={incomeDate}
+					/>
 				</div>
 
 				<button id="button-incomeAdd" type="submit">

@@ -57,10 +57,8 @@ nav.main-menu.expanded {
 .main-menu li {
 	position: relative;
 	display: flex;
-	width: 95%;
 	align-items: center;
 	border-bottom: 1px solid #ffd700;
-	margin-left: 4%;
 }
 
 .LinkName {
@@ -167,4 +165,13 @@ nav li {
 	align-items: center;
 	flex-wrap: nowrap;
 	align-items: center;
+}
+.logoutUserName{
+	color: #999;
+}
+.logoutColumn{
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	font-size: smaller;
 }

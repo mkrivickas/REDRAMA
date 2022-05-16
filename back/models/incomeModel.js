@@ -19,6 +19,9 @@ const incomesSchema = new mongoose.Schema({
 	},
 	Date: {
 		type: Date
+	},
+	UserId:{
+		type: String
 	}
 });
 

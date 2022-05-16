@@ -6,7 +6,8 @@
 .transactionsDivDiv {
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 .transactionsPage {
 	display: flex;
@@ -78,27 +79,21 @@
 	color: #da4167;
 }
 
-.transactionsSingleDateName {
-	width: 15%;
-}
-.transactionsSingleCategoryName {
-	width: 30%;
-}
-.transactionsSingleNameName {
-	width: 35%;
-}
-.transactionsSingleAmountName {
-	width: 20%;
-}
-.transactionsItemsNames {
+.homeBalancePage {
+	color: white;
 	display: flex;
-	color: #ffd700;
-	font-weight: 700;
-	padding: 2%;
-	width: 100%;
+	flex-direction: column;
 	justify-content: center;
-	text-align: center;
-	margin: 0.5%;
+	align-items: center;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+.transactionsDivDivNav button {
+	padding: 1%;
+	border-radius: 12px;
+	border: none;
 	background-color: #364652;
-	border-radius: 5px;
+	color: #dee5e5;
+	border-bottom: 1px solid #ffd700;
+	margin: 0.5%;
 }

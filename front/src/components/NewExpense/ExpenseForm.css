@@ -7,13 +7,46 @@
 }
 
 label {
-    color: #dee5e5; /*Input laukelių antraščių spalva*/
+    color: #dee5e5; /*Input laukelių antraščių spalva (nebenaudojama, bet užkomentuotas kodas likęs ExpenseForm.js kaip opcija ateičiai)*/
 }
 
-input,
+/* input,
 select,
 option {
-    color: #364652;
+    background-color: #364652;
+    color: #dee5e5;
+} */
+
+.expenseCategorySelector input,
+.expenseCategorySelector select,
+.expenseCategorySelector option {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #dee5e5;
+    box-sizing: border-box;
+    /* font-family: 'Poppins'; */
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    padding-top: 30px;
+    padding-bottom: 5px;
+    -webkit-appearance: none;
+    background: transparent;
+}
+
+/* VERY F@CKIN' SVARBU: Kalendoriaus ikonėlė*/
+::-webkit-calendar-picker-indicator {
+    filter: invert(0.75);
+}
+
+#sum::placeholder,
+#expenseTitle::placeholder {
+    color: #dee5e5;
 }
 
 .new-expense__control label {
@@ -25,17 +58,18 @@ option {
 
 .new-expense__control input {
     font: inherit;
+    color: #dee5e5; /*Edit input formų spalvos*/
     padding: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #dee5e5; /* Input laukelių rėmelio spalva*/
+    /* border-radius: 6px; */
+    border-bottom: 1px solid #dee5e5; /*Input laukelių rėmelio spalva*/
     width: 20rem;
     max-width: 100%;
 }
 .new-expense__control select {
     font: inherit;
     padding: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #dee5e5;
+    /* border-radius: 6px; */
+    border-bottom: 1px solid #dee5e5;
     width: 20rem;
     max-width: 100%;
 }
@@ -45,15 +79,15 @@ option {
 }
 
 .btn.my-cusomized-button {
-    border-color: #d7263d;
-    color: #dee5e5;
-    background-color: #d7263d;
-    border: 1px solid #d7263d;
+    border-color: #ffd700;
+    color: #364652;
+    background-color: #ffd700;
+    border: 1px solid #ffd700;
 }
 
 .btn.my-cusomized-button:hover {
     border-color: #ffd700;
-    color: #364652;
+    color: #000000;
     background-color: #ffd700;
     border: 1px solid #ffd700;
 }

@@ -4,22 +4,20 @@ import { FaRegEdit } from 'react-icons/fa';
 import './IncomesList.css';
 
 const IncomesList = (props) => (
-	<div className="IncomesList container">
-		<div className="IncomesListItemsNames row">
-			<div className="IncomesListSingleDateName">Data</div>
-			<div className="IncomesListSingleCategoryName col-4">Kategorija</div>
-			<div className="IncomesListSingleNameName ">Pavadinimas</div>
-			<div className="IncomesListSingleAmountName">Suma</div>
-			<div className="IncomesListSingleActionsName">Veiksmai</div>
-		</div>
+	<div class="IncomesList">
+		<div className="IncomesListDateTitle">Data</div>
+		<div className="IncomesListCategoryTitle">Kategorija</div>
+		<div className="IncomesListNameTitle">Pavadinimas</div>
+		<div className="IncomesListAmountTitle">Suma</div>
+		<div />
 		{props.incomes.length > 0 ? (
 			props.incomes.map((income) => (
-				<div className="IncomesListSingleItem">
-					<div className="IncomesListSingleDate">{income.Date.slice(0, 10)}</div>
-					<div className="IncomesListSingleCategory">{income.Category}</div>
-					<div className="IncomesListSingleName">{income.Name}</div>
-					<div className="IncomesListSingleAmount">+ {income.Amount}</div>
-					<div className="IncomesListSingleAction">
+				<div>
+					<div className="IncomesListDate">{income.Date.slice(0, 10)}</div>
+					<div className="IncomesListCategory">{income.Category}</div>
+					<div className="IncomesListName">{income.Name}</div>
+					<div className="IncomesListAmount">{income.Amount}€</div>
+					<div>
 						<button
 							onClick={() => {
 								props.editRow(income);
@@ -28,8 +26,7 @@ const IncomesList = (props) => (
 						>
 							<FaRegEdit />
 						</button>
-
-						<button onClick={() => props.deleteIncome(income._id)} className="IncomeListDelete-button">
+						<button onClick={() => props.deleteIncome(income._id)} className="IncomeListDelete-button ms-3">
 							<FaTrash />
 						</button>
 					</div>

@@ -92,10 +92,10 @@ function App() {
 								<Route path="/" element={<HomePage currentUser={currentUser}/>} />
 								<Route path='/register' element={<HomePage currentUser={currentUser}/>}/>
 								<Route path='/login' element={<HomePage currentUser={currentUser}/>}/>
-								<Route path="/pajamos" element={<IncomeForm />} />
-								<Route path="/islaidos" element={<NewExpense />} />
+								<Route path="/pajamos" element={<IncomeForm currentUser={currentUser} />} />
+								<Route path="/islaidos" element={<NewExpense currentUser={currentUser}/>} />
 								{currentUser.type === "admin" &&
-								<Route path="/admin" element={<AdminPanel />} />}
+								<Route path="/admin" element={<AdminPanel currentUser={currentUser}/>} />}
 								{/* <Route path="/admin" element={<NewExpense />} /> */}
 							</Routes>
 						</div>

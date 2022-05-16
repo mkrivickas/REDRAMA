@@ -1,11 +1,15 @@
 .income-Header {
-	height: 10vh;
-	width: 43%;
-	background-color: gray;
+	background-color: black;
 	color: white;
 	margin: auto;
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 5%;
+	color: white;
 }
 
 .income-header-title >  {

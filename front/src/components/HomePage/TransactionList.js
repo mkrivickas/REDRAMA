@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import HomeBalance from './HomeBalance';
 import TransactionsTable from './TransactionsTable';
 
 function TransactionList(props) {
@@ -34,11 +35,26 @@ function TransactionList(props) {
 		fetch('http://localhost:3001/api/v1/income')
 			.then((response) => response.json())
 			.then((data) => {
-				combinedArr = [ ...data.data.incomes ];
+				let tempDataIncome = [];
+				console.log(data.data.incomes);
+				data.data.incomes.map((income) => {
+					if (income.UserId === props.currentUser._id) {
+						tempDataIncome.push(income);
+					}
+				});
+				combinedArr = [ ...tempDataIncome ];
 			})
 			.then(() => {
 				fetch('http://localhost:3001/api/v1/expense').then((response) => response.json()).then((data) => {
-					combinedArr = [ ...combinedArr, ...data.data.expense ];
+					let tempData = [];
+					console.log(data.data.expense);
+					console.log('userId:' + props.currentUser._id);
+					data.data.expense.map((expense) => {
+						if (expense.UserId == props.currentUser._id) {
+							tempData.push(expense);
+						}
+					});
+					combinedArr = [ ...combinedArr, ...tempData ];
 					console.log(combinedArr);
 					setCombinedList(combinedArr);
 					setLoading(false);
@@ -49,6 +65,10 @@ function TransactionList(props) {
 	return (
 		!loading && (
 			<div className="transactionsDivDiv">
+				<HomeBalance combinedList={combinedList} />
+				{/* <div className='transactionsDivDivNav'>
+					<button>Rušiuoti pagal data</button>
+				</div> */}
 				<TransactionsTable combinedList={combinedList} />
 			</div>
 		)

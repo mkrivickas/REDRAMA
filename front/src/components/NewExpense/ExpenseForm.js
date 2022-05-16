@@ -80,8 +80,13 @@ const ExpenseForm = (props) => {
 
 	const fetchData = async () => {
 		await fetch('http://localhost:3001/api/v1/expense').then((response) => response.json()).then((data) => {
-			setExpense(data.data.expense);
-			console.log(data.data.expense);
+            let tempData = [];
+			data.data.expense.map((expense)=>{
+				if(expense.UserId === props.currentUser._id){
+					tempData.push(expense);
+				}
+			})
+			setExpense(tempData);
 		});
 	};
 
@@ -111,7 +116,8 @@ const ExpenseForm = (props) => {
                     Amount: enteredAmount,
                     Date: enteredDate,
                     Category: enteredCategory,
-                    Type: "expense"
+                    Type: "expense",
+                    UserId: props.currentUser._id
                 }),
             };
             fetch(
@@ -142,8 +148,8 @@ const ExpenseForm = (props) => {
                 text: 'Dėmesio! Duomenys bus įrašyti.',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#268b29',
+                cancelButtonColor: '#ffd700',
                 confirmButtonText: 'Įrašyti',
                 cancelButtonText: 'Atšaukti',
             }).then((result) => {
@@ -160,7 +166,8 @@ const ExpenseForm = (props) => {
                             Amount: enteredAmount,
                             Date: enteredDate,
                             Category: enteredCategory,
-                            Type: "expense"
+                            Type: "expense",
+                            UserId: props.currentUser._id
                         }),
                     }).then(() => {
                         Swal.fire({
@@ -189,8 +196,8 @@ const ExpenseForm = (props) => {
             icon: 'warning',
             showCancelButton: true,
             cancelButtonText: 'Atšaukti',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#268b29',
+            cancelButtonColor: '#ffd700',
             confirmButtonText: 'Taip, pašalinti!',
         }).then(async (result) => {
             if (result.isConfirmed) {
@@ -229,12 +236,12 @@ const ExpenseForm = (props) => {
     };
 
 	return (
-		<div>
+		<div className="expenseCategorySelector">
             <form className='container-fluid' onSubmit={submitHandler}>
                 <div className='new-expense__controls row d-flex justify-content-center'>
                     <div className='new-expense__control col-5'>
                         <label className='new-expense__category'>
-                            Kategorija
+                            {/* Kategorija */}
                         </label>
                         <select required
                             onChange={categoryChangeHandler}
@@ -264,8 +271,10 @@ const ExpenseForm = (props) => {
                         </select>
                     </div>
                     <div className='new-expense__control col-5'>
-                        <label>Suma</label>
-                        <input
+                        <label>
+                        {/* Suma */}
+                        </label>
+                        <input id='sum'
                             type='number'
                             name='expenseAmount'
                             required
@@ -278,7 +287,9 @@ const ExpenseForm = (props) => {
                         />
                     </div>
                     <div className='new-expense__control col-5'>
-                        <label>Data</label>
+                        <label>
+                        {/* Data */}
+                        </label>
                         <input
                             type='date'
                             required
@@ -291,8 +302,10 @@ const ExpenseForm = (props) => {
                         />
                     </div>
                     <div className='new-expense__control col-5'>
-                        <label>Pavadinimas</label>
-                        <input
+                        <label>
+                        {/* Pavadinimas */}
+                        </label>
+                        <input id='expenseTitle'
                             type='text'
                             name='expenseName'
                             required
