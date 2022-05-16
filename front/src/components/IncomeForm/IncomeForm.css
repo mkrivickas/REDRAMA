@@ -15,7 +15,6 @@
 
 /* .modal-AddIncome-start */
 .modal-AddIncome {
-	width: 43%;
 	background-color: black;
 	color: white;
 	margin: auto;
@@ -30,9 +29,9 @@
 }
 /* .modal-AddIncome-end */
 
-.IncomesListContainer{
+.IncomesListContainer {
 	margin-top: 20px;
 }
-.incomeController{
+.incomeController {
 	width: 100%;
 }

@@ -1,31 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import MainDoughnutChart from './MainDoughnutChart';
+import './HomeBalance.css';
 
 const HomeBalance = (props) => {
-  let [mainBalance, setMainBalance] = useState(0);
+	let [ mainBalance, setMainBalance ] = useState(0);
 
-  useEffect(() => {
-    let tempBalance  = 0
-    props.combinedList.map((listItem)=>{
-      if(listItem.Type === "income"){
-        console.log("+"+listItem.Amount);
-        tempBalance += parseInt(listItem.Amount);
-      }else{
-        console.log("-"+listItem.Amount)
-        tempBalance -= parseInt(listItem.Amount);
-      }
-      setMainBalance(tempBalance)
-    }
-    )
+	useEffect(
+		() => {
+			let tempBalance = 0;
+			props.combinedList.map((listItem) => {
+				if (listItem.Type === 'income') {
+					console.log('+' + listItem.Amount);
+					tempBalance += parseInt(listItem.Amount);
+				} else {
+					console.log('-' + listItem.Amount);
+					tempBalance -= parseInt(listItem.Amount);
+				}
+				setMainBalance(tempBalance);
+			});
+		},
+		[ props.combinedList ]
+	);
 
-  }, [props.combinedList])
-  
+	return (
+		<div>
+			<MainDoughnutChart />
+			<div className="homeBalancePage">
+				<h2 className="balance-text">{mainBalance}€</h2>
+			</div>
+		</div>
+	);
+};
 
-  return (
-    <div className='homeBalancePage'>
-      <h1>Dabartinis balansas:</h1>
-      <h2>{mainBalance}€</h2>
-      </div>
-  )
-}
-
-export default HomeBalance
+export default HomeBalance;
