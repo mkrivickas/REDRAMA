@@ -14,15 +14,19 @@ const Categories = () => {
   let [isAddFormOpened, setIsAddFormOpened] = useState(false);
   let [isIncomesPicked, setIsIncomesPicked] = useState(false);
   let [isExpensesPicked, setIsExpensesPicked] = useState(false);
+  let [categoryName, setCategoryName] = useState("");
+  let [categoryType, setCategoryType] = useState("income");
   let [pickedCategory, setPickedCategory] = useState("");
+  let [isEditing, setIsEditing] = useState(false);
+  let [editingCategory, setEditingCategory] = useState("");
 
 
   function addCategory(e){
     e.preventDefault();
     let isValid = true;
     let formData = e.target;
-    if (formData.categoryAddName.value.length === 0 || (formData.categoryAddName.value.length > 0 && formData.categoryAddName.value.trim().length)){
-    if(!validCategory.test(formData.categoryAddName.value)){
+    if (categoryName.length === 0 || (categoryName.length > 0 && categoryName.trim().length)){
+    if(!validCategory.test(categoryName)){
       isValid = false;
       Swal.fire({
         title: 'Klaida',
@@ -32,23 +36,42 @@ const Categories = () => {
         confirmButtonText: 'Gerai'
       })
     }
-    console.log(formData.categoryAddName.value);
     if (isValid){
+    if(isEditing){
+      const postURL = 'http://localhost:3001/api/v1/category/'+editingCategory._id;
+      fetch(postURL, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            categoryName: categoryName,
+            categoryType: categoryType
+        }),
+    }).then(()=>{
+      fetchData();
+      setCategoryName("");
+      setIsEditing("");
+      setIsAddFormOpened(false);
+    });
+    }else{
       const postURL = 'http://localhost:3001/api/v1/category/';
-    fetch(postURL, {
+      fetch(postURL, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            categoryName: formData.categoryAddName.value,
-            categoryType: formData.categoryAddType.value
+          categoryName: categoryName,
+          categoryType: categoryType
         }),
     }).then(()=>{
       fetchData();
-      formData.categoryAddName.value = ""
-    })
+      setCategoryName("");
+    });
+    }
     }
   }else{
     isValid = false;
@@ -62,6 +85,7 @@ const Categories = () => {
   }
   }
 
+
   function fetchData(){
     fetch('http://localhost:3001/api/v1/category/')
     .then(response => response.json())
@@ -73,7 +97,7 @@ const Categories = () => {
 
   useEffect(() => {
     fetchData();
-  }, [])
+  }, []);
 
 
   function deleteCategory(id){
@@ -132,21 +156,46 @@ const Categories = () => {
       }
     }
   }
+  function editCategory(category){
+    setIsEditing(true);
+    setIsAddFormOpened(true);
+    setEditingCategory(category);
+    setCategoryName(category.categoryName);
+    setCategoryType(category.categoryType);
+
+
+  }
+  function cancelEditing(){
+    setIsEditing(false);
+    setIsAddFormOpened(false);
+    setEditingCategory("");
+  }
+
+  const categoryListItem = (category) => {
+    return(
+      <div className='categorySingleCategory'>
+              <div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType ==="income" ? <>Pajamos</>: <>Išlaidos</>}</div> 
+              <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button>
+              <button onClick={()=>{editCategory(category)}}>Edit</button>
+      </div>
+    )
+  }
   
   return (
     <div className='categoriesPage'>
-    <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="categoryAddNewButton">{!isAddFormOpened ? <>Pridėti naują</> : <>Atšaukti pridejimą</>}</button>
+    <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="categoryAddNewButton">{!isAddFormOpened || isEditing ? <>Pridėti naują</> : <>Atšaukti pridejimą</>}</button>
     <button onClick={()=>{pickCategory("incomes")}} className="categoryAddNewButton">{!isIncomesPicked ? <>Rodyti tik pajamų kategorijas</> : <>Atšaukti filtravimą</>}</button>
     <button onClick={()=>{pickCategory("expenses")}} className="categoryAddNewButton">{!isExpensesPicked ? <>Rodyti tik išlaidų kategorijas</> : <>Atšaukti filtravimą</>}</button>
     {isAddFormOpened && 
     <div className='categoryForm'>
       <form  onSubmit={(e)=>{addCategory(e)}}>
-        <input type="text" id="categoryAddName" name='categoryAddName' minLength="3" maxLength="30" placeholder='Kategorijos pavadinimas'required></input>
-        <select id="categoryAddType" name="categoryAddType">
+        <input type="text" id="categoryAddName" onChange={(e)=>{setCategoryName(e.target.value)}} value={categoryName} name='categoryAddName' minLength="3" maxLength="30" placeholder='Kategorijos pavadinimas'required></input>
+        <select id="categoryAddType" onChange={(e)=>{setCategoryType(e.target.value)}} value={categoryType} name="categoryAddType">
           <option value="income">Pajamos</option>
           <option value="expense">Išlaidos</option>
         </select>
-        <button type="submit" value="Pridėti">Pridėti</button>
+        <button type="submit" id="categoryAddSubmitBtn" value="Pridėti">Pridėti</button>
+        {isEditing && <button type='button' value="Atšaukti redagavimą" onClick={()=>{cancelEditing()}}>Atšaukti redagavimą</button>}
       </form></div>
       }
 
@@ -156,16 +205,16 @@ const Categories = () => {
           pickedCategory ? (
             pickedCategory === "incomes" ?(
               category.categoryType === "income" &&(
-                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType ==="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button></div>
+                categoryListItem(category)
               )
             ):(
               category.categoryType === "expense"&&(
-                <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType ==="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button></div>
+                categoryListItem(category)
               )
             )
 
           ):(
-            <div className='categorySingleCategory'><div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType ==="income" ? <>Pajamos</>: <>Išlaidos</>}</div> <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button></div>
+            categoryListItem(category)
           )
         ))}</div>}
 
