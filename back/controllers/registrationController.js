@@ -2,7 +2,7 @@ const RegModel = require("./../models/registrationModel");
 
 exports.registerUser = async(req, res) =>{
     const userExists = await RegModel.exists({ name: req.body.name });
-    const userEmailExists = await RegModel.exists({email: req.body.email})
+    const userEmailExists = await RegModel.exists({email: req.body.email});
     if (userExists) console.log("User exists");
     if (!userExists && !userEmailExists){
         try{
@@ -24,11 +24,11 @@ exports.registerUser = async(req, res) =>{
         res.status(401).json({
             status: "fail",
             message: "user already exists"
-        })
+        });
     }
 }
 exports.editUser = async (req, res) => {
-	try {
+        try{
 		const user = await RegModel.findByIdAndUpdate(req.params.id, req.body, {
 			new: true,
 			runValidators: true

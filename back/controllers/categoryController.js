@@ -1,20 +1,28 @@
 const CategoryModel = require('./../models/categoryModel');
 
 exports.addCategory = async (req, res) => {
-    try {
-        const newCategory = await CategoryModel.create(req.body);
-        res.status(201).json({
-            status: 'success',
-            data: {
-                category: newCategory,
-            },
-        });
-    } catch (err) {
-        res.status(400).json({
-            status: 'fail',
-            message: err,
-        });
-    }
+		const categoryExists = await CategoryModel.exists({ categoryName: req.body.categoryName });
+		if (!categoryExists){
+			try{
+				const newCategory = await CategoryModel.create(req.body);
+				res.status(201).json({
+					status: 'success',
+					data: {
+						category: newCategory,
+					},
+				});
+			}catch (err) {
+				res.status(400).json({
+					status: 'fail',
+					message: err,
+				});
+			}
+		}else{
+				res.status(401).json({
+					status: "fail",
+					message: "category already exists"
+				});
+		}
 };
 
 exports.allCategories = async (req, res) => {
@@ -52,6 +60,8 @@ exports.deleteCategory = async (req, res) => {
 };
 
 exports.editCategory = async (req, res) => {
+	const categoryExists = await CategoryModel.exists({ categoryName: req.body.categoryName });
+	if (!categoryExists){
 	try {
 		const category = await CategoryModel.findByIdAndUpdate(req.params.id, req.body, {
 			new: true,
@@ -69,5 +79,10 @@ exports.editCategory = async (req, res) => {
 			status: 'fail',
 			message: err
 		});
-	}
+	}}else{
+		res.status(401).json({
+			status: "fail",
+			message: "category already exists"
+		});
+}
 };

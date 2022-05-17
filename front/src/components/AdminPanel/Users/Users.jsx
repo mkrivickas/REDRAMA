@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Swal from 'sweetalert2';
 import bcrypt from 'bcryptjs';
 import './Users.css';
+import { FaTrash, FaRegEdit } from 'react-icons/fa';
 
 const validUserName = new RegExp(
     '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ ]{3,30}$'
@@ -69,6 +70,7 @@ const Users = () => {
     });
 
     };
+    
 
     const addUser = (e) =>{
         e.preventDefault();
@@ -201,12 +203,12 @@ const Users = () => {
         <div className='usersPageNav'>
             <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}}>{isAddFormOpened? "Atšaukti pridėjimą": "Pridėti naują vartotoją"}</button>
             {isAddFormOpened && 
-            <div className='usersForm'>
-            <form  onSubmit={(e)=>{addUser(e)}}>
+            <div>
+            <form  onSubmit={(e)=>{addUser(e)}} className='usersForm'>
                 <input type="text" id="userAddName" value={userAddName} onChange={(e)=>{setUserAddName(e.target.value)}} className='usersPageInputUser'  name='userAddName' minLength="3" maxLength="30" placeholder='Vartotojo vardas'required></input>
                 <input type="email" id="userAddEmail" value={userAddEmail} onChange={(e)=>{setUserAddEmail(e.target.value)}} className='usersPageInputEmail'   name="userAddEmail" placeholder='El. paštas' required></input>
                 <input type="password" id="userAddPassword" value={userAddPassword} onChange={(e)=>{setUserAddPassword(e.target.value)}} className='usersPageInputPassword'  name="userAddPassword" placeholder='Slaptažodis' required></input>
-                <select onChange={(e)=>{(setUserAddType(e.target.value))}} value={userAddType}>
+                <select className="usersPageSelectType" onChange={(e)=>{(setUserAddType(e.target.value))}} value={userAddType}>
                   <option value="admin">Administratorius</option>
                   <option value="user">Vartotojas</option>
                 </select>
@@ -222,11 +224,10 @@ const Users = () => {
                         <div>Vartotojas: {user.name}</div>
                         <div>E. Paštas: {user.email}</div>
                     </div>
-                <div > {user.type ==="admin"? "Administratorius": "Vartotojas"}</div>
+                <div className='usersPageType'> {user.type ==="admin"? "Administratorius": "Vartotojas"}</div>
                 <div className='usersPageSingleBtns'>
-                    <button onClick={()=>{deleteUser(user._id)}}>Pašalinti</button>
-                    <button onClick={()=>{editUser(user)}}>Redaguoti</button>
-                    <button>{user.type === "admin"? "Padaryti vartotoju": "Padaryti administratorium"}</button>
+                    <button onClick={()=>{editUser(user)}} className="usersPageEditBtn"><FaRegEdit /></button>
+                    <button onClick={()=>{deleteUser(user._id)}} className="usersPageDeleteBtn"><FaTrash /></button>
                 </div>
                 </div>
             ))}

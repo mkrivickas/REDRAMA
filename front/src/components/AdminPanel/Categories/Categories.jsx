@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Swal from 'sweetalert2';
 import './Categories.css';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaRegEdit } from 'react-icons/fa';
 
 const validCategory = new RegExp(
   '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ ]{3,30}$'
@@ -38,23 +38,33 @@ const Categories = () => {
     }
     if (isValid){
     if(isEditing){
-      const postURL = 'http://localhost:3001/api/v1/category/'+editingCategory._id;
-      fetch(postURL, {
-        method: 'PUT',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            categoryName: categoryName,
-            categoryType: categoryType
-        }),
-    }).then(()=>{
-      fetchData();
-      setCategoryName("");
-      setIsEditing("");
-      setIsAddFormOpened(false);
-    });
+          const postURL = 'http://localhost:3001/api/v1/category/'+editingCategory._id;
+          fetch(postURL, {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                categoryName: categoryName,
+                categoryType: categoryType
+            }),
+        }).then(response => response.json()).then(data => {
+          console.log(data.status);
+          if (data.status === "fail"){
+            Swal.fire({
+              title: 'Klaida',
+              text: 'Kategorija su tokiu pavadinimu jau egzistuoja!',
+              icon: 'warning',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Gerai'
+            })
+          }
+          fetchData();
+          setCategoryName("");
+          setIsEditing("");
+          setIsAddFormOpened(false);
+        });
     }else{
       const postURL = 'http://localhost:3001/api/v1/category/';
       fetch(postURL, {
@@ -67,7 +77,17 @@ const Categories = () => {
           categoryName: categoryName,
           categoryType: categoryType
         }),
-    }).then(()=>{
+    }).then(response => response.json()).then(data => {
+      console.log(data.status);
+      if (data.status === "fail"){
+        Swal.fire({
+          title: 'Klaida',
+          text: 'Kategorija su tokiu pavadinimu jau egzistuoja!',
+          icon: 'warning',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Gerai'
+        })
+      }
       fetchData();
       setCategoryName("");
     });
@@ -176,14 +196,20 @@ const Categories = () => {
       <div className='categorySingleCategory'>
               <div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType ==="income" ? <>Pajamos</>: <>Išlaidos</>}</div> 
               <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button>
-              <button onClick={()=>{editCategory(category)}}>Edit</button>
+              <button onClick={()=>{editCategory(category)}}><FaRegEdit /></button>
       </div>
     )
   }
   
+  const openAddForm = () => {
+    if (isEditing){
+      setIsEditing(false);
+    }
+    setIsAddFormOpened(!isAddFormOpened)
+  }
   return (
     <div className='categoriesPage'>
-    <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="categoryAddNewButton">{!isAddFormOpened || isEditing ? <>Pridėti naują</> : <>Atšaukti pridejimą</>}</button>
+    <button onClick={()=>{openAddForm()}} className="categoryAddNewButton">{!isAddFormOpened || isEditing ? <>Pridėti naują</> : <>Atšaukti pridejimą</>}</button>
     <button onClick={()=>{pickCategory("incomes")}} className="categoryAddNewButton">{!isIncomesPicked ? <>Rodyti tik pajamų kategorijas</> : <>Atšaukti filtravimą</>}</button>
     <button onClick={()=>{pickCategory("expenses")}} className="categoryAddNewButton">{!isExpensesPicked ? <>Rodyti tik išlaidų kategorijas</> : <>Atšaukti filtravimą</>}</button>
     {isAddFormOpened && 
