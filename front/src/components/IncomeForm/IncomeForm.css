@@ -32,6 +32,10 @@
 .IncomesListContainer {
 	margin-top: 20px;
 }
+.incomeContainer {
+	width: 100%;
+}
+
 .incomeController {
 	width: 100%;
 }

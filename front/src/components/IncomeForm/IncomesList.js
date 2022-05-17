@@ -12,7 +12,7 @@ const IncomesList = (props) => (
 		<div />
 		{props.incomes.length > 0 ? (
 			props.incomes.map((income) => (
-				<div>
+				<div className="IncomesListSingle">
 					<div className="IncomesListDate">{income.Date.slice(0, 10)}</div>
 					<div className="IncomesListCategory">{income.Category}</div>
 					<div className="IncomesListName">{income.Name}</div>

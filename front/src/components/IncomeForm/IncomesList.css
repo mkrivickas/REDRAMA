@@ -1,10 +1,10 @@
-.IcomesList {
+.IncomesList {
 	display: flex;
 	flex-direction: column;
-	width: 70%;
+	width: 100%;
 }
 
-/* .IcomesListItem {
+.IncomesListSingle {
 	display: flex;
 	color: white;
 	padding: 2%;
@@ -14,20 +14,20 @@
 	margin: 0.5%;
 	background-color: #364652;
 	border-radius: 5px;
-} */
-.IcomesListDate {
+}
+.IncomesListDate {
 	width: 15%;
 	height: 100%;
 }
-.IcomesListName {
+.IncomesListName {
 	width: 35%;
 }
 
-.IcomesListCategory {
+.IncomesListCategory {
 	width: 30%;
 }
 
-.IcomesListAmount {
+.IncomesListAmount {
 	width: 20%;
 }
 
