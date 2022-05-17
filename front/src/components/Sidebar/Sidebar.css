@@ -5,11 +5,8 @@
 .icon-up {
 	position: relative;
 	display: table-cell;
-
 	text-align: center;
-	/* vertical-align: middle; */
 	font-size: 2em;
-
 	padding-top: 15px;
 	padding-right: 10px;
 	padding-left: 12px;
@@ -34,7 +31,6 @@ nav.main-menu.expanded {
 
 .main-menu {
 	background: #364652;
-
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -85,16 +81,11 @@ nav.main-menu.expanded {
 	width: 60px;
 	height: 36px;
 	text-align: start;
-	/* vertical-align: middle; */
 	font-size: 18px;
-	/* padding-top: 20px;
-	padding-bottom: 20px; */
 }
 
 .main-menu .nav-text {
 	position: relative;
-
-	/* vertical-align: middle; */
 	width: 190px;
 	font-family: "Open Sans", sans-serif;
 	font-size: 20px;
@@ -152,9 +143,6 @@ nav li {
 	width: 90%;
 	border: 1px solid #ffd700;
 	margin: 0 auto;
-	/* animation: 0.5s shrink forwards; */
-	/* margin-top: 10px;
-	margin-bottom: 10px; */
 }
 
 .logo {
