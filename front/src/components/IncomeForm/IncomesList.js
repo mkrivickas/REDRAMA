@@ -30,7 +30,7 @@ const IncomesList = (props) => (
 						<td className="IncomeAmount-List">{income.Category}€</td>
 						</td>
 						<button
-								onClick={() => props.deleteIncome(income._id)}
+								onClick={() => props.deleteIncome(income._id, income)}
 								className="IncomeListDelete-button ms-3"
 							>
 								<FaTrash />

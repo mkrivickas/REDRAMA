@@ -42,7 +42,7 @@ const IncomeForm = (props) => {
 		fetchData();
 	}, []);
 
-	const deleteIncome = async (id) => {
+	const deleteIncome = async (id, income) => {
 		console.log(id);
 		Swal.fire({
 			title: 'Ar esate tikri?',
@@ -54,9 +54,28 @@ const IncomeForm = (props) => {
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Taip, pašalinti!'
 		}).then(async (result) => {
+			console.log(props.currentUser._id)
 			if (result.isConfirmed) {
 				await fetch('http://localhost:3001/api/v1/income/' + id, {
 					method: 'DELETE'
+				}).then(()=>{
+					const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+					fetch(postURLLog, {
+						method: 'POST',
+						headers: {
+							Accept: 'application/json',
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(
+							{
+								UserId: props.currentUser._id,
+								ActionType: "Ištrynė pajamą",
+								Timestamp: Date.now(),
+								Data: income
+							})
+	
+							}
+						);
 				}).then(() => {
 					setIncomes(incomes.filter((income) => income.id !== id));
 					fetchData();
@@ -84,7 +103,25 @@ const IncomeForm = (props) => {
 			body: JSON.stringify(updatedIncome)
 		};
 		fetch('http://localhost:3001/api/v1/income/' + id, requestOptions)
-			.then((response) => response.json())
+			.then(()=>{
+				const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+				fetch(postURLLog, {
+					method: 'POST',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(
+						{
+							UserId: props.currentUser._id,
+							ActionType: "Atnaujino pajamą",
+							Timestamp: Date.now(),
+							Data: updatedIncome
+						})
+
+						}
+					);
+			})
 			.then(() => {
 				swal({
 					title: 'Puiku!',
@@ -116,19 +153,31 @@ const IncomeForm = (props) => {
 				// We should keep the fields consistent for managing this data later
 				newIncome
 			)
-		})
-			.then((response) => response.json())
-			.then(() => {
-				// Once posted, the user will be notified
-				swal({
-					title: 'Puiku!',
-					text: 'Jūsų duomenys buvo pridėti',
-					icon: 'success',
-					button: 'Gerai!'
-				}).then(function() {
-					fetchData();
-				});
-			});
+		}).then(()=>{
+					const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+					fetch(postURLLog, {
+						method: 'POST',
+						headers: {
+							Accept: 'application/json',
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(
+							{
+								UserId: props.currentUser._id,
+								ActionType: "Pridėjo pajamą",
+								Timestamp: Date.now(),
+								Data: newIncome
+							})
+	
+							}
+						);
+					}).then(()=>{
+					swal({
+						title: 'Puiku!',
+						text: 'Jūsų duomenys buvo pridėti',
+						icon: 'success',
+						button: 'Gerai!'
+					});});
 	};
 
 	return (

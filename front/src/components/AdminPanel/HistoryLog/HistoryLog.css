@@ -1,0 +1,64 @@
+.historyPage{
+    color: white;
+}
+.historyPageLogSingle{
+    display: flex;
+    flex-wrap: wrap;
+    width: 98%;
+    padding: 2%;
+    background-color: #364652;
+    color: white;
+    border-radius: 5px;
+    margin: 1%;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #FFD700;
+    border-left: 1px solid #FFD700;
+}
+.historyPageLogTimestamp{
+    width: 20%;
+    font-size: 1.2vw;
+}
+.historyPageLogUsername{
+    width: 10%;
+    font-size: 1.2vw;
+}
+.historyPageLogActionType{
+    width: 20%;
+    font-size: 1.2vw;
+    padding: 1%;
+}
+
+
+.historyPageLogData{
+    display: flex;
+    width: 40%;
+    flex-wrap: wrap;
+}
+.historyPageLogData div{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.historyPageLogData div span{
+    font-size: 0.7vw;
+    color: #FFD700;
+}
+.historyPageLogDeleteBtn{
+    width: 10%;
+}
+.historyPageLogDeleteBtn button{
+    padding: 1%;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    background-color: #364652;
+    color: #ffd700;
+}
+.historyPageLogDeleteBtn button:hover{
+    background-color: #169873;
+    color: #dee5e5;
+}

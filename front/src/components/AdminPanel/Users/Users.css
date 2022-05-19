@@ -9,7 +9,7 @@
     background-color: #364652;
     padding: 2%;
     margin: 1%;
-    border-radius: 12px;
+    border-radius: 5px;
     box-sizing: content-box;
 }
 .usersPageNav button:hover{
@@ -19,6 +19,8 @@
     width: 98%;
     margin: 1%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: 6vh;
     border-bottom-left-radius: 12px;
 }
@@ -117,7 +119,7 @@
     background-color: #169873;
     color: #dee5e5;
 }
-.usersPageNav button{
+.usersPageNavBtns{
     padding: 1%;
     border-radius: 12px;
     border: none;
@@ -125,4 +127,14 @@
     color: #dee5e5;
     border-bottom: 1px solid #FFD700;
     margin: 1%;
+}
+.usersPageAddBtn{
+    background-color: #169873;
+	border: none;
+	box-sizing: border-box;
+	color: #eee;
+	cursor: pointer;
+    height: 100%;
+    width: 10%;
+	text-align: center;
 }

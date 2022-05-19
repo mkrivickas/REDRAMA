@@ -198,10 +198,19 @@ const Users = () => {
       setUserAddName(user.name);
     };
 
+    const cancelEditing = () =>{
+      setIsAddFormOpened(false);
+      setIsEditing(false);
+      setEditingUser(""
+      );
+      setUserAddEmail("");
+      setUserAddName("");
+    };
   return (
     <div className='usersPage'>
         <div className='usersPageNav'>
-            <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}}>{isAddFormOpened? "Atšaukti pridėjimą": "Pridėti naują vartotoją"}</button>
+            <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="usersPageNavBtns">{isAddFormOpened && !isEditing? "Atšaukti pridėjimą": "Pridėti naują vartotoją"}</button>
+            {isEditing && <button onClick={()=>{cancelEditing();}} className="usersPageNavBtns">Atšaukti redagavimą</button>}
             {isAddFormOpened && 
             <div>
             <form  onSubmit={(e)=>{addUser(e)}} className='usersForm'>
@@ -212,7 +221,7 @@ const Users = () => {
                   <option value="admin">Administratorius</option>
                   <option value="user">Vartotojas</option>
                 </select>
-                <button type="submit" value="Pridėti">Pridėti</button>
+                <button type="submit" className='usersPageAddBtn' value="Pridėti">{isEditing ? "Atnaujinti": "Pridėti"}</button>
             </form></div>
             }
         </div>

@@ -210,6 +210,7 @@ const Categories = () => {
   return (
     <div className='categoriesPage'>
     <button onClick={()=>{openAddForm()}} className="categoryAddNewButton">{!isAddFormOpened || isEditing ? <>Pridėti naują</> : <>Atšaukti pridejimą</>}</button>
+    {isEditing && <button type='button' value="Atšaukti redagavimą" className='categoryCancelEditingBtn' onClick={()=>{cancelEditing()}}>Atšaukti redagavimą</button>}
     <button onClick={()=>{pickCategory("incomes")}} className="categoryAddNewButton">{!isIncomesPicked ? <>Rodyti tik pajamų kategorijas</> : <>Atšaukti filtravimą</>}</button>
     <button onClick={()=>{pickCategory("expenses")}} className="categoryAddNewButton">{!isExpensesPicked ? <>Rodyti tik išlaidų kategorijas</> : <>Atšaukti filtravimą</>}</button>
     {isAddFormOpened && 
@@ -221,7 +222,6 @@ const Categories = () => {
           <option value="expense">Išlaidos</option>
         </select>
         <button type="submit" id="categoryAddSubmitBtn" value="Pridėti">Pridėti</button>
-        {isEditing && <button type='button' value="Atšaukti redagavimą" onClick={()=>{cancelEditing()}}>Atšaukti redagavimą</button>}
       </form></div>
       }
 
