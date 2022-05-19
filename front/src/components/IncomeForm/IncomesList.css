@@ -1,17 +1,49 @@
 .IncomesList {
 	display: flex;
 	flex-direction: column;
+	width: 80%;
+}
+
+.IncomesListName-title {
+	display: flex;
+	color: #364652;
+	font-weight: 700;
+	padding: 1.1%;
 	width: 100%;
+	justify-content: center;
+	text-align: center;
+	margin: 0.2%;
+	background-color: #ffd700;
+	border-radius: 5px;
+}
+.IncomesListDateTitle {
+	width: 15%;
+	height: 100%;
+}
+.IncomesListNameTitle {
+	width: 25%;
+}
+
+.IncomesListCategoryTitle {
+	width: 30%;
+}
+
+.IncomesListAmountTitle {
+	width: 15%;
+}
+
+.IncomesListActionsTitle {
+	width: 15%;
 }
 
 .IncomesListSingle {
 	display: flex;
 	color: white;
-	padding: 2%;
+	padding: 0.5%;
 	width: 100%;
 	justify-content: center;
 	text-align: center;
-	margin: 0.5%;
+	margin: 0.2%;
 	background-color: #364652;
 	border-radius: 5px;
 }
@@ -20,7 +52,7 @@
 	height: 100%;
 }
 .IncomesListName {
-	width: 35%;
+	width: 25%;
 }
 
 .IncomesListCategory {
@@ -28,7 +60,11 @@
 }
 
 .IncomesListAmount {
-	width: 20%;
+	width: 15%;
+}
+
+.IncomesListActions {
+	width: 15%;
 }
 
 .IncomeListEdit-button {
@@ -38,8 +74,7 @@
 }
 
 .IncomeListDelete-button {
-	background-color: rgb(242, 84, 17);
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
+	color: #ffd700;
+	background-color: #364652;
+	border: none;
 }

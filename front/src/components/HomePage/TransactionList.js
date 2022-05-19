@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import HomeBalance from './HomeBalance';
 import TransactionsTable from './TransactionsTable';
+import './TransactionsTable.css';
+import './TransactionList.css';
 
 function TransactionList(props) {
 	const { id } = props;
@@ -82,30 +84,50 @@ function TransactionList(props) {
 
 	return (
 		!loading && (
-			<div className="transactionsDivDiv">
-				<HomeBalance combinedList={combinedList} />
-				<select
-					value={monthFilter}
-					onChange={(e) => {
-						setMonthFilter(e.target.value);
-					}}
-				>
-					<option value="1">sausis</option>
-					<option value="2">vasaris</option>
-					<option value="3">kovas</option>
-					<option value="4">balandis</option>
-					<option value="5">geguze</option>
-				</select>
-				{monthFilter !== 0 && (
-					<button
-						onClick={() => {
-							setMonthFilter(0);
-						}}
-					>
-						Atšaukti
-					</button>
-				)}
-				<TransactionsTable combinedList={combinedList} />
+			<div className="transactionsDivDiv ">
+				<div className="row">
+					<div className="doughnut-homePage col-lg-6 col-md-12 col-sm-12">
+						<HomeBalance combinedList={combinedList} />
+					</div>
+					<div className="TableTransactionList col-lg-6 col-md-12 col-sm-12">
+						
+						<h5 className='monthFilter-box'>Filtruokite pagal mėnesį:
+						<select
+							className="monthFilterButton"
+							value={monthFilter}
+							onChange={(e) => {
+								setMonthFilter(e.target.value);
+							}}
+						>
+							<option value="1">Sausis</option>
+							<option value="2">Vasaris</option>
+							<option value="3">Kovas</option>
+							<option value="4">Balandis</option>
+							<option value="5">Gegužė</option>
+							<option value="6">Birželis</option>
+							<option value="7">Liepa</option>
+							<option value="8">Rugpjūtis</option>
+							<option value="9">Rugsėjis</option>
+							<option value="10">Spalis</option>
+							<option value="11">Lapkritis</option>
+							<option value="12">Gruodis</option>
+						</select>
+						{monthFilter !== 0 && (
+							<>
+							<button class="MonthFilterCancelButton"
+								onClick={() => {
+									setMonthFilter(0);
+								}}
+							>
+								Atšaukti
+							</button></>
+						)}
+                    </h5>
+						<div>
+							<TransactionsTable combinedList={combinedList} />
+						</div>
+					</div>
+				</div>
 			</div>
 		)
 	);

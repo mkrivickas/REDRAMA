@@ -1,13 +1,4 @@
-.EditIcomesForm-container {
-	width: 60%;
-	background-color: black;
-	color: white;
-	margin: auto;
-	text-align: center;
-	border-radius: 20px;
-	box-sizing: border-box;
-	padding: 20px;
-	display: flex;
+.EditIcome-form {
 	justify-content: center;
 	margin-top: 3%;
 	margin-bottom: 3%;
@@ -23,21 +14,24 @@
 }
 
 .EditIncomeForm-input {
-	background-color: white;
-	border-radius: 12px;
-	border: 0;
+	border-radius: 2px;
+	border: none;
+	background: none;
 	box-sizing: border-box;
-	color: black;
+	color: white;
+
 	font-size: 18px;
-	outline: 0;
+
 	padding: 10px;
 	width: 300px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	border-bottom: 1px solid #d1d1d4;
+	transition: .2s;
 }
 
 .EdiIncomeForm-input > .placeholder {
-	color: #65657b;
+	color: #364652;
 	font-family: sans-serif;
 	left: 20px;
 	line-height: 14px;
@@ -47,7 +41,7 @@
 
 #button-incomeUpdate {
 	background-color: rgb(35, 63, 35);
-	border-radius: 12px;
+	border-radius: 5px;
 	border: 0;
 	box-sizing: border-box;
 	color: #eee;
@@ -65,7 +59,7 @@
 
 #button-incomeCancel {
 	background-color: rgb(244, 111, 15);
-	border-radius: 12px;
+	border-radius: 5px;
 	border: 0;
 	box-sizing: border-box;
 	color: #eee;

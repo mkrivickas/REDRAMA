@@ -3,9 +3,10 @@ import TransactionList from './TransactionList';
 
 function HomePage(props) {
 	return (
-		<div className="transactionsDiv">
-			
-			<TransactionList currentUser={props.currentUser}/>
+		<div className="transactionsDiv container">
+			<div className="row">
+				<TransactionList currentUser={props.currentUser} />
+			</div>
 		</div>
 	);
 }
