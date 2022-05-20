@@ -26,6 +26,9 @@ const Sidebar = (props) => (
                 <li className="has-subnav">
                 <Link className='LinkName' to="/islaidos"><i className="icon-up"><BiTrendingDown /></i><span className="nav-text "> Išlaidos</span></Link>  
                 </li>
+                <li className="has-subnav">
+                <Link className='LinkName' to="/istorija"><i className="icon-up"><BiTrendingDown /></i><span className="nav-text "> Istorija</span></Link>  
+                </li>
                 {props.currentUser.type ==="admin"&&
                   <li className="has-subnav">
                   <Link className='LinkName' to="/admin"><i className="icon-up"><FcSettings color= "#f1de6d"/></i><span className="nav-text " >Valdymas</span></Link>

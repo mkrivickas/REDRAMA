@@ -7,30 +7,25 @@ const EditIncomeForm = (props) => {
 	const [ income, setIncome ] = useState(props.currentIncome);
 	const [ editName, setEditName ] = useState(props.currentIncome.Name);
 	const [ editAmount, setEditAmount ] = useState(props.currentIncome.Amount);
-	const [editCategory, setEditCategory] = useState(props.currentIncome.Category)
+	const [ editCategory, setEditCategory ] = useState(props.currentIncome.Category);
 	let maxDate = new Date();
 	let isIncomeValid = true;
 	const [ editDate, setEditDate ] = useState(props.currentIncome.Date.split('T')[0]);
 
-	let [categories, setCategories] = useState("")
-    let [isLoading, setIsLoading] = useState(true)
+	let [ categories, setCategories ] = useState('');
+	let [ isLoading, setIsLoading ] = useState(true);
 
-
-	
-    function fetchCategories(){
-        fetch('http://localhost:3001/api/v1/category/')
-            .then(response => response.json())
-            .then(data => {
-            setCategories(data.data.categories);
-            setIsLoading(false);
-            console.log(categories)
-            
-            });
-    }
+	function fetchCategories() {
+		fetch('http://localhost:3001/api/v1/category/').then((response) => response.json()).then((data) => {
+			setCategories(data.data.categories);
+			setIsLoading(false);
+			console.log(categories);
+		});
+	}
 
 	useEffect(() => {
 		fetchCategories();
-	}, [])
+	}, []);
 
 	useEffect(
 		() => {
@@ -67,23 +62,34 @@ const EditIncomeForm = (props) => {
 	};
 
 	return (
-		<div className="EditIncomesForm-container">
-			<form className="EditIncome-form" onSubmit={handleSubmit}>
-				<h3 className="EditIncomeForm-title "> Atnaujinti pajamas</h3>
-				<div>
-					<select className="AddIncomeForm-input" value={editCategory} onChange={(e)=>{setEditCategory(e.target.value)}} required name="category">
-						
-					<option selected="true" hidden value="">-----------</option>
-                            {!isLoading &&
-                            categories.map((category)=>(
-                                category.categoryType ==="income"&&
-                                    <option value={category.categoryName}>{category.categoryName}</option>
-                            ))}
+		<div className="EditIncomesForm container-fluid">
+			<form className="EditIncome-form row" onSubmit={handleSubmit}>
+				<h3 className="EditIncomeForm-title col-lg-12 col-md-12 col-sm-12"> Atnaujinti pajamas</h3>
+				<div className="col-lg-6 col-md-12 col-sm-12">
+					<select
+						className="EditIncomeForm-input "
+						value={editCategory}
+						onChange={(e) => {
+							setEditCategory(e.target.value);
+						}}
+						required
+						name="category"
+					>
+						<option selected="true" hidden value="">
+							-----------
+						</option>
+						{!isLoading &&
+							categories.map(
+								(category) =>
+									category.categoryType === 'income' && (
+										<option value={category.categoryName}>{category.categoryName}</option>
+									)
+							)}
 					</select>
 				</div>
-				<div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<input
-						className="EditIncomeForm-input"
+						className="EditIncomeForm-input "
 						type="number"
 						min="0.01"
 						step="0.01"
@@ -96,9 +102,9 @@ const EditIncomeForm = (props) => {
 						}}
 					/>
 				</div>
-				<div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<input
-						className="EditIncomeForm-input"
+						className="EditIncomeForm-input "
 						type="date"
 						name="incomeDate"
 						required
@@ -111,9 +117,9 @@ const EditIncomeForm = (props) => {
 						}}
 					/>
 				</div>
-				<div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<input
-						className="EditIncomeForm-input"
+						className="EditIncomeForm-input "
 						type="text"
 						name="incomeName"
 						required
@@ -127,13 +133,18 @@ const EditIncomeForm = (props) => {
 						}}
 					/>
 				</div>
-
-				<div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<button id="button-incomeUpdate">Atnaujinti pajamas</button>
 				</div>
-				<button id="button-incomeCancel" onClick={() => props.setEditing(false)}>
-					Atšaukti
-				</button>
+				<div className="col-lg-6 col-md-12 col-sm-12">
+					<button
+						id="button-incomeCancel"
+						className="col-lg-6 col-md-12 col-sm-12"
+						onClick={() => props.setEditing(false)}
+					>
+						Atšaukti
+					</button>
+				</div>
 			</form>
 		</div>
 	);
