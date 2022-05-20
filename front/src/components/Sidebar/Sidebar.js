@@ -1,24 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
-
-//import react pro sidebar components
-import {
-  ProSidebar,
-  Menu,
-  MenuItem,
-  SidebarHeader,
-  SidebarFooter,
-  SidebarContent,
-} from "react-pro-sidebar";
-
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
-import { BiTrendingDown } from "react-icons/bi";
-import {BiTrendingUp } from "react-icons/bi";
+import {  FiLogOut } from "react-icons/fi";
+import { BiTrendingDown, BiTrendingUp } from "react-icons/bi";
 import {FcSettings } from "react-icons/fc";
-
-//import sidebar css from react-pro-sidebar module and our custom css 
 import "react-pro-sidebar/dist/css/styles.css";
-// import "./Sidebar.css";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import logo from './logo.png';
@@ -26,12 +10,7 @@ import logo from './logo.png';
 const Sidebar = (props) => (
 <>
   <div class="area"> 
-  {/* <div class="main-header"><ul>
-              <li className="logo icon-logo">
-                <img src={logo} width="50"  />
-                </li>
-</ul>  
-    </div> */}
+
        <nav class="main-menu">
            
 <ul>

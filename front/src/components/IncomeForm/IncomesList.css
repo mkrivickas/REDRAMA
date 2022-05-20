@@ -1,22 +1,40 @@
-.IcomesList-table {
-	background-color: black;
-	color: white;
-	margin: auto;
-	text-align: center;
-	border-radius: 20px;
-}
-.IcomesList-table tr{
+.IncomesList {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	flex-direction: column;
+	width: 100%;
+}
 
+.IncomesListSingle {
+	display: flex;
+	color: white;
+	padding: 2%;
+	width: 100%;
+	justify-content: center;
+	text-align: center;
+	margin: 0.5%;
+	background-color: #364652;
+	border-radius: 5px;
+}
+.IncomesListDate {
+	width: 15%;
+	height: 100%;
+}
+.IncomesListName {
+	width: 35%;
+}
+
+.IncomesListCategory {
+	width: 30%;
+}
+
+.IncomesListAmount {
+	width: 20%;
 }
 
 .IncomeListEdit-button {
-	background-color: rgb(58, 151, 58);
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
+	color: #ffd700;
+	background-color: #364652;
+	border: none;
 }
 
 .IncomeListDelete-button {
@@ -24,15 +42,4 @@
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-}
-
-.IncomeName-List {
-	font-size: 24px;
-	padding-top: 15px;
-	border: 0;
-}
-
-.IncomeAmount-List {
-	font-size: 24px;
-	padding-top: 15px;
 }
