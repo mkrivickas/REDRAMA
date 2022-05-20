@@ -4,6 +4,7 @@ import EditIncomeForm from './EditIncomeForm';
 // import Header from './IncomeHeader';
 import './IncomeForm.css';
 import AddIncomeForm from './AddIncomeForm';
+import IncomeDoughnut from './IncomeDoughnut';
 
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
@@ -29,11 +30,11 @@ const IncomeForm = (props) => {
 	const fetchData = async () => {
 		await fetch('http://localhost:3001/api/v1/income').then((response) => response.json()).then((data) => {
 			let tempData = [];
-			data.data.incomes.map((income)=>{
-				if(income.UserId === props.currentUser._id){
+			data.data.incomes.forEach((income) => {
+				if (income.UserId === props.currentUser._id) {
 					tempData.push(income);
 				}
-			})
+			});
 			setIncomes(tempData);
 		});
 	};
@@ -87,9 +88,6 @@ const IncomeForm = (props) => {
 				});
 			}
 		});
-		// alert('Your incomes was deleted successfully');
-
-		// /* setEditing(false);
 
 		setIncomes(incomes.filter((income) => income.id !== id));
 		fetchData();
@@ -172,6 +170,7 @@ const IncomeForm = (props) => {
 							}
 						);
 					}).then(()=>{
+						fetchData();
 					swal({
 						title: 'Puiku!',
 						text: 'Jūsų duomenys buvo pridėti',
@@ -181,32 +180,38 @@ const IncomeForm = (props) => {
 	};
 
 	return (
-		<div className="incomeContainer">
-			<div className="income-row">
-				{/* <div className="col-12">
-					<Header totalIncome={totalIncome} />
-				</div> */}
-				{editing ? (
-					<Fragment>
-						<EditIncomeForm
-							editing={editing}
-							setEditing={setEditing}
-							currentIncome={currentIncome}
-							updateIncome={updateIncome}
+		<div className="incomePage container-fluid">
+			<div className="row">
+				<div className="col-lg-5 col-md-12">
+					<div className="incomeDougnut">
+						<IncomeDoughnut />
+					</div>
+				</div>
+
+				<div className="incomeEnter col-lg-7 col-md-12">
+					{editing ? (
+						<Fragment>
+							<EditIncomeForm
+								editing={editing}
+								setEditing={setEditing}
+								currentIncome={currentIncome}
+								updateIncome={updateIncome}
+							/>
+						</Fragment>
+					) : (
+						<Fragment>
+							<AddIncomeForm addIncome={addIncome} currentUser={props.currentUser} />
+						</Fragment>
+					)}
+
+					<div className=" IncomesListContainer">
+						<IncomesList
+							className="IncomesList "
+							incomes={incomes}
+							editRow={editRow}
+							deleteIncome={deleteIncome}
 						/>
-					</Fragment>
-				) : (
-					<Fragment>
-						<AddIncomeForm addIncome={addIncome} currentUser={props.currentUser}/>
-					</Fragment>
-				)}
-				<div className="IncomesListContainer">
-					<IncomesList
-						className="IncomesList"
-						incomes={incomes}
-						editRow={editRow}
-						deleteIncome={deleteIncome}
-					/>
+					</div>
 				</div>
 			</div>
 		</div>

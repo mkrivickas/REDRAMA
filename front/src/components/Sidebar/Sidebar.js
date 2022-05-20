@@ -9,13 +9,13 @@ import logo from './logo.png';
 
 const Sidebar = (props) => (
 <>
-  <div class="area"> 
+  <div className="area"> 
 
-       <nav class="main-menu">
+       <nav className="main-menu">
            
 <ul>
                 <li className="has-subnav">
-                <Link className='LinkName titleAndLogo' to="/"><img className='imgLogo logo'  src={logo} /><span className="nav-text">
+                <Link className='LinkName titleAndLogo' to="/"><img className='imgLogo logo'  src={logo} alt="logo" /><span className="nav-text">
                 REDRAMA</span></Link>
                 </li>
 
@@ -25,6 +25,9 @@ const Sidebar = (props) => (
 
                 <li className="has-subnav">
                 <Link className='LinkName' to="/islaidos"><i className="icon-up"><BiTrendingDown /></i><span className="nav-text "> Išlaidos</span></Link>  
+                </li>
+                <li className="has-subnav">
+                <Link className='LinkName' to="/istorija"><i className="icon-up"><BiTrendingDown /></i><span className="nav-text "> Istorija</span></Link>  
                 </li>
                 {props.currentUser.type ==="admin"&&
                   <li className="has-subnav">

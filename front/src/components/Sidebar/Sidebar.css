@@ -26,7 +26,7 @@
 .main-menu:hover,
 nav.main-menu.expanded {
 	width: 300px;
-	overflow: visible;
+	overflow: hidden;
 }
 
 .main-menu {
@@ -166,10 +166,10 @@ nav li {
 	flex-wrap: nowrap;
 	align-items: center;
 }
-.logoutUserName{
+.logoutUserName {
 	color: #999;
 }
-.logoutColumn{
+.logoutColumn {
 	display: flex;
 	flex-direction: column;
 	width: 80%;

@@ -31,7 +31,6 @@ const Users = () => {
                 .then(data => {
                 setUsers(data.data.users);
                 setIsLoading(false);
-                console.log(data.data.users);
                 });
     };
 
@@ -75,7 +74,6 @@ const Users = () => {
     const addUser = (e) =>{
         e.preventDefault();
         let isValid = true;
-        let formData = e.target;
         const salt = bcrypt.genSaltSync(10);
         if(!validUserName.test(userAddName)){
           isValid = false;
@@ -85,7 +83,7 @@ const Users = () => {
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Gerai'
-          })
+          });
         }
         if(!validEmail.test(userAddEmail)){
             isValid = false;
@@ -95,7 +93,7 @@ const Users = () => {
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Gerai'
-              })
+              });
         }
         if(!validPassword.test(userAddPassword)){
             isValid = false;
@@ -105,7 +103,7 @@ const Users = () => {
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Gerai'
-              })
+              });
         }
           if (isValid){
             if(isEditing){
@@ -228,7 +226,7 @@ const Users = () => {
         <div className='usersPageList'>
             {!isLoading && 
             users.map((user)=>(
-                <div className="usersPageSingleUser">
+                <div key={user._id} className="usersPageSingleUser">
                     <div className={user.type === "admin"? "usersSingleUserGold usersNameAndEmail" :"usersSingleUserGreen usersNameAndEmail"}>
                         <div>Vartotojas: {user.name}</div>
                         <div>E. Paštas: {user.email}</div>

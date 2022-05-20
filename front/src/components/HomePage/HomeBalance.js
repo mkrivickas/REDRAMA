@@ -10,10 +10,8 @@ const HomeBalance = (props) => {
 			let tempBalance = 0;
 			props.combinedList.map((listItem) => {
 				if (listItem.Type === 'income') {
-					console.log('+' + listItem.Amount);
 					tempBalance += parseInt(listItem.Amount);
 				} else {
-					console.log('-' + listItem.Amount);
 					tempBalance -= parseInt(listItem.Amount);
 				}
 				setMainBalance(tempBalance);
@@ -27,7 +25,10 @@ const HomeBalance = (props) => {
 			<MainDoughnutChart combinedList={props.combinedList} />
 
 			<div className="homeBalancePage">
-				<h2 className="balance-text">{mainBalance}€</h2>
+				<div className="balance-text">
+					<h2>Balansas</h2>
+					<h2 className="mainBalance">{mainBalance} €</h2>
+				</div>
 			</div>
 		</div>
 	);

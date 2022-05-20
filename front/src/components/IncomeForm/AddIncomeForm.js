@@ -20,7 +20,6 @@ const AddIncomeForm = (props) => {
 		fetch('http://localhost:3001/api/v1/category/').then((response) => response.json()).then((data) => {
 			setCategories(data.data.categories);
 			setIsLoading(false);
-			console.log(categories);
 		});
 	}
 
@@ -73,7 +72,7 @@ const AddIncomeForm = (props) => {
 		<div>
 			<form className="AddIncome-form" onSubmit={handleSubmit}>
 				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
-				<select
+				<select defaultValue={""}
 					className="AddIncomeForm-input"
 					onChange={(e) => {
 						setIncomeCategory(e.target.value);
@@ -81,14 +80,14 @@ const AddIncomeForm = (props) => {
 					required
 					name="category"
 				>
-					<option selected="true" hidden value="">
+					<option hidden value={""}>
 						-----------
 					</option>
 					{!isLoading &&
 						categories.map(
 							(category) =>
 								category.categoryType === 'income' && (
-									<option value={category.categoryName}>{category.categoryName}</option>
+									<option key={category._id} value={category.categoryName}>{category.categoryName}</option>
 								)
 						)}
 				</select>

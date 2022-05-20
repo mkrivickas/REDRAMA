@@ -20,10 +20,10 @@ const HistoryLog = () => {
                     setIsLoading(false);
                     });
                 });
-    }
+    };
     useEffect(() => {
       fetchData();
-    }, [])
+    }, []);
     
 
     function deleteLog(id){
@@ -62,10 +62,10 @@ const HistoryLog = () => {
   return (
     <div className='historyPage'>
         {!isLoading&& logs.map((log)=>(
-            <div className='historyPageLogSingle'>
+            <div className='historyPageLogSingle' key={log._id}>
             <div className='historyPageLogTimestamp'><span>{log.Timestamp.split("T")[0]}::{log.Timestamp.split("T")[1].slice(0,8)}</span></div>
             <div className='historyPageLogUsername'>{users.map((user)=>(
-                user._id === log.UserId && <div>{user.name}</div>
+                user._id === log.UserId && <div key={user._id}>{user.name}</div>
             ))}</div>
             <div className='historyPageLogActionType'><span>{log.ActionType}: </span></div>
             <div className='historyPageLogData'>

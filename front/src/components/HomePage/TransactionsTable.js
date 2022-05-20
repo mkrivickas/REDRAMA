@@ -1,41 +1,50 @@
 import React from 'react';
-import './TransactionsTable.css';
 
 const TransactionsTable = (props) => (
 	<div className="transactionsPage">
-		{props.combinedList.length > 0 ? (
-			props.combinedList.map((item) => (
-				<div
-					className={
-						item.Type === 'expense' ? (
-							'transactionsSingleItem transactionsSingleRed'
-						) : (
-							'transactionsSingleItem transactionsSingleGreen'
-						)
-					}
-				>
-					<div className="transactionsSingleDate">{item.Date.slice(0, 10)}</div>
-					<div className="transactionsSingleCategory">{item.Category}</div>
-					<div className="transactionsSingleName">{item.Name}</div>
-					<div
+		<div className="transactionPage-title">
+			<div className="transactionsSingleDate-title">Data</div>
+			<div className="transactionsSingleCategory-title">Kategorija</div>
+			<div className="transactionsSingleName-title">Pavadinimas</div>
+			<div className="transactionsSingleAmount-title">Suma</div>
+		</div>
+		<div className="transactionsSingle-list">
+			{props.combinedList.length > 0 ? (
+				props.combinedList.map((item) => (
+					<div key={item._id}
 						className={
 							item.Type === 'expense' ? (
-								'transactionsSingleAmount'
+								'transactionsSingleItem transactionsSingleRed'
 							) : (
-								'transactionsSingleAmount transactionsSingleAmountGreen'
+								'transactionsSingleItem transactionsSingleGreen'
 							)
 						}
 					>
-						{item.Type === 'expense' ? '- ' : '+ '}
-						{item.Amount}€
+						<div className="transactionsSingleDate">{item.Date.slice(0, 10)}</div>
+						<div className="transactionsSingleCategory">{item.Category}</div>
+						<div className="transactionsSingleName">{item.Name}</div>
+						<div
+							className={
+								item.Type === 'expense' ? (
+									'transactionsSingleAmount'
+								) : (
+									'transactionsSingleAmount transactionsSingleAmountGreen'
+								)
+							}
+						>
+							{item.Type === 'expense' ? '- ' : '+ '}
+							{item.Amount}€
+						</div>
 					</div>
-				</div>
-			))
-		) : (
-			<tr>
-				<td colSpan={3}>Nėra pajamų</td>
-			</tr>
-		)}
+				))
+			) : (
+				<tr>
+					<td className="emptyTableText" colSpan={3}>
+						Nėra duomenų
+					</td>
+				</tr>
+			)}
+		</div>
 	</div>
 );
 
