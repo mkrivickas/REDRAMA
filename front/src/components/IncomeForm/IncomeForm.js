@@ -13,6 +13,8 @@ const IncomeForm = (props) => {
 	const [ currentIncome, setCurrentIncome ] = useState({});
 	const [ editing, setEditing ] = useState(false);
 	const [ incomes, setIncomes ] = useState([]);
+	const timeElapsed = Date.now();
+    const today = new Date(timeElapsed).toLocaleString('lt-LT', {timeZone: 'Etc/GMT-6'});
 
 	const [ totalIncome, setTotalIncome ] = useState(0);
 
@@ -71,7 +73,7 @@ const IncomeForm = (props) => {
 							{
 								UserId: props.currentUser._id,
 								ActionType: "Ištrynė pajamą",
-								Timestamp: Date.now(),
+								Timestamp: today,
 								Data: income
 							})
 	
@@ -113,7 +115,7 @@ const IncomeForm = (props) => {
 						{
 							UserId: props.currentUser._id,
 							ActionType: "Atnaujino pajamą",
-							Timestamp: Date.now(),
+							Timestamp: today,
 							Data: updatedIncome
 						})
 
@@ -163,7 +165,7 @@ const IncomeForm = (props) => {
 							{
 								UserId: props.currentUser._id,
 								ActionType: "Pridėjo pajamą",
-								Timestamp: Date.now(),
+								Timestamp: today,
 								Data: newIncome
 							})
 	
@@ -184,7 +186,7 @@ const IncomeForm = (props) => {
 			<div className="row">
 				<div className="col-lg-5 col-md-12">
 					<div className="incomeDougnut">
-						<IncomeDoughnut />
+						<IncomeDoughnut incomes={incomes}/>
 					</div>
 				</div>
 

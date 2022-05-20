@@ -1,5 +1,21 @@
 .historyPage{
     color: white;
+    overflow-y: scroll;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+.historyPageSelectOption{
+    width: 25%;
+    text-align: center;
+    border-radius: 5px;
+    padding: 1%;
+}
+.historyPageSelectContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .historyPageLogSingle{
     display: flex;

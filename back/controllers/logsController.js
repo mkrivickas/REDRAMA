@@ -20,7 +20,6 @@ exports.getAllLogs = async (req, res) => {
 };
 
 exports.addLog = async (req, res) => {
-    console.log("log")
 	try {
 		const newLog = await Logs.create(req.body);
 		res.status(201).json({

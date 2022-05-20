@@ -11,6 +11,8 @@ const ExpenseForm = (props) => {
     let [categories, setCategories] = useState("")
     let [isLoading, setIsLoading] = useState(true)
     let [isloadingExp, setIsLoadingExp] = useState(true);
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed).toLocaleString('lt-LT', {timeZone: 'Etc/GMT-6'});
 
 
     function fetchCategories(){
@@ -121,7 +123,7 @@ const ExpenseForm = (props) => {
 							{
 								UserId: props.currentUser._id,
 								ActionType: "Atnaujino išlaidą",
-								Timestamp: Date.now(),
+								Timestamp: today,
 								Data: {
                                     Name: enteredTitle,
                                     Amount: enteredAmount,
@@ -188,7 +190,7 @@ const ExpenseForm = (props) => {
                                 {
                                     UserId: props.currentUser._id,
                                     ActionType: "Pridėjo išlaidą",
-                                    Timestamp: Date.now(),
+                                    Timestamp: today,
                                     Data: {
                                         Name: enteredTitle,
                                         Amount: enteredAmount,
@@ -255,7 +257,7 @@ const ExpenseForm = (props) => {
                     {
                         UserId: props.currentUser._id,
                         ActionType: "Ištrynė išlaidą",
-                        Timestamp: Date.now(),
+                        Timestamp: today,
                         Data: deletedExpense
                     })
 

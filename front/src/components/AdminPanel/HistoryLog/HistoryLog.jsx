@@ -5,6 +5,7 @@ import { FaTrash, FaRegEdit } from 'react-icons/fa';
 
 const HistoryLog = () => {
     let [logs, setLogs] = useState([]);
+    let [fullLogs, setFullLogs] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
     let [users, setUsers] = useState([]);
 
@@ -16,7 +17,8 @@ const HistoryLog = () => {
                     fetch('http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs')
                     .then(response => response.json())
                     .then(data => {
-                    setLogs(data.data.logs);
+                    setLogs(data.data.logs.reverse());
+                    setFullLogs(data.data.logs.reverse());
                     setIsLoading(false);
                     });
                 });
@@ -59,8 +61,26 @@ const HistoryLog = () => {
           }
         });
       }
+
+    function filterLogs(filter){
+      let tempLogs = []
+      fullLogs.forEach((log)=>{
+        if(log.ActionType.includes(filter)){
+          tempLogs.push(log);
+        }
+      setLogs(tempLogs);
+      });
+    }
   return (
     <div className='historyPage'>
+      <div className='historyPageSelectContainer'>
+      <select defaultValue={""} onChange={(e)=>{filterLogs(e.target.value)}} className="historyPageSelectOption">
+        <option value={""}>Rodyti visus</option>
+        <option value={"Pridėjo"}>Rodyti tik pridėjimus</option>
+        <option value={"Ištrynė"}>Rodyti tik pašalinimus</option>
+        <option value={"Atnaujino"}>Rodyti tik atnaujinimus</option>
+      </select>
+      </div>
         {!isLoading&& logs.map((log)=>(
             <div className='historyPageLogSingle' key={log._id}>
             <div className='historyPageLogTimestamp'><span>{log.Timestamp.split("T")[0]}::{log.Timestamp.split("T")[1].slice(0,8)}</span></div>
