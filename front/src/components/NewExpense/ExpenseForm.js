@@ -127,6 +127,32 @@ const ExpenseForm = (props) => {
                 requestOptions
             )
                 .then((response) => response.json())
+                .then(()=>{
+					const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+					fetch(postURLLog, {
+						method: 'POST',
+						headers: {
+							Accept: 'application/json',
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(
+							{
+								UserId: props.currentUser._id,
+								ActionType: "Atnaujino išlaidą",
+								Timestamp: Date.now(),
+								Data: {
+                                    Name: enteredTitle,
+                                    Amount: enteredAmount,
+                                    Date: enteredDate,
+                                    Category: enteredCategory,
+                                    Type: "expense",
+                                    UserId: props.currentUser._id
+                                }
+							})
+	
+							}
+						);
+					})
                 .then((data) => {
                     fetchData();
                     setEnteredTitle('');
@@ -171,7 +197,32 @@ const ExpenseForm = (props) => {
                             Type: "expense",
                             UserId: props.currentUser._id
                         }),
-                    }).then(() => {
+                    }).then(()=>{
+                        const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+                        fetch(postURLLog, {
+                            method: 'POST',
+                            headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(
+                                {
+                                    UserId: props.currentUser._id,
+                                    ActionType: "Pridėjo išlaidą",
+                                    Timestamp: Date.now(),
+                                    Data: {
+                                        Name: enteredTitle,
+                                        Amount: enteredAmount,
+                                        Date: enteredDate,
+                                        Category: enteredCategory,
+                                        Type: "expense",
+                                        UserId: props.currentUser._id
+                                    }
+                                })
+        
+                                }
+                            );
+                        }).then(() => {
                         Swal.fire({
                             title: 'Įrašyta!',
                             text: 'Įrašas įtrauktas į žurnalą.',
@@ -190,7 +241,7 @@ const ExpenseForm = (props) => {
 
         // alert('Your incomes was added successfully');
     };
-	const deleteExpense = async (id) => {
+	const deleteExpense = async (id, deletedExpense) => {
         console.log(id);
         Swal.fire({
             title: 'Ar esate tikri?',
@@ -215,7 +266,25 @@ const ExpenseForm = (props) => {
                     });
                 });
             }
-        });
+        }).then(()=>{
+            const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+            fetch(postURLLog, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        UserId: props.currentUser._id,
+                        ActionType: "Ištrynė išlaidą",
+                        Timestamp: Date.now(),
+                        Data: deletedExpense
+                    })
+
+                    }
+                );
+            });
         // alert('Your incomes was deleted successfully');
 
         // /* setEditing(false);

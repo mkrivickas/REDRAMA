@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Swal from 'sweetalert2';
 import bcrypt from 'bcryptjs';
 import './Users.css';
+import { FaTrash, FaRegEdit } from 'react-icons/fa';
 
 const validUserName = new RegExp(
     '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ ]{3,30}$'
@@ -17,6 +18,13 @@ const Users = () => {
     let [users, setUsers] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
     let [isAddFormOpened, setIsAddFormOpened] = useState(false);
+    let [userAddType, setUserAddType] = useState("admin");
+    let [userAddName, setUserAddName] = useState("");
+    let [userAddEmail, setUserAddEmail] = useState("");
+    let [userAddPassword, setUserAddPassword] = useState("");
+    let [isEditing, setIsEditing] = useState(false);
+    let [editingUser, setEditingUser] = useState("");
+
     const fetchData = () =>{
         fetch('http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/users')
                 .then(response => response.json())
@@ -61,54 +69,93 @@ const Users = () => {
       }
     });
 
-    }
+    };
+    
 
     const addUser = (e) =>{
         e.preventDefault();
         let isValid = true;
         let formData = e.target;
         const salt = bcrypt.genSaltSync(10);
-        console.log(formData.userAddPassword.value)
-        if(!validUserName.test(formData.userAddName.value)){
+        if(!validUserName.test(userAddName)){
           isValid = false;
           Swal.fire({
             title: 'Klaida',
-            text: 'Kategorija negali tureti specialių simbolių arba skaičių, gali būti nuo 3 iki 30 simbolių',
+            text: 'Vartotojo vardas turi būti nuo 3 iki 40 simbolių, gali susidaryti tik is raidžių ir skaičių',
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Gerai'
           })
         }
-        if(!validEmail.test(formData.userAddEmail.value)){
+        if(!validEmail.test(userAddEmail)){
             isValid = false;
             Swal.fire({
                 title: 'Klaida',
-                text: 'Kategorija negali tureti specialių simbolių arba skaičių, gali būti nuo 3 iki 30 simbolių',
+                text: 'El. Paštas turi buti ne ilgesnis nei 40 simbolių.',
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Gerai'
               })
-          }
-          if(!validPassword.test(formData.userAddPassword.value)){
+        }
+        if(!validPassword.test(userAddPassword)){
             isValid = false;
             Swal.fire({
                 title: 'Klaida',
-                text: 'Kategorija negali tureti specialių simbolių arba skaičių, gali būti nuo 3 iki 30 simbolių',
+                text: 'Slaptažodis turi turėti nors vieną didžiają raidę ir turi būti ne ilgesnis nei 40 simbolių',
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Gerai'
               })
-          }
+        }
           if (isValid){
-            const passHash = bcrypt.hashSync(formData.userAddPassword.value, salt);
+            if(isEditing){
+            const passHash = bcrypt.hashSync(userAddPassword, salt);
+            const passHash2 = bcrypt.hashSync(passHash, salt);
+            const requestOptions = {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ 
+                name: userAddName,
+                email: userAddEmail,
+                type: userAddType,
+                password: passHash2,
+                salt: salt
+              })
+            };
+            console.log(editingUser._id)
+            fetch('http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/register/'+ editingUser._id, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                  console.log(data);
+                  if(data.status === "success"){
+                    fetchData();
+                    setUserAddEmail("");
+                    setEditingUser("");
+                    setIsAddFormOpened(false);
+                    setUserAddName("");
+                    setUserAddPassword("");
+                    setIsEditing(false);
+                    Swal.fire({
+                        title: 'Puiku!',
+                        text: 'Vartotojas atnaujintas!',
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Gerai'
+                      });
+                  }
+                });
+              
+            }else{
+
+            const passHash = bcrypt.hashSync(userAddPassword, salt);
             const passHash2 = bcrypt.hashSync(passHash, salt);
             const requestOptions = {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ 
-                name: formData.userAddName.value,
-                email: formData.userAddEmail.value,
-                type: "user",
+                name: userAddName,
+                email: userAddEmail,
+                type: userAddType,
                 password: passHash2,
                 salt: salt
               })
@@ -119,9 +166,9 @@ const Users = () => {
                   console.log(data);
                   if(data.status === "success"){
                     fetchData();
-                    formData.userAddEmail.value = "";
-                    formData.userAddName.value = "";
-                    formData.userAddPassword.value = "";
+                    userAddName = "";
+                    userAddEmail= "";
+                    userAddPassword = "";
                     Swal.fire({
                         title: 'Puiku!',
                         text: 'Vartotojas pridėtas!',
@@ -138,21 +185,43 @@ const Users = () => {
                         confirmButtonText: 'Gerai'
                       })
                   }
-                })
+                });
+              }
           }
-    }
+    };
 
+    const editUser = (user) =>{
+      setIsAddFormOpened(true);
+      setIsEditing(true);
+      setEditingUser(user);
+      setUserAddEmail(user.email);
+      setUserAddName(user.name);
+    };
+
+    const cancelEditing = () =>{
+      setIsAddFormOpened(false);
+      setIsEditing(false);
+      setEditingUser(""
+      );
+      setUserAddEmail("");
+      setUserAddName("");
+    };
   return (
     <div className='usersPage'>
         <div className='usersPageNav'>
-            <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}}>{isAddFormOpened? "Atšaukti pridėjimą": "Pridėti naują vartotoją"}</button>
+            <button onClick={()=>{setIsAddFormOpened(!isAddFormOpened)}} className="usersPageNavBtns">{isAddFormOpened && !isEditing? "Atšaukti pridėjimą": "Pridėti naują vartotoją"}</button>
+            {isEditing && <button onClick={()=>{cancelEditing();}} className="usersPageNavBtns">Atšaukti redagavimą</button>}
             {isAddFormOpened && 
-            <div className='usersForm'>
-            <form  onSubmit={(e)=>{addUser(e)}}>
-                <input type="text" id="userAddName" className='usersPageInputUser'  name='userAddName' minLength="3" maxLength="30" placeholder='Vartotojo vardas'required></input>
-                <input type="email" id="userAddEmail" className='usersPageInputEmail'   name="userAddEmail" placeholder='El. paštas' required></input>
-                <input type="password" id="userAddPassword" className='usersPageInputPassword'  name="userAddPassword" placeholder='Slaptažodis' required></input>
-                <button type="submit" value="Pridėti">Pridėti</button>
+            <div>
+            <form  onSubmit={(e)=>{addUser(e)}} className='usersForm'>
+                <input type="text" id="userAddName" value={userAddName} onChange={(e)=>{setUserAddName(e.target.value)}} className='usersPageInputUser'  name='userAddName' minLength="3" maxLength="30" placeholder='Vartotojo vardas'required></input>
+                <input type="email" id="userAddEmail" value={userAddEmail} onChange={(e)=>{setUserAddEmail(e.target.value)}} className='usersPageInputEmail'   name="userAddEmail" placeholder='El. paštas' required></input>
+                <input type="password" id="userAddPassword" value={userAddPassword} onChange={(e)=>{setUserAddPassword(e.target.value)}} className='usersPageInputPassword'  name="userAddPassword" placeholder='Slaptažodis' required></input>
+                <select className="usersPageSelectType" onChange={(e)=>{(setUserAddType(e.target.value))}} value={userAddType}>
+                  <option value="admin">Administratorius</option>
+                  <option value="user">Vartotojas</option>
+                </select>
+                <button type="submit" className='usersPageAddBtn' value="Pridėti">{isEditing ? "Atnaujinti": "Pridėti"}</button>
             </form></div>
             }
         </div>
@@ -164,11 +233,10 @@ const Users = () => {
                         <div>Vartotojas: {user.name}</div>
                         <div>E. Paštas: {user.email}</div>
                     </div>
-                <div > {user.type ==="admin"? "Administratorius": "Vartotojas"}</div>
+                <div className='usersPageType'> {user.type ==="admin"? "Administratorius": "Vartotojas"}</div>
                 <div className='usersPageSingleBtns'>
-                    <button onClick={()=>{deleteUser(user._id)}}>Pašalinti</button>
-                    <button>Redaguoti</button>
-                    <button>{user.type === "admin"? "Padaryti vartotoju": "Padaryti administratorium"}</button>
+                    <button onClick={()=>{editUser(user)}} className="usersPageEditBtn"><FaRegEdit /></button>
+                    <button onClick={()=>{deleteUser(user._id)}} className="usersPageDeleteBtn"><FaTrash /></button>
                 </div>
                 </div>
             ))}

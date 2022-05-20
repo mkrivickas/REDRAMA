@@ -48,7 +48,7 @@ const ExpenseList = ({ expense, deleteExpense, editExpense }) => (
                         </div>
                         <div>
                             <button
-                                onClick={() => deleteExpense(expense._id)}
+                                onClick={() => deleteExpense(expense._id, expense)}
                                 className='ExpenseListDelete-button'
                             >
                                 <FaTrash />

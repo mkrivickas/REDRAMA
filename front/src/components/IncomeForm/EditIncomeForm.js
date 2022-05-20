@@ -47,7 +47,7 @@ const EditIncomeForm = (props) => {
 			Name: editName,
 			Amount: editAmount,
 			Date: editDate,
-			Type: 'pajamos',
+			Type: 'income',
 			Category: editCategory
 		};
 		props.updateIncome(income._id, updatedIncome);

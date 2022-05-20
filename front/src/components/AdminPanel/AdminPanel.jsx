@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Categories from './Categories/Categories'
 import './AdminPanel.css';
 import Users from './Users/Users';
+import HistoryLog from './HistoryLog/HistoryLog';
 
 const AdminPanel = () => {
     let [adminPage, setAdminPage] = useState("users")
@@ -27,7 +28,7 @@ const AdminPanel = () => {
         {
             adminPage === "history" && 
                 <div className='adminHistoryPanel'>
-                    History
+                    <HistoryLog/>
                 </div>
         }
     </div>

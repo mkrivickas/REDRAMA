@@ -26,7 +26,7 @@ const IncomesList = (props) => (
 						>
 							<FaRegEdit />
 						</button>
-						<button onClick={() => props.deleteIncome(income._id)} className="IncomeListDelete-button ms-3">
+						<button onClick={() => props.deleteIncome(income._id, income)} className="IncomeListDelete-button ms-3">
 							<FaTrash />
 						</button>
 					</div>
