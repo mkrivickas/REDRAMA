@@ -107,7 +107,7 @@ export default function ExpenseDoughnutChart(props) {
     // 		});
     // 	},
     // 	[ props.combinedList ]
-    // );
+    // );nuotrau
 
     return (
         <div className='Doughnut'>
