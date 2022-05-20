@@ -28,7 +28,7 @@
 	transition: .2s;
 }
 
-.EdiIncomeForm-input > .placeholder {
+.EditIncomeForm-input > .placeholder {
 	color: #364652;
 	font-family: sans-serif;
 
@@ -69,3 +69,8 @@
 /* #button-incomeCancel:active {
 	background-color: rgb(169, 21, 34);
 } */
+
+/* VERY F@CKIN' SVARBU: Kalendoriaus ikonėlė*/
+::-webkit-calendar-picker-indicator {
+	filter: invert(0.75);
+}

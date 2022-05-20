@@ -1,75 +1,63 @@
-.AddIncomeForm__controls {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	margin-bottom: 1rem;
-	text-align: left;
+.AddIcome-form {
+	/* justify-content: center; */
+	margin-top: 3%;
+	margin-bottom: 3%;
 }
 
-.AddIncomeForm__category {
-	color: #dee5e5; /*Input laukelių antraščių spalva (nebenaudojama, bet užkomentuotas kodas likęs ExpenseForm.js kaip opcija ateičiai)*/
+.AddIncomeForm-title {
+	color: rgb(79, 130, 79);
+	font-family: sans-serif;
+	font-size: 26px;
+	font-weight: 600;
+	margin-top: 10px;
+	text-align: center;
 }
 
-.AddIncomeForm-option,
 .AddIncomeForm-input {
-	display: block;
-	width: 100%;
+	border-radius: 2px;
 	border: none;
-	border-bottom: 1px solid #dee5e5;
-	box-sizing: border-box;
-	/* font-family: 'Poppins'; */
-	font-weight: bold;
-	font-size: 24px;
-	transition: 0.3s ease;
-	-moz-transition: 0.3s ease;
-	-webkit-transition: 0.3s ease;
-	-o-transition: 0.3s ease;
-	-ms-transition: 0.3s ease;
-	padding-top: 30px;
-	padding-bottom: 5px;
-	-webkit-appearance: none;
-	background: transparent;
+	background: none;
+	width: 100%;
+	color: white;
+
+	font-size: 16px;
+
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #d1d1d4;
+	transition: .2s;
 }
 
-/* VERY F@CKIN' SVARBU: Kalendoriaus ikonėlė*/
-::-webkit-calendar-picker-indicator {
-	filter: invert(0.75);
-}
+.AddIncomeForm-input > .placeholder {
+	color: #364652;
+	font-family: sans-serif;
 
-.AddIncomeForm-input::placeholder {
-	color: #dee5e5;
-}
+	line-height: 14px;
 
-.AddIncomeForm__label {
-	font-weight: bold;
-	margin-bottom: 0.5rem;
-	width: 20rem;
-	display: block;
-}
-
-.AddIncomeForm-input {
-	font: inherit;
-	color: #dee5e5; /*Edit input formų spalvos*/
-	padding: 0.5rem;
-	/* border-radius: 6px; */
-	border-bottom: 1px solid #dee5e5; /*Input laukelių rėmelio spalva*/
-	width: 80%;
-	max-width: 100%;
-}
-
-.AddIncomeForm-select {
-	font: inherit;
-	padding: 0.5rem;
-	/* border-radius: 6px; */
-	color: #dee5e5; /*Kategorijos teksto spalva*/
-	border-bottom: 1px solid #dee5e5;
-	width: 20rem;
-	max-width: 100%;
+	top: 20px;
 }
 
 #button-incomeAdd {
-	border-color: #ffd700;
-	color: #000000;
-	background-color: #ffd700;
-	border: 1px solid #ffd700;
+	background-color: rgb(35, 63, 35);
+	border-radius: 5px;
+	border: 0;
+	color: #eee;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 5px;
+	width: 100%;
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* #button-incomeUpdate:active {
+	background-color: rgb(11, 38, 59);
+} */
+
+/* #button-incomeCancel:active {
+	background-color: rgb(169, 21, 34);
+} */
+/* VERY F@CKIN' SVARBU: Kalendoriaus ikonėlė*/
+::-webkit-calendar-picker-indicator {
+	filter: invert(0.75);
 }

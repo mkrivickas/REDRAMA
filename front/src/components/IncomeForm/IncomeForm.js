@@ -55,37 +55,36 @@ const IncomeForm = (props) => {
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Taip, pašalinti!'
 		}).then(async (result) => {
-			console.log(props.currentUser._id)
+			console.log(props.currentUser._id);
 			if (result.isConfirmed) {
 				await fetch('http://localhost:3001/api/v1/income/' + id, {
 					method: 'DELETE'
-				}).then(()=>{
-					const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
-					fetch(postURLLog, {
-						method: 'POST',
-						headers: {
-							Accept: 'application/json',
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify(
-							{
+				})
+					.then(() => {
+						const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+						fetch(postURLLog, {
+							method: 'POST',
+							headers: {
+								Accept: 'application/json',
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify({
 								UserId: props.currentUser._id,
-								ActionType: "Ištrynė pajamą",
+								ActionType: 'Ištrynė pajamą',
 								Timestamp: Date.now(),
 								Data: income
 							})
-	
-							}
-						);
-				}).then(() => {
-					setIncomes(incomes.filter((income) => income.id !== id));
-					fetchData();
-					Swal.fire({
-						title: 'Jūsų duomenys buvo pašalinti!',
-						icon: 'success',
-						confirmButtonText: 'Gerai'
+						});
+					})
+					.then(() => {
+						setIncomes(incomes.filter((income) => income.id !== id));
+						fetchData();
+						Swal.fire({
+							title: 'Jūsų duomenys buvo pašalinti!',
+							icon: 'success',
+							confirmButtonText: 'Gerai'
+						});
 					});
-				});
 			}
 		});
 
@@ -101,7 +100,7 @@ const IncomeForm = (props) => {
 			body: JSON.stringify(updatedIncome)
 		};
 		fetch('http://localhost:3001/api/v1/income/' + id, requestOptions)
-			.then(()=>{
+			.then(() => {
 				const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
 				fetch(postURLLog, {
 					method: 'POST',
@@ -109,16 +108,13 @@ const IncomeForm = (props) => {
 						Accept: 'application/json',
 						'Content-Type': 'application/json'
 					},
-					body: JSON.stringify(
-						{
-							UserId: props.currentUser._id,
-							ActionType: "Atnaujino pajamą",
-							Timestamp: Date.now(),
-							Data: updatedIncome
-						})
-
-						}
-					);
+					body: JSON.stringify({
+						UserId: props.currentUser._id,
+						ActionType: 'Atnaujino pajamą',
+						Timestamp: Date.now(),
+						Data: updatedIncome
+					})
+				});
 			})
 			.then(() => {
 				swal({
@@ -151,68 +147,72 @@ const IncomeForm = (props) => {
 				// We should keep the fields consistent for managing this data later
 				newIncome
 			)
-		}).then(()=>{
-					const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
-					fetch(postURLLog, {
-						method: 'POST',
-						headers: {
-							Accept: 'application/json',
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify(
-							{
-								UserId: props.currentUser._id,
-								ActionType: "Pridėjo pajamą",
-								Timestamp: Date.now(),
-								Data: newIncome
-							})
-	
-							}
-						);
-					}).then(()=>{
-					swal({
-						title: 'Puiku!',
-						text: 'Jūsų duomenys buvo pridėti',
-						icon: 'success',
-						button: 'Gerai!'
-					});});
+		})
+			.then(() => {
+				const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+				fetch(postURLLog, {
+					method: 'POST',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						UserId: props.currentUser._id,
+						ActionType: 'Pridėjo pajamą',
+						Timestamp: Date.now(),
+						Data: newIncome
+					})
+				});
+			})
+			.then(() => {
+				swal({
+					title: 'Puiku!',
+					text: 'Jūsų duomenys buvo pridėti',
+					icon: 'success',
+					button: 'Gerai!'
+				});
+			});
 	};
 
 	return (
 		<div className="incomePage container-fluid">
 			<div className="row">
-				<div className="col-lg-5 col-md-12">
+				<div className="col-lg-5 col-md-12 col-sm-12">
 					<div className="incomeDougnut">
 						<IncomeDoughnut />
 					</div>
 				</div>
 
-				<div className="incomeEnter col-lg-7 col-md-12">
-					{editing ? (
-						<Fragment>
-							<EditIncomeForm
-								editing={editing}
-								setEditing={setEditing}
-								currentIncome={currentIncome}
-								updateIncome={updateIncome}
-							/>
-						</Fragment>
-					) : (
-						<Fragment>
-							<AddIncomeForm addIncome={addIncome} currentUser={props.currentUser} />
-						</Fragment>
-					)}
+				<div className=" col-lg-7 col-md-12 col-sm-12">
+					<div className="incomeEnter">
+						{editing ? (
+							<Fragment>
+								<EditIncomeForm
+									editing={editing}
+									setEditing={setEditing}
+									currentIncome={currentIncome}
+									updateIncome={updateIncome}
+								/>
+							</Fragment>
+						) : (
+							<Fragment>
+								<AddIncomeForm addIncome={addIncome} currentUser={props.currentUser} />
+							</Fragment>
+						)}
+					</div>
 
-					<div className=" IncomesListContainer">
+					<div className=" IncomesListContainer ">
 						<IncomesList
 							className="IncomesList "
 							incomes={incomes}
 							editRow={editRow}
 							deleteIncome={deleteIncome}
 						/>
+						<button className="IncomeListSeeMoreBtn">Žiūrėkite daugiau</button>
 					</div>
 				</div>
 			</div>
+			<IncomesList className="IncomesList " incomes={incomes} editRow={editRow} deleteIncome={deleteIncome} />
 		</div>
 	);
 };
