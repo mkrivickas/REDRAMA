@@ -69,6 +69,7 @@ option {
     font: inherit;
     padding: 0.5rem;
     /* border-radius: 6px; */
+    color: #dee5e5;
     border-bottom: 1px solid #dee5e5;
     width: 20rem;
     max-width: 100%;

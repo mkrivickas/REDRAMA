@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ExpenseList from './ExpenseList';
 import './ExpenseForm.css';
+import ExpenseDoughnutChart from './ExpenseDoughnutChart';
 import Swal from 'sweetalert2';
 
 const validExpenseAmount = new RegExp('^[0-9.]{1,10}?$');
@@ -9,6 +10,7 @@ const ExpenseForm = (props) => {
 
     let [categories, setCategories] = useState("")
     let [isLoading, setIsLoading] = useState(true)
+    let [isloadingExp, setIsLoadingExp] = useState(true);
 
 
     function fetchCategories(){
@@ -18,7 +20,6 @@ const ExpenseForm = (props) => {
             setCategories(data.data.categories);
             setIsLoading(false);
             console.log(categories)
-            
             });
     }
     
@@ -87,6 +88,7 @@ const ExpenseForm = (props) => {
 				}
 			})
 			setExpense(tempData);
+            setIsLoadingExp(false)
 		});
 	};
 
@@ -238,6 +240,11 @@ const ExpenseForm = (props) => {
 	return (
 		<div className="expenseCategorySelector">
             <form className='container-fluid' onSubmit={submitHandler}>
+                <div className="expense-chart row d-flex justify-content-center">
+                    {!isLoading && !isloadingExp &&<ExpenseDoughnutChart 
+                        categories={categories} expense={expense}
+                    />}
+                </div>
                 <div className='new-expense__controls row d-flex justify-content-center'>
                     <div className='new-expense__control col-5'>
                         <label className='new-expense__category'>
