@@ -28,12 +28,10 @@ export default function MainDoughnutChart(props) {
 					tempIncome += parseInt(listItem.Amount);
 
 					setTotalIncome(tempIncome);
-					console.log(tempIncome);
 				} else {
 					tempExpense += parseInt(listItem.Amount);
 
 					setTotalExpense(tempExpense);
-					console.log(tempExpense);
 				}
 			});
 		},

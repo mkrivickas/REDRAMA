@@ -11,7 +11,7 @@ const TransactionsTable = (props) => (
 		<div className="transactionsSingle-list">
 			{props.combinedList.length > 0 ? (
 				props.combinedList.map((item) => (
-					<div
+					<div key={item._id}
 						className={
 							item.Type === 'expense' ? (
 								'transactionsSingleItem transactionsSingleRed'
