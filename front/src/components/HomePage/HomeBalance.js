@@ -28,8 +28,8 @@ const HomeBalance = (props) => {
 
 			<div className="homeBalancePage">
 				<div className="balance-text">
-					<h2>Balansas </h2>
-					<h2>{mainBalance}€</h2>
+					<h2>Balansas</h2>
+					<h2 className="mainBalance">{mainBalance} €</h2>
 				</div>
 			</div>
 		</div>

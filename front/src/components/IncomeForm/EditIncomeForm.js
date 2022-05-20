@@ -62,12 +62,12 @@ const EditIncomeForm = (props) => {
 	};
 
 	return (
-		<div className="EditIncomesForm-container">
-			<form className="EditIncome-form" onSubmit={handleSubmit}>
-				<h3 className="EditIncomeForm-title "> Atnaujinti pajamas</h3>
-				<div>
+		<div className="EditIncomesForm container-fluid">
+			<form className="EditIncome-form row" onSubmit={handleSubmit}>
+				<h3 className="EditIncomeForm-title col-lg-12 col-md-12 col-sm-12"> Atnaujinti pajamas</h3>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<select
-						className="EditIncomeForm-input"
+						className="EditIncomeForm-input "
 						value={editCategory}
 						onChange={(e) => {
 							setEditCategory(e.target.value);
@@ -87,9 +87,9 @@ const EditIncomeForm = (props) => {
 							)}
 					</select>
 				</div>
-				<div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<input
-						className="EditIncomeForm-input"
+						className="EditIncomeForm-input "
 						type="number"
 						min="0.01"
 						step="0.01"
@@ -102,9 +102,9 @@ const EditIncomeForm = (props) => {
 						}}
 					/>
 				</div>
-				<div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<input
-						className="EditIncomeForm-input"
+						className="EditIncomeForm-input "
 						type="date"
 						name="incomeDate"
 						required
@@ -117,9 +117,9 @@ const EditIncomeForm = (props) => {
 						}}
 					/>
 				</div>
-				<div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<input
-						className="EditIncomeForm-input"
+						className="EditIncomeForm-input "
 						type="text"
 						name="incomeName"
 						required
@@ -133,13 +133,18 @@ const EditIncomeForm = (props) => {
 						}}
 					/>
 				</div>
-
-				<div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<button id="button-incomeUpdate">Atnaujinti pajamas</button>
 				</div>
-				<button id="button-incomeCancel" onClick={() => props.setEditing(false)}>
-					Atšaukti
-				</button>
+				<div className="col-lg-6 col-md-12 col-sm-12">
+					<button
+						id="button-incomeCancel"
+						className="col-lg-6 col-md-12 col-sm-12"
+						onClick={() => props.setEditing(false)}
+					>
+						Atšaukti
+					</button>
+				</div>
 			</form>
 		</div>
 	);

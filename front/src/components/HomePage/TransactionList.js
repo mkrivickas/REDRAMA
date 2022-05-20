@@ -5,7 +5,7 @@ import './TransactionsTable.css';
 import './TransactionList.css';
 
 function TransactionList(props) {
-	const { id } = props;
+	// const { id } = props;
 	let [ combinedList, setCombinedList ] = useState([]);
 	let [ loading, setLoading ] = useState(true);
 	let combinedArr;

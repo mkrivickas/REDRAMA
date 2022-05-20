@@ -39,7 +39,9 @@ const TransactionsTable = (props) => (
 				))
 			) : (
 				<tr>
-					<td colSpan={3}>Nėra pajamų</td>
+					<td className="emptyTableText" colSpan={3}>
+						Nėra duomenų
+					</td>
 				</tr>
 			)}
 		</div>

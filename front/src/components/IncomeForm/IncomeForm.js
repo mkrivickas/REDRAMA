@@ -4,7 +4,7 @@ import EditIncomeForm from './EditIncomeForm';
 // import Header from './IncomeHeader';
 import './IncomeForm.css';
 import AddIncomeForm from './AddIncomeForm';
-import MainDoughnutChart from '../HomePage/MainDoughnutChart';
+import IncomeDoughnut from './IncomeDoughnut';
 
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
@@ -130,13 +130,15 @@ const IncomeForm = (props) => {
 	};
 
 	return (
-		<div className="incomeContainer">
+		<div className="incomePage container-fluid">
 			<div className="row">
-				<div className="col-lg-7 col-md-12">
-					<div className="istrinti">11111</div>
+				<div className="col-lg-5 col-md-12">
+					<div className="incomeDougnut">
+						<IncomeDoughnut />
+					</div>
 				</div>
 
-				<div className="col-lg-5 col-md-12">
+				<div className="incomeEnter col-lg-7 col-md-12">
 					{editing ? (
 						<Fragment>
 							<EditIncomeForm
@@ -151,14 +153,15 @@ const IncomeForm = (props) => {
 							<AddIncomeForm addIncome={addIncome} currentUser={props.currentUser} />
 						</Fragment>
 					)}
-				</div>
-				<div className="col-lg-12 col-md-12 IncomesListContainer">
-					<IncomesList
-						className="IncomesList "
-						incomes={incomes}
-						editRow={editRow}
-						deleteIncome={deleteIncome}
-					/>
+
+					<div className=" IncomesListContainer">
+						<IncomesList
+							className="IncomesList "
+							incomes={incomes}
+							editRow={editRow}
+							deleteIncome={deleteIncome}
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
