@@ -97,7 +97,6 @@ function App() {
 								{currentUser.type === 'admin' && (
 									<Route path="/admin" element={<AdminPanel currentUser={currentUser} />} />
 								)}
-								{/* <Route path="/admin" element={<NewExpense />} /> */}
 							</Routes>
 						</div>
 					</Router>

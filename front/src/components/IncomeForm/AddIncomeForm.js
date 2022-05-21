@@ -70,7 +70,7 @@ const AddIncomeForm = (props) => {
 	};
 
 	return (
-		<div className="EditIncomesForm container-fluid">
+		<div className="AddIncomesForm container">
 			<form className="AddIncome-form row" onSubmit={handleSubmit}>
 				<h3 className="AddIncomeForm-title col-lg-12 col-md-12 col-sm-12"> Pridėti pajamas</h3>
 				<div className="col-lg-6 col-md-12 col-sm-12">

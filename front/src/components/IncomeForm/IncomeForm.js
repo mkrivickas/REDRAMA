@@ -175,11 +175,14 @@ const IncomeForm = (props) => {
 	};
 
 	return (
-		<div className="incomePage container-fluid">
-			<div className="row">
+		<div className=" container-fluid">
+			<div className="row incomePage">
 				<div className="col-lg-5 col-md-12 col-sm-12">
 					<div className="incomeDougnut">
 						<IncomeDoughnut />
+						<div>
+							<h2 className="totalIncome">{totalIncome} €</h2>
+						</div>
 					</div>
 				</div>
 
@@ -201,7 +204,7 @@ const IncomeForm = (props) => {
 						)}
 					</div>
 
-					<div className=" IncomesListContainer ">
+					<div className="IncomesListContainer ">
 						<IncomesList
 							className="IncomesList "
 							incomes={incomes}
@@ -212,7 +215,10 @@ const IncomeForm = (props) => {
 					</div>
 				</div>
 			</div>
-			<IncomesList className="IncomesList " incomes={incomes} editRow={editRow} deleteIncome={deleteIncome} />
+
+			<div className="IncomesListContainer container-fluid">
+				<IncomesList incomes={incomes} editRow={editRow} deleteIncome={deleteIncome} />
+			</div>
 		</div>
 	);
 };

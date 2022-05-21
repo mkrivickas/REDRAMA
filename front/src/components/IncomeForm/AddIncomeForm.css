@@ -1,15 +1,14 @@
-.AddIcome-form {
-	/* justify-content: center; */
-	margin-top: 3%;
+.AddIcomesForm {
+	margin-top: 50px;
 	margin-bottom: 3%;
 }
 
 .AddIncomeForm-title {
-	color: rgb(79, 130, 79);
+	color: #ffd700;
 	font-family: sans-serif;
 	font-size: 26px;
 	font-weight: 600;
-	margin-top: 10px;
+	padding: 10px;
 	text-align: center;
 }
 
@@ -31,23 +30,22 @@
 .AddIncomeForm-input > .placeholder {
 	color: #364652;
 	font-family: sans-serif;
-
-	line-height: 14px;
-
 	top: 20px;
 }
 
 #button-incomeAdd {
-	background-color: rgb(35, 63, 35);
+	background-color: #ffd700;
 	border-radius: 5px;
 	border: 0;
-	color: #eee;
+	color: #364652;
 	cursor: pointer;
 	font-size: 14px;
 	padding: 5px;
 	width: 100%;
-	margin-top: 10px;
+	margin-top: 30px;
+	margin-bottom: 15px;
 	text-align: center;
+	font-weight: bold;
 }
 
 /* #button-incomeUpdate:active {

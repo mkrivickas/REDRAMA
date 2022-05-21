@@ -1,11 +1,10 @@
 .EditIcome-form {
-	/* justify-content: center; */
-	margin-top: 3%;
+	margin-top: 50px;
 	margin-bottom: 3%;
 }
 
 .EditIncomeForm-title {
-	color: rgb(79, 130, 79);
+	color: #364652;
 	font-family: sans-serif;
 	font-size: 26px;
 	font-weight: 600;
@@ -31,23 +30,22 @@
 .EditIncomeForm-input > .placeholder {
 	color: #364652;
 	font-family: sans-serif;
-
-	line-height: 14px;
-
 	top: 20px;
 }
 
 #button-incomeUpdate {
-	background-color: rgb(35, 63, 35);
+	background-color: #ffd700;
 	border-radius: 5px;
 	border: 0;
-	color: #eee;
+	color: #364652;
 	cursor: pointer;
 	font-size: 14px;
 	padding: 5px;
 	width: 100%;
-	margin-top: 10px;
+	margin-top: 30px;
+	margin-bottom: 15px;
 	text-align: center;
+	font-weight: bold;
 }
 
 /* #button-incomeUpdate:active {
@@ -58,11 +56,13 @@
 	border-radius: 5px;
 	border: 0;
 	color: #eee;
+	background-color: #364652;
 	cursor: pointer;
 	font-size: 14px;
 	padding: 5px;
 	width: 100%;
-	margin-top: 10px;
+	margin-top: 30px;
+	margin-bottom: 15px;
 	text-align: center;
 }
 
