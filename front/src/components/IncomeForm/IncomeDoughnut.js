@@ -17,7 +17,7 @@ function IncomeDoughnut() {
 		]
 	};
 	return (
-		<div className="Doughnut-income">
+		<div className="Doughnut-income  ">
 			<Doughnut
 				data={data}
 				width={600}

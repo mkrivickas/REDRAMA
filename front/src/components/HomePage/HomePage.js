@@ -3,7 +3,7 @@ import TransactionList from './TransactionList';
 
 function HomePage(props) {
 	return (
-		<div className="transactionsDiv container-fluid">
+		<div className="transactionsDiv ">
 			<TransactionList currentUser={props.currentUser} />
 		</div>
 	);

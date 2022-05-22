@@ -180,8 +180,9 @@ const IncomeForm = (props) => {
 				<div className="col-lg-5 col-md-12 col-sm-12">
 					<div className="incomeDougnut">
 						<IncomeDoughnut />
-						<div>
-							<h2 className="totalIncome">{totalIncome} €</h2>
+
+						<div className="totalIncome">
+							<h2 className="totalIncome-number">{totalIncome} €</h2>
 						</div>
 					</div>
 				</div>
