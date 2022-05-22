@@ -20,9 +20,6 @@
 	background-color: #222;
 }
 .transactionsSingle-list {
-	overflow-y: hidden;
-	overflow-x: hidden;
-	height: 480px;
 	margin-bottom: 1%;
 }
 

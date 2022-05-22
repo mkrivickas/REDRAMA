@@ -13,8 +13,22 @@ const IncomeForm = (props) => {
 	const [ currentIncome, setCurrentIncome ] = useState({});
 	const [ editing, setEditing ] = useState(false);
 	const [ incomes, setIncomes ] = useState([]);
+	let [isShowMore, setIsShowMore] = useState(false);
 
 	const [ totalIncome, setTotalIncome ] = useState(0);
+	let [categories, setCategories] = useState([]);
+	let [loading, setIsLoading] = useState(true);
+
+
+	function fetchCategories(){
+        fetch('http://localhost:3001/api/v1/category/')
+            .then(response => response.json())
+            .then(data => {
+            setCategories(data.data.categories);
+            setIsLoading(false);
+            });
+    }
+
 
 	useEffect(
 		() => {
@@ -41,6 +55,7 @@ const IncomeForm = (props) => {
 
 	useEffect(() => {
 		fetchData();
+		fetchCategories();
 	}, []);
 
 	const deleteIncome = async (id, income) => {
@@ -55,7 +70,6 @@ const IncomeForm = (props) => {
 			cancelButtonColor: '#d33',
 			confirmButtonText: 'Taip, pašalinti!'
 		}).then(async (result) => {
-			console.log(props.currentUser._id);
 			if (result.isConfirmed) {
 				await fetch('http://localhost:3001/api/v1/income/' + id, {
 					method: 'DELETE'
@@ -165,6 +179,7 @@ const IncomeForm = (props) => {
 				});
 			})
 			.then(() => {
+				fetchData();
 				swal({
 					title: 'Puiku!',
 					text: 'Jūsų duomenys buvo pridėti',
@@ -179,7 +194,7 @@ const IncomeForm = (props) => {
 			<div className="row incomePage">
 				<div className="col-lg-5 col-md-12 col-sm-12">
 					<div className="incomeDougnut">
-						<IncomeDoughnut />
+						{!loading&& <IncomeDoughnut incomes={incomes} categories={categories}/>}
 
 						<div className="totalIncome">
 							<h2 className="totalIncome-number">{totalIncome} €</h2>
@@ -205,21 +220,22 @@ const IncomeForm = (props) => {
 						)}
 					</div>
 
-					<div className="IncomesListContainer ">
+					{!isShowMore && <div className="IncomesListContainer ">
 						<IncomesList
 							className="IncomesList "
 							incomes={incomes}
 							editRow={editRow}
 							deleteIncome={deleteIncome}
+							isShowMore={isShowMore} 
+							setIsShowMore={setIsShowMore}
 						/>
-						<button className="IncomeListSeeMoreBtn">Žiūrėkite daugiau</button>
-					</div>
+					</div>}
 				</div>
 			</div>
 
-			<div className="IncomesListContainer container-fluid">
-				<IncomesList incomes={incomes} editRow={editRow} deleteIncome={deleteIncome} />
-			</div>
+			{isShowMore &&<div className="IncomesListContainer container-fluid">
+				<IncomesList incomes={incomes} editRow={editRow} deleteIncome={deleteIncome} isShowMore={isShowMore} setIsShowMore={setIsShowMore}/>
+			</div>}
 		</div>
 	);
 };

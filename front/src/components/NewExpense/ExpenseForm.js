@@ -11,18 +11,6 @@ const ExpenseForm = (props) => {
     let [categories, setCategories] = useState("")
     let [isLoading, setIsLoading] = useState(true)
     let [isloadingExp, setIsLoadingExp] = useState(true);
-
-
-    function fetchCategories(){
-        fetch('http://localhost:3001/api/v1/category/')
-            .then(response => response.json())
-            .then(data => {
-            setCategories(data.data.categories);
-            setIsLoading(false);
-            });
-    }
-    
-
 	const [currentExpense, setCurrentExpense] = useState({});
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
@@ -35,6 +23,17 @@ const ExpenseForm = (props) => {
     const [enteredCategory, setEnteredCategory] = useState('food');
 
     const [editing, setEditing] = useState(false);
+
+
+    
+    function fetchCategories(){
+        fetch('http://localhost:3001/api/v1/category/')
+            .then(response => response.json())
+            .then(data => {
+            setCategories(data.data.categories);
+            setIsLoading(false);
+            });
+    }
 
 
 	const titleChangeHandler = (event) => {
