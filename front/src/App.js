@@ -14,9 +14,7 @@ import AuthScreen from './components/AuthScreen/AuthScreen';
 import History from './components/History/History';
 
 function App() {
-	console.log(window.location.href);
 	let [ currentUser, setCurrentUser ] = useState('');
-	console.log(currentUser);
 	function logout() {
 		Swal.fire({
 			title: 'Ar tikrai norite atsijungti?',
@@ -46,7 +44,6 @@ function App() {
 					id: saved
 				})
 			};
-			console.log('user is saved');
 			fetch('http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/login/savedUser', requestOptions)
 				.then((response) => response.json())
 				.then((data) => {
@@ -76,10 +73,6 @@ function App() {
 							<Route path="/login" element={<Login setCurrentUser={setCurrentUser} />} />
 						</Routes>
 					</Router>
-					{/* <h1>Registruotis</h1>
-					<Register setCurrentUser={setCurrentUser} />
-					<h1>Prisijungti</h1>
-					<Login setCurrentUser={setCurrentUser} /> */}
 				</div>
 			)}
 			{currentUser && (

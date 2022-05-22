@@ -20,7 +20,6 @@ const AddIncomeForm = (props) => {
 		fetch('http://localhost:3001/api/v1/category/').then((response) => response.json()).then((data) => {
 			setCategories(data.data.categories);
 			setIsLoading(false);
-			console.log(categories);
 		});
 	}
 

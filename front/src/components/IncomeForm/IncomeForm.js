@@ -30,7 +30,7 @@ const IncomeForm = (props) => {
 	const fetchData = async () => {
 		await fetch('http://localhost:3001/api/v1/income').then((response) => response.json()).then((data) => {
 			let tempData = [];
-			data.data.incomes.map((income) => {
+			data.data.incomes.forEach((income) => {
 				if (income.UserId === props.currentUser._id) {
 					tempData.push(income);
 				}

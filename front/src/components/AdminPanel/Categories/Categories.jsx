@@ -24,7 +24,6 @@ const Categories = () => {
   function addCategory(e){
     e.preventDefault();
     let isValid = true;
-    let formData = e.target;
     if (categoryName.length === 0 || (categoryName.length > 0 && categoryName.trim().length)){
     if(!validCategory.test(categoryName)){
       isValid = false;
@@ -101,7 +100,7 @@ const Categories = () => {
         icon: 'warning',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Gerai'
-      })
+      });
   }
   }
 
@@ -193,7 +192,7 @@ const Categories = () => {
 
   const categoryListItem = (category) => {
     return(
-      <div className='categorySingleCategory'>
+      <div className='categorySingleCategory' key={category._id}>
               <div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType ==="income" ? <>Pajamos</>: <>Išlaidos</>}</div> 
               <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button>
               <button onClick={()=>{editCategory(category)}}><FaRegEdit /></button>

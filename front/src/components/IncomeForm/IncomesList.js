@@ -4,8 +4,8 @@ import { FaRegEdit } from 'react-icons/fa';
 import './IncomesList.css';
 
 const IncomesList = (props) => (
-	<div class="IncomesList">
-		<div class="IncomesListName-title">
+	<div className="IncomesList">
+		<div className="IncomesListName-title">
 			<div className="IncomesListDateTitle">Data</div>
 			<div className="IncomesListCategoryTitle">Kategorija</div>
 			<div className="IncomesListNameTitle">Pavadinimas</div>
@@ -15,7 +15,7 @@ const IncomesList = (props) => (
 		</div>
 		{props.incomes.length > 0 ? (
 			props.incomes.map((income) => (
-				<div className="IncomesListSingle">
+				<div key={income._id} className="IncomesListSingle">
 					<div className="IncomesListDate">{income.Date.slice(0, 10)}</div>
 					<div className="IncomesListCategory">{income.Category}</div>
 					<div className="IncomesListName">{income.Name}</div>
@@ -36,9 +36,9 @@ const IncomesList = (props) => (
 				</div>
 			))
 		) : (
-			<tr>
-				<td colSpan={3}>Nėra pajamų</td>
-			</tr>
+			<div>
+				<div colSpan={3}>Nėra pajamų</div>
+			</div>
 		)}
 	</div>
 );
