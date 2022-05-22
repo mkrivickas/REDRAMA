@@ -80,8 +80,8 @@ function TransactionList(props) {
 
 	return (
 		!loading && (
-			<div className="transactionsDivDiv ">
-				<div className="row">
+			<div className="transactionsDivDiv container-fluid">
+				<div className=" row">
 					<div className="doughnut-homePage col-lg-6 col-md-12 col-sm-12">
 						<HomeBalance combinedList={combinedList} />
 					</div>
@@ -123,8 +123,9 @@ function TransactionList(props) {
 							<TransactionsTable combinedList={combinedList} />
 						</div>
 					</div>
-				</div>
-			</div>
+				<TransactionsTable combinedList={combinedList} />
+			</div></div>
+			
 		)
 	);
 }

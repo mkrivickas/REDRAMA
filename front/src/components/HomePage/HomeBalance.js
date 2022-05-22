@@ -25,10 +25,7 @@ const HomeBalance = (props) => {
 			<MainDoughnutChart combinedList={props.combinedList} />
 
 			<div className="homeBalancePage">
-				<div className="balance-text">
-					<h2>Balansas</h2>
-					<h2 className="mainBalance">{mainBalance} €</h2>
-				</div>
+				<h2 className="mainBalance">{mainBalance} €</h2>
 			</div>
 		</div>
 	);

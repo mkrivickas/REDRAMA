@@ -69,39 +69,43 @@ const AddIncomeForm = (props) => {
 	};
 
 	return (
-		<div>
-			<form className="AddIncome-form" onSubmit={handleSubmit}>
-				<h3 className="AddIncomeForm-title"> Pridėti pajamas</h3>
-				<select defaultValue={""}
-					className="AddIncomeForm-input"
-					onChange={(e) => {
-						setIncomeCategory(e.target.value);
-					}}
-					required
-					name="category"
-				>
-					<option hidden value={""}>
-						-----------
-					</option>
-					{!isLoading &&
-						categories.map(
-							(category) =>
-								category.categoryType === 'income' && (
-									<option key={category._id} value={category.categoryName}>{category.categoryName}</option>
-								)
-						)}
-				</select>
-				<input
-					className="AddIncomeForm-input"
-					type="text"
-					name="incomeName"
-					required
-					maxLength="20"
-					minLength="3"
-					placeholder="Pajamų pavadinimas"
-					onChange={incomeNameAdd}
-				/>
-				<div>
+		<div className="AddIncomesForm container">
+			<form className="AddIncome-form row" onSubmit={handleSubmit}>
+				<h3 className="AddIncomeForm-title col-lg-12 col-md-12 col-sm-12"> Pridėti pajamas</h3>
+				<div className="col-lg-6 col-md-12 col-sm-12">
+					<select
+						className="AddIncomeForm-input"
+						onChange={(e) => {
+							setIncomeCategory(e.target.value);
+						}}
+						required
+						name="category"
+					>
+						<option selected="true" hidden value="">
+							-----------
+						</option>
+						{!isLoading &&
+							categories.map(
+								(category) =>
+									category.categoryType === 'income' && (
+										<option value={category.categoryName}>{category.categoryName}</option>
+									)
+							)}
+					</select>
+				</div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
+					<input
+						className="AddIncomeForm-input"
+						type="text"
+						name="incomeName"
+						required
+						maxLength="20"
+						minLength="3"
+						placeholder="Pajamų pavadinimas"
+						onChange={incomeNameAdd}
+					/>
+				</div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<input
 						id="addIncomeFormInput"
 						className="AddIncomeForm-input"
@@ -114,7 +118,7 @@ const AddIncomeForm = (props) => {
 						onChange={incomeAmountAdd}
 					/>
 				</div>
-				<div>
+				<div className="col-lg-6 col-md-12 col-sm-12">
 					<input
 						className="AddIncomeForm-input"
 						type="date"
@@ -127,11 +131,12 @@ const AddIncomeForm = (props) => {
 						value={incomeDate}
 					/>
 				</div>
-
-				<button id="button-incomeAdd" type="submit">
-					{' '}
-					Pridėti
-				</button>
+				<div className="col-lg-6 col-md-12 col-sm-12">
+					<button id="button-incomeAdd" type="submit">
+						{' '}
+						Pridėti
+					</button>
+				</div>
 			</form>
 		</div>
 	);

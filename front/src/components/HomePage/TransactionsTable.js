@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const TransactionsTable = (props) => (
 	<div className="transactionsPage">
@@ -45,6 +46,7 @@ const TransactionsTable = (props) => (
 				</tr>
 			)}
 		</div>
+		<button className="TransactionsTableSeeMoreBtn">Rodyti daugiau</button>
 	</div>
 );
 

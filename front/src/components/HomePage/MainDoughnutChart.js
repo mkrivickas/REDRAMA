@@ -13,7 +13,7 @@ export default function MainDoughnutChart(props) {
 				data: [ totalIncome, totalExpense ],
 				backgroundColor: [ '#ffd700', '#da4167' ],
 				borderColor: [ 'rgb(0,0,0)' ],
-				hoverBackgroundColor: [ '#d7c350', '#cd2851' ],
+				// hoverBackgroundColor: [ '#d7c350', '#cd2851' ],
 				hoverOffset: 20
 			}
 		]
@@ -39,15 +39,18 @@ export default function MainDoughnutChart(props) {
 	);
 
 	return (
-		<div className="Doughnut">
+		<div className="Doughnut-homePage">
 			<Doughnut
 				data={data}
-				width={400}
-				height={400}
+				width={650}
+				height={650}
 				options={{
 					layout: {
 						padding: 20
 					},
+
+					responsive: true,
+					maintainAspectRatio: false,
 					cutoutPercentage: 75,
 					legend: {
 						display: false
