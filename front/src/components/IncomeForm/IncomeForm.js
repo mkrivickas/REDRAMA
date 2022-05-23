@@ -13,6 +13,8 @@ const IncomeForm = (props) => {
 	const [ currentIncome, setCurrentIncome ] = useState({});
 	const [ editing, setEditing ] = useState(false);
 	const [ incomes, setIncomes ] = useState([]);
+	const timeElapsed = Date.now();
+  const today = new Date(timeElapsed).toLocaleString('lt-LT', {timeZone: 'Etc/GMT-6'});
 	let [isShowMore, setIsShowMore] = useState(false);
 
 	const [ totalIncome, setTotalIncome ] = useState(0);
@@ -84,8 +86,8 @@ const IncomeForm = (props) => {
 							},
 							body: JSON.stringify({
 								UserId: props.currentUser._id,
-								ActionType: 'Ištrynė pajamą',
-								Timestamp: Date.now(),
+								ActionType: "Ištrynė pajamą",
+								Timestamp: today,
 								Data: income
 							})
 						});
@@ -122,13 +124,16 @@ const IncomeForm = (props) => {
 						Accept: 'application/json',
 						'Content-Type': 'application/json'
 					},
-					body: JSON.stringify({
-						UserId: props.currentUser._id,
-						ActionType: 'Atnaujino pajamą',
-						Timestamp: Date.now(),
-						Data: updatedIncome
-					})
-				});
+					body: JSON.stringify(
+						{
+							UserId: props.currentUser._id,
+							ActionType: "Atnaujino pajamą",
+							Timestamp: today,
+							Data: updatedIncome
+						})
+
+						}
+					);
 			})
 			.then(() => {
 				swal({
@@ -161,32 +166,32 @@ const IncomeForm = (props) => {
 				// We should keep the fields consistent for managing this data later
 				newIncome
 			)
-		})
-			.then(() => {
-				const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
-				fetch(postURLLog, {
-					method: 'POST',
-					headers: {
-						Accept: 'application/json',
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						UserId: props.currentUser._id,
-						ActionType: 'Pridėjo pajamą',
-						Timestamp: Date.now(),
-						Data: newIncome
-					})
-				});
-			})
-			.then(() => {
-				fetchData();
-				swal({
-					title: 'Puiku!',
-					text: 'Jūsų duomenys buvo pridėti',
-					icon: 'success',
-					button: 'Gerai!'
-				});
-			});
+		}).then(()=>{
+					const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+					fetch(postURLLog, {
+						method: 'POST',
+						headers: {
+							Accept: 'application/json',
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(
+							{
+								UserId: props.currentUser._id,
+								ActionType: "Pridėjo pajamą",
+								Timestamp: today,
+								Data: newIncome
+							})
+	
+							}
+						);
+					}).then(()=>{
+						fetchData();
+					swal({
+						title: 'Puiku!',
+						text: 'Jūsų duomenys buvo pridėti',
+						icon: 'success',
+						button: 'Gerai!'
+					});});
 	};
 
 	return (

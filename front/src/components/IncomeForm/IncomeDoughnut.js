@@ -76,7 +76,7 @@ function IncomeDoughnut(props) {
 						}
 					}
 				}}
-			/>
+			/>}
 		</div>
 	);
 }
