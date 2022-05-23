@@ -5,7 +5,7 @@ import './Users.css';
 import { FaTrash, FaRegEdit } from 'react-icons/fa';
 
 const validUserName = new RegExp(
-    '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ ]{3,30}$'
+    '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ]{3,30}$'
   );
   const validEmail = new RegExp(
     '^[a-zA-Z0-9].{2,39}$'
