@@ -11,8 +11,33 @@ const TransactionsTable = (props) => (
 		</div>
 		<div className="transactionsSingle-list">
 			{props.combinedList.length > 0 ? (
-				props.combinedList.map((item) => (
-					<div
+				props.combinedList.map((item, index) => (
+					!props.isShowMore ?
+						index < 10 && <div key={item._id}
+						className={
+							item.Type === 'expense' ? (
+								'transactionsSingleItem transactionsSingleRed'
+							) : (
+								'transactionsSingleItem transactionsSingleGreen'
+							)
+						}
+					>
+						<div className="transactionsSingleDate">{item.Date.slice(0, 10)}</div>
+						<div className="transactionsSingleCategory">{item.Category}</div>
+						<div className="transactionsSingleName">{item.Name}</div>
+						<div
+							className={
+								item.Type === 'expense' ? (
+									'transactionsSingleAmount'
+								) : (
+									'transactionsSingleAmount transactionsSingleAmountGreen'
+								)
+							}
+						>
+							{item.Type === 'expense' ? '- ' : '+ '}
+							{item.Amount}€
+						</div>
+					</div>:<div key={item._id}
 						className={
 							item.Type === 'expense' ? (
 								'transactionsSingleItem transactionsSingleRed'
@@ -37,6 +62,7 @@ const TransactionsTable = (props) => (
 							{item.Amount}€
 						</div>
 					</div>
+
 				))
 			) : (
 				<tr>
@@ -46,7 +72,8 @@ const TransactionsTable = (props) => (
 				</tr>
 			)}
 		</div>
-		<button className="TransactionsTableSeeMoreBtn">Rodyti daugiau</button>
+		{!props.isShowMore && <button className="TransactionsTableSeeMoreBtn" onClick={()=>{props.setIsShowMore(true)}}>Rodyti daugiau</button>}
+		{props.isShowMore && <button className="TransactionsTableSeeMoreBtn" onClick={()=>{props.setIsShowMore(false)}}>Rodyti mažiau</button>}
 	</div>
 );
 

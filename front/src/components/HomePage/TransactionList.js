@@ -11,6 +11,7 @@ function TransactionList(props) {
 	let combinedArr;
 	let [ monthFilter, setMonthFilter ] = useState(0);
 	let [ copyCombinedList, setCopyCombinedList ] = useState([]);
+	let [isShowMore, setIsShowMore] = useState(false);
 
 	useEffect(() => {
 		fetchData();
@@ -35,7 +36,6 @@ function TransactionList(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				let tempDataIncome = [];
-				console.log(data.data.incomes);
 				data.data.incomes.map((income) => {
 					if (income.UserId === props.currentUser._id) {
 						tempDataIncome.push(income);
@@ -46,15 +46,12 @@ function TransactionList(props) {
 			.then(() => {
 				fetch('http://localhost:3001/api/v1/expense').then((response) => response.json()).then((data) => {
 					let tempData = [];
-					console.log(data.data.expense);
-					console.log('userId:' + props.currentUser._id);
 					data.data.expense.map((expense) => {
 						if (expense.UserId == props.currentUser._id) {
 							tempData.push(expense);
 						}
 					});
 					combinedArr = [ ...combinedArr, ...tempData ];
-					console.log(combinedArr);
 					setCombinedList(combinedArr);
 					setCopyCombinedList(combinedArr);
 					setLoading(false);
@@ -65,11 +62,10 @@ function TransactionList(props) {
 		() => {
 			if (parseInt(monthFilter) !== 0) {
 				let tempData = [];
+				setCombinedList([]);
 
-				console.log(monthFilter);
 				copyCombinedList.map((item) => {
 					let splitDate = item.Date.split('-');
-					console.log(parseInt(splitDate[1]));
 					if (parseInt(monthFilter) === parseInt(splitDate[1])) {
 						tempData.push(item);
 					}
@@ -98,7 +94,7 @@ function TransactionList(props) {
 							onChange={(e) => {
 								setMonthFilter(e.target.value);
 							}}
-						>
+						>	<option value="" hidden>---------</option>
 							<option value="1">Sausis</option>
 							<option value="2">Vasaris</option>
 							<option value="3">Kovas</option>
@@ -124,10 +120,10 @@ function TransactionList(props) {
 						)}
                     </h5>
 						<div>
-							<TransactionsTable combinedList={combinedList} />
+							{!isShowMore &&<TransactionsTable combinedList={combinedList} isShowMore={isShowMore} setIsShowMore={setIsShowMore}/>}
 						</div>
 					</div>
-				<TransactionsTable combinedList={combinedList} />
+				{isShowMore &&<TransactionsTable combinedList={combinedList} isShowMore={isShowMore}  setIsShowMore={setIsShowMore}/>}
 			</div></div>
 			
 		)

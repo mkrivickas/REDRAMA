@@ -5,7 +5,7 @@ import './Users.css';
 import { FaTrash, FaRegEdit } from 'react-icons/fa';
 
 const validUserName = new RegExp(
-    '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ ]{3,30}$'
+    '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ]{3,30}$'
   );
   const validEmail = new RegExp(
     '^[a-zA-Z0-9].{2,39}$'
@@ -31,7 +31,6 @@ const Users = () => {
                 .then(data => {
                 setUsers(data.data.users);
                 setIsLoading(false);
-                console.log(data.data.users);
                 });
     };
 
@@ -75,7 +74,6 @@ const Users = () => {
     const addUser = (e) =>{
         e.preventDefault();
         let isValid = true;
-        let formData = e.target;
         const salt = bcrypt.genSaltSync(10);
         if(!validUserName.test(userAddName)){
           isValid = false;
@@ -85,7 +83,7 @@ const Users = () => {
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Gerai'
-          })
+          });
         }
         if(!validEmail.test(userAddEmail)){
             isValid = false;
@@ -95,9 +93,9 @@ const Users = () => {
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Gerai'
-              })
+              });
         }
-        if(!validPassword.test(userAddPassword)){
+        if(!validPassword.test(userAddPassword) && !isEditing || userAddPassword && isEditing && !validPassword.test(userAddPassword)){
             isValid = false;
             Swal.fire({
                 title: 'Klaida',
@@ -105,23 +103,38 @@ const Users = () => {
                 icon: 'warning',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Gerai'
-              })
+              });
         }
           if (isValid){
             if(isEditing){
-            const passHash = bcrypt.hashSync(userAddPassword, salt);
-            const passHash2 = bcrypt.hashSync(passHash, salt);
-            const requestOptions = {
-              method: 'PUT',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ 
-                name: userAddName,
-                email: userAddEmail,
-                type: userAddType,
-                password: passHash2,
-                salt: salt
-              })
-            };
+              let requestOptions = {};
+              if(userAddPassword){
+                const passHash = bcrypt.hashSync(userAddPassword, salt);
+                const passHash2 = bcrypt.hashSync(passHash, salt);
+
+                requestOptions = {
+                  method: 'PUT',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ 
+                    name: userAddName,
+                    email: userAddEmail,
+                    type: userAddType,
+                    password: passHash2,
+                    salt: salt
+                  })
+                };
+              }else{
+                console.log("no password");
+                requestOptions = {
+                  method: 'PUT',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ 
+                    name: userAddName,
+                    email: userAddEmail,
+                    type: userAddType,
+                  })
+                };
+              }
             console.log(editingUser._id)
             fetch('http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/register/'+ editingUser._id, requestOptions)
                 .then(response => response.json())
@@ -216,7 +229,7 @@ const Users = () => {
             <form  onSubmit={(e)=>{addUser(e)}} className='usersForm'>
                 <input type="text" id="userAddName" value={userAddName} onChange={(e)=>{setUserAddName(e.target.value)}} className='usersPageInputUser'  name='userAddName' minLength="3" maxLength="30" placeholder='Vartotojo vardas'required></input>
                 <input type="email" id="userAddEmail" value={userAddEmail} onChange={(e)=>{setUserAddEmail(e.target.value)}} className='usersPageInputEmail'   name="userAddEmail" placeholder='El. paštas' required></input>
-                <input type="password" id="userAddPassword" value={userAddPassword} onChange={(e)=>{setUserAddPassword(e.target.value)}} className='usersPageInputPassword'  name="userAddPassword" placeholder='Slaptažodis' required></input>
+                <input type="password" id="userAddPassword" value={userAddPassword} onChange={(e)=>{setUserAddPassword(e.target.value)}} className='usersPageInputPassword'  name="userAddPassword" placeholder='Slaptažodis' required={isEditing ? false: true}></input>
                 <select className="usersPageSelectType" onChange={(e)=>{(setUserAddType(e.target.value))}} value={userAddType}>
                   <option value="admin">Administratorius</option>
                   <option value="user">Vartotojas</option>
@@ -228,7 +241,7 @@ const Users = () => {
         <div className='usersPageList'>
             {!isLoading && 
             users.map((user)=>(
-                <div className="usersPageSingleUser">
+                <div key={user._id} className="usersPageSingleUser">
                     <div className={user.type === "admin"? "usersSingleUserGold usersNameAndEmail" :"usersSingleUserGreen usersNameAndEmail"}>
                         <div>Vartotojas: {user.name}</div>
                         <div>E. Paštas: {user.email}</div>

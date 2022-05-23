@@ -11,19 +11,8 @@ const ExpenseForm = (props) => {
     let [categories, setCategories] = useState("")
     let [isLoading, setIsLoading] = useState(true)
     let [isloadingExp, setIsLoadingExp] = useState(true);
-
-
-    function fetchCategories(){
-        fetch('http://localhost:3001/api/v1/category/')
-            .then(response => response.json())
-            .then(data => {
-            setCategories(data.data.categories);
-            setIsLoading(false);
-            console.log(categories)
-            });
-    }
-    
-
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed).toLocaleString('lt-LT', {timeZone: 'Etc/GMT-6'});
 	const [currentExpense, setCurrentExpense] = useState({});
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
@@ -36,26 +25,26 @@ const ExpenseForm = (props) => {
     const [enteredCategory, setEnteredCategory] = useState('food');
 
     const [editing, setEditing] = useState(false);
-	// const [userInput, setUserInput] = useState({
-	//     enteredTitle: '',
-	//     enteredAmount: '',
-	//     enteredDate: '',
-	// });
+
+
+    
+    function fetchCategories(){
+        fetch('http://localhost:3001/api/v1/category/')
+            .then(response => response.json())
+            .then(data => {
+            setCategories(data.data.categories);
+            setIsLoading(false);
+            });
+    }
+
 
 	const titleChangeHandler = (event) => {
 		setEnteredTitle(event.target.value);
-		// setUserInput({
-		//     ...userInput,
-		//     enteredTitle: event.target.value,
-		// });
-		// setUserInput((prevState) => {
-		//     return { ...prevState, enteredTitle: event.target.value };
-		// });
+
 	};
 	const amountChangeHandler = (event) => {
 		isIncomeValid = true;
 		event.target.setCustomValidity('');
-		console.log(validExpenseAmount.test(event.target.value));
 		if (!validExpenseAmount.test(event.target.value)) {
 			isIncomeValid = false;
 			event.target.setCustomValidity(
@@ -63,17 +52,11 @@ const ExpenseForm = (props) => {
 			);
 		}
 		setEnteredAmount(event.target.value);
-		// setUserInput({
-		//     ...userInput,
-		//     enteredAmount: event.target.value,
-		// });
+
 	};
 	const dateChangeHandler = (event) => {
 		setEnteredDate(event.target.value);
-		// setUserInput({
-		//     ...userInput,
-		//     enteredDate: event.target.value,
-		// });
+
 	};
 	const categoryChangeHandler = (event) => {
 		setEnteredCategory(event.target.value);
@@ -88,7 +71,7 @@ const ExpenseForm = (props) => {
 				}
 			})
 			setExpense(tempData);
-            setIsLoadingExp(false)
+            setIsLoadingExp(false);
 		});
 	};
 
@@ -139,7 +122,7 @@ const ExpenseForm = (props) => {
 							{
 								UserId: props.currentUser._id,
 								ActionType: "Atnaujino išlaidą",
-								Timestamp: Date.now(),
+								Timestamp: today,
 								Data: {
                                     Name: enteredTitle,
                                     Amount: enteredAmount,
@@ -167,10 +150,8 @@ const ExpenseForm = (props) => {
                     });
                 });
         } else {
-            // Once the form has been submitted, this function will post to the backend
-            const postURL = 'http://localhost:3001/api/v1/expense/'; //Our previously set up route in the backend
+            const postURL = 'http://localhost:3001/api/v1/expense/';
 
-            // Once posted, the user will be notified
             Swal.fire({
                 title: 'Ar esate tikri?',
                 text: 'Dėmesio! Duomenys bus įrašyti.',
@@ -189,7 +170,6 @@ const ExpenseForm = (props) => {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            // We should keep the fields consistent for managing this data later
                             Name: enteredTitle,
                             Amount: enteredAmount,
                             Date: enteredDate,
@@ -209,7 +189,7 @@ const ExpenseForm = (props) => {
                                 {
                                     UserId: props.currentUser._id,
                                     ActionType: "Pridėjo išlaidą",
-                                    Timestamp: Date.now(),
+                                    Timestamp: today,
                                     Data: {
                                         Name: enteredTitle,
                                         Amount: enteredAmount,
@@ -239,10 +219,8 @@ const ExpenseForm = (props) => {
             });
         }
 
-        // alert('Your incomes was added successfully');
     };
 	const deleteExpense = async (id, deletedExpense) => {
-        console.log(id);
         Swal.fire({
             title: 'Ar esate tikri?',
             text: 'Dėmesio duomenys bus pašalinti!',
@@ -278,16 +256,13 @@ const ExpenseForm = (props) => {
                     {
                         UserId: props.currentUser._id,
                         ActionType: "Ištrynė išlaidą",
-                        Timestamp: Date.now(),
+                        Timestamp: today,
                         Data: deletedExpense
                     })
 
                     }
                 );
             });
-        // alert('Your incomes was deleted successfully');
-
-        // /* setEditing(false);
 
         setExpense(expense.filter((expense) => expense.id !== id));
         fetchData();
@@ -323,27 +298,12 @@ const ExpenseForm = (props) => {
                             onChange={categoryChangeHandler}
                             value={enteredCategory}
                         >
-                            <option selected="true" hidden value="">-----------</option>
+                            <option hidden value="">-----------</option>
                             {!isLoading &&
                             categories.map((category)=>(
                                 category.categoryType ==="expense"&&
-                                    <option value={category.categoryName}>{category.categoryName}</option>
+                                    <option key={category._id} value={category.categoryName}>{category.categoryName}</option>
                             ))}
-                            {/* <option value='food'>Maistas</option>
-                            <option value='clothes'>Drabužiai</option>
-                            <option value='hygiene'>Higiena</option>
-                            <option value='transport'>Transportas</option>
-                            <option value='automotive'>Automobilis</option>
-                            <option value='municipal'>
-                                Komunaliniai mokesčiai
-                            </option>
-                            <option value='services'>Paslaugos</option>
-                            <option value='education'>Mokymai</option>
-                            <option value='hobby'>Pomėgiai</option>
-                            <option value='entertainment'>Pramogos</option>
-                            <option value='pets'>Augintiniai</option>
-                            <option value='household'>Namų išlaidos</option>
-                            <option value='garden'>Sodas</option> */}
                         </select>
                     </div>
                     <div className='new-expense__control col-5'>
@@ -385,8 +345,8 @@ const ExpenseForm = (props) => {
                             type='text'
                             name='expenseName'
                             required
-                            maxlength='20'
-                            minlength='3'
+                            maxLength='20'
+                            minLength='3'
                             placeholder='Išlaidų pavadinimas'
                             pattern='^[\p{L},.0-9\s-]+$'
                             value={enteredTitle}

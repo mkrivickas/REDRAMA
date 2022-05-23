@@ -35,7 +35,6 @@ const EditIncomeForm = (props) => {
 	);
 
 	const handleSubmit = (e) => {
-		console.log(income);
 		e.preventDefault();
 		let updatedIncome = {
 			_id: income._id,

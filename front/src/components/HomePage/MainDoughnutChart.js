@@ -21,6 +21,8 @@ export default function MainDoughnutChart(props) {
 
 	useEffect(
 		() => {
+			setTotalExpense(0);
+			setTotalIncome(0);
 			let tempIncome = 0;
 			let tempExpense = 0;
 			props.combinedList.map((listItem) => {
@@ -28,12 +30,10 @@ export default function MainDoughnutChart(props) {
 					tempIncome += parseInt(listItem.Amount);
 
 					setTotalIncome(tempIncome);
-					console.log(tempIncome);
 				} else {
 					tempExpense += parseInt(listItem.Amount);
 
 					setTotalExpense(tempExpense);
-					console.log(tempExpense);
 				}
 			});
 		},
@@ -61,7 +61,6 @@ export default function MainDoughnutChart(props) {
 						animation: {
 							animateScale: true
 						},
-
 						ChartDataLabels,
 						datalabels: {
 							//display: false,

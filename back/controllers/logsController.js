@@ -20,7 +20,6 @@ exports.getAllLogs = async (req, res) => {
 };
 
 exports.addLog = async (req, res) => {
-    console.log("log")
 	try {
 		const newLog = await Logs.create(req.body);
 		res.status(201).json({
@@ -38,7 +37,9 @@ exports.addLog = async (req, res) => {
 };
 exports.deleteLog = async (req, res) => {
 	try {
-		await Logs.findByIdAndDelete(req.body.id);
+		await Logs.deleteMany({
+			_id: req.body.id
+		});
 
 		res.status(204).json({
 			status: 'success',

@@ -10,10 +10,8 @@ const HomeBalance = (props) => {
 			let tempBalance = 0;
 			props.combinedList.map((listItem) => {
 				if (listItem.Type === 'income') {
-					console.log('+' + listItem.Amount);
 					tempBalance += parseInt(listItem.Amount);
 				} else {
-					console.log('-' + listItem.Amount);
 					tempBalance -= parseInt(listItem.Amount);
 				}
 				setMainBalance(tempBalance);
