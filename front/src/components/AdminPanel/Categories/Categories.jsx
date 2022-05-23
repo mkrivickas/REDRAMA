@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Swal from 'sweetalert2';
 import './Categories.css';
 import { FaTrash, FaRegEdit } from 'react-icons/fa';
+import SpinningLoad from '../../Extra/SpinningLoad';
 
 const validCategory = new RegExp(
   '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ ]{3,30}$'
@@ -224,7 +225,7 @@ const Categories = () => {
       </form></div>
       }
 
-      {!isLoading &&
+      {!isLoading ?
       <div className='categoryList'>
         {categories.map((category)=>(
           pickedCategory ? (
@@ -241,7 +242,7 @@ const Categories = () => {
           ):(
             categoryListItem(category)
           )
-        ))}</div>}
+        ))}</div>:<SpinningLoad/>}
 
 
     </div>

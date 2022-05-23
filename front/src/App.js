@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import AuthScreen from './components/AuthScreen/AuthScreen';
 import History from './components/History/History';
+import SpinningLoad from './components/Extra/SpinningLoad';
 
 function App() {
 	let [ currentUser, setCurrentUser ] = useState('');

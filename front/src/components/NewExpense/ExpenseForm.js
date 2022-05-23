@@ -3,6 +3,7 @@ import ExpenseList from './ExpenseList';
 import './ExpenseForm.css';
 import ExpenseDoughnutChart from './ExpenseDoughnutChart';
 import Swal from 'sweetalert2';
+import SpinningLoad from '../Extra/SpinningLoad';
 
 const validExpenseAmount = new RegExp('^[0-9.]{1,10}?$');
 
@@ -285,9 +286,9 @@ const ExpenseForm = (props) => {
 		<div className="expenseCategorySelector">
             <form className='container-fluid' onSubmit={submitHandler}>
                 <div className="expense-chart row d-flex justify-content-center">
-                    {!isLoading && !isloadingExp &&<ExpenseDoughnutChart 
+                    {!isLoading && !isloadingExp ?<ExpenseDoughnutChart 
                         categories={categories} expense={expense}
-                    />}
+                    />: <SpinningLoad/>}
                 </div>
                 <div className='new-expense__controls row d-flex justify-content-center'>
                     <div className='new-expense__control col-5'>

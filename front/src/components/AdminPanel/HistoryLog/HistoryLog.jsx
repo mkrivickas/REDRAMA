@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './HistoryLog.css';
 import Swal from 'sweetalert2';
 import { FaTrash, FaRegEdit } from 'react-icons/fa';
+import SpinningLoad from '../../Extra/SpinningLoad';
 
 const HistoryLog = () => {
     let [logs, setLogs] = useState([]);
@@ -170,7 +171,7 @@ const HistoryLog = () => {
       </select>
       {deleteMany.length >0 && <button className="deleteSelectedBtn" onClick={()=>{deleteManyLogs()}}>Istrinti pasirinktus</button>}
       </div>
-        {!isLoading&& logs.map((log)=>(
+        {!isLoading? logs.map((log)=>(
             <div className='historyPageLogSingle' key={log._id}>
             <div className='historyPageLogTimestamp'><span>{log.Timestamp.split("T")[0]}::{log.Timestamp.split("T")[1].slice(0,8)}</span></div>
             <div className='historyPageLogUsername'>{users.map((user)=>(
@@ -188,7 +189,7 @@ const HistoryLog = () => {
               <input onChange={(e)=>{deleteCheckbox(e,log._id)}} type="checkbox" id="deleteManyCheck" name="deleteManyCheckbox"/>
             </div>
             </div>
-        ))}
+        )):<SpinningLoad/>}
     </div>
   )
 }

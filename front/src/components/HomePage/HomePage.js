@@ -1,4 +1,5 @@
 import React from 'react';
+import SpinningLoad from '../Extra/SpinningLoad';
 import TransactionList from './TransactionList';
 
 function HomePage(props) {

@@ -3,6 +3,7 @@ import HomeBalance from './HomeBalance';
 import TransactionsTable from './TransactionsTable';
 import './TransactionsTable.css';
 import './TransactionList.css';
+import SpinningLoad from '../Extra/SpinningLoad';
 
 function TransactionList(props) {
 	// const { id } = props;
@@ -79,7 +80,7 @@ function TransactionList(props) {
 	);
 
 	return (
-		!loading && (
+		!loading ? (
 			<div className="transactionsDivDiv container-fluid">
 				<div className=" row">
 					<div className="doughnut-homePage col-lg-6 col-md-12 col-sm-12">
@@ -126,7 +127,7 @@ function TransactionList(props) {
 				{isShowMore &&<TransactionsTable combinedList={combinedList} isShowMore={isShowMore}  setIsShowMore={setIsShowMore}/>}
 			</div></div>
 			
-		)
+		): <SpinningLoad opacity={0.3}/>
 	);
 }
 export default TransactionList;
