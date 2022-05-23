@@ -1,71 +1,61 @@
 import React, {useState, useEffect} from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import './IncomeDoughnut.css';
 
 function IncomeDoughnut(props) {
-	let [isLoading, setIsLoading] = useState(true);
-	let [categories, setCategories] = useState([]);
-	let [categoriesNames, setCategoriesNames] = useState([]);
-	let [categoryAmount, setCategoryAmount] = useState([]);
-	
-    function fetchCategories(){
-        fetch('http://localhost:3001/api/v1/category/')
-            .then(response => response.json())
-            .then(data => {
-            setCategories(data.data.categories);
-            });
-    }
+	const [totalExpenses, setTotalExpenses] = useState(0);
+    let [categoriesIncomes, setCategoriesIncomes] = useState([]);
+	let [categoryNames, setCatNames] = useState([]);
+
+
+
+
 
 	useEffect(() => {
-	  fetchCategories();
-	}, []);
-
-	useEffect(() => {
-		let tempCats = [];
-		let tempAmount = [];
-	
-		categories.forEach((category)=>{
+        let tempCatInc = [];
+		let tempCatName = [];
+        props.categories.map((category) => {
 			if(category.categoryType === "income"){
-				let tempCatSum = 0;
-				tempCats.push(category.categoryName);
-				props.incomes.forEach((income)=>{
-					if(income.Category === category.categoryName){
-						tempCatSum += income.Amount;
-					}
-				});
-				tempAmount.push(tempCatSum);
+				tempCatName.push(category.categoryName);
+            let singleCategoryIncome = 0;
+            props.incomes.map((income) => {
+                if (income.Category === category.categoryName) {
+                    singleCategoryIncome += income.Amount;
+                }
+            });
+            tempCatInc.push(parseInt(singleCategoryIncome));
 			}
-		});
-		setCategoriesNames(tempCats);
-		setCategoryAmount(tempAmount);
-		setIsLoading(false);
-	}, [categories, props.incomes]);
-	
-	
+        });
+        setCategoriesIncomes(tempCatInc);
+		setCatNames(tempCatName);
+    }, [props.incomes, props.categories]);
 
+	
 	const data = {
-		labels: categoriesNames,
+		labels: categoryNames,
 		datasets: [
 			{
-				data: categoryAmount,
+				data: categoriesIncomes,
 				backgroundColor: [ '#ffd700', '#da4167' ],
 				borderColor: [ 'rgb(0,0,0)' ],
-				hoverBackgroundColor: [ '#d7c350', '#cd2851' ],
+				// hoverBackgroundColor: [ '#d7c350', '#cd2851' ],
 				hoverOffset: 20
 			}
 		]
 	};
 	return (
-		<div className="Doughnut">
-			{!isLoading &&
+		<div className="Doughnut-income  ">
 			<Doughnut
 				data={data}
-				width={400}
-				height={400}
+				width={600}
+				height={600}
 				options={{
 					layout: {
 						padding: 20
 					},
+					responsive: true,
+					maintainAspectRatio: false,
 					cutoutPercentage: 75,
 					legend: {
 						display: false

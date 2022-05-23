@@ -13,18 +13,6 @@ const ExpenseForm = (props) => {
     let [isloadingExp, setIsLoadingExp] = useState(true);
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed).toLocaleString('lt-LT', {timeZone: 'Etc/GMT-6'});
-
-
-    function fetchCategories(){
-        fetch('http://localhost:3001/api/v1/category/')
-            .then(response => response.json())
-            .then(data => {
-            setCategories(data.data.categories);
-            setIsLoading(false);
-            });
-    }
-    
-
 	const [currentExpense, setCurrentExpense] = useState({});
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
@@ -37,6 +25,17 @@ const ExpenseForm = (props) => {
     const [enteredCategory, setEnteredCategory] = useState('food');
 
     const [editing, setEditing] = useState(false);
+
+
+    
+    function fetchCategories(){
+        fetch('http://localhost:3001/api/v1/category/')
+            .then(response => response.json())
+            .then(data => {
+            setCategories(data.data.categories);
+            setIsLoading(false);
+            });
+    }
 
 
 	const titleChangeHandler = (event) => {

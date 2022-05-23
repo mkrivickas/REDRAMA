@@ -11,6 +11,7 @@ function TransactionList(props) {
 	let combinedArr;
 	let [ monthFilter, setMonthFilter ] = useState(0);
 	let [ copyCombinedList, setCopyCombinedList ] = useState([]);
+	let [isShowMore, setIsShowMore] = useState(false);
 
 	useEffect(() => {
 		fetchData();
@@ -61,11 +62,10 @@ function TransactionList(props) {
 		() => {
 			if (parseInt(monthFilter) !== 0) {
 				let tempData = [];
+				setCombinedList([]);
 
-				console.log(monthFilter);
 				copyCombinedList.map((item) => {
 					let splitDate = item.Date.split('-');
-					console.log(parseInt(splitDate[1]));
 					if (parseInt(monthFilter) === parseInt(splitDate[1])) {
 						tempData.push(item);
 					}
@@ -80,8 +80,8 @@ function TransactionList(props) {
 
 	return (
 		!loading && (
-			<div className="transactionsDivDiv ">
-				<div className="row">
+			<div className="transactionsDivDiv container-fluid">
+				<div className=" row">
 					<div className="doughnut-homePage col-lg-6 col-md-12 col-sm-12">
 						<HomeBalance combinedList={combinedList} />
 					</div>
@@ -94,7 +94,7 @@ function TransactionList(props) {
 							onChange={(e) => {
 								setMonthFilter(e.target.value);
 							}}
-						>
+						>	<option value="" hidden>---------</option>
 							<option value="1">Sausis</option>
 							<option value="2">Vasaris</option>
 							<option value="3">Kovas</option>
@@ -120,11 +120,12 @@ function TransactionList(props) {
 						)}
                     </h5>
 						<div>
-							<TransactionsTable combinedList={combinedList} />
+							{!isShowMore &&<TransactionsTable combinedList={combinedList} isShowMore={isShowMore} setIsShowMore={setIsShowMore}/>}
 						</div>
 					</div>
-				</div>
-			</div>
+				{isShowMore &&<TransactionsTable combinedList={combinedList} isShowMore={isShowMore}  setIsShowMore={setIsShowMore}/>}
+			</div></div>
+			
 		)
 	);
 }
