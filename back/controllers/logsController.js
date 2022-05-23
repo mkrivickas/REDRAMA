@@ -37,7 +37,9 @@ exports.addLog = async (req, res) => {
 };
 exports.deleteLog = async (req, res) => {
 	try {
-		await Logs.findByIdAndDelete(req.body.id);
+		await Logs.deleteMany({
+			_id: req.body.id
+		});
 
 		res.status(204).json({
 			status: 'success',
