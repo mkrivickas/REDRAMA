@@ -220,7 +220,7 @@ const Categories = () => {
           <option value="income">Pajamos</option>
           <option value="expense">Išlaidos</option>
         </select>
-        <button type="submit" id="categoryAddSubmitBtn" value="Pridėti">Pridėti</button>
+        <button type="submit" id="categoryAddSubmitBtn" value="Pridėti">{isEditing ? "Atnaujinti":"Pridėti"}</button>
       </form></div>
       }
 
