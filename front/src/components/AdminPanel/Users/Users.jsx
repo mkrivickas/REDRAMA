@@ -95,7 +95,7 @@ const Users = () => {
                 confirmButtonText: 'Gerai'
               });
         }
-        if(!validPassword.test(userAddPassword) && !isEditing){
+        if(!validPassword.test(userAddPassword) && !isEditing || userAddPassword && isEditing && !validPassword.test(userAddPassword)){
             isValid = false;
             Swal.fire({
                 title: 'Klaida',
