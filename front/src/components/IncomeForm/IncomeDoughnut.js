@@ -46,7 +46,7 @@ function IncomeDoughnut(props) {
 	};
 	return (
 		<div className="Doughnut-income  ">
-			<Doughnut
+						<Doughnut
 				data={data}
 				width={600}
 				height={600}
@@ -76,7 +76,7 @@ function IncomeDoughnut(props) {
 						}
 					}
 				}}
-			/>}
+			/>
 		</div>
 	);
 }
