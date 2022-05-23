@@ -5,7 +5,7 @@ import './Users.css';
 import { FaTrash, FaRegEdit } from 'react-icons/fa';
 
 const validUserName = new RegExp(
-    '^[a-zA-ZąčęėįšųūĄČĘĖĮŠŲŪžŽ]{3,30}$'
+    '^[a-zA-Z0-9]{3,30}$'
   );
   const validEmail = new RegExp(
     '^[a-zA-Z0-9].{2,39}$'
@@ -63,7 +63,11 @@ const Users = () => {
           }),
       }).then(()=>{
         fetchData();
-        Swal.fire('Pašalinta!', 'Vartotojas buvo pašalintas.', 'success');
+        Swal.fire({
+          text: 'Vartotojas buvo pašalintas!',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Gerai!'
+        });
       });
       }
     });
@@ -79,7 +83,7 @@ const Users = () => {
           isValid = false;
           Swal.fire({
             title: 'Klaida',
-            text: 'Vartotojo vardas turi būti nuo 3 iki 40 simbolių, gali susidaryti tik is raidžių ir skaičių',
+            text: 'Vartotojo vardas turi būti nuo 3 iki 40 simbolių, gali susidaryti tik iš raidžių ir skaičių',
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Gerai'
