@@ -280,7 +280,14 @@ const ExpenseForm = (props) => {
         <div className='expenseCategorySelector row'>
             {!isLoading && !isloadingExp && (
                 <div className='col-lg-5'>
-                    <div>
+                    <div className='expenseDoughnut'>
+                        <div className='Doughnut-expense'></div>
+                        <div className='totalExpense'>
+                            <h2 className='totalExpense-number'>
+                                {/* TODO: {totalExpenseNumber} */}
+                                140 €
+                            </h2>
+                        </div>
                         <ExpenseDoughnutChart
                             categories={categories}
                             expense={expense}
@@ -288,11 +295,14 @@ const ExpenseForm = (props) => {
                     </div>
                 </div>
             )}
-
             <form className='col-lg-7' onSubmit={submitHandler}>
                 <div className='new-expense__controls row d-flex'>
                     <h3 className='AddExpenseForm-title col-lg-12'>
-                        Pridėti išlaidas
+                        {editing ? (
+                            <>Atnaujinti išlaidas</>
+                        ) : (
+                            <>Pridėti išlaidas</>
+                        )}
                     </h3>
                     <div className='new-expense__control col-6'>
                         <select
@@ -301,7 +311,7 @@ const ExpenseForm = (props) => {
                             value={enteredCategory}
                         >
                             <option hidden value=''>
-                                -----------
+                                Išlaidų kategorija
                             </option>
                             {!isLoading &&
                                 categories.map(

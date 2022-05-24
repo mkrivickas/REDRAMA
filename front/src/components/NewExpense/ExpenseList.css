@@ -1,6 +1,16 @@
 .ExpenseList-container {
     background-color: #364652;
     padding-top: 10%;
+    margin: 0;
+}
+
+.ExpenseList-row {
+    display: flex;
+    background-color: #ffd700;
+}
+
+.ExpenseList-row div {
+    width: 20%;
 }
 
 .ExpenseListLabels {
@@ -11,45 +21,22 @@
     text-align: center;
 }
 
-.ExpenseDate-List {
-    font-size: 1rem;
-    padding-top: 1rem;
-    color: #dee5e5;
-}
-
-.ExpenseList-row {
-    display: flex;
-    padding: 0;
-}
-
-.ExpenseList-row div {
-    /* margin: 1%; */
-    width: 20%;
-    text-align: center;
-}
-
-.ExpenseCategory-List {
-    font-size: 1rem;
-    padding-top: 1rem;
-    color: #dee5e5;
-}
-
-.ExpenseName-List {
-    font-size: 1rem;
-    padding-top: 1rem;
-    color: #dee5e5;
-}
-
+.ExpenseDate-List,
+.ExpenseCategory-List,
+.ExpenseName-List,
 .ExpenseAmount-List {
     font-size: 1rem;
+    text-align: center;
     padding-top: 1rem;
     color: #dee5e5;
+    background-color: #364652;
 }
 
 .ExpenseListOptionsButtons {
     display: flex;
-    justify-content: start;
-    text-align: left;
+    justify-content: center;
+    text-align: center;
+    background-color: #364652;
 }
 
 .ExpenseListOptionsButtons button {
