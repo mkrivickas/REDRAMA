@@ -4,7 +4,7 @@
 }
 
 .AddIncomeForm-title {
-	color: #ffd700;
+	color: #169873;
 	font-family: sans-serif;
 	font-size: 26px;
 	font-weight: 600;
@@ -17,31 +17,32 @@
 	border: none;
 	background-color: #222;
 	width: 100%;
-	color: white;
+	color: #dee5e5;
 	padding: 0;
 	font-size: 16px;
 
 	margin-top: 10px;
 	margin-bottom: 10px;
-	border-bottom: 1px solid #d1d1d4;
+	border-bottom: 1px solid #dee5e5;
 	transition: .2s;
 }
 
 .AddIncomeForm-input > .placeholder {
-	color: #364652;
+	color: #dee5e5;
 	font-family: sans-serif;
 	top: 20px;
+	background-color: #222;
 }
 
 #button-incomeAdd {
-	background-color: #ffd700;
+	background-color: #169873;
 	border-radius: 5px;
 	border: 0;
-	color: #364652;
+	color: #000000;
 	cursor: pointer;
-	font-size: 14px;
+	font-size: 16px;
 	padding: 5px;
-	width: 100%;
+	width: 30%;
 	margin-top: 30px;
 	margin-bottom: 15px;
 	text-align: center;
