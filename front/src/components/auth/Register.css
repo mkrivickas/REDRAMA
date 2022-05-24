@@ -1,17 +1,19 @@
-.authContainer{
-  color: white;
+.authContainer {
+    color: white;
 }
-.authContainer h1{
- color: #ffd700;
- text-align: center;
+.authContainer h1 {
+    color: #ffd700;
+    text-align: center;
 }
-.authContainer form{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.authContainer form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.authContainer input[type=text], .authContainer input[type=password], .authContainer input[type=email] {
+.authContainer input[type='text'],
+.authContainer input[type='password'],
+.authContainer input[type='email'] {
     width: 300px;
     padding: 10px;
     margin: 5px;
@@ -20,32 +22,33 @@
     background-color: #1a1d23;
     border-bottom: 1px solid#ffd700;
     color: #dee5e5;
-  }
-  .authContainer input::placeholder{
+}
+.authContainer input::placeholder {
     color: #dee5e5;
-  }
-  .authContainer input:-webkit-autofill{
+}
+.authContainer input:-webkit-autofill {
     background-color: #1a1d23 !important;
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
-  .authContainer input[type=email]:focus{
+.authContainer input[type='email']:focus {
     background-color: #1a1d23;
-  }
-  .authContainer input[type=text]:focus, .authContainer input[type=password]:focus {
-    background-color: #1a1d23;
-    border-bottom: 1px solid#ffd700;
-    color: #dee5e5;
-    outline: none;
-  }
-  .authContainer input[type=email]:focus, .authContainer input[type=password]:focus {
+}
+.authContainer input[type='text']:focus,
+.authContainer input[type='password']:focus {
     background-color: #1a1d23;
     border-bottom: 1px solid#ffd700;
     color: #dee5e5;
     outline: none;
-  }
-  
-  
-  .authContainer input[type=submit] {
+}
+.authContainer input[type='email']:focus,
+.authContainer input[type='password']:focus {
+    background-color: #1a1d23;
+    border-bottom: 1px solid#ffd700;
+    color: #dee5e5;
+    outline: none;
+}
+
+.authContainer input[type='submit'] {
     background-color: #ffd700;
     color: black;
     padding: 14px;
@@ -53,17 +56,16 @@
     border: none;
     width: 150px;
     border-radius: 12px;
-  }
-  .authContainer input[type=submit]:hover{
+}
+.authContainer input[type='submit']:hover {
     background-color: #dee5e5;
-  }
-  
-  .authContainer button:hover {
-      background: #dee5e5;
-  }
-  
-  
-  .authContainer {
+}
+
+.authContainer button:hover {
+    background: #dee5e5;
+}
+
+.authContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -73,28 +75,27 @@
     width: 50%;
     background-color: #1a1d23;
     margin: auto;
-  }
-  
-  
-  .clearfix::after {
-    content: "";
+}
+
+.clearfix::after {
+    content: '';
     clear: both;
     display: table;
-  }
-  
-  p, label {
-      color: white;
-      margin: 20px;
-      text-align: center;
-  }
-  
-  .signupbtn{
-      margin: 20px;
-  }
-  .errs{
-      color: white;
-  }
-  .registerShowPassword{
+}
+
+p,
+label {
+    color: white;
+    text-align: center;
+}
+
+.signupbtn {
+    margin: 20px;
+}
+.errs {
+    color: white;
+}
+.registerShowPassword {
     position: relative;
     display: flex;
     justify-content: center;
@@ -102,21 +103,21 @@
     align-items: center;
     width: 0%;
     right: 9%;
-  }
-  .eyeCon{
+}
+.eyeCon {
     color: #dee5e5;
-  }
-  .registerPasswordField{
+}
+.registerPasswordField {
     display: flex;
     width: 100%;
     justify-content: center;
-  }
-  .submitBtns{
+}
+.submitBtns {
     width: 85%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .registerLinkLogin{
+}
+.registerLinkLogin {
     text-align: center;
-  }
+}
