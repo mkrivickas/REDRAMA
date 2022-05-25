@@ -35,7 +35,7 @@ const EditExpenseForm = (props) => {
 	return (
 		<div className="EditExpenseForm-container">
 			<form className="EditExpense-form" onSubmit={handleSubmit}>
-				<h3 className="EditExpenseForm-title "> Atnaujinti pajamas</h3>
+				<h3 className="EditExpenseForm-title "> Atnaujinti išlaidas</h3>
 				<div>
 					<input
 						className="EditExpenseForm-input"
@@ -96,8 +96,6 @@ const EditExpenseForm = (props) => {
 				<ExpenseList
 					className="ExpenseList"
 					expense={expense}
-					// editRow={editRow}
-					// deleteIncome={deleteIncome}
 				/>
 			</div>
 		</div>
