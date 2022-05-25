@@ -1,55 +1,50 @@
-/* .ExpenseList-row tr {
-    background-color: #364652;
-    border: 1px solid #000000;
-    margin: 20% !important;
+.ExpenseList-container {
+    background-color: #222;
+    padding-top: 10%;
+    margin: 0;
 }
 
-.ExpenseList-table {
-    width: 95%;
-    background-color: #364652;
-    margin: 1em auto;
-    text-align: center;
-    border-radius: 20px;
-} */
+.ExpenseList-row {
+    display: flex;
+    background-color: #ffd700;
+}
+
+.ExpenseList-row div {
+    width: 20%;
+}
 
 .ExpenseListLabels {
-    color: #ffd700;
+    color: #364652;
+    background-color: #ffd700;
+    font-weight: 700;
+    width: 20%;
+    text-align: center;
 }
 
-.ExpenseDate-List {
-    font-size: 1rem;
-    padding-top: 1rem;
-    padding-left: 1rem;
-    color: #dee5e5;
-}
-
-.ExpenseCategory-List {
-    font-size: 1rem;
-    padding-top: 1rem;
-    padding-left: 4rem;
-    color: #dee5e5;
-}
-
-.ExpenseName-List {
-    font-size: 1rem;
-    padding-top: 1rem;
-    padding-left: 6.5rem;
-    color: #dee5e5;
-}
-
+.ExpenseDate-List,
+.ExpenseCategory-List,
+.ExpenseName-List,
 .ExpenseAmount-List {
     font-size: 1rem;
+    text-align: center;
     padding-top: 1rem;
-    padding-left: 9rem;
     color: #dee5e5;
+    background-color: #222;
 }
 
 .ExpenseListOptionsButtons {
-    padding-left: 8.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: #222;
+}
+
+.ExpenseListOptionsButtons button {
+    margin: 1%;
 }
 
 .ExpenseListEdit-button {
-    background-color: #364652;
+    background-color: #222;
     color: #ffd700;
     width: 3rem;
     height: 3rem;
@@ -62,7 +57,7 @@
 }
 
 .ExpenseListDelete-button {
-    background-color: #364652;
+    background-color: #222;
     font: inherit;
     cursor: pointer;
     width: 3rem;

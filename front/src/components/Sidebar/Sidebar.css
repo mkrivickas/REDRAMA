@@ -1,177 +1,202 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-.fa-2x {
-	font-size: 2em;
-}
-.icon-up {
-	position: relative;
-	display: table-cell;
-	text-align: center;
-	font-size: 2em;
-	padding-top: 15px;
-	padding-right: 10px;
-	padding-left: 12px;
-	color: #ffd700;
-	padding-right: 30px;
-}
-.logoutIcon {
-	text-align: center;
-	font-size: 2em;
-	padding: 0;
-	color: #ffd700;
-	padding-right: 30px;
-	padding-left: 15px;
-	padding-bottom: 10px;
+body {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .main-menu:hover,
 nav.main-menu.expanded {
-	width: 300px;
-	overflow: hidden;
+    width: 25vw;
+    overflow: hidden;
 }
 
 .main-menu {
-	background: #364652;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	height: 100%;
-	left: 0;
-	width: 65px;
-	padding-left: 5%;
-	padding-top: 2%;
-	overflow: hidden;
-	-webkit-transition: width .05s linear;
-	transition: width .05s linear;
-	-webkit-transform: translateZ(0) scale(1, 1);
-	z-index: 1000;
-	height: 100vh;
-	position: -webkit-sticky;
-	position: sticky;
+    height: 100vh;
+    background: #364652;
+    position: absolute;
+    width: 35%;
+    padding: 2% 2%;
+    overflow: hidden;
+    -webkit-transition: width 0.05s linear;
+    transition: width 0.05s linear;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    z-index: 1000;
+    position: -webkit-sticky;
+    position: sticky;
 }
 
 .main-menu > ul {
-	margin-right: 10px;
-	margin-top: 5%;
+    margin-right: 10px;
+    margin-top: 5%;
 }
 
 .main-menu li {
-	position: relative;
-	display: flex;
-	align-items: center;
-	border-bottom: 1px solid #ffd700;
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* border-bottom: 1px solid #ffd700; */
+    margin: 5%;
 }
 
 .LinkName {
-	position: relative;
-	display: table;
-	border-collapse: collapse;
-	border-spacing: 0;
-	color: #999;
-	font-family: arial;
-	font-size: 14px;
-	text-decoration: none;
-	-webkit-transform: translateZ(0) scale(1, 1);
-	-webkit-transition: all .1s linear;
-	transition: all .1s linear;
+    position: relative;
+    display: table;
+    text-decoration: none;
 }
 
-.main-menu .nav-icon {
-	position: relative;
-	display: table-cell;
-	width: 60px;
-	height: 36px;
-	text-align: start;
-	font-size: 18px;
-}
-
-.main-menu .nav-text {
-	position: relative;
-	width: 190px;
-	font-family: "Open Sans", sans-serif;
-	font-size: 20px;
-	letter-spacing: 0.1em;
-	color: rgb(215, 206, 206);
+.nav-text {
+    position: absolute;
+    text-align: start;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: #dee5e5;
+    margin-top: 20%;
+    margin-left: 60%;
 }
 
 .nav-text:hover {
-	color: #ffd700;
+    color: #ffd700;
+}
+
+.icon-up {
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    font-size: 2em;
+    color: #364652;
+    background-color: #ffd700;
+    border-radius: 5px;
+    padding: 0 0.7rem;
+}
+
+.icon-up:hover {
+    background-color: #dee5e5;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 5%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+.titleAndLogo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 32px;
+    color: #dee5e5;
+    font-weight: 700;
+    padding-left: 5%;
+    letter-spacing: 0.1em;
+}
+
+.logo-text:hover {
+    color: #ffd700;
+}
+
+.has-subnav {
+    padding-top: 1%;
 }
 
 .main-menu > ul.logout {
-	position: absolute;
-	left: 0;
-	bottom: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 
 .no-touch .scrollable.hover {
-	overflow-y: hidden;
+    overflow-y: hidden;
 }
 
 .no-touch .scrollable.hover:hover {
-	overflow-y: auto;
-	overflow: visible;
+    overflow-y: auto;
+    overflow: visible;
 }
 
 a:hover,
 a:focus {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 nav {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 nav ul,
 nav li {
-	outline: 0;
-	margin: 0;
-	padding: 0;
+    outline: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .area {
-	position: absolute;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 0;
+    position: absolute;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
 
 .line-nav {
-	width: 90%;
-	border: 1px solid #ffd700;
-	margin: 0 auto;
+    width: 90%;
+    border: 1px solid #ffd700;
+    margin: 0 auto;
 }
 
-.logo {
-	width: 50px;
-	height: 50px;
-	margin-right: 5%;
-	margin-left: 1%;
-	margin-bottom: 1%;
-}
-.titleAndLogo {
-	display: flex;
-	align-items: center;
-}
 .logout {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
+
+.logoutIcon {
+    position: relative;
+    display: table-cell;
+    font-size: 2rem;
+    color: #ffd700;
+    background-color: #364652;
+    border: 3px solid #ffd700;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+}
+
 .logoutLine {
-	display: flex;
-	align-items: center;
-	flex-wrap: nowrap;
-	align-items: center;
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    color: #ffd700;
+    /* border: 3px solid #ffd700; */
+    border-radius: 5px;
 }
+
 .logoutUserName {
-	color: #999;
+    font-weight: 700;
+    position: relative;
+    text-align: right;
+    padding-left: 15%;
 }
+
+.logout-text {
+    position: relative;
+    text-align: right;
+    width: 10vw;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: #dee5e5;
+    padding-left: 15%;
+}
+
 .logoutColumn {
-	display: flex;
-	flex-direction: column;
-	width: 80%;
-	font-size: smaller;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    font-size: smaller;
 }

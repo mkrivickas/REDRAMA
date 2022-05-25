@@ -1,21 +1,32 @@
+.col-lg-5 {
+    position: relative;
+}
+
+.col-lg-5,
+.col-lg-7 {
+    background-color: #222;
+}
+
+.AddExpenseForm-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffd700;
+    padding: 5%;
+    text-align: center;
+}
+
+.expenseCategorySelector {
+    display: flex;
+    margin: 1%;
+}
+
 .new-expense__controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
     margin-bottom: 1rem;
     text-align: left;
 }
-
-label {
-    color: #dee5e5; /*Input laukelių antraščių spalva (nebenaudojama, bet užkomentuotas kodas likęs ExpenseForm.js kaip opcija ateičiai)*/
-}
-
-/* input,
-select,
-option {
-    background-color: #364652;
-    color: #dee5e5;
-} */
 
 .expenseCategorySelector input,
 .expenseCategorySelector select,
@@ -25,7 +36,6 @@ option {
     border: none;
     border-bottom: 1px solid #dee5e5;
     box-sizing: border-box;
-    /* font-family: 'Poppins'; */
     font-weight: bold;
     font-size: 20px;
     transition: 0.3s ease;
@@ -39,7 +49,7 @@ option {
     background: transparent;
 }
 
-/* VERY F@CKIN' SVARBU: Kalendoriaus ikonėlė*/
+/* LABAI SVARBU: Kalendoriaus ikonėlė */
 ::-webkit-calendar-picker-indicator {
     filter: invert(0.75);
 }
@@ -49,11 +59,9 @@ option {
     color: #dee5e5;
 }
 
-.new-expense__control label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    width: 20rem;
-    display: block;
+.new-expense__control {
+    display: flex;
+    justify-content: left;
 }
 
 .new-expense__control input {
@@ -62,7 +70,7 @@ option {
     padding: 0.5rem;
     /* border-radius: 6px; */
     border-bottom: 1px solid #dee5e5; /*Input laukelių rėmelio spalva*/
-    width: 20rem;
+    width: 30rem;
     max-width: 100%;
 }
 .new-expense__control select {
@@ -71,24 +79,96 @@ option {
     /* border-radius: 6px; */
     color: #dee5e5;
     border-bottom: 1px solid #dee5e5;
-    width: 20rem;
+    width: 30rem;
     max-width: 100%;
 }
 
 .new-expense__actions {
-    text-align: right;
+    text-align: left;
+    margin: 1% auto;
 }
 
-.btn.my-cusomized-button {
+.my-customized-button {
+    font: inherit;
+    cursor: pointer;
+    width: 10rem;
+    height: 3rem;
+    margin-right: 3rem;
+    border-radius: 5px;
     border-color: #ffd700;
     color: #364652;
     background-color: #ffd700;
     border: 1px solid #ffd700;
 }
 
-.btn.my-cusomized-button:hover {
+.my-customized-button:hover {
     border-color: #ffd700;
     color: #000000;
     background-color: #ffd700;
     border: 1px solid #ffd700;
+}
+
+@media only screen and (max-width: 2560px) {
+    .totalExpense-number {
+        position: absolute;
+        padding: 37% 45%;
+        color: #fff;
+    }
+}
+
+@media only screen and (max-width: 1920px) {
+    .totalExpense-number {
+        position: absolute;
+        padding: 60% 40%;
+        color: #fff;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .totalExpense-number {
+        position: absolute;
+        padding: 85% 40%;
+        color: #fff;
+    }
+}
+
+@media only screen and (max-width: 1180px) {
+    .totalExpense-number {
+        position: absolute;
+        padding: 100% 35%;
+        color: #fff;
+    }
+}
+
+/* FIXME: For vertical alignment */
+@media only screen and (max-width: 1080px) {
+    .totalExpense-number {
+        position: absolute;
+        padding: 55% 42%;
+        color: #fff;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .totalExpense-number {
+        position: absolute;
+        padding: 105% 38%;
+        color: #fff;
+    }
+}
+
+@media only screen and (max-width: 740px) {
+    .totalExpense-number {
+        position: absolute;
+        padding: 107% 38%;
+        color: #fff;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .totalExpense-number {
+        position: absolute;
+        padding: 112% 38%;
+        color: #fff;
+    }
 }
