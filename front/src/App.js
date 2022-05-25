@@ -11,7 +11,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import AuthScreen from './components/AuthScreen/AuthScreen';
-import History from './components/History/History';
+
 import SpinningLoad from './components/Extra/SpinningLoad';
 
 function App() {
@@ -79,7 +79,7 @@ function App() {
 			{currentUser && (
 				<div className="appMainPage">
 					<Router>
-						<Sidebar logout={logout} currentUser={currentUser} />
+						<Sidebar className="sidebar" logout={logout} currentUser={currentUser} />
 						<div className="app-inner-mainPage">
 							<Routes>
 								<Route path="/" element={<HomePage currentUser={currentUser} />} />
@@ -87,7 +87,7 @@ function App() {
 								<Route path="/login" element={<HomePage currentUser={currentUser} />} />
 								<Route path="/pajamos" element={<IncomeForm currentUser={currentUser} />} />
 								<Route path="/islaidos" element={<NewExpense currentUser={currentUser} />} />
-								<Route path="/istorija" element={<History currentUser={currentUser} />} />
+
 								{currentUser.type === 'admin' && (
 									<Route path="/admin" element={<AdminPanel currentUser={currentUser} />} />
 								)}

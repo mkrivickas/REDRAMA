@@ -1,7 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-.fa-2x {
-	font-size: 2em;
-}
+
 .icon-up {
 	position: relative;
 	display: table-cell;
@@ -40,11 +38,10 @@ nav.main-menu.expanded {
 	padding-left: 5%;
 	padding-top: 2%;
 	overflow: hidden;
-	-webkit-transition: width .05s linear;
-	transition: width .05s linear;
+	-webkit-transition: width .1s linear;
+	transition: width .1s linear;
 	-webkit-transform: translateZ(0) scale(1, 1);
 	z-index: 1000;
-	height: 100vh;
 	position: -webkit-sticky;
 	position: sticky;
 }
@@ -90,7 +87,7 @@ nav.main-menu.expanded {
 	font-family: "Open Sans", sans-serif;
 	font-size: 20px;
 	letter-spacing: 0.1em;
-	color: rgb(215, 206, 206);
+	color: #dee5e5;
 }
 
 .nav-text:hover {
@@ -137,6 +134,8 @@ nav li {
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
+	bottom: 0;
+	height: 100vh;
 }
 
 .line-nav {

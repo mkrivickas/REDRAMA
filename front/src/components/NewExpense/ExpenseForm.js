@@ -26,7 +26,7 @@ const ExpenseForm = (props) => {
     const [enteredCategory, setEnteredCategory] = useState('food');
 
     const [editing, setEditing] = useState(false);
-
+    const [ totalExpese, setTotalExpense ] = useState(0);
 
     
     function fetchCategories(){
@@ -38,7 +38,16 @@ const ExpenseForm = (props) => {
             });
     }
 
-
+    useEffect(
+		() => {
+			let temp = 0;
+			for (let i = 0; i < expense.length; i++) {
+				temp += parseInt(expense[i].Amount);
+			}
+			setTotalExpense(temp);
+		},
+		[ expense ]
+	);
 	const titleChangeHandler = (event) => {
 		setEnteredTitle(event.target.value);
 
@@ -283,13 +292,22 @@ const ExpenseForm = (props) => {
     };
 
 	return (
-		<div className="expenseCategorySelector">
+		<div className="container-fluid">
+
+
+            
             <form className='container-fluid' onSubmit={submitHandler}>
                 <div className="expense-chart row d-flex justify-content-center">
                     {!isLoading && !isloadingExp ?<ExpenseDoughnutChart 
                         categories={categories} expense={expense}
                     />: <SpinningLoad/>}
                 </div>
+                <div className="totalIncome">
+							<h2 className="totalIncome-number">{totalExpese} €</h2>
+						</div>
+
+
+
                 <div className='new-expense__controls row d-flex justify-content-center'>
                     <div className='new-expense__control col-5'>
                         <label className='new-expense__category'>

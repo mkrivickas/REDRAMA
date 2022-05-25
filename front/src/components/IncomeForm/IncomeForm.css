@@ -38,9 +38,7 @@
 }
 
 .totalIncome {
-	color: white;
-
-	color: white;
+	color: #dee5e5;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
