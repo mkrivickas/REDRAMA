@@ -59,7 +59,6 @@ const Sidebar = (props) => (
                         </li>
                     )}
                 </ul>
-
                 <ul className='logout'>
                     <li className='logoutLine'>
                         <i

@@ -27,7 +27,6 @@ const ExpenseForm = (props) => {
     const [enteredCategory, setEnteredCategory] = useState('food');
 
     const [editing, setEditing] = useState(false);
-
     function fetchCategories() {
         fetch('http://localhost:3001/api/v1/category/')
             .then((response) => response.json())
@@ -36,7 +35,6 @@ const ExpenseForm = (props) => {
                 setIsLoading(false);
             });
     }
-
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
     };

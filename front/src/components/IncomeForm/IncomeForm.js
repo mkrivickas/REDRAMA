@@ -15,23 +15,19 @@ const IncomeForm = (props) => {
 	const [ editing, setEditing ] = useState(false);
 	const [ incomes, setIncomes ] = useState([]);
 	const timeElapsed = Date.now();
-  const today = new Date(timeElapsed).toLocaleString('lt-LT', {timeZone: 'Etc/GMT-6'});
-	let [isShowMore, setIsShowMore] = useState(false);
+	const today = new Date(timeElapsed).toLocaleString('lt-LT', { timeZone: 'Etc/GMT-6' });
+	let [ isShowMore, setIsShowMore ] = useState(false);
 
 	const [ totalIncome, setTotalIncome ] = useState(0);
-	let [categories, setCategories] = useState([]);
-	let [loading, setIsLoading] = useState(true);
+	let [ categories, setCategories ] = useState([]);
+	let [ loading, setIsLoading ] = useState(true);
 
-
-	function fetchCategories(){
-        fetch('http://localhost:3001/api/v1/category/')
-            .then(response => response.json())
-            .then(data => {
-            setCategories(data.data.categories);
-            setIsLoading(false);
-            });
-    }
-
+	function fetchCategories() {
+		fetch('http://localhost:3001/api/v1/category/').then((response) => response.json()).then((data) => {
+			setCategories(data.data.categories);
+			setIsLoading(false);
+		});
+	}
 
 	useEffect(
 		() => {
@@ -69,8 +65,8 @@ const IncomeForm = (props) => {
 			icon: 'warning',
 			showCancelButton: true,
 			cancelButtonText: 'Atšaukti',
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
+			confirmButtonColor: '#268b29',
+			cancelButtonColor: '#ffd700',
 			confirmButtonText: 'Taip, pašalinti!'
 		}).then(async (result) => {
 			if (result.isConfirmed) {
@@ -87,7 +83,7 @@ const IncomeForm = (props) => {
 							},
 							body: JSON.stringify({
 								UserId: props.currentUser._id,
-								ActionType: "Ištrynė pajamą",
+								ActionType: 'Ištrynė pajamą',
 								Timestamp: today,
 								Data: income
 							})
@@ -99,7 +95,8 @@ const IncomeForm = (props) => {
 						Swal.fire({
 							title: 'Jūsų duomenys buvo pašalinti!',
 							icon: 'success',
-							confirmButtonText: 'Gerai'
+							confirmButtonText: 'Gerai',
+							confirmButtonColor: '#268b29'
 						});
 					});
 			}
@@ -125,23 +122,22 @@ const IncomeForm = (props) => {
 						Accept: 'application/json',
 						'Content-Type': 'application/json'
 					},
-					body: JSON.stringify(
-						{
-							UserId: props.currentUser._id,
-							ActionType: "Atnaujino pajamą",
-							Timestamp: today,
-							Data: updatedIncome
-						})
-
-						}
-					);
+					body: JSON.stringify({
+						UserId: props.currentUser._id,
+						ActionType: 'Atnaujino pajamą',
+						Timestamp: today,
+						Data: updatedIncome
+					})
+				});
 			})
 			.then(() => {
 				swal({
 					title: 'Puiku!',
 					text: 'Jūsų duomenys buvo atnaujinti',
 					icon: 'success',
-					button: 'Gerai!'
+					button: 'Gerai!',
+					confirmButtonText: 'Gerai',
+					confirmButtonColor: '#268b29'
 				});
 			});
 
@@ -167,32 +163,34 @@ const IncomeForm = (props) => {
 				// We should keep the fields consistent for managing this data later
 				newIncome
 			)
-		}).then(()=>{
-					const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
-					fetch(postURLLog, {
-						method: 'POST',
-						headers: {
-							Accept: 'application/json',
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify(
-							{
-								UserId: props.currentUser._id,
-								ActionType: "Pridėjo pajamą",
-								Timestamp: today,
-								Data: newIncome
-							})
-	
-							}
-						);
-					}).then(()=>{
-						fetchData();
-					swal({
-						title: 'Puiku!',
-						text: 'Jūsų duomenys buvo pridėti',
-						icon: 'success',
-						button: 'Gerai!'
-					});});
+		})
+			.then(() => {
+				const postURLLog = 'http://localhost:3001/api/v1/8d59e57a-6b8f-4a54-b585-2e2c3edcd3ea/logs';
+				fetch(postURLLog, {
+					method: 'POST',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						UserId: props.currentUser._id,
+						ActionType: 'Pridėjo pajamą',
+						Timestamp: today,
+						Data: newIncome
+					})
+				});
+			})
+			.then(() => {
+				fetchData();
+				swal({
+					title: 'Puiku!',
+					text: 'Jūsų duomenys buvo pridėti',
+					icon: 'success',
+					button: 'Gerai!',
+					confirmButtonText: 'Gerai',
+					confirmButtonColor: '#268b29'
+				});
+			});
 	};
 
 	return (
@@ -200,7 +198,7 @@ const IncomeForm = (props) => {
 			<div className="row incomePage">
 				<div className="col-lg-5 col-md-12 col-sm-12">
 					<div className="incomeDougnut">
-						{!loading? <IncomeDoughnut incomes={incomes} categories={categories}/>:<SpinningLoad/>}
+						{!loading ? <IncomeDoughnut incomes={incomes} categories={categories} /> : <SpinningLoad />}
 
 						<div className="totalIncome">
 							<h2 className="totalIncome-number">{totalIncome} €</h2>
@@ -226,22 +224,32 @@ const IncomeForm = (props) => {
 						)}
 					</div>
 
-					{!isShowMore && <div className="IncomesListContainer ">
-						<IncomesList
-							className="IncomesList "
-							incomes={incomes}
-							editRow={editRow}
-							deleteIncome={deleteIncome}
-							isShowMore={isShowMore} 
-							setIsShowMore={setIsShowMore}
-						/>
-					</div>}
+					{!isShowMore && (
+						<div className="IncomesListContainer ">
+							<IncomesList
+								className="IncomesList "
+								incomes={incomes}
+								editRow={editRow}
+								deleteIncome={deleteIncome}
+								isShowMore={isShowMore}
+								setIsShowMore={setIsShowMore}
+							/>
+						</div>
+					)}
 				</div>
 			</div>
 
-			{isShowMore &&<div className="IncomesListContainer container-fluid">
-				<IncomesList incomes={incomes} editRow={editRow} deleteIncome={deleteIncome} isShowMore={isShowMore} setIsShowMore={setIsShowMore}/>
-			</div>}
+			{isShowMore && (
+				<div className="IncomesListContainer container-fluid">
+					<IncomesList
+						incomes={incomes}
+						editRow={editRow}
+						deleteIncome={deleteIncome}
+						isShowMore={isShowMore}
+						setIsShowMore={setIsShowMore}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };

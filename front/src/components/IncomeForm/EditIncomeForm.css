@@ -17,13 +17,13 @@
 	border: none;
 	background: none;
 	width: 100%;
-	color: white;
+	color: #dee5e5;
 	padding: 0;
 	font-size: 16px;
 
 	margin-top: 10px;
 	margin-bottom: 10px;
-	border-bottom: 1px solid #d1d1d4;
+	border-bottom: 1px solid #dee5e5;
 	transition: .2s;
 }
 
@@ -55,7 +55,7 @@
 #button-incomeCancel {
 	border-radius: 5px;
 	border: 0;
-	color: #eee;
+	color: #dee5e5;
 	background-color: #364652;
 	cursor: pointer;
 	font-size: 14px;
