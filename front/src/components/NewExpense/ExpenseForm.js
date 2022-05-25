@@ -3,6 +3,7 @@ import ExpenseList from './ExpenseList';
 import './ExpenseForm.css';
 import ExpenseDoughnutChart from './ExpenseDoughnutChart';
 import Swal from 'sweetalert2';
+import SpinningLoad from '../Extra/SpinningLoad';
 
 const validExpenseAmount = new RegExp('^[0-9.]{1,10}?$');
 
@@ -275,7 +276,6 @@ const ExpenseForm = (props) => {
         setEditing(false);
         setCurrentExpense('');
     };
-
     return (
         <div className='expenseCategorySelector row'>
             {!isLoading && !isloadingExp && (

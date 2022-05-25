@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import bcrypt from 'bcryptjs';
 import './Users.css';
 import { FaTrash, FaRegEdit } from 'react-icons/fa';
+import SpinningLoad from '../../Extra/SpinningLoad';
 
 const validUserName = new RegExp(
     '^[a-zA-Z0-9]{3,30}$'
@@ -243,7 +244,7 @@ const Users = () => {
             }
         </div>
         <div className='usersPageList'>
-            {!isLoading && 
+            {!isLoading ?
             users.map((user)=>(
                 <div key={user._id} className="usersPageSingleUser">
                     <div className={user.type === "admin"? "usersSingleUserGold usersNameAndEmail" :"usersSingleUserGreen usersNameAndEmail"}>
@@ -256,7 +257,7 @@ const Users = () => {
                     <button onClick={()=>{deleteUser(user._id)}} className="usersPageDeleteBtn"><FaTrash /></button>
                 </div>
                 </div>
-            ))}
+            )): <SpinningLoad/>}
         </div>
     </div>
   )

@@ -1,0 +1,26 @@
+.spinningWheel{
+    background-color: transparent;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    left: 0; 
+    right: 0; 
+    top: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+}
+.spinningWheel img{
+    animation-name: example;
+    animation-duration: 1000s;
+}
+
+@keyframes example {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(-300000deg)}
+  }

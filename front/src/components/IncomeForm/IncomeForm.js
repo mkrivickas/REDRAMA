@@ -8,6 +8,7 @@ import IncomeDoughnut from './IncomeDoughnut';
 
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
+import SpinningLoad from '../Extra/SpinningLoad';
 
 const IncomeForm = (props) => {
 	const [ currentIncome, setCurrentIncome ] = useState({});
@@ -199,7 +200,7 @@ const IncomeForm = (props) => {
 			<div className="row incomePage">
 				<div className="col-lg-5 col-md-12 col-sm-12">
 					<div className="incomeDougnut">
-						{!loading&& <IncomeDoughnut incomes={incomes} categories={categories}/>}
+						{!loading? <IncomeDoughnut incomes={incomes} categories={categories}/>:<SpinningLoad/>}
 
 						<div className="totalIncome">
 							<h2 className="totalIncome-number">{totalIncome} €</h2>

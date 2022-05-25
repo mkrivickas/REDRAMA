@@ -68,13 +68,33 @@
 }
 
 .IncomeListEdit-button {
-	color: #ffd700;
 	background-color: #364652;
+	color: #ffd700;
+
+	border-radius: 50%;
 	border: none;
 }
-
+.IncomeListEdit-button:hover {
+	background-color: #dee5e5;
+	color: #364652;
+}
 .IncomeListDelete-button {
-	color: #ffd700;
 	background-color: #364652;
+	font: inherit;
+	cursor: pointer;
+
+	color: #ffd700;
+	/* margin-right: 1rem; */
+	border-radius: 50%;
 	border: none;
+}
+.IncomeListDelete-button:hover {
+	background-color: #dee5e5;
+	color: #364652;
+	width: 30%;
+}
+
+.IncomeListSeeMoreBtn {
+	background-color: #ffd700;
+	border-radius: 5px;
 }

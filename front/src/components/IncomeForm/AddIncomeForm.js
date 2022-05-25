@@ -82,7 +82,7 @@ const AddIncomeForm = (props) => {
 						name="category"
 					>
 						<option selected="true" hidden value="">
-							-----------
+							Kategorija
 						</option>
 						{!isLoading &&
 							categories.map(

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SpinningLoad from '../Extra/SpinningLoad';
 
 import './History.css';
 
@@ -54,7 +55,7 @@ function History(props) {
 	}
 
 	return (
-		!loading && (
+		!loading ? (
 			<div className="historyTransactionsPage">
 				<div className="historyTransactionPage-title">
 					<div className="historyTransactionsSingleDate-title">Data</div>
@@ -98,7 +99,7 @@ function History(props) {
 					)}
 				</div>
 			</div>
-		)
+		):<SpinningLoad opacity={1}/>
 	);
 }
 export default History;
