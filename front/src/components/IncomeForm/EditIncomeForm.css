@@ -34,10 +34,11 @@
 }
 
 #button-incomeUpdate {
-	background-color: #ffd700;
+	border: 1px solid #169873;
+    background-color: #169873;
 	border-radius: 5px;
 	border: 0;
-	color: #364652;
+	color: #dee5e5;
 	cursor: pointer;
 	font-size: 14px;
 	padding: 5px;
@@ -55,8 +56,9 @@
 #button-incomeCancel {
 	border-radius: 5px;
 	border: 0;
-	color: #dee5e5;
-	background-color: #364652;
+	color: #364652;
+	border: 1px solid #ffd700;
+    background-color: #ffd700;
 	cursor: pointer;
 	font-size: 14px;
 	padding: 5px;
@@ -64,6 +66,7 @@
 	margin-top: 30px;
 	margin-bottom: 15px;
 	text-align: center;
+	font-weight: bold;
 }
 
 /* #button-incomeCancel:active {

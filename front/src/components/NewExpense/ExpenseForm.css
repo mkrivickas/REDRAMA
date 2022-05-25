@@ -44,6 +44,7 @@
     width: 100%;
     border: none;
     border-bottom: 1px solid #dee5e5;
+    color: #222;
     box-sizing: border-box;
     font-weight: bold;
     font-size: 20px;
@@ -69,6 +70,7 @@
 }
 
 .new-expense__control {
+    margin-top: 2%;
     display: flex;
     justify-content: left;
 }
@@ -94,20 +96,24 @@
 
 .new-expense__actions {
     text-align: left;
-    margin: 1% auto;
+    margin: 1%;
+    width: 50%;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .my-customized-button {
     font: inherit;
     cursor: pointer;
-    width: 10rem;
-    height: 3rem;
+    width: 40%;
+    height: 2rem;
+    border: 1px solid #ffd700;
+    background-color: #ffd700;
+    color: #364652;
+    margin-top: 0.5rem;
     margin-right: 3rem;
     border-radius: 5px;
-    border-color: #ffd700;
-    color: #364652;
-    background-color: #ffd700;
-    border: 1px solid #ffd700;
+    font-weight: bold;
 }
 
 .my-customized-button:hover {

@@ -194,15 +194,11 @@ const IncomeForm = (props) => {
 	};
 
 	return (
-		<div className=" container-fluid">
+		<div className=" container-fluid incomesContainer">
 			<div className="row incomePage">
 				<div className="col-lg-5 col-md-12 col-sm-12">
 					<div className="incomeDougnut">
-						{!loading ? <IncomeDoughnut incomes={incomes} categories={categories} /> : <SpinningLoad />}
-
-						<div className="totalIncome">
-							<h2 className="totalIncome-number">{totalIncome} €</h2>
-						</div>
+						{!loading ? <IncomeDoughnut incomes={incomes} categories={categories} totalIncome={totalIncome} /> : <SpinningLoad />}
 					</div>
 				</div>
 

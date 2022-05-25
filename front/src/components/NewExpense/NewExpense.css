@@ -1,13 +1,15 @@
 .expense-submit-button {
     font: inherit;
     cursor: pointer;
-    width: 10rem;
-    height: 3rem;
+    width: 40%;
+    height: 2rem;
     border: 1px solid #169873;
     background-color: #169873;
-    color: #dee5e5; /*tekstas "Pridėti */
+    color: #dee5e5;
+    margin-top: 0.5rem;
     margin-right: 3rem;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .new-expense__actions button:hover,

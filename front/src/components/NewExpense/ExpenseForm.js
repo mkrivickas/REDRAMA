@@ -359,15 +359,15 @@ const ExpenseForm = (props) => {
                         />
                     </div>
                 </div>
-                <div className='new-expense__actions'>
-                    <button className='expense-submit-button'>
+                <div className='new-expense__actions row'>
+                    <button className='expense-submit-button col-3'>
                         {editing ? <>Atnaujinti</> : <>Pridėti</>}
                     </button>
                     {editing && (
                         <button
                             type='cancel'
                             variant='contained'
-                            className='my-customized-button'
+                            className='my-customized-button col-3'
                             onClick={() => {
                                 cancelUpdate();
                             }}

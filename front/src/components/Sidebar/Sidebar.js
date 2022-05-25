@@ -71,7 +71,9 @@ const Sidebar = (props) => (
                         </i>
                         <div className='logoutColumn'>
                             <span className='logoutUserName'>
-                                {props.currentUser.name}:
+                                {props.currentUser.name}
+                            </span>
+                            <span className='logoutUserName'>
                                 {props.currentUser.email}
                             </span>
                             <span

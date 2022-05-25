@@ -6,7 +6,17 @@ import './ExpenseDoughnutChart.css';
 export default function ExpenseDoughnutChart(props) {
     const [categoryNames, setCategoryNames] = useState([]);
     let [categoriesExpenses, setCategoriesExpenses] = useState([]);
+    let [totalExpense, setTotalExpense] = useState(0);
 
+    useEffect(() => {
+        let tempTotalExpense = 0
+      props.expense.forEach((expense)=>{
+        tempTotalExpense += expense.Amount;
+      })
+      setTotalExpense(tempTotalExpense)
+
+    }, [props.expense])
+    
     const data = {
         labels: categoryNames,
         datasets: [
@@ -96,7 +106,7 @@ export default function ExpenseDoughnutChart(props) {
             <div className='totalExpense'>
                 <h2 className='totalExpense-number'>
                                 {/* TODO: {totalExpenseNumber} */}
-                                100$
+                                {totalExpense}€
                 </h2>
             </div>
         </div>

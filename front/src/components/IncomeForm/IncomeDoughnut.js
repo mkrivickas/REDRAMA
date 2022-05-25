@@ -98,10 +98,10 @@ function IncomeDoughnut(props) {
 					responsive: true,
 					maintainAspectRatio: false,
 					cutoutPercentage: 75,
-					legend: {
-						display: false
-					},
 					plugins: {
+						legend: {
+							display: false
+						},
 						animation: {
 							animateScale: true
 						},
@@ -118,6 +118,7 @@ function IncomeDoughnut(props) {
 					}
 				}}
 			/>
+			<h2 className="totalIncome-number">{props.totalIncome} €</h2>
 		</div>
 	);
 }

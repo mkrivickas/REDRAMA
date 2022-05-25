@@ -4,18 +4,21 @@
 }
 
 .AddIncomeForm-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
     color: #ffd700;
-    font-family: sans-serif;
-    font-size: 26px;
-    font-weight: 600;
-    padding: 10px;
+    padding: 5%;
     text-align: center;
+}
+.incomeAddForm{
+    margin-top: 2%;
 }
 
 .AddIncomeForm-input {
     border-radius: 2px;
     border: none;
-    background-color: #364652;
+    background-color: #222;
     width: 100%;
     color: white;
     padding: 0;
@@ -34,17 +37,16 @@
 }
 
 #button-incomeAdd {
-    background-color: #ffd700;
-    border-radius: 5px;
-    border: 0;
-    color: #364652;
+    font: inherit;
     cursor: pointer;
-    font-size: 14px;
-    padding: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    text-align: center;
+    width: 10rem;
+    height: 2rem;
+    border: 1px solid #169873;
+    background-color: #169873;
+    color: #dee5e5;
+    margin-top: 0.5rem;
+    margin-right: 3rem;
+    border-radius: 5px;
     font-weight: bold;
 }
 

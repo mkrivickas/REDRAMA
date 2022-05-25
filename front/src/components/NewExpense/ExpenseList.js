@@ -6,11 +6,11 @@ import './ExpenseList.css';
 const ExpenseList = ({ expense, deleteExpense, editExpense }) => (
     <div className='ExpenseList-container'>
         <div className='ExpenseList-row'>
-            <label className='ExpenseListLabels'>Data</label>
+            <label className='ExpenseListLabels expenseListFirst'>Data</label>
             <label className='ExpenseListLabels'>Kategorija</label>
             <label className='ExpenseListLabels'>Pavadinimas</label>
             <label className='ExpenseListLabels'>Suma</label>
-            <label className='ExpenseListLabels'>Veiksmai</label>
+            <label className='ExpenseListLabels expenseListLast'>Veiksmai</label>
         </div>
         {expense.length > 0 ? (
             expense.map((expense) => (

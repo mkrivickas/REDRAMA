@@ -63,7 +63,7 @@ const EditIncomeForm = (props) => {
 	return (
 		<div className="EditIncomesForm container-fluid">
 			<form className="EditIncome-form row" onSubmit={handleSubmit}>
-				<h3 className="EditIncomeForm-title col-lg-12 col-md-12 col-sm-12"> Atnaujinti pajamas</h3>
+			<h3 className="AddIncomeForm-title col-lg-12 col-md-12 col-sm-12"> Atnaujinti pajamas</h3>
 				<div className="col-lg-6 col-md-12 col-sm-12">
 					<select
 						className="EditIncomeForm-input "
@@ -132,10 +132,10 @@ const EditIncomeForm = (props) => {
 						}}
 					/>
 				</div>
-				<div className="col-lg-6 col-md-12 col-sm-12">
-					<button id="button-incomeUpdate">Atnaujinti pajamas</button>
+				<div className="col-lg-3 col-md-12 col-sm-12">
+					<button id="button-incomeUpdate">Atnaujinti</button>
 				</div>
-				<div className="col-lg-6 col-md-12 col-sm-12">
+				<div className="col-lg-3 col-md-12 col-sm-12">
 					<button
 						id="button-incomeCancel"
 						className="col-lg-6 col-md-12 col-sm-12"
