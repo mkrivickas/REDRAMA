@@ -36,29 +36,6 @@ export default function ExpenseDoughnutChart(props) {
                     '#F7C548',
                 ],
                 borderColor: ['rgb(0,0,0)'],
-                hoverBackgroundColor: [
-                    '#d7c350',
-                    '#A1E8AF',
-                    '#cd2851',
-                    '#9dc5bb',
-                    '#69A2B0',
-                    '#422040',
-                    '#C36F09',
-                    '#5FAD41',
-                    '#8C1C13',
-                    '#62929E',
-                    '#724CF9',
-                    '#E56399',
-                    '#995D81',
-                    '#D7C350',
-                    '#88A2AA',
-                    '#f63e02',
-                    '#B0FE76',
-                    '#869D7A',
-                    '#9999C3',
-                    '#3F7CAC',
-                    '#A98743',
-                ],
                 hoverOffset: 20,
             },
         ],
@@ -96,10 +73,10 @@ export default function ExpenseDoughnutChart(props) {
                     responsive: true,
                     maintainAspectRatio: false,
                     cutoutPercentage: 75,
-                    legend: {
-                        display: true,
-                    },
                     plugins: {
+                        legend: {
+                            display: false,
+                        },
                         animation: {
                             animateScale: true,
                         },
@@ -116,6 +93,12 @@ export default function ExpenseDoughnutChart(props) {
                     },
                 }}
             />
+            <div className='totalExpense'>
+                <h2 className='totalExpense-number'>
+                                {/* TODO: {totalExpenseNumber} */}
+                                100$
+                </h2>
+            </div>
         </div>
     );
 }

@@ -10,7 +10,7 @@ nav.main-menu.expanded {
 }
 
 .main-menu {
-    height: 100vh;
+    min-height: 100vh;
     background: #364652;
     position: absolute;
     width: 35%;

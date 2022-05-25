@@ -281,13 +281,6 @@ const ExpenseForm = (props) => {
             {!isLoading && !isloadingExp && (
                 <div className='col-lg-5'>
                     <div className='expenseDoughnut'>
-                        <div className='Doughnut-expense'></div>
-                        <div className='totalExpense'>
-                            <h2 className='totalExpense-number'>
-                                {/* TODO: {totalExpenseNumber} */}
-                                140 €
-                            </h2>
-                        </div>
                         <ExpenseDoughnutChart
                             categories={categories}
                             expense={expense}
