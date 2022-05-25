@@ -1,5 +1,5 @@
 .ExpenseList-container {
-    background-color: #364652;
+    background-color: #222;
     padding-top: 10%;
     margin: 0;
 }
@@ -29,14 +29,14 @@
     text-align: center;
     padding-top: 1rem;
     color: #dee5e5;
-    background-color: #364652;
+    background-color: #222;
 }
 
 .ExpenseListOptionsButtons {
     display: flex;
     justify-content: center;
     text-align: center;
-    background-color: #364652;
+    background-color: #222;
 }
 
 .ExpenseListOptionsButtons button {
@@ -44,7 +44,7 @@
 }
 
 .ExpenseListEdit-button {
-    background-color: #364652;
+    background-color: #222;
     color: #ffd700;
     width: 3rem;
     height: 3rem;
@@ -57,7 +57,7 @@
 }
 
 .ExpenseListDelete-button {
-    background-color: #364652;
+    background-color: #222;
     font: inherit;
     cursor: pointer;
     width: 3rem;

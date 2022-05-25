@@ -4,7 +4,6 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import './ExpenseDoughnutChart.css';
 
 export default function ExpenseDoughnutChart(props) {
-    const [totalExpenses, setTotalExpenses] = useState(0);
     const [categoryNames, setCategoryNames] = useState([]);
     let [categoriesExpenses, setCategoriesExpenses] = useState([]);
 
