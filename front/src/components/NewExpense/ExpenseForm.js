@@ -401,6 +401,7 @@ const ExpenseForm = (props) => {
                     editExpense={editRow}
                     deleteExpense={deleteExpense}
                 />)}
+                </form>
             <div className='expenseExportBtn'>
             <Export currentUser={props.currentUser}/>
             </div>
