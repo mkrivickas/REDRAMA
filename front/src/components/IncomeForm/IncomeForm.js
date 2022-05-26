@@ -131,7 +131,7 @@ const IncomeForm = (props) => {
 				});
 			})
 			.then(() => {
-				swal({
+				Swal.fire({
 					title: 'Puiku!',
 					text: 'Jūsų duomenys buvo atnaujinti',
 					icon: 'success',
@@ -198,7 +198,11 @@ const IncomeForm = (props) => {
 			<div className="row incomePage">
 				<div className="col-lg-5 col-md-12 col-sm-12">
 					<div className="incomeDougnut">
-						{!loading ? <IncomeDoughnut incomes={incomes} categories={categories} totalIncome={totalIncome} /> : <SpinningLoad />}
+						{!loading ? (
+							<IncomeDoughnut incomes={incomes} categories={categories} totalIncome={totalIncome} />
+						) : (
+							<SpinningLoad />
+						)}
 					</div>
 				</div>
 

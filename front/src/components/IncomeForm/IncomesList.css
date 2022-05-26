@@ -70,7 +70,7 @@
 .IncomeListEdit-button {
 	background-color: #364652;
 	color: #ffd700;
-
+	cursor: pointer;
 	border-radius: 50%;
 	border: none;
 }
@@ -84,17 +84,18 @@
 	cursor: pointer;
 
 	color: #ffd700;
-	/* margin-right: 1rem; */
 	border-radius: 50%;
 	border: none;
 }
 .IncomeListDelete-button:hover {
 	background-color: #dee5e5;
 	color: #364652;
-	width: 30%;
 }
 
 .IncomeListSeeMoreBtn {
 	background-color: #ffd700;
 	border-radius: 5px;
+	margin-left: 75%;
+	width: 25%;
+	margin-top: 1rem;
 }

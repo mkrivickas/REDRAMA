@@ -4,49 +4,61 @@
 }
 
 .EditIncomeForm-title {
-	color: #364652;
-	font-family: sans-serif;
-	font-size: 26px;
-	font-weight: 600;
-	margin-top: 10px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2rem;
+	font-weight: 700;
+	color: #ffd700;
+	padding: 5%;
 	text-align: center;
 }
 
 .EditIncomeForm-input {
+	font-family: 'Open Sans', sans-serif;
 	border-radius: 2px;
 	border: none;
-	background: none;
+	background-color: #222;
 	width: 100%;
 	color: #dee5e5;
 	padding: 0;
 	font-size: 16px;
-
+	padding-bottom: 12px;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 8px;
 	border-bottom: 1px solid #dee5e5;
-	transition: .2s;
+	transition: 0.3s;
+	-moz-transition: 0.3s ease;
+	-webkit-transition: 0.3s ease;
+	-o-transition: 0.3s ease;
+	-ms-transition: 0.3s ease;
 }
 
+.EditIncomeForm-input option {
+	color: black;
+	background-color: #364652;
+}
+
+.EditIncomeForm-input option:hover {
+	background-color: #dee5e5;
+}
 .EditIncomeForm-input > .placeholder {
 	color: #364652;
-	font-family: sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	top: 20px;
 }
 
 #button-incomeUpdate {
-	border: 1px solid #169873;
-    background-color: #169873;
-	border-radius: 5px;
-	border: 0;
-	color: #dee5e5;
+	font-family: 'Open Sans', sans-serif;
 	cursor: pointer;
-	font-size: 14px;
-	padding: 5px;
+	/* width: 10rem; */
 	width: 100%;
-	margin-top: 30px;
-	margin-bottom: 15px;
-	text-align: center;
-	font-weight: bold;
+	height: 2rem;
+	border: 1px solid #169873;
+	background-color: #169873;
+	color: #dee5e5;
+	margin-top: 1rem;
+	margin-right: 3rem;
+	border-radius: 5px;
+	font-weight: 700;
 }
 
 /* #button-incomeUpdate:active {
@@ -54,19 +66,18 @@
 } */
 
 #button-incomeCancel {
-	border-radius: 5px;
-	border: 0;
-	color: #364652;
-	border: 1px solid #ffd700;
-    background-color: #ffd700;
+	font-family: 'Open Sans', sans-serif;
 	cursor: pointer;
-	font-size: 14px;
-	padding: 5px;
+	/* width: 10rem; */
 	width: 100%;
-	margin-top: 30px;
-	margin-bottom: 15px;
-	text-align: center;
-	font-weight: bold;
+	height: 2rem;
+	border: 1px solid #ffd700;
+	background-color: #ffd700;
+	color: #dee5e5;
+	margin-top: 1rem;
+	margin-right: 3rem;
+	border-radius: 5px;
+	font-weight: 700;
 }
 
 /* #button-incomeCancel:active {
