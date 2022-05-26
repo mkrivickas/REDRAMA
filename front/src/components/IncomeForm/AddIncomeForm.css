@@ -15,6 +15,11 @@
 	margin-top: 2%;
 } */
 
+#addIncomeFormInput-suma::placeholder,
+#expenseTitle::placeholder {
+	color: #dee5e5;
+}
+
 .AddIncomeForm-input {
 	font-family: 'Open Sans', sans-serif;
 	border-radius: 2px;

@@ -82,7 +82,7 @@ const AddIncomeForm = (props) => {
 						name="category"
 					>
 						<option selected="true" hidden value="">
-							Kategorija
+							Pajamų kategorija
 						</option>
 						{!isLoading &&
 							categories.map(
@@ -95,14 +95,14 @@ const AddIncomeForm = (props) => {
 				</div>
 				<div className="col-lg-6 col-md-12 col-sm-12 incomeAddForm">
 					<input
-						id="addIncomeFormInput"
+						id="addIncomeFormInput-suma"
 						className="AddIncomeForm-input"
 						type="number"
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
 						required
-						placeholder="Suma"
+						placeholder="Pajamų suma, €"
 						onChange={incomeAmountAdd}
 					/>
 				</div>
@@ -121,6 +121,7 @@ const AddIncomeForm = (props) => {
 				</div>
 				<div className="col-lg-6 col-md-12 col-sm-12 incomeAddForm">
 					<input
+						id="incomeTitle"
 						className="AddIncomeForm-input"
 						type="text"
 						name="incomeName"
