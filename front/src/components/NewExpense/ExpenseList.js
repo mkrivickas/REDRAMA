@@ -1,10 +1,45 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { FaRegEdit } from 'react-icons/fa';
 import './ExpenseList.css';
 
-const ExpenseList = ({ expense, deleteExpense, editExpense }) => (
+const ExpenseList = ({ tempExpense, setTempExp, expense, setExpense, deleteExpense, editExpense, categories }) => {
+
+    let [categoryFilter, setCategoryFilter] = useState("")
+
+    useEffect(() => {
+        let tempExpList = [];
+        console.log(categoryFilter);
+      if(categoryFilter){
+        setExpense("");
+        tempExpense.forEach((expense)=>{
+            if(expense.Category=== categoryFilter){
+                tempExpList.push(expense);
+            }
+        });
+        setExpense(tempExpList);
+      }else if(categoryFilter===""){
+        setExpense(tempExpense);
+      }
+    }, [categoryFilter]);
+    
+
+    function cancelFilter(){
+        setCategoryFilter("");
+    }
+
+    return(
+
     <div className='ExpenseList-container'>
+        <div className='ExpenseListCategorySort'>
+            <select onChange={(e)=>{setCategoryFilter(e.target.value)}}value={categoryFilter} id="expenseCategoryFilter" className='expenseCategoryFilter'>
+                <option value={""} hidden>Filtruoti pagal kategoriją</option>
+                {categories.map((category)=>(
+                    category.categoryType === "expense"&& <option value={category.categoryName}>{category.categoryName}</option>
+                ))}
+            </select>
+            {categoryFilter && <button type='button' className='expenseCategoryFilterCancel' onClick={()=>{cancelFilter()}}>Atšaukti filtravimą</button>}
+        </div>
         <div className='ExpenseList-row'>
             <label className='ExpenseListLabels expenseListFirst'>Data</label>
             <label className='ExpenseListLabels'>Kategorija</label>
@@ -46,7 +81,7 @@ const ExpenseList = ({ expense, deleteExpense, editExpense }) => (
         ) : (
             <div>Nėra išlaidų</div>
         )}
-    </div>
-);
+    </div>  )
+};
 
 export default ExpenseList;

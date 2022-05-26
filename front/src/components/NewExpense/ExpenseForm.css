@@ -38,13 +38,30 @@
 }
 
 .expenseCategorySelector input,
-.expenseCategorySelector select,
 .expenseCategorySelector option {
     display: block;
     width: 100%;
     border: none;
     border-bottom: 1px solid #dee5e5;
     color: #222;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    padding-top: 30px;
+    padding-bottom: 5px;
+    -webkit-appearance: none;
+    background: transparent;
+}
+.expenseInputSelect{
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #dee5e5;
     box-sizing: border-box;
     font-weight: bold;
     font-size: 20px;
