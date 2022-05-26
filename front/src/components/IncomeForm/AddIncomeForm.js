@@ -72,7 +72,7 @@ const AddIncomeForm = (props) => {
 		<div className="AddIncomesForm container">
 			<form className="AddIncome-form row" onSubmit={handleSubmit}>
 				<h3 className="AddIncomeForm-title col-lg-12 col-md-12 col-sm-12"> Pridėti pajamas</h3>
-				<div className="col-lg-6 col-md-6 col-sm-12 incomeAddForm">
+				<div className="col-lg-6 col-md-12 col-sm-12 incomeAddForm">
 					<select
 						className="AddIncomeForm-input"
 						onChange={(e) => {
@@ -82,7 +82,7 @@ const AddIncomeForm = (props) => {
 						name="category"
 					>
 						<option selected="true" hidden value="">
-							Pajamų kategorija
+							Kategorija
 						</option>
 						{!isLoading &&
 							categories.map(
@@ -93,21 +93,20 @@ const AddIncomeForm = (props) => {
 							)}
 					</select>
 				</div>
-				<div className="col-lg-6 col-md-6 col-sm-12 incomeAddForm">
+				<div className="col-lg-6 col-md-12 col-sm-12 incomeAddForm">
 					<input
-						id="addIncomeFormInput-sum"
+						id="addIncomeFormInput"
 						className="AddIncomeForm-input"
 						type="number"
 						min="0.01"
 						step="0.01"
 						name="incomeAmount"
 						required
-						placeholder="Pajamų suma, €"
+						placeholder="Suma"
 						onChange={incomeAmountAdd}
 					/>
 				</div>
-
-				<div className="col-lg-6 col-md-6 col-sm-12 incomeAddForm">
+				<div className="col-lg-6 col-md-12 col-sm-12 incomeAddForm">
 					<input
 						className="AddIncomeForm-input"
 						type="date"
@@ -120,9 +119,8 @@ const AddIncomeForm = (props) => {
 						value={incomeDate}
 					/>
 				</div>
-				<div className="col-lg-6 col-md-6 col-sm-12 incomeAddForm">
+				<div className="col-lg-6 col-md-12 col-sm-12 incomeAddForm">
 					<input
-						id="incomeTitle"
 						className="AddIncomeForm-input"
 						type="text"
 						name="incomeName"
@@ -133,7 +131,7 @@ const AddIncomeForm = (props) => {
 						onChange={incomeNameAdd}
 					/>
 				</div>
-				<div className="col-lg-3 col-md-6 col-sm-12">
+				<div className="col-lg-3 col-md-12 col-sm-12">
 					<button id="button-incomeAdd" type="submit">
 						{' '}
 						Pridėti
