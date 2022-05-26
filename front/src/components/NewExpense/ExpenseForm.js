@@ -4,6 +4,7 @@ import './ExpenseForm.css';
 import ExpenseDoughnutChart from './ExpenseDoughnutChart';
 import Swal from 'sweetalert2';
 import SpinningLoad from '../Extra/SpinningLoad';
+import Export from '../Extra/Export';
 
 const validExpenseAmount = new RegExp('^[0-9.]{1,10}?$');
 
@@ -19,6 +20,7 @@ const ExpenseForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [expense, setExpense] = useState('');
+    const [tempExpense, setTempExp] = useState([]);
     let maxDate = new Date();
     let isIncomeValid = true;
     const [enteredDate, setEnteredDate] = useState(
@@ -78,6 +80,7 @@ const ExpenseForm = (props) => {
                     }
                 });
                 setExpense(tempData);
+                setTempExp(tempData);
                 setIsLoadingExp(false);
             });
     };
@@ -310,7 +313,7 @@ const ExpenseForm = (props) => {
                         )}
                     </h3>
                     <div className='new-expense__control col-6'>
-                        <select
+                        <select className='expenseInputSelect'
                             required
                             onChange={categoryChangeHandler}
                             value={enteredCategory}
@@ -388,13 +391,19 @@ const ExpenseForm = (props) => {
                         </button>
                     )}
                 </div>
+                {!isLoading && !isloadingExp && (
                 <ExpenseList
+                    tempExpense={tempExpense}
+                    setTempExp={setTempExp}
+                    setExpense={setExpense}
+                    categories = {categories}
                     expense={expense}
                     editExpense={editRow}
                     deleteExpense={deleteExpense}
-                />
-            </form>
-            {/* {enteredCategory} TODO: fix this */}
+                />)}
+            <div className='expenseExportBtn'>
+            <Export currentUser={props.currentUser}/>
+            </div>
         </div>
     );
 };

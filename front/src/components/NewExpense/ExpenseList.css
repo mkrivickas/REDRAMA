@@ -3,7 +3,37 @@
     padding-top: 2%;
     margin: 0;
 }
-
+.ExpenseListCategorySort{
+    display: flex;
+    justify-content: center;
+}
+.expenseCategoryFilter{
+    width: 40%;
+    border: none;
+    border-bottom: 1px solid #dee5e5;
+    box-sizing: border-box;
+    color: #dee5e5;
+    transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -webkit-appearance: none;
+    background: transparent;
+}
+.expenseCategoryFilterCancel{
+    font: inherit;
+    cursor: pointer;
+    width: 40%;
+    height: 2rem;
+    border: 1px solid #169873;
+    background-color: #169873;
+    color: #dee5e5;
+    margin-top: 0.5rem;
+    margin-right: 3rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
 .ExpenseList-row {
     border-radius: 5px;
     display: flex;

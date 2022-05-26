@@ -94,7 +94,7 @@ const Register = ({setCurrentUser}) => {
           {alreadyExistsErr && <h5>Vartotojas su tokiu vardu arba el. paštu jau egzistuoja!</h5>}
         </div>
         <form onSubmit={(e)=>{register(e)}}> 
-        <input type="text" name="username" id="regUsername" placeholder="Vartotojo Vardas" required></input>
+        <input type="text" name="username" id="regUsername" placeholder="Vartotojo vardas" required></input>
         <input type="email" name="email" placeholder="El. Paštas" id="regEmail" required></input>
         <div className='registerPasswordField'>
           <input type={showPassword} id="regPass" placeholder="Slaptažodis" name="password" required>

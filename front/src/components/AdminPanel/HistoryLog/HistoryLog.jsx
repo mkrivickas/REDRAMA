@@ -169,7 +169,7 @@ const HistoryLog = () => {
           <option value={user._id}>{user.name}</option>
         ))}
       </select>
-      {deleteMany.length >0 && <button className="deleteSelectedBtn" onClick={()=>{deleteManyLogs()}}>Istrinti pasirinktus</button>}
+      {deleteMany.length >0 && <button className="deleteSelectedBtn" onClick={()=>{deleteManyLogs()}}>Ištrinti pasirinktus</button>}
       </div>
         {!isLoading? logs.map((log)=>(
             <div className='historyPageLogSingle' key={log._id}>
