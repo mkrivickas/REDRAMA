@@ -195,8 +195,8 @@ const Categories = () => {
     return(
       <div className='categorySingleCategory' key={category._id}>
               <div className='categorySingleName'>{category.categoryName}, Tipas: {category.categoryType ==="income" ? <>Pajamos</>: <>Išlaidos</>}</div> 
-              <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button>
               <button onClick={()=>{editCategory(category)}}><FaRegEdit /></button>
+              <button onClick={()=>{deleteCategory(category._id)}}><FaTrash /></button>
       </div>
     )
   }

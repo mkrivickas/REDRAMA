@@ -40,14 +40,6 @@ const Sidebar = (props) => (
                             <span className='nav-text '> Išlaidos</span>
                         </Link>
                     </li>
-                    <li className='has-subnav'>
-                        <Link className='LinkName' to='/istorija'>
-                            <i className='icon-up'>
-                                <BiTrendingDown />
-                            </i>
-                            <span className='nav-text '> Istorija</span>
-                        </Link>
-                    </li>
                     {props.currentUser.type === 'admin' && (
                         <li className='has-subnav'>
                             <Link className='LinkName' to='/admin'>
