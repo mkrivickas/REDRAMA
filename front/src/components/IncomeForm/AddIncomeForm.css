@@ -18,9 +18,9 @@
 .AddIncomeForm-input {
     border-radius: 2px;
     border: none;
-    background-color: #222;
+    background-color: #222!important;
     width: 100%;
-    color: white;
+    color: white!important;
     padding: 0;
     font-size: 16px;
 
@@ -30,8 +30,8 @@
     transition: 0.2s;
 }
 
-.AddIncomeForm-input > .placeholder {
-    color: #364652;
+.AddIncomeForm-input::placeholder {
+    color: white;
     font-family: sans-serif;
     top: 20px;
 }
