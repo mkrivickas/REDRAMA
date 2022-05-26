@@ -213,6 +213,6 @@ http://localhost:3000
 
 Linkime sklandaus ir patogaus naudojimosi!
 
-Kūrėjai: Ramunas, Danguole, Mindaugas, Artur, Domantas, Tomas, Augustas ir Justina a.k.a. PRODUCT OWNER. 
+Kūrėjai: Ramūnas, Danguolė, Mindaugas, Artur, Domantas, Tomas, Augustas a.k.a. SCRUM MASTER ir Justina a.k.a. PRODUCT OWNER. 
 
 &copy; Copyright 2022. Visos teisės saugomos.
