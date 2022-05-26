@@ -73,6 +73,7 @@ export default function MainDoughnutChart(props) {
 					}
 				}}
 			/>
+				<h2 className="mainBalance">{props.mainBalance}€</h2>
 		</div>
 	);
 }

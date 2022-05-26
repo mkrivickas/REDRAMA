@@ -159,18 +159,6 @@ const ExpenseForm = (props) => {
                 });
         } else {
             const postURL = 'http://localhost:3001/api/v1/expense/';
-
-            Swal.fire({
-                title: 'Ar esate tikri?',
-                text: 'Dėmesio! Duomenys bus įrašyti.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#169873',
-                cancelButtonColor: '#ffd700',
-                confirmButtonText: 'Įrašyti',
-                cancelButtonText: 'Atšaukti',
-            }).then((result) => {
-                if (result.isConfirmed) {
                     fetch(postURL, {
                         method: 'POST',
                         headers: {
@@ -224,8 +212,6 @@ const ExpenseForm = (props) => {
                             setEnteredDate(maxDate.toLocaleDateString('lt-LT'));
                             setEnteredCategory('');
                         });
-                }
-            });
         }
     };
     const deleteExpense = async (id, deletedExpense) => {
