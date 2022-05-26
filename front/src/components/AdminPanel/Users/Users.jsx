@@ -216,6 +216,18 @@ const Users = () => {
       setUserAddName(user.name);
     };
 
+    useEffect(() => {
+      if(!isAddFormOpened){
+        setIsEditing(false);
+        setEditingUser(""
+        );
+        setUserAddEmail("");
+        setUserAddName("");
+        setUserAddPassword("");
+      }
+    }, [isAddFormOpened]);
+    
+
     const cancelEditing = () =>{
       setIsAddFormOpened(false);
       setIsEditing(false);
@@ -223,6 +235,7 @@ const Users = () => {
       );
       setUserAddEmail("");
       setUserAddName("");
+      setUserAddPassword("");
     };
   return (
     <div className='usersPage'>
@@ -236,8 +249,8 @@ const Users = () => {
                 <input type="email" id="userAddEmail" value={userAddEmail} onChange={(e)=>{setUserAddEmail(e.target.value)}} className='usersPageInputEmail'   name="userAddEmail" placeholder='El. paštas' required></input>
                 <input type="password" id="userAddPassword" value={userAddPassword} onChange={(e)=>{setUserAddPassword(e.target.value)}} className='usersPageInputPassword'  name="userAddPassword" placeholder='Slaptažodis' required={isEditing ? false: true}></input>
                 <select className="usersPageSelectType" onChange={(e)=>{(setUserAddType(e.target.value))}} value={userAddType}>
+                  <option value="user">Vartotojas</option> 
                   <option value="admin">Administratorius</option>
-                  <option value="user">Vartotojas</option>
                 </select>
                 <button type="submit" className='usersPageAddBtn' value="Pridėti">{isEditing ? "Atnaujinti": "Pridėti"}</button>
             </form></div>
@@ -249,7 +262,7 @@ const Users = () => {
                 <div key={user._id} className="usersPageSingleUser">
                     <div className={user.type === "admin"? "usersSingleUserGold usersNameAndEmail" :"usersSingleUserGreen usersNameAndEmail"}>
                         <div>Vartotojas: {user.name}</div>
-                        <div>E. Paštas: {user.email}</div>
+                        <div>El. Paštas: {user.email}</div>
                     </div>
                 <div className='usersPageType'> {user.type ==="admin"? "Administratorius": "Vartotojas"}</div>
                 <div className='usersPageSingleBtns'>

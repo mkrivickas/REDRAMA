@@ -95,7 +95,7 @@ function TransactionList(props) {
 							onChange={(e) => {
 								setMonthFilter(e.target.value);
 							}}
-						>	<option value="" hidden>---------</option>
+						>	<option value="" hidden>Pasirinkti</option>
 							<option value="1">Sausis</option>
 							<option value="2">Vasaris</option>
 							<option value="3">Kovas</option>
