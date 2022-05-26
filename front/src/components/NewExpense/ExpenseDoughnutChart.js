@@ -105,7 +105,6 @@ export default function ExpenseDoughnutChart(props) {
             />
             <div className='totalExpense'>
                 <h2 className='totalExpense-number'>
-                                {/* TODO: {totalExpenseNumber} */}
                                 {totalExpense}€
                 </h2>
             </div>

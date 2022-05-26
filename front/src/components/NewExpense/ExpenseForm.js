@@ -140,6 +140,7 @@ const ExpenseForm = (props) => {
                     Swal.fire({
                         title: 'Duomenys sėkmingai atnaujinti.',
                         confirmButtonText: 'Gerai',
+                        confirmButtonColor: '#169873'
                     });
                 });
         } else {
@@ -150,7 +151,7 @@ const ExpenseForm = (props) => {
                 text: 'Dėmesio! Duomenys bus įrašyti.',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#268b29',
+                confirmButtonColor: '#169873',
                 cancelButtonColor: '#ffd700',
                 confirmButtonText: 'Įrašyti',
                 cancelButtonText: 'Atšaukti',
@@ -201,6 +202,7 @@ const ExpenseForm = (props) => {
                                 text: 'Įrašas įtrauktas į žurnalą.',
                                 icon: 'success',
                                 confirmButtonText: 'Gerai!',
+                                confirmButtonColor: '#169873'
                             });
                             fetchData();
                             setEnteredTitle('');
@@ -219,7 +221,7 @@ const ExpenseForm = (props) => {
             icon: 'warning',
             showCancelButton: true,
             cancelButtonText: 'Atšaukti',
-            confirmButtonColor: '#268b29',
+            confirmButtonColor: '#169873',
             cancelButtonColor: '#ffd700',
             confirmButtonText: 'Taip, pašalinti!',
         })
@@ -236,6 +238,7 @@ const ExpenseForm = (props) => {
                             title: 'Jūsų duomenys buvo pašalinti!',
                             icon: 'success',
                             confirmButtonText: 'Gerai',
+                            confirmButtonColor: '#169873'
                         });
                     });
                 }
