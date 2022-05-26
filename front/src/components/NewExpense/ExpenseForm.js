@@ -4,6 +4,7 @@ import './ExpenseForm.css';
 import ExpenseDoughnutChart from './ExpenseDoughnutChart';
 import Swal from 'sweetalert2';
 import SpinningLoad from '../Extra/SpinningLoad';
+import Export from '../Extra/Export';
 
 const validExpenseAmount = new RegExp('^[0-9.]{1,10}?$');
 
@@ -382,6 +383,9 @@ const ExpenseForm = (props) => {
                     deleteExpense={deleteExpense}
                 />
             </form>
+            <div className='expenseExportBtn'>
+            <Export currentUser={props.currentUser}/>
+            </div>
         </div>
     );
 };
