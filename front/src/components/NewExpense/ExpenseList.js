@@ -59,7 +59,7 @@ const ExpenseList = ({ tempExpense, setTempExp, expense, setExpense, deleteExpen
                     <div className='ExpenseName-List'>{expense.Name}</div>
                     <div className='ExpenseAmount-List'>{expense.Amount}€</div>
                     <div className='ExpenseListOptionsButtons'>
-                        <button
+                        <button type='button'
                             className='ExpenseListEdit-button'
                             onClick={() => {
                                 window.scrollTo(0, 0);
@@ -68,7 +68,7 @@ const ExpenseList = ({ tempExpense, setTempExp, expense, setExpense, deleteExpen
                         >
                             <FaRegEdit />
                         </button>
-                        <button
+                        <button  type='button'
                             onClick={() => deleteExpense(expense._id, expense)}
                             className='ExpenseListDelete-button'
                         >

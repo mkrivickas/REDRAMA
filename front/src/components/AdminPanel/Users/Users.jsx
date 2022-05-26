@@ -19,7 +19,7 @@ const Users = () => {
     let [users, setUsers] = useState([]);
     let [isLoading, setIsLoading] = useState(true);
     let [isAddFormOpened, setIsAddFormOpened] = useState(false);
-    let [userAddType, setUserAddType] = useState("admin");
+    let [userAddType, setUserAddType] = useState("user");
     let [userAddName, setUserAddName] = useState("");
     let [userAddEmail, setUserAddEmail] = useState("");
     let [userAddPassword, setUserAddPassword] = useState("");
