@@ -29,7 +29,6 @@ const ExpenseList = ({ expense, deleteExpense, editExpense }) => (
                             onClick={() => {
                                 window.scrollTo(0, 0);
                                 editExpense(expense);
-                                /* 									props.openModal(); */
                             }}
                         >
                             <FaRegEdit />

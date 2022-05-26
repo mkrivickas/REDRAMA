@@ -8,7 +8,7 @@ import SpinningLoad from '../Extra/SpinningLoad';
 const validExpenseAmount = new RegExp('^[0-9.]{1,10}?$');
 
 const ExpenseForm = (props) => {
-    let [categories, setCategories] = useState('');
+    let [categories, setCategories] = useState('Išlaidų kategorija');
     let [isLoading, setIsLoading] = useState(true);
     let [isloadingExp, setIsLoadingExp] = useState(true);
     const timeElapsed = Date.now();
@@ -24,7 +24,8 @@ const ExpenseForm = (props) => {
     const [enteredDate, setEnteredDate] = useState(
         maxDate.toLocaleDateString('lt-LT')
     );
-    const [enteredCategory, setEnteredCategory] = useState('food');
+    const [enteredCategory, setEnteredCategory] =
+        useState('Išlaidų kategorija');
 
     const [editing, setEditing] = useState(false);
     function fetchCategories() {
@@ -54,6 +55,16 @@ const ExpenseForm = (props) => {
     };
     const categoryChangeHandler = (event) => {
         setEnteredCategory(event.target.value);
+    };
+
+    // TODO:
+
+    const renderResult = (event) => {
+        let result;
+        enteredCategory === 'Išlaidų kategorija'
+            ? (result = 'Išlaidų kategorija')
+            : result(enteredCategory);
+        return result;
     };
 
     const fetchData = async () => {
@@ -140,6 +151,7 @@ const ExpenseForm = (props) => {
                     Swal.fire({
                         title: 'Duomenys sėkmingai atnaujinti.',
                         confirmButtonText: 'Gerai',
+                        confirmButtonColor: '#169873',
                     });
                 });
         } else {
@@ -150,7 +162,7 @@ const ExpenseForm = (props) => {
                 text: 'Dėmesio! Duomenys bus įrašyti.',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#268b29',
+                confirmButtonColor: '#169873',
                 cancelButtonColor: '#ffd700',
                 confirmButtonText: 'Įrašyti',
                 cancelButtonText: 'Atšaukti',
@@ -201,6 +213,7 @@ const ExpenseForm = (props) => {
                                 text: 'Įrašas įtrauktas į žurnalą.',
                                 icon: 'success',
                                 confirmButtonText: 'Gerai!',
+                                confirmButtonColor: '#169873',
                             });
                             fetchData();
                             setEnteredTitle('');
@@ -219,7 +232,7 @@ const ExpenseForm = (props) => {
             icon: 'warning',
             showCancelButton: true,
             cancelButtonText: 'Atšaukti',
-            confirmButtonColor: '#268b29',
+            confirmButtonColor: '#169873',
             cancelButtonColor: '#ffd700',
             confirmButtonText: 'Taip, pašalinti!',
         })
@@ -236,6 +249,7 @@ const ExpenseForm = (props) => {
                             title: 'Jūsų duomenys buvo pašalinti!',
                             icon: 'success',
                             confirmButtonText: 'Gerai',
+                            confirmButtonColor: '#169873',
                         });
                     });
                 }
@@ -301,9 +315,7 @@ const ExpenseForm = (props) => {
                             onChange={categoryChangeHandler}
                             value={enteredCategory}
                         >
-                            <option hidden value=''>
-                                Išlaidų kategorija
-                            </option>
+                            <option value=''>Išlaidų kategorija</option>
                             {!isLoading &&
                                 categories.map(
                                     (category) =>
@@ -382,6 +394,7 @@ const ExpenseForm = (props) => {
                     deleteExpense={deleteExpense}
                 />
             </form>
+            {/* {enteredCategory} TODO: fix this */}
         </div>
     );
 };
