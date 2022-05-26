@@ -8,6 +8,7 @@ const HomeBalance = (props) => {
 	useEffect(
 		() => {
 			let tempBalance = 0;
+			setMainBalance(0);
 			props.combinedList.map((listItem) => {
 				if (listItem.Type === 'income') {
 					tempBalance += parseInt(listItem.Amount);
