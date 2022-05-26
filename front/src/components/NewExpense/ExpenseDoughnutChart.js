@@ -57,15 +57,20 @@ export default function ExpenseDoughnutChart(props) {
         props.categories.map((category) => {
             if (category.categoryType === 'expense') {
                 tempCatName.push(category.categoryName);
+                let singleCategoryExpense = 0;
+                props.expense.map((expense) => {
+                    if (expense.Category === category.categoryName) {
+                        console.log(expense.Category);
+                        console.log(category.categoryName);
+                        singleCategoryExpense += expense.Amount;
+                    }
+                });
+                tempCatExp.push(singleCategoryExpense);
             }
-            let singleCategoryExpense = 0;
-            props.expense.map((expense) => {
-                if (expense.Category == category.categoryName) {
-                    singleCategoryExpense += expense.Amount;
-                }
-            });
-            tempCatExp.push(singleCategoryExpense);
         });
+        console.log(tempCatName);
+        console.log(tempCatExp);
+        console.log(props.expense);
         setCategoriesExpenses(tempCatExp);
         setCategoryNames(tempCatName);
     }, [props.expense]);

@@ -101,6 +101,26 @@
     display: flex;
     flex-wrap: nowrap;
 }
+.expenseExportBtn{
+    width: 20%;
+}
+.expenseExportBtn button{
+    background-color: #169873;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #dee5e5;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    width: 300px;
+    margin-top: 40px;
+    text-align: center;
+}
+.expenseExportBtn button:hover{
+        background-color: #dee5e5;
+        color: #364652;
+}
 
 .my-customized-button {
     font: inherit;
