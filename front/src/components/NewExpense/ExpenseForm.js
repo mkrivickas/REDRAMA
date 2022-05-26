@@ -293,7 +293,7 @@ const ExpenseForm = (props) => {
     };
     return (
         <div className='expenseCategorySelector row'>
-            {!isLoading && !isloadingExp && (
+            {!isLoading && !isloadingExp ? (
                 <div className='col-lg-5'>
                     <div className='expenseDoughnut'>
                         <ExpenseDoughnutChart
@@ -302,7 +302,7 @@ const ExpenseForm = (props) => {
                         />
                     </div>
                 </div>
-            )}
+            ): <SpinningLoad/>}
             <form className='col-lg-7' onSubmit={submitHandler}>
                 <div className='new-expense__controls row d-flex'>
                     <h3 className='AddExpenseForm-title col-lg-12'>
@@ -391,7 +391,7 @@ const ExpenseForm = (props) => {
                         </button>
                     )}
                 </div>
-                {!isLoading && !isloadingExp && (
+                {!isLoading && !isloadingExp ? (
                 <ExpenseList
                     tempExpense={tempExpense}
                     setTempExp={setTempExp}
@@ -400,7 +400,7 @@ const ExpenseForm = (props) => {
                     expense={expense}
                     editExpense={editRow}
                     deleteExpense={deleteExpense}
-                />)}
+                />):(<SpinningLoad/>)}
                 </form>
             <div className='expenseExportBtn'>
             <Export currentUser={props.currentUser}/>
